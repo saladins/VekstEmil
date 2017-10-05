@@ -245,7 +245,7 @@ SQL;
             return null;
         }
         $sql = 'SELECT DISTINCT * FROM ' . columnMap::columnsTableParent()[$columnName];
-        $this->logger->log($sql);
+        $this->logger->log('getFieldDescriptions: ' . $sql);
         $this->db->query($sql);
         return $this->db->getResultSet(PDO::FETCH_CLASS);
     }
@@ -281,9 +281,11 @@ SQL;
     }
     private function getVariablesRelated($variableID) {
         $sql = <<<SQL
-SELECT a.parentVariableID, a.relatedVariableID 
-FROM VariableRelated a
-WHERE a.parentVariableID = $variableID
+SELECT a.relatedVariableID, b.statisticName, c.subCategoryName, c.iconType, c.iconData
+FROM VariableRelated a, Variable b, VariableSubCategory c
+WHERE a.parentVariableID = b.variableID
+AND b.subCategoryID = c.subCategoryID
+AND a.parentVariableID = $variableID;
 SQL;
         $this->db->query($sql);
         return $this->db->getResultSet(PDO::FETCH_CLASS);
@@ -296,7 +298,7 @@ WHERE a.descriptionID = b.descriptionID
 AND b.variableID = $variableID
 SQL;
         $this->db->query($sql);
-        $this->logger->log('description sql: ' . $sql);
+        $this->logger->log('getVariableDescription sql: ' . $sql);
         return $this->db->getResultSet(PDO::FETCH_CLASS);
 
     }
@@ -390,11 +392,16 @@ SQL;
     public function getAuxiliary($request) {
         if (isset($request->tableNumber) && (isset($request->variableID)) && $request->tableNumber != null && $request->variableID != null) {
 //            $ret = new stdClass();
-            var_dump($request); die;
-            $this->logger->log('Serving getAuxiliary with tableNumber ' . $request->tableNumber . ' and variableID ' . $request->variableID);
+            $this->logger->log('Serving getAuxiliary with tableNumber ' .
+                print_r($request->tableNumber, true) . ' and variableID ' .
+                print_r($request->variableID, true));
             switch ($request->tableNumber) {
                 case 42: // Description
                     return $this->getVariableDescription($request->variableID);
+                case 44: // VariableLinkedDocument
+                    return $this->getLinkedDocuments($request->variableID);
+                case 47: // VariableRelated
+                    return $this->getVariablesRelated($request->variableID);
             }
         } else {
             throw new Exception('Missing or invalid table name and variable ID');

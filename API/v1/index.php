@@ -110,14 +110,14 @@ class APIparser {
                     if (strpos($_GET[ValidArgs::a()->tableNumber], ',') != null) {
                         $postContent->tableNumber = explode(',', $_GET[ValidArgs::a()->tableNumber]);
                     } else {
-                        $postContent->tableNumber = [$_GET[ValidArgs::a()->tableNumber]];
+                        $postContent->tableNumber = $_GET[ValidArgs::a()->tableNumber];
                     }
                 }
                 if (isset($_GET[ValidArgs::a()->tableName])) {
                     if (strpos($_GET[ValidArgs::a()->tableName], ',') != null) {
                         $postContent->tableName = explode(',', $_GET[ValidArgs::a()->tableName]);
                     } else {
-                        $postContent->tableName = [$_GET[ValidArgs::a()->tableName]];
+                        $postContent->tableName = $_GET[ValidArgs::a()->tableName];
                     }
                 }
                 // TODO the rest
@@ -146,9 +146,9 @@ class APIparser {
                     $response[$returnArrayIdentifier] = $this->parseRequest($request);
                 }
             } else {
-                var_dump($this->postContent);
+//                var_dump($this->postContent);
                 $this->API->checkRequestOrDie($this->postContent);
-                var_dump($this->postContent);
+//                var_dump($this->postContent);
                 $response[$this->metaTableName] = $this->parseRequestMetaData($this->postContent);
                 switch ($this->postContent->requestType) {
                     case RequestMap::a()->TableSurvey:
