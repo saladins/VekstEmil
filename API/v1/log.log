@@ -1,0 +1,28 @@
+2017-10-05 10:04:47 : Received GET request
+2017-10-05 10:04:47 : GET request content was a:0:{}
+2017-10-05 10:04:47 : Handling request from 192.168.1.149. content: RequestModel Object
+(
+    [requestType] => 
+    [variableID] => 
+    [tableNumber] => 
+    [tableName] => 
+    [MunicipalityID] => 
+    [naceID] => 
+    [genderID] => 
+    [KostraCategoryID] => 
+    [MunicipalExpenseCategoryID] => 
+    [BuildingCategoryID] => 
+    [gradeID] => 
+    [EnterpriseCategoryID] => 
+    [EmployeeCountRangeID] => 
+    [WorkingMunicipalityID] => 
+    [LivingMunicipalityID] => 
+    [ageRangeID] => 
+    [groupBy] => 
+)
+
+2017-10-05 10:04:47 : Sending data to 192.168.1.149 with content Array
+(
+    [0] => Invalid or missing request type
+)
+
