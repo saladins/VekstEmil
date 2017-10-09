@@ -13,6 +13,7 @@ include './model/requestmodel.php';
 include './model/variableupdatereasonmodel.php';
 include './request/DatabaseHandler.php';
 include './request/apirequest.php';
+include './request/apiupdate.php';
 include './request/validate.php';
 
 //session_start();
@@ -26,7 +27,7 @@ class APIparser {
     /** @var null|RequestModel|RequestModel[] */
     private $postContent;
     /** @var APIrequest */
-    private $API;
+    private $ApiRequest;
     private $logger;
     private $genericTableName = 'table';
     private $metaTableName = 'meta';
@@ -55,10 +56,11 @@ class APIparser {
                 $this->logger->log('Handling request from '
                     . $_SERVER['REMOTE_ADDR']
                     . '. content: '
-                    . print_r($this->postContent, true));
+                    . ' (omitted) ');
+//                    . print_r($this->postContent, true));
             }
-            if ($this->API == null) {
-                $this->API = new APIrequest();
+            if ($this->ApiRequest == null) {
+                $this->ApiRequest = new APIrequest();
             }
 
         }
@@ -139,45 +141,44 @@ class APIparser {
         $response = [];
         $returnArrayIdentifier = $this->genericTableName;
         try {
-            if (is_array($this->postContent)) {
+//            if (is_array($this->postContent)) {
                 /** @var RequestModel $request */
-                foreach ($this->postContent as $request) { // TODO migrate away from tableNumber, use variableID instead
-                    $this->API->checkRequestOrDie($request);
-                    $response[$returnArrayIdentifier] = $this->parseRequest($request);
-                }
-            } else {
-//                var_dump($this->postContent);
-                $this->API->checkRequestOrDie($this->postContent);
-//                var_dump($this->postContent);
+//                foreach ($this->postContent as $request) { // TODO migrate away from tableNumber, use variableID instead
+//                    $this->ApiRequest->checkRequestOrDie($request);
+//                    $response[$returnArrayIdentifier] = $this->parseRequest($request);
+//                }
+//            } else {
+                $this->ApiRequest->checkRequestOrDie($this->postContent);
                 $response[$this->metaTableName] = $this->parseRequestMetaData($this->postContent);
                 switch ($this->postContent->requestType) {
                     case RequestMap::a()->TableSurvey:
-                        $response[$this->getRetArrID($this->postContent)] = $this->API->getVariableTableNames();
+                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getVariableTableNames();
                         break;
                     case RequestMap::a()->TableAggregate:
                         throw new Exception('Requesting TableAggregate is not yet implemented');
                         break;
                     case RequestMap::a()->SingleTable:
-                        $response[$this->getRetArrID($this->postContent)] = $this->API->parseTable($this->postContent);
+//                        $response[$this->getRetArrID($this->postContent)] = $this->API->parseTable($this->postContent);
                         break;
                     case RequestMap::a()->Variable:
-                        $response[$this->getRetArrID($this->postContent)] = $this->API->getVariableData($this->postContent);
+                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getVariableData($this->postContent);
                         $response[$this->metaTableName]->groupBy = $this->metaIncludeAfter();
                         break;
                     case RequestMap::a()->View:
                         throw new Exception('Requesting View is not yet implemented');
                         break;
                     case RequestMap::a()->Auxiliary:
-                        $response[$this->getRetArrID($this->postContent)] = $this->API->getAuxiliary($this->postContent);
+                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getAuxiliary($this->postContent);
                         break;
                     case RequestMap::a()->Menu:
-                        $response[$this->getRetArrID($this->postContent)] = $this->API->getMenu($this->postContent);
+                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getMenu($this->postContent);
                         break;
                     case RequestMap::a()->Generic:
-                        throw new Exception('Requesting generic table is not yet implemented');
+                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getVariableMainData($this->postContent);
                         break;
                     case RequestMap::a()->Update:
-                        $response[$this->getRetArrID($this->postContent)] = $this->API->update($this->postContent);
+                        $ApiUpdate = new ApiUpdate();
+                        $response[$this->getRetArrID($this->postContent)] = $ApiUpdate->update($this->postContent);
                         break;
                     default:
                         http_response_code(404);
@@ -190,10 +191,10 @@ class APIparser {
 //                $response[$this->metaTableName] = $this->parseRequestMetaData($this->postContent);
 //                $response[$this->getRetArrID($this->postContent)] = $this->parseRequest($this->postContent);
 //                $response[$this->metaTableName]->groupBy = $this->metaIncludeAfter();
-            }
+//            }
         } catch (Exception $ex) {
             http_response_code(400);
-            $this->API->output([$ex->getMessage()]);
+            $this->ApiRequest->output([$ex->getMessage()]);
             die;
         }
         $endTime = $this->logger->microTimeFloat();
@@ -215,52 +216,47 @@ class APIparser {
         }
     }
 
-    /**
-     * @param   RequestModel $request
-     * @return array|string[]
-     * @throws Exception
-     */
-    private function parseRequest($request) {
-            switch ($request->requestType) {
-                case RequestMap::a()->TableSurvey:
-                    return $this->API->getVariableTableNames();
-                    break;
-                case RequestMap::a()->TableAggregate:
-                    throw new Exception('Requesting TableAggregate is not yet implemented');
-                    break;
-                case RequestMap::a()->SingleTable:
-                    return $this->API->parseTable($request);
-                    break;
-                case RequestMap::a()->Variable:
-                    return $this->API->getVariableData($request);
-                    break;
-                case RequestMap::a()->View:
-                    throw new Exception('Requesting View is not yet implemented');
-                    break;
-                case RequestMap::a()->Auxiliuary:
-                    return $this->API->getAuxiliary($request);
-                    break;
-                case RequestMap::a()->Menu:
-                    return $this->API->getMenu($request);
-                    break;
-                case RequestMap::a()->Generic:
-                    throw new Exception('Requesting generic table is not yet implemented');
-                    break;
-                case RequestMap::a()->Update:
-                    return $this->API->update($request);
-                    break;
-                default:
-                    http_response_code(404);
-                    exit(0);
-                    break;
-            }
-
-    }
+//    private function parseRequest($request) {
+//            switch ($request->requestType) {
+//                case RequestMap::a()->TableSurvey:
+//                    return $this->ApiRequest->getVariableTableNames();
+//                    break;
+//                case RequestMap::a()->TableAggregate:
+//                    throw new Exception('Requesting TableAggregate is not yet implemented');
+//                    break;
+//                case RequestMap::a()->SingleTable:
+//                    return $this->ApiRequest->parseTable($request);
+//                    break;
+//                case RequestMap::a()->Variable:
+//                    return $this->ApiRequest->getVariableData($request);
+//                    break;
+//                case RequestMap::a()->View:
+//                    throw new Exception('Requesting View is not yet implemented');
+//                    break;
+//                case RequestMap::a()->Auxiliuary:
+//                    return $this->ApiRequest->getAuxiliary($request);
+//                    break;
+//                case RequestMap::a()->Menu:
+//                    return $this->ApiRequest->getMenu($request);
+//                    break;
+//                case RequestMap::a()->Generic:
+//                    throw new Exception('Requesting generic table is not yet implemented');
+//                    break;
+//                case RequestMap::a()->Update:
+//                    return $this->ApiRequest->update($request);
+//                    break;
+//                default:
+//                    http_response_code(404);
+//                    exit(0);
+//                    break;
+//            }
+//
+//    }
 
     private function parseRequestMetaData($request) {
         switch ($request->requestType) {
             case RequestMap::a()->Variable:
-                return $this->API->getMinimalMetaData($request);
+                return $this->ApiRequest->getMinimalMetaData($request);
                 break;
             default:
                 return '{}';
@@ -268,7 +264,7 @@ class APIparser {
         }
     }
     private function metaIncludeAfter() {
-        return $this->API->metaIncludeAfter();
+        return $this->ApiRequest->metaIncludeAfter();
     }
 
     /**
