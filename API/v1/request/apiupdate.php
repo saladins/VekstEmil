@@ -49,23 +49,91 @@ class ApiUpdate {
         if (isset($request->dataSet[0]->Alder) && $request->dataSet[0]->Alder != null) {
             $request->dataSet = $this->mapAgeAndReplace($request->dataSet);
         }
-        $this->db->beginTransaction();
+//        $this->db->beginTransaction();
         try {
-            foreach ($request->dataSet as $item) {
-                $sql = $this->generateInsertSql($item, $tableName, $variableID);
-                $this->db->query($sql);
-                $this->db->execute();
+            switch ($tableName) {
+                case 'PopulationChange':
+                    $this->insertSpecialPopulationChange($request->dataSet, $tableName, $variableID);
+                    break;
+                case 'Movement':
+                    $this->insertSpecialMovement($request->dataSet, $tableName, $variableID);
+                    break;
+                case 'Employment':
+                    $this->insertSpecialEmployment($request->dataSet, $tableName, $variableID);
+                    break;
+                default:
+                    $this->db->beginTransaction();
+                    foreach ($request->dataSet as $item) {
+                        $sql = $this->generateInsertSql($item, $tableName, $variableID);
+                        $this->db->query($sql);
+                        $this->db->execute();
+                    }
+                    $this->db->endTransaction();
             }
             $sql = "UPDATE Variable SET LastUpdatedDate='$this->mysqltime' WHERE VariableID=$variableID";
             $this->db->query($sql);
             $this->db->execute();
         } catch (PDOException $PDOException) {
             $this->logger->log('PDO error when performing database write: ' . $PDOException->getMessage());
-            $this->db->rollbackTransaction();
+//            $this->db->rollbackTransaction();
         }
-        $this->db->endTransaction();
+//        $this->db->endTransaction();
         return true;
     }
+
+    private function insertSpecialEmployment($dataSet, $tableName, $variableID) {
+
+    }
+
+    private function insertSpecialMovement($dataSet, $tableName, $variableID) {
+        $res = [];
+        foreach ($dataSet as $item) {
+            $res[$item->Tid][$this->getMunicipalityID($item->Region)][$item->ContentsCode] = $item->value;
+        }
+        foreach ($res as $year => $outer1) {
+            foreach ($outer1 as $munic => $data) {
+                $incomingAll = $data['Innflytting'];
+                $outgoingAll = $data['Utflytting'];
+                $sumAll = $data['Netto'];
+                $sql = <<<SQL
+INSERT INTO Movement (variableID, municipalityID, pYear, incomingAll, outgoingAll, sumAll)
+VALUES($variableID, $munic, $year, $incomingAll, $outgoingAll, $sumAll);
+SQL;
+                $this->db->query($sql);
+                $this->db->execute();
+
+            }
+        }
+    }
+
+    private function insertSpecialPopulationChange($dataSet, $tableName, $variableID) {
+        $res = [];
+        foreach ($dataSet as $value) {
+            $year = substr($value->Tid,0, 4);
+            $quarter = substr($value->Tid, 5);
+            $municipalityID = $this->getMunicipalityID($value->Region);
+            $res[$year][$quarter][$municipalityID][$value->ContentsCode] = $value->value;
+        }
+        foreach($res as $year => $outer1) {
+            foreach ($outer1 as $quarter => $outer2) {
+                foreach ($outer2 as $munic => $data) {
+                    $dead = $data['Dode3'];
+                    $born = $data['Fodte2'];
+                    $totalPopulation = $data['Folketallet1'];
+                    $sql = <<<SQL
+INSERT INTO PopulationChange (variableID, municipalityID, pYear, pQuarter, born, dead, totalPopulation)
+VALUES($variableID, $munic, $year, $quarter, $born, $dead, $totalPopulation);
+SQL;
+                    $this->db->query($sql);
+                    $this->db->execute();
+                }
+            }
+
+        }
+
+
+    }
+
 
     private function generateInsertSql($item, $tableName, $variableID) {
         $sql = 'INSERT INTO ' . $tableName;
@@ -112,16 +180,52 @@ class ApiUpdate {
 
     }
 
-    private $regionMap;
-    private function getMunicipalityID($regionCode) {
-        if ($this->regionMap == null) {
-            $sql = 'SELECT MunicipalityID, MunicipalityCode FROM Municipality';
+    private function insertMunicipalities() {
+        $arry = [];
+        $arry['0605'] = 'Ringerike';
+        $arry['0612'] = 'Hole';
+        $arry['0532'] = 'Jevnaker';
+        $arry['0533'] = 'Lunner';
+        $arry['0534'] = 'Gran';
+        $arry['0536'] = 'Søndre Land';
+        $arry['0540'] = 'Sør-Aurdal';
+        $arry['0615'] = 'Flå';
+        $arry['0622'] = 'Krødsherad';
+        $arry['0623'] = 'Modum';
+        $arry['0626'] = 'Lier';
+        $arry['0624'] = 'Øvre Eiker';
+        $arry['0625'] = 'Nedre Eiker';
+        $arry['0602'] = 'Drammen';
+        $arry['0219'] = 'Bærum';
+        $arry['0220'] = 'Asker';
+        $arry['0301'] = 'Oslo';
+        foreach($arry as $key => $value) {
+            $sql = "SELECT COUNT(*) as c FROM Municipality WHERE municipalityCode='$key'";
             $this->db->query($sql);
-            foreach ($this->db->getResultSet() as $result) {
-                $this->regionMap[$result['MunicipalityCode']] = $result['MunicipalityID'];
+            if ($this->db->getSingleResult()['c'] != 1) {
+                $sql = "INSERT INTO Municipality (municipalityCode, municipalityName) VALUES('$key', '$value')";
+                $this->db->query($sql);
+                $this->db->execute();
             }
         }
-        return $this->regionMap[$regionCode];
+    }
+
+    private $municipalityMap;
+    private function getMunicipalityID($regionCode) {
+        if ($this->municipalityMap == null) {
+            $sql = 'SELECT municipalityID, municipalityCode FROM Municipality';
+            $this->db->query($sql);
+            foreach ($this->db->getResultSet() as $result) {
+                $this->municipalityMap[$result['municipalityCode']] = $result['municipalityID'];
+            }
+        }
+        if (!isset($this->municipalityMap[$regionCode])) {
+            $this->municipalityMap = null;
+            $this->insertMunicipalities();
+            return $this->getMunicipalityID($regionCode);
+        } else {
+            return $this->municipalityMap[$regionCode];
+        }
     }
     private $ageRangeMap;
     private function getAgeRangeID($ageRange) {
@@ -150,10 +254,10 @@ class ApiUpdate {
     private $primaryValueMap;
     private function getPrimaryValueName($tableName) {
         if ($this->primaryValueMap == null) {
-            $this->primaryValueMap['PopulationAge'] = 'Population';
-            $this->primaryValueMap['PopulationChange'] = 'TotalPopulation';
-            $this->primaryValueMap['Movement'] = 'SumAll';
-            $this->primaryValueMap['Employment'] = ['WorkplaceValue', 'LivingplaceValue'];
+            $this->primaryValueMap['PopulationAge'] = 'population';
+            $this->primaryValueMap['CommuteBalance'] = 'commuters';
+            $this->primaryValueMap['Unemployment'] = 'unemploymentPercent';
+            $this->primaryValueMap['EmploymentRatio'] = 'employmentPercent';
         }
         return $this->primaryValueMap[$tableName];
     }

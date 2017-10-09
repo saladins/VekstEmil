@@ -8,6 +8,7 @@
             $columnMap[2] = 'genderID';
             $columnMap[3] = 'pYear';
             $columnMap[4] = 'pQuarter';
+            $columnMap[7] = 'pMonth';
             $columnMap[5] = 'naceID';
             return $columnMap;
         }
@@ -19,6 +20,8 @@
             $colTableMap[self::columns()[3]] = null;
             $colTableMap[self::columns()[4]] = null;
             $colTableMap[self::columns()[5]] = TableMap::getTableMap()[28];
+            $colTableMap[self::columns()[6]] = null;
+            $colTableMap[self::columns()[7]] = null;
 
             return $colTableMap;
         }

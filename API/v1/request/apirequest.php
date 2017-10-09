@@ -58,7 +58,7 @@ pYear,
 pQuarter,
 Born,
 Dead,
-TotalPopulation
+TotalPopulation as value
 from PopulationChange, Municipality
 WHERE PopulationChange.MunicipalityID = Municipality.MunicipalityID
 SQL;
@@ -104,14 +104,12 @@ SQL;
             case TableMap::getTableMap()[39]: // Unemployment
                 $sql = <<<SQL
 SELECT UnemploymentID,
-{$this->_SQLmunicipalityName()},
-{$this->_SQLageRanges()},
+municipalityID,
+ageRangeID,
 pYear,
 pMonth,
-UnemployedPercent
-FROM Unemployment, Municipality, AgeRange
-WHERE Unemployment.MunicipalityID = Municipality.MunicipalityID
-AND Unemployment.AgeRangeID = AgeRange.AgeRangeID
+unemploymentPercent
+FROM Unemployment
 SQL;
                 break;
             case TableMap::getTableMap()[10]: // EmploymentRatio
@@ -182,10 +180,12 @@ SQL;
         $sql .= $this->getGroupByClause($request);
         $this->db->query($sql);
         $result = $this->db->getResultSet();
-        for ($i = 0; $i < sizeof($result); $i++) {
-            $var = $result[$i]['value'];
-            if (is_numeric($var)) {
-                $result[$i]['value'] = intval($var);
+        if (isset($result[0]['value'])) {
+            for ($i = 0; $i < sizeof($result); $i++) {
+                $var = $result[$i]['value'];
+                if (is_numeric($var)) {
+                    $result[$i]['value'] = intval($var);
+                }
             }
         }
         return $result;
@@ -281,7 +281,7 @@ SQL;
         $sql = <<<SQL
 SELECT a.relatedVariableID, b.statisticName, c.subCategoryName, c.iconType, c.iconData
 FROM VariableRelated a, Variable b, VariableSubCategory c
-WHERE a.parentVariableID = b.variableID
+WHERE a.relatedVariableID = b.variableID
 AND b.subCategoryID = c.subCategoryID
 AND a.parentVariableID = $variableID;
 SQL;
@@ -484,8 +484,19 @@ SQL;
 
     public function getMenu($request) {
         try {
-            $sql  = 'SELECT VariableID as ID, VariableMasterCategory.MasterCategoryID as MasterCatID, VariableSubCategory.SubCategoryID as SubCatID, StatisticName, VariableSubCategory.Position as SubPosition, SubCategoryName, VariableMasterCategory.Position as MsPosition, MasterCategoryName, VariableSubCategory.IconType as SubCatIconType, VariableSubCategory.IconData as SubCatIconData from Variable, VariableSubCategory, VariableMasterCategory';
-            $sql .= ' where Variable.SubCategoryID = VariableSubCategory.SubCategoryID AND VariableSubCategory.MasterCategoryID = VariableMasterCategory.MasterCategoryID';
+            $sql  = <<<SQL
+SELECT VariableID as ID, VariableMasterCategory.MasterCategoryID as MasterCatID, 
+VariableSubCategory.SubCategoryID as SubCatID, StatisticName, 
+VariableSubCategory.Position as SubPosition, 
+SubCategoryName, VariableMasterCategory.Position as MsPosition, 
+MasterCategoryName, VariableSubCategory.IconType as SubCatIconType, 
+VariableSubCategory.IconData as SubCatIconData 
+FROM Variable, VariableSubCategory, VariableMasterCategory
+WHERE Variable.SubCategoryID = VariableSubCategory.SubCategoryID 
+AND VariableSubCategory.MasterCategoryID = VariableMasterCategory.MasterCategoryID
+ORDER BY StatisticName;
+
+SQL;
             $this->db->query($sql);
             return $this->db->getResultSet();
         } catch (PDOException $ex) {
