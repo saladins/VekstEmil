@@ -250,7 +250,9 @@ SQL;
 
     private function getVariableAndProvider($variableID) {
         $sql = <<<SQL
-SELECT a.providerID, b.providerName, b.providerNameShortForm, b.providerNotice, b.providerLink, b.providerAPIAddress, a.statisticName, a.tableName, a.lastUpdatedDate, a.providerCode 
+SELECT a.providerID, b.providerName, b.providerNameShortForm, b.providerNotice, 
+b.providerLink, b.providerAPIAddress, a.statisticName, 
+a.tableName, a.lastUpdatedDate, a.providerCode, a.isImplemented
 FROM Variable a, VariableProvider b
 WHERE a.providerID = b.providerID
 AND   a.variableID = $variableID
@@ -495,9 +497,22 @@ FROM Variable, VariableSubCategory, VariableMasterCategory
 WHERE Variable.SubCategoryID = VariableSubCategory.SubCategoryID 
 AND VariableSubCategory.MasterCategoryID = VariableMasterCategory.MasterCategoryID
 ORDER BY StatisticName;
-
 SQL;
-            $this->db->query($sql);
+            $sql2 = <<<SQL
+SELECT variableID, VariableMasterCategory.masterCategoryID as masterCategoryID,
+VariableMasterCategory.Position as masterPosition,
+VariableSubCategory.SubCategoryID as subCategoryID,
+VariableSubCategory.Position as subPosition,
+masterCategoryName,
+subCategoryName,
+statisticName 
+FROM Variable, VariableSubCategory, VariableMasterCategory
+WHERE Variable.SubCategoryID = VariableSubCategory.SubCategoryID 
+AND VariableSubCategory.MasterCategoryID = VariableMasterCategory.MasterCategoryID
+ORDER BY StatisticName;
+SQL;
+
+            $this->db->query($sql2);
             return $this->db->getResultSet();
         } catch (PDOException $ex) {
             $this->db->DbhError($ex);
