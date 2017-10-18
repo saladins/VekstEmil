@@ -33,16 +33,19 @@ class APIrequest {
         $selectExtra = '';
         foreach (columnMap::columns() as $column) {
             foreach ($request as $key => $value) {
-                if (isset($value) && $value != null && strtolower($column) == strtolower($value)) {
+                if (isset($value) && !is_array($value) && $value != null && strtolower($column) == strtolower($value)) {
                     $selectExtra .= $request->tableName . '.' . $column .',';
                 }
             }
         }
+        $this->logger->log('Extra requested: ' . print_r($selectExtra, true));
         switch ($request->tableName) {
             case TableMap::getTableMap()[30]: // 'PopulationAge':
                 $sql = <<<SQL
 SELECT 
-PopulationAge.municipalityID,
+municipalityID,
+ageRangeID,
+genderID,
 $selectExtra
 pYear,
 sum(Population) as value
@@ -52,37 +55,31 @@ SQL;
             case TableMap::getTableMap()[31]: // 'PopulationChange':
                 $sql = <<<SQL
 SELECT PopulationChangeID,
-PopulationChange.municipalityID,
-{$this->_SQLmunicipalityName()},
+municipalityID,
 pYear,
 pQuarter,
-Born,
-Dead,
-TotalPopulation as value
-from PopulationChange, Municipality
-WHERE PopulationChange.MunicipalityID = Municipality.MunicipalityID
+born,
+dead,
+totalPopulation as value
+from PopulationChange
 SQL;
                 break;
             case TableMap::getTableMap()[23]: // Movement
                 $sql = <<<SQL
-SELECT MovementID,
-{$this->_SQLmunicipalityName()},
+SELECT movementID,
+municipalityID,
 pYear,
-IncomingAll, OutgoingAll, SumAll
-from Movement, Municipality
-WHERE Movement.MunicipalityID = Municipality.MunicipalityID
+incomingAll as incoming, outgoingAll as outgoing, sumAll as value
+from Movement 
 SQL;
                 break;
             case TableMap::getTableMap()[9]: // Employment
                 $sql = <<<SQL
-SELECT EmploymentID,
-{$this->_SQLmunicipalityName()},
-{$this->_SQLnace()},
-{$this->_SQLgender()},
+SELECT employmentID,
 pYear,
-WorkplaceValue,
-LivingplaceValue,
-EmploymentBalance
+workplaceValue,
+livingplaceValue,
+employmentBalance
 from Employment, Municipality, Nace2007, Gender
 WHERE Employment.MunicipalityID = Municipality.MunicipalityID
 AND Employment.NaceID = Nace2007.NaceID
@@ -92,10 +89,10 @@ SQL;
             case TableMap::getTableMap()[6]: // CommuteBalance
                 $sql = <<<SQL
 SELECT CommuteBalanceID,
-Municipality.MunicipalityName as WorkingMunicipality,
-Municipality.MunicipalityName as LivingMunicipality,
+municipality.MunicipalityName as WorkingMunicipality,
+municipality.MunicipalityName as LivingMunicipality,
 pYear,
-Commuters
+commuters
 FROM CommuteBalance, Municipality
 WHERE CommuteBalance.LivingMunicipalityID = Municipality.MunicipalityID
 AND CommuteBalance.WorkingMunicipalityID = Municipality.MunicipalityID
@@ -103,7 +100,7 @@ SQL;
                 break;
             case TableMap::getTableMap()[39]: // Unemployment
                 $sql = <<<SQL
-SELECT UnemploymentID,
+SELECT unemploymentID,
 municipalityID,
 ageRangeID,
 pYear,
@@ -114,22 +111,17 @@ SQL;
                 break;
             case TableMap::getTableMap()[10]: // EmploymentRatio
                 $sql = <<<SQL
-SELECT EmploymentRatioID,
-{$this->_SQLmunicipalityName()},
-{$this->_SQLgender()},
-{$this->_SQLageRanges()},
+SELECT employmentRatioID,
 pYear,
 EmploymentPercent
 from EmploymentRatio
-WHERE EmploymentRatio.MunicipalityID = MunicipalityID
-AND EmploymentRatio.GenderID = Gender.GenderID
+WHERE EmploymentRatio.GenderID = Gender.GenderID
 AND EmploymentRatio.AgeRangeID = AgeRange.AgeRangeID
 SQL;
                 break;
             case TableMap::getTableMap()[20]: // HomeBuildingArea
                 $sql = <<<SQL
 SELECT HomeBuildingAreaID,
-{$this->_SQLmunicipalityName()},
 BuildingStatus.BuildingStatusText as BuildingStatusText,
 BuildingCategory.BuildingCategoryText as BuildingCategoryText,
 pYear,
@@ -143,8 +135,7 @@ SQL;
                 break;
             case TableMap::getTableMap()[17]: // FunctionalBuildingArea
                 $sql = <<<SQL
-SELECT FunctionalBuildingAreaID,
-{$this->_SQLmunicipalityName()},
+SELECT functionalBuildingAreaID,
 BuildingStatus.BuildingStatusText as BuildingStatusText,
 BuildingCategory.BuildingCategoryText as BuildingCategoryText,
 pYear,
@@ -158,15 +149,11 @@ SQL;
                 break;
             case TableMap::getTableMap()[35]: // Proceeding
                 $sql = <<<SQL
-SELECT ProceedingID,
-{$this->_SQLmunicipalityName()},
-ProceedingCategory.ProceedingText as ProceedingText,
-ProceedingValueType.ProceedingValueTypeText as ProceedingText,
+SELECT proceedingID,
 pYear,
 ProceedingValue
-FROM Proceeding, Municipality, ProceedingCategory, ProceedingValueType
-WHERE Proceeding.MunicipalityID = Municipality.MunicipalityID
-AND Proceeding.ProceedingCategoryID = ProceedingCategory.ProceedingCategoryID
+FROM Proceeding, ProceedingCategory, ProceedingValueType
+WHERE Proceeding.ProceedingCategoryID = ProceedingCategory.ProceedingCategoryID
 AND Proceeding.ProceedingValueTypeID = ProceedingValueType.ProceedingValueTypeID
 SQL;
                 break;
@@ -176,6 +163,7 @@ SQL;
 SQL;
                 break;
         }
+
         $sql .= $this->getSqlConstraints($request);
         $sql .= $this->getGroupByClause($request);
         $this->db->query($sql);
@@ -250,11 +238,13 @@ SQL;
 
     private function getVariableAndProvider($variableID) {
         $sql = <<<SQL
-SELECT a.providerID, b.providerName, b.providerNameShortForm, b.providerNotice, 
-b.providerLink, b.providerAPIAddress, a.statisticName, 
-a.tableName, a.lastUpdatedDate, a.providerCode, a.isImplemented
-FROM Variable a, VariableProvider b
+SELECT a.variableID, a.providerID, a.statisticName, a.tableName, 
+a.lastUpdatedDate, a.providerCode, a.isImplemented, 
+b.providerName, b.providerNameShortForm, b.providerNotice, 
+b.providerLink, b.providerAPIAddress, c.subCategoryName
+FROM Variable a, VariableProvider b, VariableSubCategory c
 WHERE a.providerID = b.providerID
+AND a.subCategoryID = c.subCategoryID
 AND   a.variableID = $variableID
 SQL;
         $this->db->query($sql);
@@ -314,9 +304,16 @@ SQL;
     private function getSqlConstraints($request) {
         $sql = '';
         foreach ($request as $key => $value) {
-            if ($this->in_arrayi($key, columnMap::columns()) && is_array($value)) {
-                $sql .= $this->getSqlFromManyArgs($request->tableName, $key, $value);
-                $sql .= ' AND ';
+            if ($this->in_arrayi($key, columnMap::columns())) {
+                if (is_array($value)) {
+                    $sql .= $this->getSqlFromManyArgs($request->tableName, $key, $value);
+                    $sql .= ' AND ';
+                } else {
+                    if ($key == columnMap::columns()[3] && $value != '') {
+                        $sql .= $key . '=' . $value . ' AND ';
+                    }
+
+                }
             }
         }
         return (strlen($sql) != 0 ? ' WHERE ' . substr($sql, 0, -5) : ''); // TODO hack! change to proper
@@ -332,12 +329,12 @@ SQL;
         $this->db->query($sqlGetTableColumns);
         $dbResult = $this->db->getResultSet();
         if (isset($request->groupBy) && is_array($request->groupBy)) {
-            foreach ($dbResult['Field'] as $column) {
-                if (in_array($column, $request->groupBy)) {
-                    $ret .= ' ' . $column;
-                    array_push($this->groupBy, $column);
-                    if (!end($dbResult)) {
-                        $ret .= ', ';
+            foreach ($dbResult as $item) {
+                if ($this->in_arrayi($item['Field'], $request->groupBy)) {
+                    $ret .= ' ' . $item['Field'];
+                    array_push($this->groupBy, $item['Field']);
+                    if (strtolower($item['Field']) != strtolower(end($request->groupBy))) {
+                        $ret .= ',';
                     }
                 }
             }
@@ -356,21 +353,30 @@ SQL;
             }
             $ret .= ', ' . columnMap::columns()[3];
             array_push($this->groupBy, columnMap::columns()[3]);
+            foreach ($dbResult as $column) {
+                if ($column['Field'] == columnMap::columns()[4]) { // pQuarter
+                    $ret .= ', ' . columnMap::columns()[4];
+                    array_push($this->groupBy, columnMap::columns()[4]);
+                } elseif ($column['Field'] == columnMap::columns()[7]) { // pMonth
+                    $ret .= ', ' . columnMap::columns()[7];
+                    array_push($this->groupBy, columnMap::columns()[7]);
+                }
+            }
         }
         return $ret;
     }
 
     private function getSqlFromManyArgs($tableName, $key, $values) {
-        $sql = '';
+        $sql = '(';
         if (!is_array($values)) return $sql;
         $last = end($values);
         foreach ($values as $value) {
             $sql .= "$tableName.$key=$value";
             if ($value != $last) {
-                $sql .= ' OR';
+                $sql .= ' OR ';
             }
         }
-        return $sql;
+        return $sql . ')';
     }
 
 
@@ -406,6 +412,7 @@ SQL;
         } else {
             throw new Exception('Missing or invalid table name and variable ID');
         }
+        return null;
     }
 
 
@@ -486,29 +493,29 @@ SQL;
 
     public function getMenu($request) {
         try {
-            $sql  = <<<SQL
-SELECT VariableID as ID, VariableMasterCategory.MasterCategoryID as MasterCatID, 
-VariableSubCategory.SubCategoryID as SubCatID, StatisticName, 
-VariableSubCategory.Position as SubPosition, 
-SubCategoryName, VariableMasterCategory.Position as MsPosition, 
-MasterCategoryName, VariableSubCategory.IconType as SubCatIconType, 
-VariableSubCategory.IconData as SubCatIconData 
-FROM Variable, VariableSubCategory, VariableMasterCategory
-WHERE Variable.SubCategoryID = VariableSubCategory.SubCategoryID 
-AND VariableSubCategory.MasterCategoryID = VariableMasterCategory.MasterCategoryID
-ORDER BY StatisticName;
-SQL;
+//            $sql  = <<<SQL
+//SELECT VariableID as ID, VariableMasterCategory.MasterCategoryID as MasterCatID,
+//VariableSubCategory.SubCategoryID as SubCatID, StatisticName,
+//VariableSubCategory.Position as SubPosition,
+//SubCategoryName, VariableMasterCategory.Position as MsPosition,
+//MasterCategoryName, VariableSubCategory.IconType as SubCatIconType,
+//VariableSubCategory.IconData as SubCatIconData
+//FROM Variable, VariableSubCategory, VariableMasterCategory
+//WHERE Variable.SubCategoryID = VariableSubCategory.SubCategoryID
+//AND VariableSubCategory.MasterCategoryID = VariableMasterCategory.MasterCategoryID
+//ORDER BY StatisticName;
+//SQL;
             $sql2 = <<<SQL
 SELECT variableID, VariableMasterCategory.masterCategoryID as masterCategoryID,
 VariableMasterCategory.Position as masterPosition,
-VariableSubCategory.SubCategoryID as subCategoryID,
-VariableSubCategory.Position as subPosition,
+VariableSubCategory.subCategoryID as subCategoryID,
+VariableSubCategory.position as subPosition,
 masterCategoryName,
 subCategoryName,
 statisticName 
 FROM Variable, VariableSubCategory, VariableMasterCategory
-WHERE Variable.SubCategoryID = VariableSubCategory.SubCategoryID 
-AND VariableSubCategory.MasterCategoryID = VariableMasterCategory.MasterCategoryID
+WHERE Variable.subCategoryID = VariableSubCategory.subCategoryID 
+AND VariableSubCategory.masterCategoryID = VariableMasterCategory.masterCategoryID
 ORDER BY StatisticName;
 SQL;
 
@@ -516,24 +523,26 @@ SQL;
             return $this->db->getResultSet();
         } catch (PDOException $ex) {
             $this->db->DbhError($ex);
+            return null;
         }
     }
+
+    /**
+     * @param $request
+     */
     public function getVariableMainData($request) {
+        // TODO method stub
         try {
             $ret = new stdClass();
             $sql = <<<SQL
-SELECT a.variableID, a.subCategoryID, a.providerID, b.providerNameShortForm, a.descriptionID
+SELECT a.variableID, a.subCategoryID, a.providerID, b.providerNameShortForm,
 a.statisticName, a.tableName, a.updateInterval, a.lastUpdatedDate, 
 a.providerCode, a.isImplemented 
-FROM Variable a, VariableProvider b, VariableDescription c
+FROM Variable a, VariableProvider b
 WHERE a.providerID = b.providerID
 SQL;
             $this->db->query($sql);
             $ret->variable = $this->db->getResultSet();
-            $sql = <<<SQL
-SELECT 
-SQL;
-
         } catch (PDOException $ex) {
             $this->db->DbhError($ex);
         }
@@ -560,7 +569,6 @@ SQL;
 //        }
 //        foreach ($args as $key => $param) {
 //            if ($this->in_arr($key, requestInterface::getReserved()) || $param == null) continue;
-//            var_dump($param);
 //            $sql .= $this->parseColumnRequest($param->columnType, TableMap::getTableMap()[$args->tableNumber], $key, $param->values);
 //            $count++;
 //            if ($count < $total) $sql .= ' AND ';
@@ -599,13 +607,14 @@ SQL;
     /**
      * @return string[]
      */
-    function getVariableTableNames() {
+    function getVariableList() {
         try {
             // TODO Implement cache and return if recent
-            $this->db->query('select TableName from Variable');
-            return $this->db->getResultSet(PDO::FETCH_ASSOC);
+            $this->db->query('SELECT variableID, tableName, statisticName, isImplemented FROM Variable');
+            return $this->db->getResultSet(PDO::FETCH_CLASS);
         } catch (PDOException $ex) {
             $this->db->DbhError($ex);
+            return null;
         }
     }
 

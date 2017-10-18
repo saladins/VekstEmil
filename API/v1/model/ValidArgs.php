@@ -3,22 +3,24 @@ class ValidArgs {
 
     static function a() {
         $ret = new stdClass();
-        $ret->RequestType = 'requesttype';
-        $ret->VariableID = 'variableid';
-        $ret->MunicipalityID = 'municipalityid';
-        $ret->NaceID = 'naceid';
+        $ret->requestType = 'requesttype';
+        $ret->variableID = 'variableid';
+        $ret->municipalityID = 'municipalityid';
+        $ret->naceID = 'naceid';
         $ret->genderID = 'genderid';
-        $ret->KostraCategoryID = 'kostracatid';
-        $ret->MunicipalExpenseCategoryID = 'municipalexpensecatid';
-        $ret->BuildingCategoryID = 'buildingcategoryid';
-        $ret->EnterpriseCategoryID = 'enterprisecatid';
-        $ret->EmployeeCountID = 'employeecountid';
-        $ret->WorkingMunicipalityID = 'workingmunicipalityid';
-        $ret->LivingMunicipalityID = 'livingmunicipalityid';
+        $ret->kostraCategoryID = 'kostracatid';
+        $ret->municipalExpenseCategoryID = 'municipalexpensecatid';
+        $ret->buildingCategoryID = 'buildingcategoryid';
+        $ret->enterpriseCategoryID = 'enterprisecatid';
+        $ret->employeeCountID = 'employeecountid';
+        $ret->workingMunicipalityID = 'workingmunicipalityid';
+        $ret->livingMunicipalityID = 'livingmunicipalityid';
         $ret->ageRangeID = 'agerangeid';
         $ret->gradeID = 'gradeid';
         $ret->tableName = 'tablename';
         $ret->tableNumber = 'tablenumber';
+        $ret->groupBy = 'groupby';
+        $ret->years = 'years';
         return $ret;
 
 //        return array(
