@@ -16,17 +16,15 @@ class ApiUpdate {
     public function update($request) {
         switch ($request->providerID) {
             case 1:
-                $this->updateSSB($request);
-                break;
+                return $this->updateSSB($request);
             default:
                 return ['{unhandled update source type}'];
         }
-        return ['{result=true}'];
     }
 
     private function updateSSB($request) {
         // check variable table
-        $sql = 'SELECT VariableID, TableName from Variable WHERE ProviderCode =\'' . $request->sourceCode . '\'';
+        $sql = 'SELECT variableID, tableName FROM Variable WHERE providerCode =\'' . $request->sourceCode . '\'';
         $this->db->query($sql);
         $res = $this->db->getSingleResult();
         $variableID = 0;
@@ -34,8 +32,8 @@ class ApiUpdate {
         if (!$res) { // Does not exist
             // TODO create entries if it does not exist. Requires incoming info
         } else {
-            $variableID = $res['VariableID'];
-            $tableName = $res['TableName'];
+            $variableID = $res['variableID'];
+            $tableName = $res['tableName'];
             if ($request->forceReplace) {
                 $this->logger->log('DB: Forcing replacement of table ' . $tableName);
                 $this->logger->log('DB: Force request given by ' . $_SERVER['REMOTE_ADDR']);
@@ -46,6 +44,10 @@ class ApiUpdate {
                 $this->logDb(VariableUpdateReason::a()->forceReplaceFull->key, $variableID, $_SERVER['REMOTE_ADDR']);
             }
         }
+        return $this->updateTable($request, $tableName, $variableID);
+    }
+     private function updateTable($request, $tableName, $variableID) {
+        $startTime = $this->logger->microTimeFloat();
         if (isset($request->dataSet[0]->Alder) && $request->dataSet[0]->Alder != null) {
             $request->dataSet = $this->mapAgeAndReplace($request->dataSet);
         }
@@ -53,7 +55,7 @@ class ApiUpdate {
         try {
             switch ($tableName) {
                 case 'PopulationChange':
-                    $this->insertSpecialPopulationChange($request->dataSet, $tableName, $variableID);
+                    $this->insertPopulationChange($request->dataSet, $tableName, $variableID);
                     break;
                 case 'Movement':
                     $this->insertSpecialMovement($request->dataSet, $tableName, $variableID);
@@ -62,23 +64,29 @@ class ApiUpdate {
                     $this->insertSpecialEmployment($request->dataSet, $tableName, $variableID);
                     break;
                 default:
-                    $this->db->beginTransaction();
-                    foreach ($request->dataSet as $item) {
-                        $sql = $this->generateInsertSql($item, $tableName, $variableID);
-                        $this->db->query($sql);
-                        $this->db->execute();
-                    }
-                    $this->db->endTransaction();
+                    $testTime = $this->logger->microTimeFloat();
+//                    $this->db->beginTransaction();
+                    ini_set('max_execution_time',60);
+                    $sql = $this->generateInsertSql($request->dataSet, $tableName, $variableID);
+//                    echo 'updateTable died after ' . ($this->logger->microTimeFloat() - $startTime) . ' seconds'; die;
+                    $this->db->query($sql);
+                    $this->db->execute();
+                    $this->logger->log('Insert generic took ' . ($this->logger->microTimeFloat() - $testTime) . ' seconds');
             }
-            $sql = "UPDATE Variable SET LastUpdatedDate='$this->mysqltime' WHERE VariableID=$variableID";
+            $sql = "UPDATE Variable SET lastUpdatedDate='$this->mysqltime' WHERE variableID=$variableID";
             $this->db->query($sql);
             $this->db->execute();
+            $message = 'Successfully updated: ' . $tableName . '. Elapsed time: ' . date('i:s:u', $this->logger->microTimeFloat()-$startTime);
+            return $message;
         } catch (PDOException $PDOException) {
-            $this->logger->log('PDO error when performing database write: ' . $PDOException->getMessage());
+         $message = 'PDO error when performing database write on ' . $tableName . ': '
+             . $PDOException->getMessage() . ' '
+             . $PDOException->getTraceAsString();
+            $this->logger->log($message);
+            return '{'.$message.'}';
 //            $this->db->rollbackTransaction();
         }
 //        $this->db->endTransaction();
-        return true;
     }
 
     private function insertSpecialEmployment($dataSet, $tableName, $variableID) {
@@ -106,7 +114,7 @@ SQL;
         }
     }
 
-    private function insertSpecialPopulationChange($dataSet, $tableName, $variableID) {
+    private function insertPopulationChange($dataSet, $tableName, $variableID) {
         $res = [];
         foreach ($dataSet as $value) {
             $year = substr($value->Tid,0, 4);
@@ -128,56 +136,48 @@ SQL;
                     $this->db->execute();
                 }
             }
-
         }
-
-
     }
 
-
-    private function generateInsertSql($item, $tableName, $variableID) {
-        $sql = 'INSERT INTO ' . $tableName;
+    private function generateInsertSql($dataSet, $tableName, $variableID) {
+        $sql = 'INSERT INTO ' . $tableName . '(';
+        $municipalityID = 'municipalityID';
+        $ageRangeID = 'ageRangeID';
+        $genderID = 'genderID';
+        $pYear = 'pYear';
+        $primaryValueName = $this->getPrimaryValueName($tableName);
         $colNames = [];
         $values = [];
-        array_push($colNames, 'VariableID');
-        array_push($values, $variableID);
-        if (isset($item->Region)) {
-            array_push($colNames, 'MunicipalityID');
-            array_push($values, $this->getMunicipalityID($item->Region));
-        };
-        if (isset($item->Alder)) {
-            array_push($colNames, 'AgeRangeID');
-            array_push($values, $this->getAgeRangeID($item->Alder));
-        }
-        if (isset($item->Kjonn)) {
-            array_push($colNames, 'GenderID');
-            array_push($values, $this->getGenderID($item->Kjonn));
-        }
-        if (isset($item->Tid)) {
-            array_push($colNames, 'pYear');
-            array_push($values, $item->Tid);
-        }
-        if (isset($item->value)) {
-            array_push($colNames, $this->getPrimaryValueName($tableName));
-            array_push($values, $item->value);
-        }
-        $sql .= ' (';
-        foreach ($colNames as $column) {
-            $sql .= $column;
-            if ($column != end($colNames)) {
-                $sql .= ', ';
+        array_push($colNames, 'variableID');
+        $counter = 0;
+        foreach ($dataSet as $item) {
+            $values[$counter] = '(' . $variableID;
+            if (isset($item->Region)) {
+                if (!in_array($municipalityID, $colNames)) array_push($colNames, $municipalityID);
+                $values[$counter] .= ',' . $this->getMunicipalityID($item->Region);
+            };
+            if (isset($item->Alder)) {
+                if (!in_array($ageRangeID, $colNames)) array_push($colNames, $ageRangeID);
+                $values[$counter] .= ',' . $this->getAgeRangeID($item->Alder);
             }
-        }
-        $sql .= ') VALUES (';
-        for ($i = 0; $i < sizeof($values); $i++) {
-            $sql .= $values[$i];
-            if ($i < sizeof($values) - 1) {
-                $sql .= ', ';
+            if (isset($item->Kjonn)) {
+                if (!in_array($genderID, $colNames)) array_push($colNames, $genderID);
+                $values[$counter] .= ',' . $this->getGenderID($item->Kjonn);
             }
+            if (isset($item->Tid)) {
+                if (!in_array($pYear, $colNames)) array_push($colNames, $pYear);
+                $values[$counter] .= ',' . $item->Tid;
+            }
+            if (isset($item->value)) {
+                if (!in_array($primaryValueName, $colNames)) array_push($colNames, $primaryValueName);
+                $values[$counter] .= ',' . $item->value;
+            }
+            $values[$counter] .= ')';
+            $counter++;
         }
-        $sql .= ')';
+        $sql .= implode(',', $colNames);
+        $sql .= ') VALUES' . implode(',', $values);
         return $sql;
-
     }
 
     private function insertMunicipalities() {
@@ -187,11 +187,6 @@ SQL;
         $arry['0532'] = 'Jevnaker';
         $arry['0533'] = 'Lunner';
         $arry['0534'] = 'Gran';
-        $arry['0536'] = 'Søndre Land';
-        $arry['0540'] = 'Sør-Aurdal';
-        $arry['0615'] = 'Flå';
-        $arry['0622'] = 'Krødsherad';
-        $arry['0623'] = 'Modum';
         $arry['0626'] = 'Lier';
         $arry['0624'] = 'Øvre Eiker';
         $arry['0625'] = 'Nedre Eiker';
@@ -199,10 +194,19 @@ SQL;
         $arry['0219'] = 'Bærum';
         $arry['0220'] = 'Asker';
         $arry['0301'] = 'Oslo';
+        $arry['0104'] = 'Moss';
+        $arry['0604'] = 'Kongsberg';
+        $arry['0238'] = 'Nannestad';
+        $arry['0231'] = 'Skedsmo';
+        $arry['0217'] = 'Oppegård';
+        $arry['0213'] = 'Ski';
+        $arry['0214'] = 'Ås';
+        $arry['0211'] = 'Vestby';
+        $arry['0704'] = 'Tønsberg';
         foreach($arry as $key => $value) {
             $sql = "SELECT COUNT(*) as c FROM Municipality WHERE municipalityCode='$key'";
             $this->db->query($sql);
-            if ($this->db->getSingleResult()['c'] != 1) {
+            if ($this->db->getSingleResult()['c'] < 1) {
                 $sql = "INSERT INTO Municipality (municipalityCode, municipalityName) VALUES('$key', '$value')";
                 $this->db->query($sql);
                 $this->db->execute();
@@ -211,7 +215,7 @@ SQL;
     }
 
     private $municipalityMap;
-    private function getMunicipalityID($regionCode) {
+    private function getMunicipalityID($regionCode, $rewind = false) {
         if ($this->municipalityMap == null) {
             $sql = 'SELECT municipalityID, municipalityCode FROM Municipality';
             $this->db->query($sql);
@@ -219,10 +223,26 @@ SQL;
                 $this->municipalityMap[$result['municipalityCode']] = $result['municipalityID'];
             }
         }
-        if (!isset($this->municipalityMap[$regionCode])) {
+        if ($rewind) {
             $this->municipalityMap = null;
+            $sql = 'SELECT municipalityID, municipalityCode FROM Municipality';
+            $this->db->query($sql);
+            foreach ($this->db->getResultSet() as $result) {
+                $this->municipalityMap[$result['municipalityCode']] = $result['municipalityID'];
+            }
+            if (!isset($this->municipalityMap[$regionCode])) {
+                $sql = "INSERT INTO Municipality (municipalityCode, municipalityName) VALUES ('$regionCode', '$regionCode')";
+                $this->db->query($sql);
+                $this->db->execute();
+                $this->municipalityMap[$regionCode] = $this->db->getLastInsertID();
+                return $this->db->getLastInsertID();
+            } else {
+                return $this->municipalityMap[$regionCode];
+            }
+        }
+        if (!isset($this->municipalityMap[$regionCode])) {
             $this->insertMunicipalities();
-            return $this->getMunicipalityID($regionCode);
+           return $this->getMunicipalityID($regionCode, true);
         } else {
             return $this->municipalityMap[$regionCode];
         }
@@ -264,74 +284,39 @@ SQL;
 
     private function mapAgeAndReplace($dataSet) {
         if (!strpos($dataSet[0]->Alder, '-')) { //Checking if alder is interval, not range
-            $startTime = microtime();
+            $startTime = $this->logger->microTimeFloat();
             $retSet = array();
             foreach ($dataSet as $item) {
                 $staticAge = $item->Alder;
-                if (!isset($retSet[$item->Region])) $retSet[$item->Region] = array();
-                if (!isset($retSet[$item->Region][$item->Tid])) $retSet[$item->Region][$item->Tid] = array();
-                if (!isset($retSet[$item->Region][$item->Tid][$item->Kjonn])) $retSet[$item->Region][$item->Tid][$item->Kjonn] = array();
                 switch ($staticAge) {
                     case in_array($staticAge, range(0,14)):
-                        if (!isset($retSet[$item->Region][$item->Tid][$item->Kjonn]['00-14'])) $retSet[$item->Region][$item->Tid][$item->Kjonn]['00-14'] = 0;
-                        $retSet[$item->Region][$item->Tid][$item->Kjonn]['00-14'] += $item->value;
+                        $item->Alder = '00-14';
                         break;
                     case in_array($staticAge, range(15,19)):
-                        if (!isset($retSet[$item->Region][$item->Tid][$item->Kjonn]['15-19'])) $retSet[$item->Region][$item->Tid][$item->Kjonn]['15-19'] = 0;
-                        $retSet[$item->Region][$item->Tid][$item->Kjonn]['15-19'] += $item->value;
+                        $item->Alder = '15-19';
                         break;
                     case in_array($staticAge, range(20,24)):
-                        if (!isset($retSet[$item->Region][$item->Tid][$item->Kjonn]['20-24'])) $retSet[$item->Region][$item->Tid][$item->Kjonn]['20-24'] = 0;
-                        $retSet[$item->Region][$item->Tid][$item->Kjonn]['20-24'] += $item->value;
+                        $item->Alder = '20-24';
                         break;
                     case in_array($staticAge, range(25,39)):
-                        if (!isset($retSet[$item->Region][$item->Tid][$item->Kjonn]['25-39'])) $retSet[$item->Region][$item->Tid][$item->Kjonn]['25-39'] = 0;
-                        $retSet[$item->Region][$item->Tid][$item->Kjonn]['25-39'] += $item->value;
+                        $item->Alder = '25-39';
                         break;
                     case in_array($staticAge, range(40,54)):
-                        if (!isset($retSet[$item->Region][$item->Tid][$item->Kjonn]['40-54'])) $retSet[$item->Region][$item->Tid][$item->Kjonn]['40-54'] = 0;
-                        $retSet[$item->Region][$item->Tid][$item->Kjonn]['40-54'] += $item->value;
+                        $item->Alder = '40-54';
                         break;
                     case in_array($staticAge, range(55,66)):
-                        if (!isset($retSet[$item->Region][$item->Tid][$item->Kjonn]['55-66'])) $retSet[$item->Region][$item->Tid][$item->Kjonn]['55-66'] = 0;
-                        $retSet[$item->Region][$item->Tid][$item->Kjonn]['55-66'] += $item->value;
+                        $item->Alder = '55-66';
                         break;
                     case in_array($staticAge, range(67,74)):
-                        if (!isset($retSet[$item->Region][$item->Tid][$item->Kjonn]['67-74'])) $retSet[$item->Region][$item->Tid][$item->Kjonn]['67-74'] = 0;
-                        $retSet[$item->Region][$item->Tid][$item->Kjonn]['67-74'] += $item->value;
+                        $item->Alder = '67-74';
                         break;
                     default:
-                        if (!isset($retSet[$item->Region][$item->Tid][$item->Kjonn]['75-127'])) $retSet[$item->Region][$item->Tid][$item->Kjonn]['75-127'] = 0;
-                        $retSet[$item->Region][$item->Tid][$item->Kjonn]['75-127'] += $item->value;
+                        $item->Alder = '75-127';
                         break;
                 }
-                continue;
             }
-            $classSet = array();
-            foreach ($retSet as $regionKey => $region) {
-                foreach ($region as $yearKey => $year) {
-                    foreach ($year as $ageKey => $gender) {
-                        foreach ($gender as $genderKey => $val) {
-                            $value = $val;
-                            $Tid = $yearKey;
-                            $ContentsCode = $dataSet[0]->ContentsCode;
-                            $Alder = $genderKey;
-                            $Kjonn = $ageKey;
-                            $Region = $regionKey;
-                            $classItem = new stdClass();
-                            $classItem->value = $value;
-                            $classItem->Tid = $Tid;
-                            $classItem->ContentsCode = $ContentsCode;
-                            $classItem->Alder = $Alder;
-                            $classItem->Kjonn = $Kjonn;
-                            $classItem->Region = $Region;
-                            array_push($classSet, $classItem);
-                        }
-                    }
-                }
-            }
-            $this->logger->log('Time elapsed executing mapAlderAndReplace was ' . (microtime() - $startTime));
-            return $classSet;
+            $this->logger->log('Time elapsed executing mapAlderAndReplace was ' . ($this->logger->microTimeFloat() - $startTime));
+            return $dataSet;
         } else {
             return $dataSet;
         }
