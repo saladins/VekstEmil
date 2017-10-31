@@ -53,6 +53,9 @@ class ApiUpdate {
         }
 //        $this->db->beginTransaction();
         try {
+//            var_dump($variableID);
+//            var_dump($request->dataSet[0]);
+//            die;
             switch ($tableName) {
                 case 'PopulationChange':
                     $this->insertPopulationChange($request->dataSet, $tableName, $variableID);
@@ -61,12 +64,18 @@ class ApiUpdate {
                     $this->insertSpecialMovement($request->dataSet, $tableName, $variableID);
                     break;
                 case 'Employment':
-                    $this->insertSpecialEmployment($request->dataSet, $tableName, $variableID);
+                    $this->insertEmployment($request->dataSet, $tableName, $variableID);
+                    break;
+                case 'CommuteBalance':
+                    $this->insertCommuteBalance($request->dataSet, $tableName, $variableID);
+                    break;
+                case 'Unemployment':
+                    $this->insertUnemployment($request->dataSet, $tableName, $variableID);
                     break;
                 default:
                     $testTime = $this->logger->microTimeFloat();
 //                    $this->db->beginTransaction();
-                    ini_set('max_execution_time',60);
+//                    ini_set('max_execution_time',60);
                     $sql = $this->generateInsertSql($request->dataSet, $tableName, $variableID);
 //                    echo 'updateTable died after ' . ($this->logger->microTimeFloat() - $startTime) . ' seconds'; die;
                     $this->db->query($sql);
@@ -89,8 +98,112 @@ class ApiUpdate {
 //        $this->db->endTransaction();
     }
 
-    private function insertSpecialEmployment($dataSet, $tableName, $variableID) {
+    private function insertUnemployment($dataSet, $tableName, $variableID) {
+        $sql = <<<SQL
+INSERT INTO Unemployment (variableID, municipalityID, ageRangeID, pYear, pMonth, unemploymentPercent)
+VALUES 
+SQL;
+        foreach ($dataSet as $item) {
+            $valueSet = [];
+            array_push($valueSet, $variableID);
+            array_push($valueSet, $this->getMunicipalityID($item->Region));
+            array_push($valueSet, $this->getAgeRangeID($item->Alder));
+            $year = substr($item->Tid, 0, 4);
+            $month = substr($item->Tid, 5);
+            array_push($valueSet, $year);
+            array_push($valueSet, $month);
+            array_push($valueSet, $item->value);
+            $sql .= '(' . implode(',', $valueSet) . ')';
+            if (end($dataSet) != $item) { $sql .= ','; }
+        }
+        $this->db->query($sql);
+        return $this->db->execute();
 
+    }
+
+    private function insertCommuteBalance($dataSet, $tableName, $variableID) {
+        $sql = <<<SQL
+INSERT INTO CommuteBalance (variableID, municipalityID, workingMunicipalityID, pYear, commuters)
+VALUES 
+SQL;
+        foreach ($dataSet as $item) {
+            $valuesSet = [];
+            array_push($valuesSet, $variableID);
+            array_push($valuesSet, $this->getMunicipalityID($item->Bokommuen));
+            array_push($valuesSet, $this->getMunicipalityID($item->ArbstedKomm));
+            array_push($valuesSet, $item->Tid);
+            array_push($valuesSet, $item->value);
+            $sql .= '('. implode(',', $valuesSet) . ')';
+            if (end($dataSet) != $item) { $sql .= ','; }
+        }
+        $this->db->query($sql);
+        return $this->db->execute();
+    }
+
+    private function insertEmployment($dataSet, $tableName, $variableID) {
+        $sql = <<<SQL
+INSERT INTO Employment (variableID, municipalityID, naceID, genderID, pYear, workplaceValue, livingplaceValue, employmentBalance)
+VALUES 
+SQL;
+        $data = [];
+        foreach ($dataSet as $item) {
+            $municipalityID = $this->getMunicipalityID($item->Region);
+            $naceID = $this->getNaceID($item->NACE2007);
+            $genderID = $this->getGenderID($item->Kjonn);
+            $ageRangeID = $this->getAgeRangeID($item->Alder);
+            $pYear = $item->Tid;
+            $uid = strval($municipalityID) . strval($naceID) . strval($genderID) . strval($ageRangeID) . strval($pYear);
+            if (!isset($data[$uid])) {
+//                $data[$uid]->municipalityID = $municipalityID;
+//                $data[$uid]->naceID = $naceID;
+//                $data[$uid]->genderID =  $genderID;
+//                $data[$uid]->ageRangeID = $ageRangeID;
+//                $data[$uid]->pYear = $pYear;
+                $data[$uid] = new stdClass();
+                if ($item->ContentsCode == 'Sysselsatte') {
+                    $data[$uid]->living = $item->value;
+                } else {
+                    $data[$uid]->working = $item->value;
+                }
+            } else {
+                $valueSet = [];
+                array_push($valueSet, $variableID);
+                array_push($valueSet, $municipalityID);
+                array_push($valueSet, $naceID);
+                array_push($valueSet, $genderID);
+                array_push($valueSet, $pYear);
+                $balance = 0;
+                if (isset($data[$uid]->working)) {
+                    array_push($valueSet, $data[$uid]->working);
+                    array_push($valueSet, $item->value);
+                    $balance = $item->value - $data[$uid]->working;
+                } else {
+                    array_push($valueSet, $item->value);
+                    array_push($valueSet, $data[$uid]->living);
+                    $balance = $data[$uid]->living - $item->value;
+                }
+                array_push($valueSet, $balance);
+                $sql .= '(' . implode(',', $valueSet) . ')';
+                if (end($dataSet) != $item) { $sql .= ','; }
+            }
+        }
+//
+//
+//        foreach ($dataSet as $item) {
+//            var_dump($item);
+//            $valueSet = [];
+//            array_push($valueSet, $variableID);
+//            array_push($valueSet, $this->getMunicipalityID($item->Region));
+//            array_push($valueSet, $this->getGenderID($item->Kjonn));
+//            array_push($valueSet, $this->getAgeRangeID($item->Alder));
+//            array_push($valueSet, $item->Tid);
+//            array_push($valueSet, $item->value);
+//            $sql .= '(' . implode(',', $valueSet) . ')';
+//            if (end($dataSet) != $item) { $sql .= ','; }
+//        }
+//        $this->logger->log($sql);
+        $this->db->query($sql);
+        return $this->db->execute();
     }
 
     private function insertSpecialMovement($dataSet, $tableName, $variableID) {
@@ -109,7 +222,6 @@ VALUES($variableID, $munic, $year, $incomingAll, $outgoingAll, $sumAll);
 SQL;
                 $this->db->query($sql);
                 $this->db->execute();
-
             }
         }
     }
@@ -247,6 +359,36 @@ SQL;
             return $this->municipalityMap[$regionCode];
         }
     }
+    private $naceMap;
+    private function getNaceID($naceCode) {
+        if ($this->naceMap == null) {
+            $sql = 'SELECT naceID, naceCodeStart, naceCodeEnd FROM Nace2007';
+            $this->db->query($sql);
+            foreach ($this->db->getResultSet() as $result) {
+                $constructedCode = $result['naceCodeStart'] . '-' . $result['naceCodeEnd'];
+                $this->naceMap[$constructedCode] = $result['naceID'];
+            }
+        }
+        if (!strpos(strval($naceCode), '-')) {
+            $naceCode = strval($naceCode) . '-' . strval($naceCode);
+        }
+        if (!isset($this->naceMap[$naceCode])) {
+            $explodedCode = explode('-', $naceCode);
+            if (!isset($explodedCode[1])) {
+                $explodedCode[1] = $naceCode;
+            }
+            $sql = <<<SQL
+INSERT INTO Nace2007 (naceCodeStart, naceCodeEnd, naceText)
+VALUES($explodedCode[0], $explodedCode[1], 'Unknown NACE')
+SQL;
+            $this->db->query($sql);
+            $this->db->execute();
+            $constructedCode = $explodedCode[0] . '-' . $explodedCode[1];
+            $this->naceMap[$constructedCode] = $this->db->getLastInsertID();
+        }
+        return $this->naceMap[$naceCode];
+    }
+
     private $ageRangeMap;
     private function getAgeRangeID($ageRange) {
         if ($this->ageRangeMap == null) {
