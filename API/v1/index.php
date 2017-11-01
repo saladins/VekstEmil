@@ -1,7 +1,8 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: *', false); // OPTIONS, GET, POST, PUT, DELETE
-header('Access-Control-Allow-Headers: Accept, Content-Type', false); // , X-Requested-With, origin, authorization, accept
+//header('Access-Control-Allow-Methods: OPTION, OPTIONS, GET, POST, PUT, DELETE', false); // OPTIONS, GET, POST, PUT, DELETE
+//header('Access-Control-Allow-Headers: Origin, Accept, Content-Type, X-Requested-With', false); // , X-Requested-With, origin, authorization, accept
+//header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Headers", false);
 header('Content-Type: application/json; charset=utf-8', false);
 include 'globals.php';
 include './model/requestInterface.php';
@@ -147,7 +148,16 @@ class APIparser {
     }
 
     private function parsePost() {
-        $this->postContent = json_decode(file_get_contents('php://input'), false);
+        ini_set('memory_limit', '-1');
+        $this->postContent = json_decode($this->getRawPostData(), false);
+//        file_put_contents($this->postContent->sourceCode . '.txt', json_encode($this->postContent->dataSet));
+//        var_dump($this->postContent->sourceCode);
+//        var_dump(memory_get_peak_usage());
+//        die;
+    }
+
+    private function getRawPostData() {
+        return file_get_contents('php://input');
     }
 
     public function handleRequest() {
