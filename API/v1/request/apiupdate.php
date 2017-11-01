@@ -55,6 +55,7 @@ class ApiUpdate {
         try {
 //            var_dump($variableID);
 //            var_dump($request->dataSet[0]);
+//            var_dump($tableName);
 //            die;
             switch ($tableName) {
                 case 'PopulationChange':
@@ -72,12 +73,23 @@ class ApiUpdate {
                 case 'Unemployment':
                     $this->insertUnemployment($request->dataSet, $tableName, $variableID);
                     break;
+                case 'HomeBuildingArea':
+                case 'FunctionalBuildingArea':
+                    $this->insertBuildingArea($request->dataSet, $tableName, $variableID);
+                    break;
+                case 'HouseholdIncome':
+                    $this->insertHouseholdIncome($request->dataSet, $tableName, $variableID);
+                    break;
+                case 'Proceeding':
+                    $this->insertProceeding($request->dataSet, $tableName, $variableID);
+                    break;
                 default:
                     $testTime = $this->logger->microTimeFloat();
 //                    $this->db->beginTransaction();
 //                    ini_set('max_execution_time',60);
                     $sql = $this->generateInsertSql($request->dataSet, $tableName, $variableID);
 //                    echo 'updateTable died after ' . ($this->logger->microTimeFloat() - $startTime) . ' seconds'; die;
+                    var_dump($sql); die;
                     $this->db->query($sql);
                     $this->db->execute();
                     $this->logger->log('Insert generic took ' . ($this->logger->microTimeFloat() - $testTime) . ' seconds');
@@ -96,6 +108,122 @@ class ApiUpdate {
 //            $this->db->rollbackTransaction();
         }
 //        $this->db->endTransaction();
+    }
+
+    private function insertProceeding($dataSet, $tableName, $variableID) {
+        $proceedingCategories = array();
+        $applicationTypes = array();
+        $sql = 'SELECT proceedingCategoryID, proceedingCode FROM ProceedingCategory';
+        $this->db->query($sql);
+        foreach ($this->db->getResultSet() as $result) {
+            $proceedingCategories[strval($result['proceedingCode'])] = $result['proceedingCategoryID'];
+        }
+        $sql = 'SELECT applicationTypeID, applicationTypeCode FROM ApplicationType';
+        $this->db->query($sql);
+        foreach ($this->db->getResultSet() as $result) {
+            $applicationTypes[strval($result['applicationTypeCode'])] = $result['applicationTypeID'];
+        }
+        $insertString = 'INSERT INTO Proceeding (variableID, municipalityID, proceedingCategoryID, applicationTypeID, pYear, proceedingValue) VALUES';
+        $valueArray = array();
+        foreach ($dataSet as $item) {
+            $year = $item->Tid;
+            $proceedingCode = strval($item->ContentsCode);
+            if (!isset($proceedingCategories[$proceedingCode])) {
+                $sql = "INSERT INTO ProceedingCategory (proceedingCode, proceedingText) VALUES ('$proceedingCode', 'unknown')";
+                $this->db->query($sql);
+                $this->db->execute();
+                $proceedingCategories[$proceedingCode] = $this->db->getLastInsertID();
+                $proceedingID = $this->db->getLastInsertID();
+            } else {
+                $proceedingID = $proceedingCategories[$proceedingCode];
+            }
+            $applicationCode = strval($item->RammevilkSoknad);
+            if (!isset($applicationTypes[$applicationCode])) {
+                $sql = "INSERT INTO ApplicationType (applicationTypeCode, applicationTypeText) VALUES ('$applicationCode', 'unknown')";
+                $this->db->query($sql);
+                $this->db->execute();
+                $applicationTypes[$applicationCode] = $this->db->getLastInsertID();
+                $applicationID = $this->db->getLastInsertID();
+            } else {
+                $applicationID = $applicationTypes[$applicationCode];
+            }
+            $municipalityID = $this->getMunicipalityID($item->Region);
+            $value = (isset($item->value) ? $item->value : 'null');
+            array_push($valueArray, "($variableID, $municipalityID, $proceedingID, $applicationID, $year, $value)");
+        }
+        $insertString .= implode(',', $valueArray);
+        $this->db->query($insertString);
+        $this->db->execute();
+    }
+
+    private function insertHouseholdIncome($dataSet, $tableName, $variableID) {
+        $householdTypes = array();
+        $sql = 'SELECT householdTypeID, householdTypeCode FROM HouseholdType';
+        $this->db->query($sql);
+        foreach($this->db->getResultSet() as $result) {
+            $householdTypes[strval($result['householdTypeCode'])] = $result['householdTypeID'];
+        }
+        $insertString = 'INSERT INTO HouseholdIncome (variableID, municipalityID, householdTypeID, pYear, householdIncomeAvg) VALUES ';
+        $valueArray = array();
+        foreach ($dataSet as $item) {
+            $year = $item->Tid;
+            $householdType = strval($item->HusholdType);
+            $householdTypeID = $householdTypes[$householdType];
+            $region = $item->Region;
+            $municipalityID = $this->getMunicipalityID($region);
+            array_push($valueArray, "($variableID, $municipalityID, $householdTypeID, $year, $item->value)");
+        }
+        $insertString .= implode(',', $valueArray);
+        $this->db->query($insertString);
+        $this->db->execute();
+    }
+
+    private function insertBuildingArea($dataSet, $tableName, $variableID) {
+        $buildingCategories = array();
+        $sql = 'SELECT buildingCategoryID, buildingCategoryCode FROM BuildingCategory';
+        $this->db->query($sql);
+        foreach ($this->db->getResultSet() as $result) {
+            $buildingCategories[strval($result['buildingCategoryCode'])] = strval($result['buildingCategoryID']);
+        }
+        $buildingStatusCodes = array();
+        $sql = 'SELECT buildingStatusID, buildingStatusCode, buildingStatusText FROM BuildingStatus';
+        $this->db->query($sql);
+        foreach ($this->db->getResultSet() as $result) {
+            $buildingStatusCodes[strval($result['buildingStatusCode'])] = strval($result['buildingStatusID']);
+        }
+        $insertString = 'INSERT INTO ' . $tableName . ' (variableID, municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue) VALUES ';
+        $valueArray = array();
+        foreach ($dataSet as $item) {
+            $year = substr($item->Tid, 0, 4);
+            $quarter = substr($item->Tid, 5);
+            $buildingCode = strval($item->Byggeareal);
+            $region = strval($item->Region);
+            $municipalityID = $this->getMunicipalityID($region);
+            $buildingStatusCode = strval($item->ContentsCode);
+            if (!isset($buildingCategories[$buildingCode])) {
+                $sql = "INSERT INTO BuildingCategory (buildingCategoryCode, buildingCategoryText) VALUES('$buildingCode', 'unknown')";
+                $this->db->query($sql);
+                $this->db->execute();
+                $buildingCategories[$buildingCode] = $this->db->getLastInsertID();
+                $buildingCategoryID = $this->db->getLastInsertID();
+            } else {
+                $buildingCategoryID = $buildingCategories[$buildingCode];
+            }
+            if (!isset($buildingStatusCodes[$buildingStatusCode])) {
+                $sql = "INSERT INTO BuildingStatus (buildingStatusCode, buildingStatusText) VALUES('$buildingStatusCode', '$buildingStatusCode')";
+                $this->db->query($sql);
+                $this->db->execute();
+                $buildingStatusCodes[$buildingStatusCode] = $this->db->getLastInsertID();
+                $buildingStatusID = $this->db->getLastInsertID();
+            } else {
+                $buildingStatusID = $buildingStatusCodes[$buildingStatusCode];
+            }
+            array_push($valueArray, "($variableID, $municipalityID, $buildingStatusID, $buildingCategoryID, $year, $quarter, $item->value)");
+        }
+        $insertString .= implode(',', $valueArray);
+//        var_dump($insertString); die;
+        $this->db->query($insertString);
+        $this->db->execute();
     }
 
     private function insertUnemployment($dataSet, $tableName, $variableID) {
@@ -154,11 +282,6 @@ SQL;
             $pYear = $item->Tid;
             $uid = strval($municipalityID) . strval($naceID) . strval($genderID) . strval($ageRangeID) . strval($pYear);
             if (!isset($data[$uid])) {
-//                $data[$uid]->municipalityID = $municipalityID;
-//                $data[$uid]->naceID = $naceID;
-//                $data[$uid]->genderID =  $genderID;
-//                $data[$uid]->ageRangeID = $ageRangeID;
-//                $data[$uid]->pYear = $pYear;
                 $data[$uid] = new stdClass();
                 if ($item->ContentsCode == 'Sysselsatte') {
                     $data[$uid]->living = $item->value;
@@ -187,21 +310,6 @@ SQL;
                 if (end($dataSet) != $item) { $sql .= ','; }
             }
         }
-//
-//
-//        foreach ($dataSet as $item) {
-//            var_dump($item);
-//            $valueSet = [];
-//            array_push($valueSet, $variableID);
-//            array_push($valueSet, $this->getMunicipalityID($item->Region));
-//            array_push($valueSet, $this->getGenderID($item->Kjonn));
-//            array_push($valueSet, $this->getAgeRangeID($item->Alder));
-//            array_push($valueSet, $item->Tid);
-//            array_push($valueSet, $item->value);
-//            $sql .= '(' . implode(',', $valueSet) . ')';
-//            if (end($dataSet) != $item) { $sql .= ','; }
-//        }
-//        $this->logger->log($sql);
         $this->db->query($sql);
         return $this->db->execute();
     }
@@ -283,6 +391,8 @@ SQL;
             if (isset($item->value)) {
                 if (!in_array($primaryValueName, $colNames)) array_push($colNames, $primaryValueName);
                 $values[$counter] .= ',' . $item->value;
+            } else {
+                $values[$counter] .= ',null';
             }
             $values[$counter] .= ')';
             $counter++;
@@ -365,7 +475,11 @@ SQL;
             $sql = 'SELECT naceID, naceCodeStart, naceCodeEnd FROM Nace2007';
             $this->db->query($sql);
             foreach ($this->db->getResultSet() as $result) {
-                $constructedCode = $result['naceCodeStart'] . '-' . $result['naceCodeEnd'];
+                $start = $result['naceCodeStart'];
+                if (strlen($start) == 1) $start = '0' . $start;
+                $end = $result['naceCodeEnd'];
+                if (strlen($end) == 1) $end = '0' . $end;
+                $constructedCode = $start . '-' . $end;
                 $this->naceMap[$constructedCode] = $result['naceID'];
             }
         }
@@ -420,6 +534,7 @@ SQL;
             $this->primaryValueMap['CommuteBalance'] = 'commuters';
             $this->primaryValueMap['Unemployment'] = 'unemploymentPercent';
             $this->primaryValueMap['EmploymentRatio'] = 'employmentPercent';
+            $this->primaryValueMap['Proceeding'] = 'proceedingValue';
         }
         return $this->primaryValueMap[$tableName];
     }
