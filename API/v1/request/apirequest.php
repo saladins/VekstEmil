@@ -75,27 +75,25 @@ SQL;
                 break;
             case TableMap::getTableMap()[9]: // Employment
                 $sql = <<<SQL
-SELECT employmentID,
+SELECT 
+municipalityID,
+naceID,
+genderID,
 pYear,
 workplaceValue,
 livingplaceValue,
 employmentBalance
-from Employment, Municipality, Nace2007, Gender
-WHERE Employment.MunicipalityID = Municipality.MunicipalityID
-AND Employment.NaceID = Nace2007.NaceID
-AND Employment.GenderID = Gender.GenderID
+from Employment
 SQL;
                 break;
             case TableMap::getTableMap()[6]: // CommuteBalance
                 $sql = <<<SQL
-SELECT CommuteBalanceID,
-municipality.MunicipalityName as WorkingMunicipality,
-municipality.MunicipalityName as LivingMunicipality,
+SELECT 
+municipalityID,
+workingMunicipalityID,
 pYear,
-commuters
-FROM CommuteBalance, Municipality
-WHERE CommuteBalance.LivingMunicipalityID = Municipality.MunicipalityID
-AND CommuteBalance.WorkingMunicipalityID = Municipality.MunicipalityID
+commuters as value
+FROM CommuteBalance
 SQL;
                 break;
             case TableMap::getTableMap()[39]: // Unemployment
@@ -105,18 +103,19 @@ municipalityID,
 ageRangeID,
 pYear,
 pMonth,
-unemploymentPercent
+unemploymentPercent as value
 FROM Unemployment
 SQL;
                 break;
             case TableMap::getTableMap()[10]: // EmploymentRatio
                 $sql = <<<SQL
 SELECT employmentRatioID,
+municipalityID,
+genderID,
+ageRangeID,
 pYear,
-EmploymentPercent
-from EmploymentRatio
-WHERE EmploymentRatio.GenderID = Gender.GenderID
-AND EmploymentRatio.AgeRangeID = AgeRange.AgeRangeID
+EmploymentPercent as value
+FROM EmploymentRatio
 SQL;
                 break;
             case TableMap::getTableMap()[20]: // HomeBuildingArea
@@ -166,13 +165,18 @@ SQL;
 
         $sql .= $this->getSqlConstraints($request);
         $sql .= $this->getGroupByClause($request);
+//        var_dump($sql); die;
         $this->db->query($sql);
         $result = $this->db->getResultSet();
         if (isset($result[0]['value'])) {
             for ($i = 0; $i < sizeof($result); $i++) {
                 $var = $result[$i]['value'];
                 if (is_numeric($var)) {
-                    $result[$i]['value'] = intval($var);
+                    if (is_double($var)) {
+                        $result[$i]['value'] = floatval($var);
+                    } else {
+                        $result[$i]['value'] = intval($var);
+                    }
                 }
             }
         }
