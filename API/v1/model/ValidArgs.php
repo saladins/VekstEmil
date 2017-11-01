@@ -22,21 +22,5 @@ class ValidArgs {
         $ret->groupBy = 'groupby';
         $ret->years = 'years';
         return $ret;
-
-//        return array(
-//       'RequestType' => 'requesttype',
-//       'VariableID' => 'variableid',
-//       'MunicipalityID' => 'municipalityid',
-//       'NaceID' =>'naceid',
-//       'GenderID' => 'genderid',
-//       'KostraCategoryID' => 'kostracatid',
-//       'MunicipalExpenseCategoryID' => 'municipalexpensecatid',
-//       'BuildingCategoryID' => 'buildingcategoryid',
-//       'EnterpriseCategoryID' => 'enterprisecatid',
-//       'EmployeeCountID' => 'employeecountid',
-//       'WorkingMunicipalityID' => 'workingmunicipalityid',
-//       'LivingMunicipalityID' => 'livingmunicipalityid',
-//       'AgeRangeID' => 'agerangeid',
-//    );
     }
 }
