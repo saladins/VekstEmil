@@ -118,6 +118,12 @@ class ApiUpdate {
                 case 'Proceeding':
                     $this->insertProceeding($request->dataSet, $tableName, $variableID);
                     break;
+                case 'Education':
+                    $this->insertEducation($request->dataSet, $tableName, $variableID);
+                    break;
+                case 'RegionalCooperation':
+                    $this->insertRegionalCooperation($request->dataSet, $tableName, $variableID);
+                    break;
                 default:
                     $testTime = $this->logger->microTimeFloat();
                     $this->insertGeneric($request->dataSet, $tableName, $variableID);
@@ -137,6 +143,69 @@ class ApiUpdate {
 //            $this->db->rollbackTransaction();
         }
 //        $this->db->endTransaction();
+    }
+
+    /**
+     * @param $dataSet mixed
+     * @param $tableName string
+     * @param $variableID integer
+     * @return bool Returns true on success
+     */
+    private function insertRegionalCooperation($dataSet, $tableName, $variableID) {
+        $kostraCategories = array();
+        $sql = 'SELECT kostraCategoryID, kostraCategoryCode FROM KostraCategory';
+        $this->db->query($sql);
+        foreach ($this->db->getResultSet() as $result) {
+            $kostraCategories[strval($result['kostraCategoryCode'])] = $result['kostraCategoryID'];
+        }
+        $municipalExpenseCategories = array();
+        $sql = 'SELECT municipalExpenseCategoryID, municipalExpenseCategoryCode FROM MunicpalExpenseCategory';
+        $this->db->query($sql);
+        foreach ($this->db->getResultSet() as $result) {
+            $municipalExpenseCategories[strval($result['municipalExpenseCategoryCode'])] = $result['municipalExpenseCategoryID'];
+        }
+        $insertString = "INSERT INTO $tableName (variableID, municipalityID, kostraCategoryID, municipalExpenseCategoryID, pYear, expense) VALUES ";
+        $valueArray = array();
+        foreach ($dataSet as $item) {
+            $municipalityID = $this->getMunicipalityID($item->Region);
+            $kostraCategoryID = $kostraCategories[strval($item->FunksjonKostra)];
+            $municipalExpenseCategoryID = $municipalExpenseCategories[strval($item->ArtGruppe)];
+            $pYear = $item->Tid;
+            if ($item->value == null) {continue; }
+            $expense = $item->value;
+            array_push($valueArray, "($variableID, $municipalityID, $kostraCategoryID, $municipalExpenseCategoryID, $pYear, $expense)");
+        }
+        $insertString .= implode(',', $valueArray);
+        $this->db->query($insertString);
+        return $this->db->execute();
+    }
+
+    /**
+     * @param $dataSet mixed
+     * @param $tableName string
+     * @param $variableID integer
+     * @return bool Returns true on success
+     */
+    private function insertEducation($dataSet, $tableName, $variableID) {
+        $grades = array();
+        $sql = 'SELECT gradeID, gradeCode FROM Grade';
+        $this->db->query($sql);
+        foreach ($this->db->getResultSet() as $result) {
+            $grades[strval($result['gradeCode'])] = $result['gradeID'];
+        }
+        $insertString = "INSERT INTO $tableName (variableID, municipalityID, genderID, gradeID, pYear, percentEducated) VALUES ";
+        $valueArray = array();
+        foreach ($dataSet as $item) {
+            $year = $item->Tid;
+            $municipalityID = $this->getMunicipalityID($item->Region);
+            $genderID = $this->getGenderID($item->Kjonn);
+            $gradeID = $grades[strval($item->Nivaa)];
+            $value = (($item->value == null) ? 'null' : $item->value);
+            array_push($valueArray, "($variableID, $municipalityID, $genderID, $gradeID, $year, $value)");
+        }
+        $insertString .= implode(',', $valueArray);
+        $this->db->query($insertString);
+        return $this->db->execute();
     }
 
     /**
