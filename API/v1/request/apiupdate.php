@@ -42,6 +42,7 @@ class ApiUpdate {
      */
     private function updateSSB($request) {
         // check variable table
+        set_time_limit(120);
         $sql = 'SELECT variableID, tableName FROM Variable WHERE providerCode =\'' . $request->sourceCode . '\'';
         $this->db->query($sql);
         $res = $this->db->getSingleResult();
