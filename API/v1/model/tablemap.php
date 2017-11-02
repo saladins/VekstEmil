@@ -38,7 +38,7 @@ class TableMap {
         $tableMap[34] = 'PrivateEmployee';
         $tableMap[35] = 'Proceeding';
         $tableMap[36] = 'ProceedingCategory';
-        $tableMap[37] = 'ProceedingValueType';
+        $tableMap[37] = 'ApplicationType';
         $tableMap[38] = 'Region';
         $tableMap[39] = 'Unemployment';
         $tableMap[40] = 'VacantPosition';

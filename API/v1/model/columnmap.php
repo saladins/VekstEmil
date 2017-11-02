@@ -1,5 +1,10 @@
 <?php
     class columnMap {
+
+        /**
+         * Lists common column names
+         * @return array
+         */
         static function columns() {
             $columnMap = array();
             $columnMap[0] = 'municipalityID';
@@ -12,6 +17,11 @@
             $columnMap[5] = 'naceID';
             return $columnMap;
         }
+
+        /**
+         * Maps columns to the table holding their descriptions
+         * @return array
+         */
         static function columnsTableParent() {
             $colTableMap = array();
             $colTableMap[self::columns()[0]] = TableMap::getTableMap()[26];

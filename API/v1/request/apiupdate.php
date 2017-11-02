@@ -1,8 +1,14 @@
 <?php
+/** Handles database updates */
 class ApiUpdate {
     private $db;
     private $logger;
     private $mysqltime;
+    private $municipalityMap;
+    private $naceMap;
+    private $ageRangeMap;
+    private $genderMap;
+    private $primaryValueMap;
     public function __construct($initializeDB = true) {
         $this->mysqltime = date('Y-m-d H:i:s');
         if ($this->logger == null) {
@@ -13,6 +19,12 @@ class ApiUpdate {
         }
     }
 
+    /**
+     * Public entry point for database updates.
+     * Determines which provider the data is from.
+     * @param $request
+     * @return array|string
+     */
     public function update($request) {
         switch ($request->providerID) {
             case 1:
@@ -22,6 +34,12 @@ class ApiUpdate {
         }
     }
 
+    /**
+     * Checks whether or not the variable exists in the Variable data table.
+     * Handles
+     * @param $request
+     * @return string
+     */
     private function updateSSB($request) {
         // check variable table
         $sql = 'SELECT variableID, tableName FROM Variable WHERE providerCode =\'' . $request->sourceCode . '\'';
@@ -35,18 +53,35 @@ class ApiUpdate {
             $variableID = $res['variableID'];
             $tableName = $res['tableName'];
             if ($request->forceReplace) {
-                $this->logger->log('DB: Forcing replacement of table ' . $tableName);
-                $this->logger->log('DB: Force request given by ' . $_SERVER['REMOTE_ADDR']);
-                $sql = 'DELETE FROM ' . $tableName;
-                $this->db->query($sql);
-                $queryResult = $this->db->execute();
-                $this->logger->log('DB: Force delete request of table ' . $tableName . ' was a ' . ($queryResult ? 'success.' : 'failure.'));
-                $this->logDb(VariableUpdateReason::a()->forceReplaceFull->key, $variableID, $_SERVER['REMOTE_ADDR']);
+               $this->truncateTable($tableName, $variableID);
             }
         }
         return $this->updateTable($request, $tableName, $variableID);
     }
-     private function updateTable($request, $tableName, $variableID) {
+
+    /**
+     * Removes table contents
+     * @param $tableName string
+     * @param $variableID integer
+     */
+    private function truncateTable($tableName, $variableID) {
+        $this->logger->log('DB: Forcing replacement of table ' . $tableName);
+        $this->logger->log('DB: Force request given by ' . $_SERVER['REMOTE_ADDR']);
+        $sql = 'DELETE FROM ' . $tableName;
+        $this->db->query($sql);
+        $queryResult = $this->db->execute();
+        $this->logger->log('DB: Force delete request of table ' . $tableName . ' was a ' . ($queryResult ? 'success.' : 'failure.'));
+        $this->logDb(VariableUpdateReason::a()->forceReplaceFull->key, $variableID, $_SERVER['REMOTE_ADDR']);
+    }
+
+    /**
+     * Invokes correct database table update method based on table name.
+     * @param $request mixed
+     * @param $tableName string
+     * @param $variableID number
+     * @return string
+     */
+    private function updateTable($request, $tableName, $variableID) {
         $startTime = $this->logger->microTimeFloat();
         if (isset($request->dataSet[0]->Alder) && $request->dataSet[0]->Alder != null) {
             $request->dataSet = $this->mapAgeAndReplace($request->dataSet);
@@ -62,7 +97,7 @@ class ApiUpdate {
                     $this->insertPopulationChange($request->dataSet, $tableName, $variableID);
                     break;
                 case 'Movement':
-                    $this->insertSpecialMovement($request->dataSet, $tableName, $variableID);
+                    $this->insertMovement($request->dataSet, $tableName, $variableID);
                     break;
                 case 'Employment':
                     $this->insertEmployment($request->dataSet, $tableName, $variableID);
@@ -85,13 +120,7 @@ class ApiUpdate {
                     break;
                 default:
                     $testTime = $this->logger->microTimeFloat();
-//                    $this->db->beginTransaction();
-//                    ini_set('max_execution_time',60);
-                    $sql = $this->generateInsertSql($request->dataSet, $tableName, $variableID);
-//                    echo 'updateTable died after ' . ($this->logger->microTimeFloat() - $startTime) . ' seconds'; die;
-                    var_dump($sql); die;
-                    $this->db->query($sql);
-                    $this->db->execute();
+                    $this->insertGeneric($request->dataSet, $tableName, $variableID);
                     $this->logger->log('Insert generic took ' . ($this->logger->microTimeFloat() - $testTime) . ' seconds');
             }
             $sql = "UPDATE Variable SET lastUpdatedDate='$this->mysqltime' WHERE variableID=$variableID";
@@ -110,6 +139,12 @@ class ApiUpdate {
 //        $this->db->endTransaction();
     }
 
+    /**
+     * Inserts data into Proceeding table
+     * @param $dataSet mixed
+     * @param $tableName string
+     * @param $variableID integer
+     */
     private function insertProceeding($dataSet, $tableName, $variableID) {
         $proceedingCategories = array();
         $applicationTypes = array();
@@ -123,7 +158,7 @@ class ApiUpdate {
         foreach ($this->db->getResultSet() as $result) {
             $applicationTypes[strval($result['applicationTypeCode'])] = $result['applicationTypeID'];
         }
-        $insertString = 'INSERT INTO Proceeding (variableID, municipalityID, proceedingCategoryID, applicationTypeID, pYear, proceedingValue) VALUES';
+        $insertString = "INSERT INTO $tableName (variableID, municipalityID, proceedingCategoryID, applicationTypeID, pYear, proceedingValue) VALUES";
         $valueArray = array();
         foreach ($dataSet as $item) {
             $year = $item->Tid;
@@ -156,6 +191,11 @@ class ApiUpdate {
         $this->db->execute();
     }
 
+    /**
+     * @param $dataSet
+     * @param $tableName
+     * @param $variableID
+     */
     private function insertHouseholdIncome($dataSet, $tableName, $variableID) {
         $householdTypes = array();
         $sql = 'SELECT householdTypeID, householdTypeCode FROM HouseholdType';
@@ -178,6 +218,11 @@ class ApiUpdate {
         $this->db->execute();
     }
 
+    /**
+     * @param $dataSet
+     * @param $tableName
+     * @param $variableID
+     */
     private function insertBuildingArea($dataSet, $tableName, $variableID) {
         $buildingCategories = array();
         $sql = 'SELECT buildingCategoryID, buildingCategoryCode FROM BuildingCategory';
@@ -226,6 +271,12 @@ class ApiUpdate {
         $this->db->execute();
     }
 
+    /**
+     * @param $dataSet
+     * @param $tableName
+     * @param $variableID
+     * @return bool
+     */
     private function insertUnemployment($dataSet, $tableName, $variableID) {
         $sql = <<<SQL
 INSERT INTO Unemployment (variableID, municipalityID, ageRangeID, pYear, pMonth, unemploymentPercent)
@@ -249,6 +300,12 @@ SQL;
 
     }
 
+    /**
+     * @param $dataSet
+     * @param $tableName
+     * @param $variableID
+     * @return bool
+     */
     private function insertCommuteBalance($dataSet, $tableName, $variableID) {
         $sql = <<<SQL
 INSERT INTO CommuteBalance (variableID, municipalityID, workingMunicipalityID, pYear, commuters)
@@ -268,6 +325,12 @@ SQL;
         return $this->db->execute();
     }
 
+    /**
+     * @param $dataSet
+     * @param $tableName
+     * @param $variableID
+     * @return bool
+     */
     private function insertEmployment($dataSet, $tableName, $variableID) {
         $sql = <<<SQL
 INSERT INTO Employment (variableID, municipalityID, naceID, genderID, pYear, workplaceValue, livingplaceValue, employmentBalance)
@@ -314,7 +377,12 @@ SQL;
         return $this->db->execute();
     }
 
-    private function insertSpecialMovement($dataSet, $tableName, $variableID) {
+    /**
+     * @param $dataSet
+     * @param $tableName
+     * @param $variableID
+     */
+    private function insertMovement($dataSet, $tableName, $variableID) {
         $res = [];
         foreach ($dataSet as $item) {
             $res[$item->Tid][$this->getMunicipalityID($item->Region)][$item->ContentsCode] = $item->value;
@@ -334,6 +402,11 @@ SQL;
         }
     }
 
+    /**
+     * @param $dataSet
+     * @param $tableName
+     * @param $variableID
+     */
     private function insertPopulationChange($dataSet, $tableName, $variableID) {
         $res = [];
         foreach ($dataSet as $value) {
@@ -359,12 +432,21 @@ SQL;
         }
     }
 
-    private function generateInsertSql($dataSet, $tableName, $variableID) {
+    /**
+     * Default method. Determines valid table columns and values. Then inserts data into the provided table.
+     * @param $dataSet
+     * @param $tableName
+     * @param $variableID
+     * @return bool
+     */
+    private function insertGeneric($dataSet, $tableName, $variableID) {
         $sql = 'INSERT INTO ' . $tableName . '(';
         $municipalityID = 'municipalityID';
+        $nace2007 = 'naceID';
         $ageRangeID = 'ageRangeID';
         $genderID = 'genderID';
         $pYear = 'pYear';
+        $pQuarter = 'pQuarter';
         $primaryValueName = $this->getPrimaryValueName($tableName);
         $colNames = [];
         $values = [];
@@ -375,7 +457,11 @@ SQL;
             if (isset($item->Region)) {
                 if (!in_array($municipalityID, $colNames)) array_push($colNames, $municipalityID);
                 $values[$counter] .= ',' . $this->getMunicipalityID($item->Region);
-            };
+            }
+            if (isset($item->NACE2007)) {
+                if (!in_array($nace2007, $colNames)) array_push($colNames, $nace2007);
+                $values[$counter] .= ',' .$this->getNaceID($item->NACE2007);
+            }
             if (isset($item->Alder)) {
                 if (!in_array($ageRangeID, $colNames)) array_push($colNames, $ageRangeID);
                 $values[$counter] .= ',' . $this->getAgeRangeID($item->Alder);
@@ -386,7 +472,13 @@ SQL;
             }
             if (isset($item->Tid)) {
                 if (!in_array($pYear, $colNames)) array_push($colNames, $pYear);
-                $values[$counter] .= ',' . $item->Tid;
+                if (strchr($item->Tid, 'K')) {
+                    $values[$counter] .= ',' . substr($item->Tid, 0, 4);
+                    if (!in_array($pQuarter, $colNames)) array_push($colNames, $pQuarter);
+                    $values[$counter] .= ',' . substr($item->Tid, 5);
+                } else {
+                    $values[$counter] .= ',' . $item->Tid;
+                }
             }
             if (isset($item->value)) {
                 if (!in_array($primaryValueName, $colNames)) array_push($colNames, $primaryValueName);
@@ -399,9 +491,15 @@ SQL;
         }
         $sql .= implode(',', $colNames);
         $sql .= ') VALUES' . implode(',', $values);
-        return $sql;
+        $this->db->query($sql);
+        return $this->db->execute();
     }
 
+    /**
+     * TEMPORARY helper method to insert municipalities.
+     * To be removed at a later time
+     * TODO REMOVE ME
+     */
     private function insertMunicipalities() {
         $arry = [];
         $arry['0605'] = 'Ringerike';
@@ -436,7 +534,13 @@ SQL;
         }
     }
 
-    private $municipalityMap;
+    /**
+     * Gets the interal ID for provided municipality code.
+     * Generates a local cache of municipality code and internal IDs.
+     * @param $regionCode
+     * @param bool $rewind
+     * @return string
+     */
     private function getMunicipalityID($regionCode, $rewind = false) {
         if ($this->municipalityMap == null) {
             $sql = 'SELECT municipalityID, municipalityCode FROM Municipality';
@@ -469,7 +573,13 @@ SQL;
             return $this->municipalityMap[$regionCode];
         }
     }
-    private $naceMap;
+
+    /**
+     * Gets the internal ID for provided NACE code.
+     * Generates a local cache of NACE2007 codes and internal IDs.
+     * @param $naceCode
+     * @return mixed
+     */
     private function getNaceID($naceCode) {
         if ($this->naceMap == null) {
             $sql = 'SELECT naceID, naceCodeStart, naceCodeEnd FROM Nace2007';
@@ -503,7 +613,13 @@ SQL;
         return $this->naceMap[$naceCode];
     }
 
-    private $ageRangeMap;
+
+    /**
+     * Gets the interal ID for provided age range code.
+     * Generates a local cache of age range codes and internal IDs.
+     * @param $ageRange
+     * @return mixed
+     */
     private function getAgeRangeID($ageRange) {
         if ($this->ageRangeMap == null) {
             $sql = 'SELECT AgeRangeID, AgeRangeStart, AgeRangeEnd from AgeRange';
@@ -516,7 +632,13 @@ SQL;
         }
         return $this->ageRangeMap[$ageRange];
     }
-    private $genderMap;
+
+    /**
+     * Gets the internal ID for provided gender code.
+     * Generates a local cache of gender codes and internal IDs.
+     * @param $gender
+     * @return mixed
+     */
     private function getGenderID($gender) {
         if ($this->genderMap == null) {
             $sql = 'SELECT GenderID FROM Gender';
@@ -527,18 +649,28 @@ SQL;
         }
         return $this->genderMap[$gender];
     }
-    private $primaryValueMap;
+
+    /**
+     * Gets the primary value column name for generic table insertion
+     * @param $tableName
+     * @return mixed
+     */
     private function getPrimaryValueName($tableName) {
         if ($this->primaryValueMap == null) {
             $this->primaryValueMap['PopulationAge'] = 'population';
             $this->primaryValueMap['CommuteBalance'] = 'commuters';
             $this->primaryValueMap['Unemployment'] = 'unemploymentPercent';
             $this->primaryValueMap['EmploymentRatio'] = 'employmentPercent';
-            $this->primaryValueMap['Proceeding'] = 'proceedingValue';
+            $this->primaryValueMap['Bankruptcy'] = 'bankruptcies';
         }
         return $this->primaryValueMap[$tableName];
     }
 
+    /**
+     * Maps incoming age value to age range.
+     * @param $dataSet
+     * @return mixed
+     */
     private function mapAgeAndReplace($dataSet) {
         if (!strpos($dataSet[0]->Alder, '-')) { //Checking if alder is interval, not range
             $startTime = $this->logger->microTimeFloat();

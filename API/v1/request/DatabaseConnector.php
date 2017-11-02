@@ -16,6 +16,7 @@ class DatabaseConnector {
     }
 
     /**
+     * Connects to the local database
      * @return PDO
      * @throws Exception
      */
@@ -58,7 +59,7 @@ class DatabaseConnector {
     }
 
     /**
-     * @param Exception $exception
+     * Handles error processing and messages
      * @return string JSON-encoded error message
      */
     function handleError() {

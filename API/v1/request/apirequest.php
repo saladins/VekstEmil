@@ -1,5 +1,5 @@
 <?php
-
+/** Class for API (GET) requests */
 class APIrequest {
     /** @var DatabaseHandler */
     private $db;
@@ -17,6 +17,7 @@ class APIrequest {
     }
 
     /**
+     * Validates request or throws exception
      * @param RequestModel $request
      * @throws Exception
      */
@@ -26,7 +27,9 @@ class APIrequest {
     }
 
     /**
+     * Gets and returns data about at specific variable (data table)
      * @param RequestModel $request
+     * @return array String array containing variable data
      */
     public function getVariableData($request) {
         $sql = '';
@@ -46,7 +49,7 @@ SELECT
 municipalityID,
 ageRangeID,
 genderID,
-$selectExtra
+
 pYear,
 sum(Population) as value
   from PopulationAge
@@ -183,6 +186,12 @@ SQL;
         return $result;
     }
 
+    /**
+     * DEPRECATED
+     * Gets full meta data for the variable
+     * @param $request
+     * @return stdClass
+     */
     public function getMetaData($request) {
         $ret = new stdClass();
         if (isset($request->variableID) && $request->variableID != null) {
@@ -196,6 +205,11 @@ SQL;
         return $ret;
     }
 
+    /**
+     * Gets constraints, descriptions and variable meta data for the variable (data table)
+     * @param $request
+     * @return stdClass
+     */
     public function getMinimalMetaData($request) {
         $ret = new stdClass();
         if (isset($request->variableID) && $request->variableID != null) {
@@ -207,6 +221,11 @@ SQL;
         return $ret;
     }
 
+    /**
+     * Gets and returns constraints and descriptions for each column in the data table
+     * @param $request
+     * @return array
+     */
     private function getFieldDescriptionsAndConstraints($request) {
         $ret = array();
         $constraints = new stdClass();
@@ -231,6 +250,11 @@ SQL;
         return $ret;
     }
 
+    /**
+     * Determines if there are returnable descriptions in child table. If there are, returns entire contents of said table.
+     * @param $columnName
+     * @return array|null
+     */
     private function getFieldDescriptions($columnName) {
         if (columnMap::columnsTableParent()[$columnName] == null ) {
             return null;
@@ -240,6 +264,11 @@ SQL;
         return $this->db->getResultSet(PDO::FETCH_CLASS);
     }
 
+    /**
+     * Gets variable and provider metadata for the variable (data table)
+     * @param $variableID
+     * @return mixed
+     */
     private function getVariableAndProvider($variableID) {
         $sql = <<<SQL
 SELECT a.variableID, a.providerID, a.statisticName, a.tableName, 
@@ -254,6 +283,13 @@ SQL;
         $this->db->query($sql);
         return $this->db->getResultSet(PDO::FETCH_CLASS)[0];
     }
+
+
+    /**
+     * Gets and returns list of tags for the variable (data table)
+     * @param $variableID
+     * @return array
+     */
     private function getTagsForVariable($variableID) {
         $sql = <<<SQL
 SELECT a.variableID, a.tagID, b.tagText 
@@ -264,6 +300,13 @@ SQL;
         $this->db->query($sql);
         return $this->db->getResultSet(PDO::FETCH_CLASS);
     }
+
+
+    /**
+     * Gets links and document link descriptions for the variable (data table)
+     * @param $variableID
+     * @return array
+     */
     private function getLinkedDocuments($variableID) {
         $sql = <<<SQL
 SELECT a.linkedDocumentID, a.linkedDocumentAddress, a.linkedDocumentTitle, a.linkedDocumentDescription
@@ -273,6 +316,12 @@ SQL;
         $this->db->query($sql);
         return $this->db->getResultSet(PDO::FETCH_CLASS);
     }
+
+    /**
+     * Gets list of internal variable IDs for related variables (data tables)
+     * @param $variableID
+     * @return array
+     */
     private function getVariablesRelated($variableID) {
         $sql = <<<SQL
 SELECT a.relatedVariableID, b.statisticName, c.subCategoryName, c.iconType, c.iconData
@@ -284,6 +333,12 @@ SQL;
         $this->db->query($sql);
         return $this->db->getResultSet(PDO::FETCH_CLASS);
     }
+
+    /**
+     * Gets and returns variable description for the variable (data table)
+     * @param $variableID
+     * @return array
+     */
     private function getVariableDescription($variableID) {
         $sql = <<<SQL
 SELECT a.descriptionID, a.variableID, a.descriptionText 
@@ -297,11 +352,19 @@ SQL;
 
     }
 
+
+    /**
+     * Returns any post data retrieval messages or meta data.
+     * @return array
+     */
     public function metaIncludeAfter() {
         return $this->groupBy;
     }
 
     /**
+     * Determines and sets any SQL constraints (where clause) on the final SQL query string.
+     * First checks whether or not the requested constraint is valid (determined by columnMap::columns() class).
+     * Then adds the constraint to the SQL query.
      * @param $request
      * @return string
      */
@@ -324,6 +387,28 @@ SQL;
     }
 
     /**
+     * Generates one SQL constraint (WHERE clause) based on the table name, column name and value.
+     * @param $tableName
+     * @param $key
+     * @param $values
+     * @return string
+     */
+    private function getSqlFromManyArgs($tableName, $key, $values) {
+        $sql = '(';
+        if (!is_array($values)) return $sql;
+        $last = end($values);
+        foreach ($values as $value) {
+            $sql .= "$tableName.$key=$value";
+            if ($value != $last) {
+                $sql .= ' OR ';
+            }
+        }
+        return $sql . ')';
+    }
+
+    /**
+     * Determines and sets the SQL group by on the final SQL string.
+     * If no group by is set tries to determine based on some simple rules.
      * @param RequestModel $request
      * @return string
      */
@@ -370,21 +455,8 @@ SQL;
         return $ret;
     }
 
-    private function getSqlFromManyArgs($tableName, $key, $values) {
-        $sql = '(';
-        if (!is_array($values)) return $sql;
-        $last = end($values);
-        foreach ($values as $value) {
-            $sql .= "$tableName.$key=$value";
-            if ($value != $last) {
-                $sql .= ' OR ';
-            }
-        }
-        return $sql . ')';
-    }
 
-
-
+    /** DEPRECIATED METHODS */ // TODO remove old functions
     private function MunicipalityName() { return ['Municipality.MunicipalityName', 'MunicipalityName']; }
     private function _SQLmunicipalityName() { return $this->MunicipalityName()[0] . ' AS ' . $this->MunicipalityName()[1]; }
     private function AgeRanges() { return ['concat_ws("-", AgeRange.AgeRangeStart, AgeRange.AgeRangeEnd)', 'Ages']; }
@@ -395,6 +467,7 @@ SQL;
     private function _SQLnace() { return [$this->Nace2007()[0] . ' AS ' . $this->Nace2007()[1]]; }
 
     /**
+     * Currently not in use. TODO remove me
      * @param RequestModel $request
      * @return stdClass
      * @throws Exception

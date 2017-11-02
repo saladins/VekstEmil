@@ -1,6 +1,10 @@
 <?php
 class ValidArgs {
 
+    /**
+     * Sets supported GET arguments
+     * @return stdClass
+     */
     static function a() {
         $ret = new stdClass();
         $ret->requestType = 'requesttype';

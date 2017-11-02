@@ -15,20 +15,38 @@ class DatabaseHandler extends DatabaseConnector {
         return $this->stmt->execute();
     }
 
+    /**
+     * Returns resultSet. Defaults to associative array.
+     * @param int $fetchStyle
+     * @return array
+     */
     function getResultSet($fetchStyle = PDO::FETCH_ASSOC) {
         $this->execute();
         return $this->stmt->fetchAll($fetchStyle);
     }
 
+    /**
+     * Returns a single row. Defaults to associative array.
+     * @param int $fetchStyle
+     * @return mixed
+     */
     function getSingleResult($fetchStyle = PDO::FETCH_ASSOC) {
         $this->execute();
         return $this->stmt->fetch($fetchStyle);
     }
 
+    /**
+     * Returns row count for query.
+     * @return int
+     */
     function getRowCount() {
         return $this->stmt->rowCount();
     }
 
+    /**
+     * Gets the ID for the last inserted row.
+     * @return string
+     */
     function getLastInsertID() {
         return $this->dbh->lastInsertId();
     }

@@ -38,6 +38,12 @@ class Validate {
         }
     }
 
+    /**
+     * Checks whether or not the request type is valid
+     * @param $requestType
+     * @return bool
+     * @throws Exception
+     */
     public function checkRequestTypeOrDie($requestType) {
         foreach (RequestMap::a() as $item) {
             if ($item == $requestType) {
@@ -49,6 +55,7 @@ class Validate {
     }
 
     /**
+     * Checks whether or not it's a valid variable ID
      * @param RequestModel $request
      * @throws Exception
      */
@@ -90,7 +97,7 @@ class Validate {
 
 
     /**
-     * Checks the internal table number => table name mapping and return the array ID for
+     * Checks the internal table number => table name mapping and return the array ID
      * @param string $tableName
      * @return int              Array ID for the table table name
      * @throws Exception        Throws exception if table is not found
@@ -107,7 +114,7 @@ class Validate {
     /**
      * Checks the internal table mapping array for the corresponding table
      * @param int $tableNumber Table number
-     * @return String representation of the table name
+     * @return String Table name
      * @throws Exception
      */
     private function mapTableNumberToTableName($tableNumber) {

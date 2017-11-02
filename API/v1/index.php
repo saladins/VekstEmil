@@ -5,13 +5,12 @@ header('Access-Control-Allow-Origin: *');
 //header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Headers", false);
 header('Content-Type: application/json; charset=utf-8', false);
 include 'globals.php';
-include './model/requestInterface.php';
 include './model/tablemap.php';
 include './model/requestmap.php';
 include './model/columnmap.php';
 include './model/ValidArgs.php';
 include './model/requestmodel.php';
-include './model/variableupdatereasonmodel.php';
+include './helpers/variableupdatereasonmodel.php';
 include './request/DatabaseHandler.php';
 include './request/apirequest.php';
 include './request/apiupdate.php';
@@ -24,6 +23,7 @@ include './request/validate.php';
 $parser = new APIparser();
 $parser->handleRequest();
 
+/** Main class and entry point for any and all operations on the db */
 class APIparser {
     /** @var null|RequestModel|RequestModel[] */
     private $postContent;
@@ -37,10 +37,9 @@ class APIparser {
         $this->logger = new Logger();
         if ($GLOBALS['debug']) $this->logger->clearLog();
         if (file_get_contents('php://input') != null) {
-            // TODO migrate POST to inserts
             $this->logger->log('Received POST request');
             $this->parsePost();
-        } else { // assume it's GET
+        } else {
             $this->logger->log('Received GET request');
             $this->postContent = $this->parseGet();
             $this->logger->log('GET request content was ' .
@@ -67,6 +66,11 @@ class APIparser {
         }
     }
 
+
+    /**
+     * Parses the GET request, and maps arguments to a holding class RequestModel
+     * @return null|RequestModel Returns a model of the request
+     */
     private function parseGet() {
         /** @var RequestModel postContent */
         $postContent = new RequestModel();
@@ -147,19 +151,27 @@ class APIparser {
         return $postContent;
     }
 
+    /**
+     * POST message mapping to class.
+     * Memory limit increased due to json_decode overhead makes large sets of data produce a stack overflow
+     */
     private function parsePost() {
         ini_set('memory_limit', '-1');
         $this->postContent = json_decode($this->getRawPostData(), false);
-//        file_put_contents($this->postContent->sourceCode . '.txt', json_encode($this->postContent->dataSet));
-//        var_dump($this->postContent->sourceCode);
-//        var_dump(memory_get_peak_usage());
-//        die;
     }
 
+    /**
+     * Reads the raw POST data from the internal variable
+     * @return bool|string
+     */
     private function getRawPostData() {
         return file_get_contents('php://input');
     }
 
+    /**
+     * Common method that handles request checking and determines the type of request.
+     * If the request passes all tests the proper method is invoked
+     */
     public function handleRequest() {
         $startTime = $this->logger->microTimeFloat();
         $response = [];
@@ -212,6 +224,7 @@ class APIparser {
     }
 
     /**
+     * Sets correct flag for the return data packet
      * @param RequestModel $request
      * @return mixed
      */
@@ -225,6 +238,11 @@ class APIparser {
         }
     }
 
+    /**
+     * Generates descriptive meta data for the request. Includes constraints, descriptions and information about the variable.
+     * @param $request
+     * @return stdClass|string
+     */
     private function parseRequestMetaData($request) {
         switch ($request->requestType) {
             case RequestMap::a()->Variable:
@@ -235,11 +253,17 @@ class APIparser {
                 break;
         }
     }
+
+    /**
+     * Any included meta data that needs to be handled after main data has been fetched is handled here.
+     * @return array
+     */
     private function metaIncludeAfter() {
         return $this->ApiRequest->metaIncludeAfter();
     }
 
     /**
+     * Parses and returns the requested data packet back to sender
      * @param string[] $content
      */
     function output($content) {
@@ -256,6 +280,7 @@ class APIparser {
     }
 }
 
+/** Logging class */
 class Logger {
     public function log($content, $clearlog = false) {
         if ($clearlog) $this->clearLog();
