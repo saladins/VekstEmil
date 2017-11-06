@@ -806,38 +806,60 @@ SQL;
     private function mapAgeAndReplace($dataSet) {
         if (!strpos($dataSet[0]->Alder, '-')) { //Checking if alder is interval, not range
             $startTime = $this->logger->microTimeFloat();
-            $retSet = array();
+            $temp = array();
             foreach ($dataSet as $item) {
+                if (!isset($temp[$item->Tid])) {$temp[$item->Tid] = []; }
+                if (!isset($temp[$item->Tid][$item->Region])) {$temp[$item->Tid][$item->Region] = []; }
+                if (!isset($temp[$item->Tid][$item->Region][$item->Kjonn])) {$temp[$item->Tid][$item->Region][$item->Kjonn] = []; }
                 $staticAge = $item->Alder;
                 switch ($staticAge) {
                     case in_array($staticAge, range(0,14)):
-                        $item->Alder = '00-14';
+                        $range = '00-14';
                         break;
                     case in_array($staticAge, range(15,19)):
-                        $item->Alder = '15-19';
+                        $range = '15-19';
                         break;
                     case in_array($staticAge, range(20,24)):
-                        $item->Alder = '20-24';
+                        $range = '20-24';
                         break;
                     case in_array($staticAge, range(25,39)):
-                        $item->Alder = '25-39';
+                        $range = '25-39';
                         break;
                     case in_array($staticAge, range(40,54)):
-                        $item->Alder = '40-54';
+                        $range = '40-54';
                         break;
                     case in_array($staticAge, range(55,66)):
-                        $item->Alder = '55-66';
+                        $range = '55-66';
                         break;
                     case in_array($staticAge, range(67,74)):
-                        $item->Alder = '67-74';
+                        $range = '67-74';
                         break;
                     default:
-                        $item->Alder = '75-127';
+                        $range = '75-127';
                         break;
+                }
+                if (!isset($temp[$item->Tid][$item->Region][$item->Kjonn][$range])) {$temp[$item->Tid][$item->Region][$item->Kjonn][$range] = 0; }
+                $temp[$item->Tid][$item->Region][$item->Kjonn][$range] += $item->value;
+            }
+            $retSet = [];
+            foreach ($temp as $timeKey => $timeValue) {
+                foreach ($timeValue as $regionKey => $regionValue) {
+                    foreach ($regionValue as $kjonnKey => $kjonnValue) {
+                        foreach ($kjonnValue as $ageKey => $ageValue) {
+                            $obj = new stdClass();
+                            $obj->value = $ageValue;
+                            $obj->Tid = strval($timeKey);
+                            $obj->ContentsCode = 'Personer1';
+                            $obj->Alder = strval($ageKey);
+                            $obj->Kjonn = strval($kjonnKey);
+                            $obj->Region = strval($regionKey);
+                            array_push($retSet, $obj);
+                        }
+                    }
                 }
             }
             $this->logger->log('Time elapsed executing mapAlderAndReplace was ' . ($this->logger->microTimeFloat() - $startTime));
-            return $dataSet;
+            return $retSet;
         } else {
             return $dataSet;
         }
