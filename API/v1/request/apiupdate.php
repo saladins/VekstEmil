@@ -362,10 +362,11 @@ class ApiUpdate {
             $buildingCategories[strval($result['buildingCategoryCode'])] = strval($result['buildingCategoryID']);
         }
         $buildingStatusCodes = array();
-        $sql = 'SELECT buildingStatusID, buildingStatusCode, buildingStatusText FROM BuildingStatus';
+        $sql = 'SELECT buildingStatusID, buildingStatusCode, buildingStatusCode2, buildingStatusText FROM BuildingStatus';
         $this->db->query($sql);
         foreach ($this->db->getResultSet() as $result) {
-            $buildingStatusCodes[strval($result['buildingStatusCode'])] = strval($result['buildingStatusID']);
+            $buildingStatusCodes[strval($result['buildingStatusCode'])] = $result['buildingStatusID'];
+            $buildingStatusCodes[strval($result['buildingStatusCode2'])] = $result['buildingStatusID'];
         }
         $insertString = 'INSERT INTO ' . $tableName . ' (variableID, municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue) VALUES ';
         $valueArray = array();
