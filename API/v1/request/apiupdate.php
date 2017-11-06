@@ -41,7 +41,6 @@ class ApiUpdate {
      * @return string
      */
     private function updateSSB($request) {
-        // check variable table
         set_time_limit(120);
         $sql = 'SELECT variableID, tableName FROM Variable WHERE providerCode =\'' . $request->sourceCode . '\'';
         $this->db->query($sql);
@@ -152,10 +151,34 @@ class ApiUpdate {
 //        $this->db->endTransaction();
     }
 
+    /**
+     * @param $dataSet mixed
+     * @param $tableName string
+     * @param $variableID integer
+     * @return bool Return true on success
+     */
     private function insertClosedEnterprise($dataSet, $tableName, $variableID) {
+        $insertString = "INSERT INTO $tableName (variableID, municipalityID, naceID, pYear, closedEnterprises) VALUES ";
+        $valueArray = array();
+        foreach ($dataSet as $item) {
+            $municipalityID = $this->getMunicipalityID($item->Region);
+            $naceID = $this->getNaceID($item->NACE2007);
+            $pYear = $item->Tid;
+            $value = $item->value;
+            array_push($valueArray, "($variableID, $municipalityID, $naceID, $pYear, $value)");
+        }
+        $insertString .= implode(',', $valueArray);
+        $this->db->query($insertString);
+        return $this->db->execute();
 
     }
 
+    /**
+     * @param $dataSet mixed
+     * @param $tableName string
+     * @param $variableID integer
+     * @return bool Returns true on success
+     */
     private function insertNewEnterprise($dataSet, $tableName, $variableID) {
         $employeeCountRangeCodes = array();
         $sql = 'SELECT employeeCountRangeID, employeeCountRangeCode FROM EmployeeCountRange';
