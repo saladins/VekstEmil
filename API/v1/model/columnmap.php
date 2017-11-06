@@ -15,6 +15,16 @@
             $columnMap[4] = 'pQuarter';
             $columnMap[7] = 'pMonth';
             $columnMap[5] = 'naceID';
+            $columnMap[8] = 'buildingStatusID';
+            $columnMap[9] = 'buildingCategoryID';
+            $columnMap[10] = 'enterpriseCategoryID';
+            $columnMap[11] = 'employeeCountRangeID';
+            $columnMap[12] = 'gradeID';
+            $columnMap[13] = 'kostraCategoryID';
+            $columnMap[14] = 'municipalExpenseCategoryID';
+            $columnMap[15] = 'householdTypeID';
+            $columnMap[16] = 'proceedingCategoryID';
+            $columnMap[17] = 'applicationTypeID';
             return $columnMap;
         }
 
@@ -32,7 +42,16 @@
             $colTableMap[self::columns()[5]] = TableMap::getTableMap()[28];
             $colTableMap[self::columns()[6]] = null;
             $colTableMap[self::columns()[7]] = null;
-
+            $colTableMap[self::columns()[8]] = TableMap::getTableMap()[4];
+            $colTableMap[self::columns()[9]] = TableMap::getTableMap()[3];
+            $colTableMap[self::columns()[10]] = TableMap::getTableMap()[11];
+            $colTableMap[self::columns()[11]] = TableMap::getTableMap()[8];
+            $colTableMap[self::columns()[12]] = TableMap::getTableMap()[19];
+            $colTableMap[self::columns()[13]] = TableMap::getTableMap()[22];
+            $colTableMap[self::columns()[14]] = TableMap::getTableMap()[27];
+            $colTableMap[self::columns()[15]] = TableMap::getTableMap()[54];
+            $colTableMap[self::columns()[16]] = TableMap::getTableMap()[36];
+            $colTableMap[self::columns()[17]] = TableMap::getTableMap()[37];
             return $colTableMap;
         }
     }
