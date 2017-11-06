@@ -125,6 +125,12 @@ class ApiUpdate {
                 case 'RegionalCooperation':
                     $this->insertRegionalCooperation($request->dataSet, $tableName, $variableID);
                     break;
+                case 'NewEnterprise':
+                    $this->insertNewEnterprise($request->dataSet, $tableName, $variableID);
+                    break;
+                case 'ClosedEnterprise':
+                    $this->insertClosedEnterprise($request->dataSet, $tableName, $variableID);
+                    break;
                 default:
                     $testTime = $this->logger->microTimeFloat();
                     $this->insertGeneric($request->dataSet, $tableName, $variableID);
@@ -144,6 +150,38 @@ class ApiUpdate {
 //            $this->db->rollbackTransaction();
         }
 //        $this->db->endTransaction();
+    }
+
+    private function insertClosedEnterprise($dataSet, $tableName, $variableID) {
+
+    }
+
+    private function insertNewEnterprise($dataSet, $tableName, $variableID) {
+        $employeeCountRangeCodes = array();
+        $sql = 'SELECT employeeCountRangeID, employeeCountRangeCode FROM EmployeeCountRange';
+        $this->db->query($sql);
+        foreach ($this->db->getResultSet() as $result) {
+            $employeeCountRangeCodes[strval($result['employeeCountRangeCode'])] = $result['employeeCountRangeID'];
+        }
+        $enterpriseCategories = array();
+        $sql = 'SELECT enterpriseCategoryID, enterpriseCategoryCodeNew FROM EnterpriseCategory';
+        $this->db->query($sql);
+        foreach ($this->db->getResultSet() as $result) {
+            $enterpriseCategories[strval($result['enterpriseCategoryCodeNew'])] = $result['enterpriseCategoryID'];
+        }
+        $insertString = "INSERT INTO $tableName (variableID, municipalityID, enterpriseCategoryID, employeeCountRangeID, pYear, newEnterprises) VALUES ";
+        $valueArray = array();
+        foreach ($dataSet as $item) {
+            $municipalityID = $this->getMunicipalityID($item->Region);
+            $enterpriseCategoryID = $enterpriseCategories[strval($item->NyregBed)];
+            $employeeCountRangeID = $employeeCountRangeCodes[strval($item->AntAnsatte)];
+            $pYear = $item->Tid;
+            $value = $item->value;
+            array_push($valueArray, "($variableID, $municipalityID, $enterpriseCategoryID, $employeeCountRangeID, $pYear, $value)");
+        }
+        $insertString .= implode(',', $valueArray);
+        $this->db->query($insertString);
+        return $this->db->execute();
     }
 
     /**
