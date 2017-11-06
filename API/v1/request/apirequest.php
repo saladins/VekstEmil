@@ -33,15 +33,15 @@ class APIrequest {
      */
     public function getVariableData($request) {
         $sql = '';
-        $selectExtra = '';
-        foreach (columnMap::columns() as $column) {
-            foreach ($request as $key => $value) {
-                if (isset($value) && !is_array($value) && $value != null && strtolower($column) == strtolower($value)) {
-                    $selectExtra .= $request->tableName . '.' . $column .',';
-                }
-            }
-        }
-        $this->logger->log('Extra requested: ' . print_r($selectExtra, true));
+//        $selectExtra = '';
+//        foreach (columnMap::columns() as $column) {
+//            foreach ($request as $key => $value) {
+//                if (isset($value) && !is_array($value) && $value != null && strtolower($column) == strtolower($value)) {
+//                    $selectExtra .= $request->tableName . '.' . $column .',';
+//                }
+//            }
+//        }
+//        $this->logger->log('Extra requested: ' . print_r($selectExtra, true));
         switch ($request->tableName) {
             case TableMap::getTableMap()[30]: // 'PopulationAge':
                 $sql = <<<SQL
@@ -49,10 +49,9 @@ SELECT
 municipalityID,
 ageRangeID,
 genderID,
-
 pYear,
-sum(Population) as value
-  from PopulationAge
+population as value
+from PopulationAge
 SQL;
                 break;
             case TableMap::getTableMap()[31]: // 'PopulationChange':
@@ -123,40 +122,37 @@ SQL;
                 break;
             case TableMap::getTableMap()[20]: // HomeBuildingArea
                 $sql = <<<SQL
-SELECT HomeBuildingAreaID,
-BuildingStatus.BuildingStatusText as BuildingStatusText,
-BuildingCategory.BuildingCategoryText as BuildingCategoryText,
+SELECT 
+municipalityID,
+buildingStatusID,
+buildingCategoryID,
 pYear,
 pQuarter,
-HomeBuildingValue
-FROM HomeBuildingArea, Municipality, BuildingStatus, BuildingCategory
-WHERE HomeBuildingArea.MunicipalityID = Municipality.MunicipalityID
-AND HomeBuildingArea.BuildingStatusID = BuildingStatus.BuildingStatusID
-AND HomeBuildingArea.BuildingCategoryID = BuildingCategory.BuildingCategoryID
+buildingValue as value
+FROM HomeBuildingArea
 SQL;
                 break;
             case TableMap::getTableMap()[17]: // FunctionalBuildingArea
                 $sql = <<<SQL
-SELECT functionalBuildingAreaID,
-BuildingStatus.BuildingStatusText as BuildingStatusText,
-BuildingCategory.BuildingCategoryText as BuildingCategoryText,
+SELECT 
+municipalityID,
+buildingStatusID,
+buildingCategoryID,
 pYear,
 pQuarter,
-FuncBuildingValue
-FROM FunctionalBuildingArea, Municipality, BuildingStatus, BuildingCategory
-WHERE FunctionalBuildingArea.MunicipalityID = Municipality.MunicipalityID
-AND FunctionalBuildingArea.BuildingStatusID = BuildingStatus.BuildingStatusID
-AND FunctionalBuildingArea.BuildingCategoryID = BuildingCategory.BuildingCategoryID
+sum(buildingValue) as value
+FROM FunctionalBuildingArea
 SQL;
                 break;
             case TableMap::getTableMap()[35]: // Proceeding
                 $sql = <<<SQL
-SELECT proceedingID,
+SELECT
+municipalityID,
+proceedingCategoryID,
+applicationTypeID,
 pYear,
-ProceedingValue
-FROM Proceeding, ProceedingCategory, ProceedingValueType
-WHERE Proceeding.ProceedingCategoryID = ProceedingCategory.ProceedingCategoryID
-AND Proceeding.ProceedingValueTypeID = ProceedingValueType.ProceedingValueTypeID
+proceedingValue as value
+FROM Proceeding
 SQL;
                 break;
             case TableMap::getTableMap()[34]: // PrivateEmployee
@@ -164,11 +160,53 @@ SQL;
 
 SQL;
                 break;
+            case TableMap::getTableMap()[29]: //NewEnterprise
+                $sql = <<<SQL
+SELECT 
+municipalityID,
+enterpriseCategoryID,
+employeeCountRangeID,
+pYear,
+newEnterprises as value
+FROM NewEnterprise
+SQL;
+                break;
+            case TableMap::getTableMap()[21]: //HouseholdIncome
+                $sql = <<<SQL
+SELECT
+municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome
+SQL;
+                break;
+            case TableMap::getTableMap()[7]: //Education
+                $sql = <<<SQL
+SELECT 
+municipalityID,
+genderID,
+gradeID,
+pYear,
+percentEducated as value
+FROM Education
+SQL;
+                break;
+            case TableMap::getTableMap()[25]: //RegionalCooperation
+                $sql = <<<SQL
+SELECT
+municipalityID,
+kostraCategoryID,
+municipalExpenseCategoryID,
+pYear,
+expense as value
+FROM RegionalCooperation
+SQL;
+                break;
         }
 
         $sql .= $this->getSqlConstraints($request);
         $sql .= $this->getGroupByClause($request);
-//        var_dump($sql); die;
         $this->db->query($sql);
         $result = $this->db->getResultSet();
         if (isset($result[0]['value'])) {
@@ -428,6 +466,7 @@ SQL;
                 }
             }
         } else {
+            return ' ORDER BY municipalityID';
             $municipalityID = false;
             for ($i = 0; $i < sizeof($dbResult); $i++) {
                 if (strtolower($dbResult[$i]['Field']) == strtolower(columnMap::columns()[0])) {
