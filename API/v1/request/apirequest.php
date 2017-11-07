@@ -43,6 +43,29 @@ class APIrequest {
 //        }
 //        $this->logger->log('Extra requested: ' . print_r($selectExtra, true));
         switch ($request->tableName) {
+            case TableMap::getTableMap()[2]: // Bankruptcy
+                $sql = <<<SQL
+SELECT 
+municipalityID,
+naceID,
+pYear,
+pQuarter,
+bankruptcies as value
+FROM Bankruptcy
+SQL;
+
+                break;
+            case TableMap::getTableMap()[5]: // ClosedEnterprise
+                $sql = <<<SQL
+SELECT
+municipalityID,
+naceID,
+pYear,
+closedEnterprises as value
+FROM ClosedEnterprise
+SQL;
+                break;
+
             case TableMap::getTableMap()[30]: // 'PopulationAge':
                 $sql = <<<SQL
 SELECT 
