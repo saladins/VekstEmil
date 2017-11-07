@@ -84,7 +84,7 @@ class DatabaseHandler extends DatabaseConnector {
                     break;
             }
         }
-        $this->stmt->bindValue($param, $value, $type);
+        $this->stmt->bindParam($param, $value, $type);
     }
 
     public function DbhError($exception) {
