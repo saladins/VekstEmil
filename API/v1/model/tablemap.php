@@ -3,7 +3,7 @@ class TableMap {
     static function getTableMap() {
         $tableMap = array();
         $tableMap[1] = 'AgeRange';
-        $tableMap[2] = 'Bankrupcy';
+        $tableMap[2] = 'Bankruptcy';
         $tableMap[3] = 'BuildingCategory';
         $tableMap[4] = 'BuildingStatus';
         $tableMap[5] = 'ClosedEnterprise';
@@ -26,7 +26,7 @@ class TableMap {
         $tableMap[22] = 'KostraCategory';
         $tableMap[23] = 'Movement';
         $tableMap[24] = 'MovementPerCitizen';
-        $tableMap[25] = 'MunicipalEconomy';
+        $tableMap[25] = 'RegionalCooperation';
         $tableMap[26] = 'Municipality';
         $tableMap[27] = 'MunicpalExpenseCategory';
         $tableMap[28] = 'Nace2007';
