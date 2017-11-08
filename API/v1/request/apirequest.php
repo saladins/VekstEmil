@@ -79,7 +79,7 @@ SQL;
                 break;
             case TableMap::getTableMap()[31]: // 'PopulationChange':
                 $sql = <<<SQL
-SELECT PopulationChangeID,
+SELECT
 municipalityID,
 pYear,
 pQuarter,
@@ -91,7 +91,7 @@ SQL;
                 break;
             case TableMap::getTableMap()[23]: // Movement
                 $sql = <<<SQL
-SELECT movementID,
+SELECT
 municipalityID,
 pYear,
 incomingAll as incoming, outgoingAll as outgoing, sumAll as value
