@@ -469,42 +469,36 @@ INSERT INTO Employment (variableID, municipalityID, naceID, genderID, pYear, wor
 VALUES 
 SQL;
         $data = [];
+        $valueArray = array();
         foreach ($dataSet as $item) {
             $municipalityID = $this->getMunicipalityID($item->Region);
             $naceID = $this->getNaceID($item->NACE2007);
             $genderID = $this->getGenderID($item->Kjonn);
             $ageRangeID = $this->getAgeRangeID($item->Alder);
             $pYear = $item->Tid;
-            $uid = strval($municipalityID) . strval($naceID) . strval($genderID) . strval($ageRangeID) . strval($pYear);
-            if (!isset($data[$uid])) {
-                $data[$uid] = new stdClass();
-                if ($item->ContentsCode == 'Sysselsatte') {
-                    $data[$uid]->living = $item->value;
-                } else {
-                    $data[$uid]->working = $item->value;
-                }
+            $value = $item->value;
+            if (!isset($data[$municipalityID])) {$data[$municipalityID] = []; }
+            if (!isset($data[$municipalityID][$naceID])) {$data[$municipalityID][$naceID] = []; }
+            if (!isset($data[$municipalityID][$naceID][$genderID])) {$data[$municipalityID][$naceID][$genderID] = []; }
+            if (!isset($data[$municipalityID][$naceID][$genderID][$ageRangeID])) {$data[$municipalityID][$naceID][$genderID][$ageRangeID] = []; }
+            if (!isset($data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear])) {$data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear] = []; }
+            if ($item->ContentsCode == 'Sysselsatte') {
+                $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['living'] = $value;
             } else {
-                $valueSet = [];
-                array_push($valueSet, $variableID);
-                array_push($valueSet, $municipalityID);
-                array_push($valueSet, $naceID);
-                array_push($valueSet, $genderID);
-                array_push($valueSet, $pYear);
-                $balance = 0;
-                if (isset($data[$uid]->working)) {
-                    array_push($valueSet, $data[$uid]->working);
-                    array_push($valueSet, $item->value);
-                    $balance = $item->value - $data[$uid]->working;
-                } else {
-                    array_push($valueSet, $item->value);
-                    array_push($valueSet, $data[$uid]->living);
-                    $balance = $data[$uid]->living - $item->value;
-                }
-                array_push($valueSet, $balance);
-                $sql .= '(' . implode(',', $valueSet) . ')';
-                if (end($dataSet) != $item) { $sql .= ','; }
+                $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['working'] = $value;
+            }
+            if (isset($data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['living']) &&
+                isset($data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['working'])) {
+                $balance =
+                    $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['living']
+                    -
+                    $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['working'];
+                $working = $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['working'];
+                $living = $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['living'];
+                array_push($valueArray, "($variableID, $municipalityID, $naceID, $genderID, $pYear, $working, $living, $balance)");
             }
         }
+        $sql .= implode(',', $valueArray);
         $this->db->query($sql);
         return $this->db->execute();
     }
