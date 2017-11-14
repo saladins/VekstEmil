@@ -19,6 +19,7 @@ class ValidArgs {
         $ret->employeeCountID = 'employeecountid';
         $ret->workingMunicipalityID = 'workingmunicipalityid';
         $ret->livingMunicipalityID = 'livingmunicipalityid';
+        $ret->buildingStatusID = 'buildingstatusid';
         $ret->ageRangeID = 'agerangeid';
         $ret->gradeID = 'gradeid';
         $ret->tableName = 'tablename';
