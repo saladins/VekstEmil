@@ -31,7 +31,7 @@ class DatabaseConnector {
                 ((!empty($settings['db']['db_port'])) ? (';port=' . $settings['db']['db_port']) : '') .
                 ';dbname=' . $settings['db']['db_schema'];
             $options = array(
-                PDO::ATTR_PERSISTENT => true,
+                PDO::ATTR_PERSISTENT => false,
                 PDO::ATTR_EMULATE_PREPARES => false,
                 PDO::ATTR_STRINGIFY_FETCHES => false,
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
