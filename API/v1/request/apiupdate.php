@@ -362,11 +362,10 @@ class ApiUpdate {
             $buildingCategories[strval($result['buildingCategoryCode'])] = strval($result['buildingCategoryID']);
         }
         $buildingStatusCodes = array();
-        $sql = 'SELECT buildingStatusID, buildingStatusCode, buildingStatusCode2, buildingStatusText FROM BuildingStatus';
+        $sql = 'SELECT buildingStatusID, buildingStatusCode, buildingStatusText FROM BuildingStatus';
         $this->db->query($sql);
         foreach ($this->db->getResultSet() as $result) {
             $buildingStatusCodes[strval($result['buildingStatusCode'])] = $result['buildingStatusID'];
-            $buildingStatusCodes[strval($result['buildingStatusCode2'])] = $result['buildingStatusID'];
         }
         $insertString = 'INSERT INTO ' . $tableName . ' (variableID, municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue) VALUES ';
         $valueArray = array();
@@ -377,23 +376,23 @@ class ApiUpdate {
             $region = strval($item->Region);
             $municipalityID = $this->getMunicipalityID($region);
             $buildingStatusCode = strval($item->ContentsCode);
-            if (!isset($buildingCategories[$buildingCode])) {
+            if (!isset($buildingCategories[strval($buildingCode)])) {
                 $sql = "INSERT INTO BuildingCategory (buildingCategoryCode, buildingCategoryText) VALUES('$buildingCode', 'unknown')";
                 $this->db->query($sql);
                 $this->db->execute();
-                $buildingCategories[$buildingCode] = $this->db->getLastInsertID();
+                $buildingCategories[strval($buildingCode)] = $this->db->getLastInsertID();
                 $buildingCategoryID = $this->db->getLastInsertID();
             } else {
                 $buildingCategoryID = $buildingCategories[$buildingCode];
             }
-            if (!isset($buildingStatusCodes[$buildingStatusCode])) {
+            if (!isset($buildingStatusCodes[strval($buildingStatusCode)])) {
                 $sql = "INSERT INTO BuildingStatus (buildingStatusCode, buildingStatusText) VALUES('$buildingStatusCode', '$buildingStatusCode')";
                 $this->db->query($sql);
                 $this->db->execute();
-                $buildingStatusCodes[$buildingStatusCode] = $this->db->getLastInsertID();
+                $buildingStatusCodes[strval($buildingStatusCode)] = $this->db->getLastInsertID();
                 $buildingStatusID = $this->db->getLastInsertID();
             } else {
-                $buildingStatusID = $buildingStatusCodes[$buildingStatusCode];
+                $buildingStatusID = $buildingStatusCodes[strval($buildingStatusCode)];
             }
             array_push($valueArray, "($variableID, $municipalityID, $buildingStatusID, $buildingCategoryID, $year, $quarter, $item->value)");
         }
