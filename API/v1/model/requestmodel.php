@@ -10,6 +10,7 @@ public $genderID;
 public $kostraCategoryID;
 public $municipalExpenseCategoryID;
 public $buildingCategoryID;
+public $buildingStatusID;
 public $gradeID;
 public $enterpriseCategoryID;
 public $employeeCountRangeID;
