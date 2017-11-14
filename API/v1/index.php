@@ -35,7 +35,7 @@ class APIparser {
 
     public function __construct() {
         $this->logger = new Logger();
-        if ($GLOBALS['debug']) $this->logger->clearLog();
+//        if ($GLOBALS['debug']) $this->logger->clearLog();
         if (file_get_contents('php://input') != null) {
             $this->logger->log('Received POST request');
             $this->parsePost();
@@ -139,6 +139,13 @@ class APIparser {
                         $postContent->pYear = explode(',', $_GET[ValidArgs::a()->years]);
                     } else {
                         $postContent->pYear = $_GET[ValidArgs::a()->years];
+                    }
+                }
+                if (isset($_GET[ValidArgs::a()->buildingStatusID])) {
+                    if (strpos($_GET[ValidArgs::a()->buildingStatusID], ',') != null) {
+                        $postContent->buildingStatusID = explode(',', $_GET[ValidArgs::a()->buildingStatusID]);
+                    } else {
+                        $postContent->buildingStatusID = $_GET[ValidArgs::a()->buildingStatusID];
                     }
                 }
                 // TODO the rest
