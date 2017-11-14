@@ -230,6 +230,7 @@ SQL;
 
         $sql .= $this->getSqlConstraints($request);
         $sql .= $this->getGroupByClause($request);
+        $this->logger->log($sql);
         $this->db->query($sql);
         $result = $this->db->getResultSet();
         if (isset($result[0]['value'])) {
@@ -437,7 +438,7 @@ SQL;
                     $sql .= $this->getSqlFromManyArgs($request->tableName, $key, $value);
                     $sql .= ' AND ';
                 } else {
-                    if ($key == columnMap::columns()[3] && $value != '') {
+                    if ($value != '') { // $key == columnMap::columns()[3] &&
                         $sql .= $key . '=' . $value . ' AND ';
                     }
 
