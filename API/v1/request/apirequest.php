@@ -163,7 +163,7 @@ buildingStatusID,
 buildingCategoryID,
 pYear,
 pQuarter,
-sum(buildingValue) as value
+buildingValue as value
 FROM FunctionalBuildingArea
 SQL;
                 break;
