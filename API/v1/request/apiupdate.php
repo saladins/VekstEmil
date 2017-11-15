@@ -510,13 +510,13 @@ SQL;
     private function insertMovement($dataSet, $tableName, $variableID) {
         $res = [];
         foreach ($dataSet as $item) {
-            $res[$item->Tid][$this->getMunicipalityID($item->Region)][$item->ContentsCode] = $item->value;
+            $res[$item->Tid][$this->getMunicipalityID(strval($item->Region))][$item->ContentsCode] = $item->value;
         }
         foreach ($res as $year => $outer1) {
             foreach ($outer1 as $munic => $data) {
-                $incomingAll = $data['Innflytting'];
-                $outgoingAll = $data['Utflytting'];
-                $sumAll = $data['Netto'];
+                $incomingAll = (is_null($data['Innflytting']) ? 'null' : $data['Innflytting']);
+                $outgoingAll = (is_null($data['Utflytting']) ? 'null' : $data['Utflytting']);
+                $sumAll = (is_null($data['Netto']) ? 'null' : $data['Netto']);
                 $sql = <<<SQL
 INSERT INTO Movement (variableID, municipalityID, pYear, incomingAll, outgoingAll, sumAll)
 VALUES($variableID, $munic, $year, $incomingAll, $outgoingAll, $sumAll);
@@ -671,7 +671,7 @@ SQL;
             $sql = 'SELECT municipalityID, municipalityCode FROM Municipality';
             $this->db->query($sql);
             foreach ($this->db->getResultSet() as $result) {
-                $this->municipalityMap[$result['municipalityCode']] = $result['municipalityID'];
+                $this->municipalityMap[strval($result['municipalityCode'])] = $result['municipalityID'];
             }
         }
         if ($rewind) {
