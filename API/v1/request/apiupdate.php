@@ -8,6 +8,7 @@ class ApiUpdate {
     private $naceMap;
     private $ageRangeMap;
     private $genderMap;
+    private $sectorMap;
     private $primaryValueMap;
     public function __construct($initializeDB = true) {
         $this->mysqltime = date('Y-m-d H:i:s');
@@ -130,6 +131,9 @@ class ApiUpdate {
                 case 'ClosedEnterprise':
                     $this->insertClosedEnterprise($request->dataSet, $tableName, $variableID);
                     break;
+                case 'EmploymentSector':
+                    $this->insertEmploymentSector($request->dataSet, $tableName, $variableID);
+                    break;
                 default:
                     $testTime = $this->logger->microTimeFloat();
                     $this->insertGeneric($request->dataSet, $tableName, $variableID);
@@ -149,6 +153,38 @@ class ApiUpdate {
 //            $this->db->rollbackTransaction();
         }
 //        $this->db->endTransaction();
+    }
+
+
+    private function insertEmploymentSector($dataSet, $tableName, $variableID) {
+        $insertString = "INSERT INTO $tableName (variableID, municipalityID, naceID, sectorID, pYear, workplaceValue, livingplaceValue) VALUES";
+        $valueArray = array();
+        $data = array();
+        foreach ($dataSet as $item) {
+            $municipalityID = $this->getMunicipalityID($item->Region);
+            $naceID = $this->getNaceID($item->NACE2007);
+            $sectorID = $this->getSectorID($item->Sektor710);
+            $pYear = $item->Tid;
+            $value = $item->value;
+            if (!isset($data[$municipalityID])) {$data[$municipalityID] = []; }
+            if (!isset($data[$municipalityID][$naceID])) {$data[$municipalityID][$naceID] = []; }
+            if (!isset($data[$municipalityID][$naceID][$sectorID])) {$data[$municipalityID][$naceID][$sectorID] = []; }
+            if (!isset($data[$municipalityID][$naceID][$sectorID][$pYear])) {$data[$municipalityID][$naceID][$sectorID][$pYear] = []; }
+            if ($item->ContentsCode === 'SysselEtterBoste') {
+                $data[$municipalityID][$naceID][$sectorID][$pYear]['living'] = $value;
+            } else {
+                $data[$municipalityID][$naceID][$sectorID][$pYear]['working'] = $value;
+            }
+            if (isset($data[$municipalityID][$naceID][$sectorID][$pYear]['living']) &&
+                isset($data[$municipalityID][$naceID][$sectorID][$pYear]['working'])) {
+                $living = $data[$municipalityID][$naceID][$sectorID][$pYear]['living'];
+                $working = $data[$municipalityID][$naceID][$sectorID][$pYear]['working'];
+                array_push($valueArray, "($variableID, $municipalityID, $naceID, $sectorID, $pYear, $working, $living)");
+            }
+        }
+        $insertString .= implode(',', $valueArray);
+        $this->db->query($insertString);
+        return $this->db->execute();
     }
 
     /**
@@ -736,6 +772,24 @@ SQL;
             $this->naceMap[$constructedCode] = $this->db->getLastInsertID();
         }
         return $this->naceMap[$naceCode];
+    }
+
+
+    private function getSectorID($sectorCode) {
+        if ($this->sectorMap == null) {
+            $sql = 'SELECT sectorID, sectorCode FROM Sector';
+            $this->db->query($sql);
+            foreach ($this->db->getResultSet() as $result) {
+                $this->sectorMap[strval($result['sectorCode'])] = $result['sectorID'];
+            }
+        }
+        if (!isset($this->sectorMap[strval($sectorCode)])) {
+            $sql = "INSERT INTO Sector (sectorCode, sectorID) VALUES ('$sectorCode', '$sectorCode')";
+            $this->db->query($sql);
+            $this->db->execute();
+            $this->sectorMap[strval($sectorCode)] = $this->db->getLastInsertID();
+        }
+        return $this->sectorMap[strval($sectorCode)];
     }
 
 

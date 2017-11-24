@@ -25,6 +25,7 @@
             $columnMap[15] = 'householdTypeID';
             $columnMap[16] = 'proceedingCategoryID';
             $columnMap[17] = 'applicationTypeID';
+            $columnMap[18] = 'sectorID';
             return $columnMap;
         }
 
@@ -52,6 +53,7 @@
             $colTableMap[self::columns()[15]] = TableMap::getTableMap()[54];
             $colTableMap[self::columns()[16]] = TableMap::getTableMap()[36];
             $colTableMap[self::columns()[17]] = TableMap::getTableMap()[37];
+            $colTableMap[self::columns()[18]] = TableMap::getTableMap()[55];
             return $colTableMap;
         }
     }

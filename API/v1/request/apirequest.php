@@ -226,6 +226,18 @@ expense as value
 FROM RegionalCooperation
 SQL;
                 break;
+            case TableMap::getTableMap()[56]: //EmploymentSector
+                $sql = <<<SQL
+SELECT
+municipalityID,
+naceID,
+sectorID,
+pYear,
+workplaceValue,
+livingplaceValue
+FROM EmploymentSector
+SQL;
+                break;
         }
 
         $sql .= $this->getSqlConstraints($request);
@@ -386,7 +398,7 @@ SQL;
      */
     private function getVariablesRelated($variableID) {
         $sql = <<<SQL
-SELECT a.relatedVariableID, b.statisticName, c.subCategoryName, c.iconType, c.iconData
+SELECT a.relatedVariableID, b.statisticName, c.subCategoryName, c.subCategoryID
 FROM VariableRelated a, Variable b, VariableSubCategory c
 WHERE a.relatedVariableID = b.variableID
 AND b.subCategoryID = c.subCategoryID

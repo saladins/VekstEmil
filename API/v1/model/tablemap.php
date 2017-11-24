@@ -56,6 +56,8 @@ class TableMap {
         $tableMap[52] = 'VariableUpdateReason';
         $tableMap[53] = 'viewmovpercitizen';
         $tableMap[54] = 'HouseholdType';
+        $tableMap[55] = 'Sector';
+        $tableMap[56] = 'EmploymentSector';
         return $tableMap;
     }
 }
