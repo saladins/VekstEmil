@@ -10,6 +10,8 @@ class ApiUpdate {
     private $genderMap;
     private $sectorMap;
     private $primaryValueMap;
+    private $organizationTypeMap;
+    private $enterprisePostCategoryMap;
     public function __construct($initializeDB = true) {
         $this->mysqltime = date('Y-m-d H:i:s');
         if ($this->logger == null) {
@@ -30,6 +32,8 @@ class ApiUpdate {
         switch ($request->providerID) {
             case 1:
                 return $this->updateSSB($request);
+            case 2:
+                return $this->updateProff($request);
             default:
                 return ['{unhandled update source type}'];
         }
@@ -54,7 +58,28 @@ class ApiUpdate {
             $variableID = $res['variableID'];
             $tableName = $res['tableName'];
             if ($request->forceReplace) {
-               $this->truncateTable($tableName, $variableID);
+                $this->truncateTable($tableName, $variableID);
+            }
+        }
+        return $this->updateTable($request, $tableName, $variableID);
+    }
+
+    private function updateProff($request) {
+        $sql = <<<SQL
+SELECT variableID, tableName FROM Variable WHERE providerCode LIKE '%$request->sourceCode%';
+SQL;
+        $this->db->query($sql);
+        $res = $this->db->getSingleResult();
+        $variableID = 0;
+        $tableName = '';
+        if (!$res) {
+            // TODO Entry does not exist
+        } else {
+            $variableID = $res['variableID'];
+            $tableName = $res['tableName'];
+            if ($request->forceReplace) {
+                $this->truncateTable('EnterpriseEntry', $variableID);
+                $this->truncateTable($tableName, $variableID);
             }
         }
         return $this->updateTable($request, $tableName, $variableID);
@@ -134,6 +159,9 @@ class ApiUpdate {
                 case 'EmploymentSector':
                     $this->insertEmploymentSector($request->dataSet, $tableName, $variableID);
                     break;
+                case 'Enterprise':
+                    $this->insertEnterprise($request->dataSet, $tableName, $variableID);
+                    break;
                 default:
                     $testTime = $this->logger->microTimeFloat();
                     $this->insertGeneric($request->dataSet, $tableName, $variableID);
@@ -155,9 +183,48 @@ class ApiUpdate {
 //        $this->db->endTransaction();
     }
 
+    private function insertEnterprise($dataSet, $tableName, $variableID) {
+        foreach ($dataSet as $enterprise) {
+            $sql = <<<SQL
+SELECT enterpriseID FROM Enterprise WHERE organizationNumber = $enterprise->organizationNumber;
+SQL;
+            $this->db->query($sql);
+            $res = $this->db->getSingleResult();
+            if ($res) {
+                $enterpriseID = $res['enterpriseID'];
+            } else {
+                $municipalityID = $this->getMunicipalityID($this->getMunicipalityRegionCode($enterprise->name));
+                $naceID = $this->getNaceID($enterprise->nace);
+                $organizationTypeID = $this->getOrganizationTypeID($enterprise->organizationType);
+                $employees = (sizeof($enterprise->employees) > 0 ? $enterprise->employees : 'null');
+                $name = $enterprise->name;
+                $organizationNumber = $enterprise->organizationNumber;
+                $sql = <<<SQL
+INSERT INTO Enterprise (variableID, municipalityID, naceID, employees, enterpriseName, organizationNumber, organizationTypeID)
+VALUES ($variableID, $municipalityID, $naceID, $employees, '$name', $organizationNumber, $organizationTypeID);
+SQL;
+                $this->db->query($sql);
+                $this->db->execute();
+                $enterpriseID = $this->db->getLastInsertID();
+            }
+            $insertString = /** @lang text */
+                "INSERT INTO EnterpriseEntry (enterpriseID, enterprisePostCategoryID, pYear, valueInNOK) VALUES ";
+            $valueArray = array();
+            foreach ($enterprise->entry as $entry) {
+                $enterprisePostCategoryID = $this->getEnterprisePostCategory($entry->type);
+                $pYear = $entry->year;
+                $value = ($entry->value == null ? 0 : $entry->value);
+                array_push($valueArray, "($enterpriseID, $enterprisePostCategoryID, $pYear, $value)");
+            }
+            $insertString .= implode(',', $valueArray);
+            $this->db->query($insertString);
+            $this->db->execute();
+        }
+    }
 
     private function insertEmploymentSector($dataSet, $tableName, $variableID) {
-        $insertString = "INSERT INTO $tableName (variableID, municipalityID, naceID, sectorID, pYear, workplaceValue, livingplaceValue) VALUES";
+        $insertString = /** @lang text */
+            "INSERT INTO $tableName (variableID, municipalityID, naceID, sectorID, pYear, workplaceValue, livingplaceValue) VALUES";
         $valueArray = array();
         $data = array();
         foreach ($dataSet as $item) {
@@ -194,7 +261,8 @@ class ApiUpdate {
      * @return bool Return true on success
      */
     private function insertClosedEnterprise($dataSet, $tableName, $variableID) {
-        $insertString = "INSERT INTO $tableName (variableID, municipalityID, naceID, pYear, closedEnterprises) VALUES ";
+        $insertString = /** @lang text */
+            "INSERT INTO $tableName (variableID, municipalityID, naceID, pYear, closedEnterprises) VALUES ";
         $valueArray = array();
         foreach ($dataSet as $item) {
             $municipalityID = $this->getMunicipalityID($item->Region);
@@ -735,6 +803,49 @@ SQL;
         }
     }
 
+    private function getMunicipalityRegionCode($municipalityName) {
+        $sql = "SELECT municipalityCode FROM Municipality WHERE municipalityName LIKE '%$municipalityName%'";
+        $this->db->query($sql);
+        return $this->db->getSingleResult()['municipalityCode'];
+    }
+
+    private function getEnterprisePostCategory($enterprisePostCategoryCode) {
+        if ($this->enterprisePostCategoryMap == null) {
+            $sql = 'SELECT enterprisePostCategoryID, enterprisePostCategoryCode FROM EnterprisePostCategory';
+            $this->db->query($sql);
+            foreach ($this->db->getResultSet() as $item) {
+                $this->enterprisePostCategoryMap[strval($item['enterprisePostCategoryCode'])] = $item['enterprisePostCategoryID'];
+            }
+        }
+        if (!isset($this->enterprisePostCategoryMap[strval($enterprisePostCategoryCode)])) {
+            $sql = "INSERT INTO EnterprisePostCategory (enterprisePostCategoryCode, enterprisePostCategoryText) 
+VALUES ('$enterprisePostCategoryCode', '$enterprisePostCategoryCode')";
+            $this->db->query($sql);
+            $this->db->execute();
+            $this->enterprisePostCategoryMap[strval($enterprisePostCategoryCode)] = $this->db->getLastInsertID();
+//            return $this->db->getLastInsertID();
+        }
+        return $this->enterprisePostCategoryMap[strval($enterprisePostCategoryCode)];
+    }
+
+    private function getOrganizationTypeID($organizationTypeCode) {
+        if ($this->organizationTypeMap == null) {
+            $sql = 'SELECT organizationTypeID, organizationTypeCode FROM OrganizationType';
+            $this->db->query($sql);
+            foreach ($this->db->getResultSet() as $item) {
+                $this->organizationTypeMap[strval($item['organizationTypeCode'])] = $item['organizationTypeID'];
+            }
+        }
+        if (!isset($this->organizationTypeMap[strval($organizationTypeCode)])) {
+            $sql = "INSERT INTO OrganizationType (organizationTypeCode, organizationTypeText) VALUES ('$organizationTypeCode', '$organizationTypeCode')";
+            $this->db->query($sql);
+            $this->db->execute();
+            $this->organizationTypeMap[strval($organizationTypeCode)] = $this->db->getLastInsertID();
+            return $this->db->getLastInsertID();
+        }
+        return $this->organizationTypeMap[strval($organizationTypeCode)];
+    }
+
     /**
      * Gets the internal ID for provided NACE code.
      * Generates a local cache of NACE2007 codes and internal IDs.
@@ -918,25 +1029,10 @@ SQL;
      * @param string|null $updateSource
      */
     private function logDb($reason, $variableID, $updateSource = null) {
-//        $this->REMOVEME_updateVariableUpdateReason();
         $mysqltime = date('Y-m-d H:i:s');
-        $sql = "INSERT into VariableUpdateLog VALUES($variableID, '$mysqltime', $reason, '$updateSource')";
+        $sql = "INSERT into VariableUpdateLog (variableID, updateDate, updateReasonID, updateSource) VALUES($variableID, '$mysqltime', $reason, '$updateSource')";
         $this->db->query($sql);
         $this->db->execute();
 
-    }
-
-    private function REMOVEME_updateVariableUpdateReason() {
-        $sql = 'DELETE FROM VariableUpdateLog';
-        $this->db->query($sql);
-        $this->db->execute();
-        $sql = 'delete from VariableUpdateReason';
-        $this->db->query($sql);
-        $this->db->execute();
-        foreach (VariableUpdateReason::a() as $item) {
-            $sql = "insert into VariableUpdateReason VALUES($item->key, '$item->value')";
-            $this->db->query($sql);
-            echo $this->db->execute();
-        }
     }
 }
