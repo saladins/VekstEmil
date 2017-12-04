@@ -29,10 +29,10 @@ class DatabaseConnector {
             $dns = $settings['db']['db_driver'] .
                 ':host=' . $settings['db']['db_host'] .
                 ((!empty($settings['db']['db_port'])) ? (';port=' . $settings['db']['db_port']) : '') .
-                ';dbname=' . $settings['db']['db_schema'];
+                ';dbname=' . $settings['db']['db_schema'] . ';charset=utf8mb4';
             $options = array(
                 PDO::ATTR_PERSISTENT => false,
-                PDO::ATTR_EMULATE_PREPARES => false,
+                PDO::ATTR_EMULATE_PREPARES => true,
                 PDO::ATTR_STRINGIFY_FETCHES => false,
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             );
