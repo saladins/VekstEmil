@@ -67,6 +67,10 @@ class DatabaseHandler extends DatabaseConnector {
         $this->dbh->setAttribute($attribute, $value);
     }
 
+    function prepare($sql) {
+        $this->stmt = $this->dbh->prepare($sql);
+    }
+
     function bind($param, $value, $type = null) {
         if (is_null($type)) {
             switch (true) {
@@ -85,6 +89,10 @@ class DatabaseHandler extends DatabaseConnector {
             }
         }
         $this->stmt->bindParam($param, $value, $type);
+    }
+
+    public function quote($string) {
+        return $this->dbh->quote($string);
     }
 
     public function DbhError($exception) {
