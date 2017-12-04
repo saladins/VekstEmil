@@ -128,6 +128,9 @@ SQL;
                 case 'Employment':
                     $this->insertEmployment($request->dataSet, $tableName, $variableID);
                     break;
+                case 'EmploymentDetailed':
+                    $this->insertEmploymentDetailed($request->dataSet, $tableName, $variableID);
+                    break;
                 case 'CommuteBalance':
                     $this->insertCommuteBalance($request->dataSet, $tableName, $variableID);
                     break;
@@ -585,7 +588,7 @@ SQL;
      */
     private function insertEmployment($dataSet, $tableName, $variableID) {
         $sql = <<<SQL
-INSERT INTO Employment (variableID, municipalityID, naceID, genderID, pYear, workplaceValue, livingplaceValue, employmentBalance)
+INSERT INTO $tableName (variableID, municipalityID, naceID, genderID, pYear, workplaceValue, livingplaceValue, employmentBalance)
 VALUES 
 SQL;
         $data = [];
@@ -602,7 +605,7 @@ SQL;
             if (!isset($data[$municipalityID][$naceID][$genderID])) {$data[$municipalityID][$naceID][$genderID] = []; }
             if (!isset($data[$municipalityID][$naceID][$genderID][$ageRangeID])) {$data[$municipalityID][$naceID][$genderID][$ageRangeID] = []; }
             if (!isset($data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear])) {$data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear] = []; }
-            if ($item->ContentsCode == 'Sysselsatte') {
+            if ($item->ContentsCode == 'Sysselsatte' || $item->ContentsCode == 'SysselBosted') {
                 $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['living'] = $value;
             } else {
                 $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['working'] = $value;
@@ -621,6 +624,48 @@ SQL;
         $sql .= implode(',', $valueArray);
         $this->db->query($sql);
         return $this->db->execute();
+    }
+
+    /**
+     * @param $dataSet
+     * @param $tableName
+     * @param $variableID
+     * @return bool
+     */
+    private function insertEmploymentDetailed($dataSet, $tableName, $variableID) {
+        $sql = <<<SQL
+INSERT INTO EmploymentDetailed (variableID, municipalityID, naceID, genderID, pYear, workplaceValue, livingplaceValue, employmentBalance)
+VALUES (:variableID, :mun, :nace, :gend, :yr, :wo, :li, :ba)
+SQL;
+        $data = [];
+        foreach ($dataSet as $item) {
+            if (!isset($data[$item->Region])) {$data[$item->Region] = []; }
+            if (!isset($data[$item->Region][$item->NACE2007])) {$data[$item->Region][$item->NACE2007] = []; }
+            if (!isset($data[$item->Region][$item->NACE2007][$item->Kjonn])) {$data[$item->Region][$item->NACE2007][$item->Kjonn] = []; }
+            if (!isset($data[$item->Region][$item->NACE2007][$item->Kjonn][$item->Tid])) {$data[$item->Region][$item->NACE2007][$item->Kjonn][$item->Tid] = []; }
+            if ($item->ContentsCode == 'SysselBosted') {
+                $data[$item->Region][$item->NACE2007][$item->Kjonn][$item->Tid]['living'] = $item->value;
+            } else {
+                $data[$item->Region][$item->NACE2007][$item->Kjonn][$item->Tid]['working'] = $item->value;
+            }
+            if (isset($data[$item->Region][$item->NACE2007][$item->Kjonn][$item->Tid]['living']) &&
+                isset($data[$item->Region][$item->NACE2007][$item->Kjonn][$item->Tid]['working'])) {
+                $living = $data[$item->Region][$item->NACE2007][$item->Kjonn][$item->Tid]['living'];
+                $working = $data[$item->Region][$item->NACE2007][$item->Kjonn][$item->Tid]['working'];
+                $balance = $living - $working;
+                $this->db->prepare($sql);
+                $this->db->bind(':variableID', $variableID);
+                $this->db->bind(':mun', $this->getMunicipalityID($item->Region));
+                $this->db->bind(':nace', $this->getNaceID($item->NACE2007));
+                $this->db->bind(':gend', $this->getGenderID($item->Kjonn));
+                $this->db->bind(':yr', $item->Tid);
+                $this->db->bind(':wo', $working);
+                $this->db->bind(':li', $living);
+                $this->db->bind(':ba', $balance);
+                $this->db->execute();
+            }
+        }
+//        var_dump($sql); die;
     }
 
     /**

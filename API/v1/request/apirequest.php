@@ -31,11 +31,19 @@ class APIrequest {
         switch ($request->variableID) {
             case 8:
                 $sql = <<<SQL
-SELECT municipalityID, pYear, naceID, SUM(valueInNOK) AS value from EnterpriseEntry, Enterprise
+SELECT municipalityID, pYear, naceID, SUM(valueInNOK) AS value 
+FROM EnterpriseEntry, Enterprise
 WHERE Enterprise.enterpriseID = EnterpriseEntry.enterpriseID AND EnterpriseEntry.enterprisePostCategoryID = 7
 GROUP BY municipalityID, pYear, naceID;
 SQL;
                 break;
+            case 42:
+                $sql = <<<SQL
+SELECT municipalityID, naceID, MAX(pYear), sum(livingPlaceValue) AS value 
+FROM EmploymentDetailed 
+GROUP BY municipalityID, naceID;
+SQL;
+
         }
         $this->logger->log($sql);
         $this->db->query($sql);
@@ -279,6 +287,12 @@ organizationTypeID
 FROM Enterprise
 SQL;
                 break;
+            default:
+                $tableName = $request->tableName;
+                $sql = <<<SQL
+SELECT * FROM $tableName
+SQL;
+
         }
         $sql .= $this->getSqlConstraints($request);
         $sql .= $this->getGroupByClause($request);
