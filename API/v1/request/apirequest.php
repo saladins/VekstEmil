@@ -39,9 +39,10 @@ SQL;
                 break;
             case 42:
                 $sql = <<<SQL
-SELECT municipalityID, naceID, MAX(pYear), sum(livingPlaceValue) AS value 
-FROM EmploymentDetailed 
-GROUP BY municipalityID, naceID;
+SELECT municipalityID, naceID, pYear, livingPlaceValue AS value 
+FROM EmploymentDetailed WHERE pYear =(
+	SELECT MAX(pYear) FROM EmploymentDetailed)
+GROUP BY municipalityID, naceID, pYear;
 SQL;
 
         }
