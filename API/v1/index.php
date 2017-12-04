@@ -192,7 +192,8 @@ class APIparser {
                     case RequestMap::a()->TableAggregate:
                         throw new Exception('Requesting TableAggregate is not yet implemented');
                         break;
-                    case RequestMap::a()->SingleTable:
+                    case RequestMap::a()->Detailed:
+                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getDetailedData($this->postContent);
 //                        $response[$this->getRetArrID($this->postContent)] = $this->API->parseTable($this->postContent);
                         break;
                     case RequestMap::a()->Variable:
@@ -253,6 +254,7 @@ class APIparser {
     private function parseRequestMetaData($request) {
         switch ($request->requestType) {
             case RequestMap::a()->Variable:
+            case RequestMap::a()->Detailed:
                 return $this->ApiRequest->getMinimalMetaData($request);
                 break;
             default:

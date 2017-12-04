@@ -26,6 +26,35 @@ class APIrequest {
         $validate->checkRequestOrDie($request);
     }
 
+    public function getDetailedData($request) {
+        $sql = '';
+        switch ($request->variableID) {
+            case 8:
+                $sql = <<<SQL
+SELECT municipalityID, pYear, naceID, SUM(valueInNOK) AS value from EnterpriseEntry, Enterprise
+WHERE Enterprise.enterpriseID = EnterpriseEntry.enterpriseID AND EnterpriseEntry.enterprisePostCategoryID = 7
+GROUP BY municipalityID, pYear, naceID;
+SQL;
+                break;
+        }
+        $this->logger->log($sql);
+        $this->db->query($sql);
+        $result = $this->db->getResultSet();
+        if (isset($result[0]['value'])) {
+            for ($i = 0; $i < sizeof($result); $i++) {
+                $var = $result[$i]['value'];
+                if (is_numeric($var)) {
+                    if (is_double($var)) {
+                        $result[$i]['value'] = floatval($var);
+                    } else {
+                        $result[$i]['value'] = intval($var);
+                    }
+                }
+            }
+        }
+        return $result;
+    }
+
     /**
      * Gets and returns data about at specific variable (data table)
      * @param RequestModel $request
@@ -238,8 +267,19 @@ livingplaceValue
 FROM EmploymentSector
 SQL;
                 break;
+            case TableMap::getTableMap()[57]:
+                $sql = <<<SQL
+SELECT 
+municipalityID,
+naceID,
+employees,
+enterpriseName,
+organizationNumber,
+organizationTypeID
+FROM Enterprise
+SQL;
+                break;
         }
-
         $sql .= $this->getSqlConstraints($request);
         $sql .= $this->getGroupByClause($request);
         $this->logger->log($sql);
@@ -502,6 +542,7 @@ SQL;
                 }
             }
         } else {
+
             return ' ORDER BY municipalityID';
             $municipalityID = false;
             for ($i = 0; $i < sizeof($dbResult); $i++) {

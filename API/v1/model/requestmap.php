@@ -4,7 +4,7 @@ class RequestMap {
         $ret = new stdClass();
         $ret->TableSurvey = 10;
         $ret->TableAggregate = 20;
-        $ret->SingleTable = 30;
+        $ret->Detailed = 30;
         $ret->Variable = 40;
         $ret->View = 50;
         $ret->Auxiliary = 60;
