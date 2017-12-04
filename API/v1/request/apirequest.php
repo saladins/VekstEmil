@@ -542,7 +542,13 @@ SQL;
                 }
             }
         } else {
-
+            $text = ' ORDER BY municipalityID';
+            foreach ($dbResult as $item) {
+                if ($item['Field'] == 'pYear') {
+                    $text .= ', pYear';
+                }
+            }
+            return $text;
             return ' ORDER BY municipalityID';
             $municipalityID = false;
             for ($i = 0; $i < sizeof($dbResult); $i++) {
