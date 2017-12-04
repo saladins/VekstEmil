@@ -184,6 +184,7 @@ SQL;
     }
 
     private function insertEnterprise($dataSet, $tableName, $variableID) {
+        set_time_limit(120);
         foreach ($dataSet as $enterprise) {
             $sql = <<<SQL
 SELECT enterpriseID FROM Enterprise WHERE organizationNumber = $enterprise->organizationNumber;
@@ -193,20 +194,31 @@ SQL;
             if ($res) {
                 $enterpriseID = $res['enterpriseID'];
             } else {
-                $municipalityID = $this->getMunicipalityID($this->getMunicipalityRegionCode($enterprise->name));
+                $municipalityID = $this->getMunicipalityID($this->getMunicipalityRegionCode($enterprise->municipalityName));
                 $naceID = $this->getNaceID($enterprise->nace);
                 $organizationTypeID = $this->getOrganizationTypeID($enterprise->organizationType);
-                $employees = (sizeof($enterprise->employees) > 0 ? $enterprise->employees : 'null');
-                $name = $enterprise->name;
+                $employees = (sizeof($enterprise->employees) > 0 ? $enterprise->employees : null);
+                $name = $this->db->quote($enterprise->name);
+                if (strlen($name) > 63) { $name = substr($name, 0, 63); }
                 $organizationNumber = $enterprise->organizationNumber;
                 $sql = <<<SQL
-INSERT INTO Enterprise (variableID, municipalityID, naceID, employees, enterpriseName, organizationNumber, organizationTypeID)
-VALUES ($variableID, $municipalityID, $naceID, $employees, '$name', $organizationNumber, $organizationTypeID);
+INSERT INTO Enterprise (variableID, municipalityID, naceID, organizationTypeID, employees, enterpriseName, organizationNumber)
+VALUES (:variableID, :municipalityID, :naceID, :organizationTypeID, :employees, :businessName, :organizationNumber);
 SQL;
-                $this->db->query($sql);
+                $this->db->prepare($sql);
+                $this->db->bind(':variableID', $variableID);
+                $this->db->bind(':municipalityID', $municipalityID);
+                $this->db->bind(':naceID', $naceID);
+                $this->db->bind(':employees', $employees);
+                $this->db->bind(':businessName', $name);
+                $this->db->bind(':organizationNumber', $organizationNumber);
+                $this->db->bind(':organizationTypeID', $organizationTypeID);
                 $this->db->execute();
                 $enterpriseID = $this->db->getLastInsertID();
             }
+//            $insertString = "INSERT INTO EnterpriseEntry (enterpriseID, enterprisePostCategoryID, pYear, valueInNOK)
+//                             VALUES (:enterpriseID, :catID, :pYear, :val)";
+//            $this->db->prepare($insertString);
             $insertString = /** @lang text */
                 "INSERT INTO EnterpriseEntry (enterpriseID, enterprisePostCategoryID, pYear, valueInNOK) VALUES ";
             $valueArray = array();
@@ -215,6 +227,11 @@ SQL;
                 $pYear = $entry->year;
                 $value = ($entry->value == null ? 0 : $entry->value);
                 array_push($valueArray, "($enterpriseID, $enterprisePostCategoryID, $pYear, $value)");
+//                $this->db->bind(':enterpriseID', $enterpriseID);
+//                $this->db->bind(':catID', $enterprisePostCategoryID);
+//                $this->db->bind(':pYear', $pYear);
+//                $this->db->bind(':val', $value);
+//                $this->db->execute();
             }
             $insertString .= implode(',', $valueArray);
             $this->db->query($insertString);
@@ -806,7 +823,12 @@ SQL;
     private function getMunicipalityRegionCode($municipalityName) {
         $sql = "SELECT municipalityCode FROM Municipality WHERE municipalityName LIKE '%$municipalityName%'";
         $this->db->query($sql);
-        return $this->db->getSingleResult()['municipalityCode'];
+        $res = strval($this->db->getSingleResult()['municipalityCode']);
+        if (sizeof($res) == 0) {
+            return '-1';
+        } else {
+            return strval($this->db->getSingleResult()['municipalityCode']);
+        }
     }
 
     private function getEnterprisePostCategory($enterprisePostCategoryCode) {
