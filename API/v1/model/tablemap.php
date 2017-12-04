@@ -58,6 +58,10 @@ class TableMap {
         $tableMap[54] = 'HouseholdType';
         $tableMap[55] = 'Sector';
         $tableMap[56] = 'EmploymentSector';
+        $tableMap[57] = 'Enterprise';
+        $tableMap[58] = 'EnterpriseEntry';
+        $tableMap[59] = 'EnterprisePostCategory';
+        $tableMap[60] = 'OrganizationType';
         return $tableMap;
     }
 }

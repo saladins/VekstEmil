@@ -26,6 +26,8 @@
             $columnMap[16] = 'proceedingCategoryID';
             $columnMap[17] = 'applicationTypeID';
             $columnMap[18] = 'sectorID';
+            $columnMap[19] = 'organizationTypeID';
+            $columnMap[20] = 'enterprisePostCategoryID';
             return $columnMap;
         }
 
@@ -54,6 +56,8 @@
             $colTableMap[self::columns()[16]] = TableMap::getTableMap()[36];
             $colTableMap[self::columns()[17]] = TableMap::getTableMap()[37];
             $colTableMap[self::columns()[18]] = TableMap::getTableMap()[55];
+            $colTableMap[self::columns()[19]] = TableMap::getTableMap()[60];
+            $colTableMap[self::columns()[20]] = TableMap::getTableMap()[59];
             return $colTableMap;
         }
     }
