@@ -350,20 +350,26 @@ SQL;
         foreach ($this->db->getResultSet() as $result) {
             $municipalExpenseCategories[strval($result['municipalExpenseCategoryCode'])] = $result['municipalExpenseCategoryID'];
         }
-        $insertString = "INSERT INTO $tableName (variableID, municipalityID, kostraCategoryID, municipalExpenseCategoryID, pYear, expense) VALUES ";
-        $valueArray = array();
+        $insertString = <<<SQL
+INSERT INTO $tableName (variableID, municipalityID, kostraCategoryID, municipalExpenseCategoryID, pYear, expense) VALUES 
+(:variableID, :municipalityID, :kostraID, :muexID, :pYear, :val)
+SQL;
+        $this->db->beginTransaction();
         foreach ($dataSet as $item) {
-            $municipalityID = $this->getMunicipalityID($item->Region);
-            $kostraCategoryID = $kostraCategories[strval($item->FunksjonKostra)];
-            $municipalExpenseCategoryID = $municipalExpenseCategories[strval($item->ArtGruppe)];
-            $pYear = $item->Tid;
             if ($item->value == null) {continue; }
-            $expense = $item->value;
-            array_push($valueArray, "($variableID, $municipalityID, $kostraCategoryID, $municipalExpenseCategoryID, $pYear, $expense)");
+            $this->db->prepare($insertString);
+            $this->db->bind(':variableID', $variableID);
+            $this->db->bind(':municipalityID', $this->getMunicipalityID($item->Region));
+            $this->db->bind(':kostraID', $kostraCategories[strval($item->FunksjonKostra)]);
+            $this->db->bind(':muexID', $municipalExpenseCategories[strval($item->ArtGruppe)]);
+            $this->db->bind(':pYear', $item->Tid);
+            $this->db->bind(':val', $item->value);
+            $this->db->execute();
         }
-        $insertString .= implode(',', $valueArray);
-        $this->db->query($insertString);
-        return $this->db->execute();
+        $this->db->endTransaction();
+//        $insertString .= implode(',', $valueArray);
+//        $this->db->query($insertString);
+//        return $this->db->execute();
     }
 
     /**
@@ -638,6 +644,8 @@ INSERT INTO EmploymentDetailed (variableID, municipalityID, naceID, genderID, pY
 VALUES (:variableID, :mun, :nace, :gend, :yr, :wo, :li, :ba)
 SQL;
         $data = [];
+        $this->db->beginTransaction();
+
         foreach ($dataSet as $item) {
             if (!isset($data[$item->Region])) {$data[$item->Region] = []; }
             if (!isset($data[$item->Region][$item->NACE2007])) {$data[$item->Region][$item->NACE2007] = []; }
@@ -665,6 +673,7 @@ SQL;
                 $this->db->execute();
             }
         }
+        $this->db->endTransaction();
 //        var_dump($sql); die;
     }
 
@@ -699,28 +708,43 @@ SQL;
      * @param $variableID
      */
     private function insertPopulationChange($dataSet, $tableName, $variableID) {
-        $res = [];
-        foreach ($dataSet as $value) {
-            $year = substr($value->Tid,0, 4);
-            $quarter = substr($value->Tid, 5);
-            $municipalityID = $this->getMunicipalityID($value->Region);
-            $res[$year][$quarter][$municipalityID][$value->ContentsCode] = $value->value;
-        }
-        foreach($res as $year => $outer1) {
-            foreach ($outer1 as $quarter => $outer2) {
-                foreach ($outer2 as $munic => $data) {
-                    $dead = $data['Dode3'];
-                    $born = $data['Fodte2'];
-                    $totalPopulation = $data['Folketallet1'];
-                    $sql = <<<SQL
+        $temp = [];
+        $sql = <<<'SQL'
 INSERT INTO PopulationChange (variableID, municipalityID, pYear, pQuarter, born, dead, totalPopulation)
-VALUES($variableID, $munic, $year, $quarter, $born, $dead, $totalPopulation);
+VALUES(:variableID, :munID, :pYear, :pQuarter, :born, :dead, :total);
 SQL;
-                    $this->db->query($sql);
-                    $this->db->execute();
-                }
+        $this->db->beginTransaction();
+        foreach ($dataSet as $item) {
+            $year = substr($item->Tid,0, 4);
+            $quarter = substr($item->Tid, 5);
+            $municipalityID = $this->getMunicipalityID($item->Region);
+            if (!isset($temp[$municipalityID])) {$temp[$municipalityID] = []; }
+            if (!isset($temp[$municipalityID][$year])) {$temp[$municipalityID][$year] = []; }
+            $content = new stdClass();
+            if (!isset($temp[$municipalityID][$year][$quarter])) {$temp[$municipalityID][$year][$quarter] = $content; }
+            switch ($item->ContentsCode) {
+                case 'Dode3':
+                    $temp[$municipalityID][$year][$quarter]->dead = $item->value; break;
+                case 'Fodte2':
+                    $temp[$municipalityID][$year][$quarter]->born = $item->value; break;
+                case 'Folketallet1':
+                    $temp[$municipalityID][$year][$quarter]->total = $item->value; break;
+            }
+            if (isset($temp[$municipalityID][$year][$quarter]->dead) &&
+                isset($temp[$municipalityID][$year][$quarter]->born) &&
+                isset($temp[$municipalityID][$year][$quarter]->total)) {
+                $this->db->prepare($sql);
+                $this->db->bind(':variableID', $variableID);
+                $this->db->bind(':munID', $municipalityID);
+                $this->db->bind(':pYear', $year);
+                $this->db->bind(':pQuarter', $quarter);
+                $this->db->bind(':born', $temp[$municipalityID][$year][$quarter]->born);
+                $this->db->bind(':dead', $temp[$municipalityID][$year][$quarter]->dead);
+                $this->db->bind(':total', $temp[$municipalityID][$year][$quarter]->total);
+                $this->db->execute();
             }
         }
+        $this->db->endTransaction();
     }
 
     /**
