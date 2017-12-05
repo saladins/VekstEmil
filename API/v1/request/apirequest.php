@@ -44,7 +44,14 @@ FROM EmploymentDetailed WHERE pYear =(
 	SELECT MAX(pYear) FROM EmploymentDetailed)
 GROUP BY municipalityID, naceID, pYear;
 SQL;
-
+                break;
+            case 43:
+                $sql = <<<SQL
+SELECT municipalityID, pYear, kostraCategoryID, SUM(expense) FROM RegionalCooperation
+WHERE municipalExpenseCategoryID = 2
+GROUP BY municipalityID, pYear;
+SQL;
+                break;
         }
         $this->logger->log($sql);
         $this->db->query($sql);
