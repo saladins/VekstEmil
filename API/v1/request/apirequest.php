@@ -77,16 +77,6 @@ SQL;
      * @return array String array containing variable data
      */
     public function getVariableData($request) {
-        $sql = '';
-//        $selectExtra = '';
-//        foreach (columnMap::columns() as $column) {
-//            foreach ($request as $key => $value) {
-//                if (isset($value) && !is_array($value) && $value != null && strtolower($column) == strtolower($value)) {
-//                    $selectExtra .= $request->tableName . '.' . $column .',';
-//                }
-//            }
-//        }
-//        $this->logger->log('Extra requested: ' . print_r($selectExtra, true));
         switch ($request->tableName) {
             case TableMap::getTableMap()[2]: // Bankruptcy
                 $sql = <<<SQL

@@ -62,6 +62,7 @@ class TableMap {
         $tableMap[58] = 'EnterpriseEntry';
         $tableMap[59] = 'EnterprisePostCategory';
         $tableMap[60] = 'OrganizationType';
+        $tableMap[61] = 'EmploymentDetailed';
         return $tableMap;
     }
 }
