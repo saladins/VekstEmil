@@ -19,4 +19,6 @@ public $livingMunicipalityID;
 public $ageRangeID;
 public $groupBy;
 public $pYear;
+
+public $constraints;
 }

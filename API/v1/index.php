@@ -78,41 +78,60 @@ class APIparser {
             if (isset($_GET[ValidArgs::a()->requestType])) {
                 $postContent->requestType = $_GET[ValidArgs::a()->requestType];
                 $postContent->variableID = (isset($_GET[ValidArgs::a()->variableID]) ? $_GET[ValidArgs::a()->variableID] : null);
-                if (isset($_GET[ValidArgs::a()->municipalityID])) {
-                    if (strpos($_GET[ValidArgs::a()->municipalityID], ',') != null) {
-                        $postContent->municipalityID = explode(',', $_GET[ValidArgs::a()->municipalityID]);
-                    } else {
-                        $postContent->municipalityID = [$_GET[ValidArgs::a()->municipalityID]];
+
+                if (isset($_GET[ValidArgs::a()->constraints])) {
+                    $groups = explode(';', $_GET[ValidArgs::a()->constraints]);
+                    $postContent->constraints = [];
+                    foreach ($groups as $group) {
+                        if (strlen($group) > 1) {
+                            $item = explode('=', $group);
+                            $args = explode(',', $item[1]);
+                            $postContent->constraints[$item[0]] = $args;
+                        }
                     }
+//                    if (strpos($_GET[ValidArgs::a()->constraints], ',') != null) {
+//                        $postContent->constraints = explode(',', $_GET[ValidArgs::a()->constraints]);
+//                    } else {
+//                        $postContent->constraints = [$_GET[ValidArgs::a()->constraints]];
+//                    }
                 }
-                if (isset($_GET[ValidArgs::a()->naceID])) {
-                    if (strpos($_GET[ValidArgs::a()->naceID], ',') != null) {
-                        $postContent->naceID = explode(',', $_GET[ValidArgs::a()->naceID]);
-                    } else {
-                        $postContent->naceID = [$_GET[ValidArgs::a()->naceID]];
-                    }
-                }
-                if (isset($_GET[ValidArgs::a()->genderID])) {
-                    if (strpos($_GET[ValidArgs::a()->genderID], ',') != null) {
-                        $postContent->genderID = explode(',', $_GET[ValidArgs::a()->genderID]);
-                    } else {
-                        $postContent->genderID = [$_GET[ValidArgs::a()->genderID]];
-                    }
-                }
-                if (isset($_GET[ValidArgs::a()->gradeID])) {
-                    if (strpos($_GET[ValidArgs::a()->gradeID], ',') != null) {
-                        $postContent->gradeID = explode(',', $_GET[ValidArgs::a()->gradeID]);
-                    } else {
-                        $postContent->gradeID = [$_GET[ValidArgs::a()->gradeID]];
-                    }
-                }
-                if (isset($_GET[ValidArgs::a()->ageRangeID])) {
-                    if (strpos($_GET[ValidArgs::a()->ageRangeID], ',') != null) {
-                        $postContent->ageRangeID = explode(',', $_GET[ValidArgs::a()->ageRangeID]);
-                    } else {
-                        $postContent->ageRangeID = [$_GET[ValidArgs::a()->ageRangeID]];
-                    }
-                }
+//
+//
+//                if (isset($_GET[ValidArgs::a()->municipalityID])) {
+//                    if (strpos($_GET[ValidArgs::a()->municipalityID], ',') != null) {
+//                        $postContent->municipalityID = explode(',', $_GET[ValidArgs::a()->municipalityID]);
+//                    } else {
+//                        $postContent->municipalityID = [$_GET[ValidArgs::a()->municipalityID]];
+//                    }
+//                }
+//                if (isset($_GET[ValidArgs::a()->naceID])) {
+//                    if (strpos($_GET[ValidArgs::a()->naceID], ',') != null) {
+//                        $postContent->naceID = explode(',', $_GET[ValidArgs::a()->naceID]);
+//                    } else {
+//                        $postContent->naceID = [$_GET[ValidArgs::a()->naceID]];
+//                    }
+//                }
+//                if (isset($_GET[ValidArgs::a()->genderID])) {
+//                    if (strpos($_GET[ValidArgs::a()->genderID], ',') != null) {
+//                        $postContent->genderID = explode(',', $_GET[ValidArgs::a()->genderID]);
+//                    } else {
+//                        $postContent->genderID = [$_GET[ValidArgs::a()->genderID]];
+//                    }
+//                }
+//                if (isset($_GET[ValidArgs::a()->gradeID])) {
+//                    if (strpos($_GET[ValidArgs::a()->gradeID], ',') != null) {
+//                        $postContent->gradeID = explode(',', $_GET[ValidArgs::a()->gradeID]);
+//                    } else {
+//                        $postContent->gradeID = [$_GET[ValidArgs::a()->gradeID]];
+//                    }
+//                }
+//                if (isset($_GET[ValidArgs::a()->ageRangeID])) {
+//                    if (strpos($_GET[ValidArgs::a()->ageRangeID], ',') != null) {
+//                        $postContent->ageRangeID = explode(',', $_GET[ValidArgs::a()->ageRangeID]);
+//                    } else {
+//                        $postContent->ageRangeID = [$_GET[ValidArgs::a()->ageRangeID]];
+//                    }
+//                }
                 if (isset($_GET[ValidArgs::a()->tableNumber])) {
                     if (strpos($_GET[ValidArgs::a()->tableNumber], ',') != null) {
                         $postContent->tableNumber = explode(',', $_GET[ValidArgs::a()->tableNumber]);
@@ -120,34 +139,41 @@ class APIparser {
                         $postContent->tableNumber = $_GET[ValidArgs::a()->tableNumber];
                     }
                 }
-                if (isset($_GET[ValidArgs::a()->tableName])) {
-                    if (strpos($_GET[ValidArgs::a()->tableName], ',') != null) {
-                        $postContent->tableName = explode(',', $_GET[ValidArgs::a()->tableName]);
-                    } else {
-                        $postContent->tableName = $_GET[ValidArgs::a()->tableName];
-                    }
-                }
-                if (isset($_GET[ValidArgs::a()->groupBy])) {
-                    if (strpos($_GET[ValidArgs::a()->groupBy], ',') != null) {
-                        $postContent->groupBy = explode(',', $_GET[ValidArgs::a()->groupBy]);
-                    } else {
-                        $postContent->groupBy = $_GET[ValidArgs::a()->groupBy];
-                    }
-                }
-                if (isset($_GET[ValidArgs::a()->years])) {
-                    if (strpos($_GET[ValidArgs::a()->years], ',') != null) {
-                        $postContent->pYear = explode(',', $_GET[ValidArgs::a()->years]);
-                    } else {
-                        $postContent->pYear = $_GET[ValidArgs::a()->years];
-                    }
-                }
-                if (isset($_GET[ValidArgs::a()->buildingStatusID])) {
-                    if (strpos($_GET[ValidArgs::a()->buildingStatusID], ',') != null) {
-                        $postContent->buildingStatusID = explode(',', $_GET[ValidArgs::a()->buildingStatusID]);
-                    } else {
-                        $postContent->buildingStatusID = $_GET[ValidArgs::a()->buildingStatusID];
-                    }
-                }
+//                if (isset($_GET[ValidArgs::a()->tableName])) {
+//                    if (strpos($_GET[ValidArgs::a()->tableName], ',') != null) {
+//                        $postContent->tableName = explode(',', $_GET[ValidArgs::a()->tableName]);
+//                    } else {
+//                        $postContent->tableName = $_GET[ValidArgs::a()->tableName];
+//                    }
+//                }
+//                if (isset($_GET[ValidArgs::a()->groupBy])) {
+//                    if (strpos($_GET[ValidArgs::a()->groupBy], ',') != null) {
+//                        $postContent->groupBy = explode(',', $_GET[ValidArgs::a()->groupBy]);
+//                    } else {
+//                        $postContent->groupBy = $_GET[ValidArgs::a()->groupBy];
+//                    }
+//                }
+//                if (isset($_GET[ValidArgs::a()->years])) {
+//                    if (strpos($_GET[ValidArgs::a()->years], ',') != null) {
+//                        $postContent->pYear = explode(',', $_GET[ValidArgs::a()->years]);
+//                    } else {
+//                        $postContent->pYear = $_GET[ValidArgs::a()->years];
+//                    }
+//                }
+//                if (isset($_GET[ValidArgs::a()->buildingStatusID])) {
+//                    if (strpos($_GET[ValidArgs::a()->buildingStatusID], ',') != null) {
+//                        $postContent->buildingStatusID = explode(',', $_GET[ValidArgs::a()->buildingStatusID]);
+//                    } else {
+//                        $postContent->buildingStatusID = $_GET[ValidArgs::a()->buildingStatusID];
+//                    }
+//                }
+//                if (isset($_GET[ValidArgs::a()->municipalExpenseCategoryID])) {
+//                    if (strpos($_GET[ValidArgs::a()->municipalExpenseCategoryID], ',') != null) {
+//                        $postContent->municipalExpenseCategoryID = explode(',', $_GET[ValidArgs::a()->municipalExpenseCategoryID]);
+//                    } else {
+//                        $postContent->municipalExpenseCategoryID = $_GET[ValidArgs::a()->municipalExpenseCategoryID];
+//                    }
+//                }
                 // TODO the rest
             } else {
                 // TODO return capability

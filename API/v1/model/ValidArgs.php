@@ -9,6 +9,8 @@ class ValidArgs {
         $ret = new stdClass();
         $ret->requestType = 'requesttype';
         $ret->variableID = 'variableid';
+        $ret->constraints = 'constraints';
+
         $ret->municipalityID = 'municipalityid';
         $ret->naceID = 'naceid';
         $ret->genderID = 'genderid';
