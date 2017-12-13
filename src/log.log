@@ -1,0 +1,328 @@
+2017-12-13 16:25:05 : Received GET request
+2017-12-13 16:25:05 : GET request content was a:1:{s:11:"requesttype";s:2:"70";}
+2017-12-13 16:25:05 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:25:05 : Handling request 70 took 0.00148606300354 seconds
+2017-12-13 16:25:05 : Sending data to ::1
+2017-12-13 16:25:05 : Received GET request
+2017-12-13 16:25:05 : GET request content was a:2:{s:11:"requesttype";s:2:"40";s:10:"variableid";s:1:"2";}
+2017-12-13 16:25:05 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:25:05 : O:12:"RequestModel":5:{s:11:"requestType";s:2:"40";s:10:"variableID";s:1:"2";s:11:"tableNumber";i:-1;s:9:"tableName";s:16:"PopulationChange";s:11:"constraints";a:0:{}}
+2017-12-13 16:25:05 : SELECT
+municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange ORDER BY municipalityID, pYear
+2017-12-13 16:25:05 : Handling request 40 took 0.059211015701294 seconds
+2017-12-13 16:25:05 : Sending data to ::1
+2017-12-13 16:25:06 : Received GET request
+2017-12-13 16:25:06 : GET request content was a:2:{s:11:"requesttype";s:2:"40";s:10:"variableid";s:1:"4";}
+2017-12-13 16:25:06 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:25:06 : O:12:"RequestModel":5:{s:11:"requestType";s:2:"40";s:10:"variableID";s:1:"4";s:11:"tableNumber";i:-1;s:9:"tableName";s:10:"Employment";s:11:"constraints";a:0:{}}
+2017-12-13 16:25:06 : SELECT 
+municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment ORDER BY municipalityID, pYear
+2017-12-13 16:25:06 : Handling request 40 took 0.1079580783844 seconds
+2017-12-13 16:25:06 : Sending data to ::1
+2017-12-13 16:25:06 : Received GET request
+2017-12-13 16:25:06 : GET request content was a:2:{s:11:"requesttype";s:2:"30";s:10:"variableid";s:1:"8";}
+2017-12-13 16:25:06 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:25:06 : Fatal error! 
+2017-12-13 16:25:06 : Invalid or missing request type
+2017-12-13 16:25:06 : Sending data to ::1 with content Array
+(
+    [0] => Invalid or missing request type
+)
+
+2017-12-13 16:25:56 : Received GET request
+2017-12-13 16:25:56 : GET request content was a:1:{s:11:"requesttype";s:2:"70";}
+2017-12-13 16:25:56 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:25:56 : Handling request 70 took 0.0015161037445068 seconds
+2017-12-13 16:25:56 : Sending data to ::1
+2017-12-13 16:25:56 : Received GET request
+2017-12-13 16:25:56 : GET request content was a:2:{s:11:"requesttype";s:2:"40";s:10:"variableid";s:1:"2";}
+2017-12-13 16:25:56 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:25:56 : O:12:"RequestModel":5:{s:11:"requestType";s:2:"40";s:10:"variableID";s:1:"2";s:11:"tableNumber";i:-1;s:9:"tableName";s:16:"PopulationChange";s:11:"constraints";a:0:{}}
+2017-12-13 16:25:56 : SELECT
+municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange ORDER BY municipalityID, pYear
+2017-12-13 16:25:56 : Handling request 40 took 0.052592992782593 seconds
+2017-12-13 16:25:56 : Sending data to ::1
+2017-12-13 16:25:56 : Received GET request
+2017-12-13 16:25:56 : GET request content was a:2:{s:11:"requesttype";s:2:"40";s:10:"variableid";s:1:"4";}
+2017-12-13 16:25:56 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:25:57 : O:12:"RequestModel":5:{s:11:"requestType";s:2:"40";s:10:"variableID";s:1:"4";s:11:"tableNumber";i:-1;s:9:"tableName";s:10:"Employment";s:11:"constraints";a:0:{}}
+2017-12-13 16:25:57 : SELECT 
+municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment ORDER BY municipalityID, pYear
+2017-12-13 16:25:57 : Handling request 40 took 0.085073947906494 seconds
+2017-12-13 16:25:57 : Sending data to ::1
+2017-12-13 16:25:57 : Received GET request
+2017-12-13 16:25:57 : GET request content was a:2:{s:11:"requesttype";s:2:"30";s:10:"variableid";s:1:"8";}
+2017-12-13 16:25:57 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:25:57 : Fatal error! 
+2017-12-13 16:25:57 : Invalid or missing request type
+2017-12-13 16:25:57 : Sending data to ::1 with content Array
+(
+    [0] => Invalid or missing request type
+)
+
+2017-12-13 16:26:46 : Received GET request
+2017-12-13 16:26:46 : GET request content was a:1:{s:11:"requesttype";s:2:"70";}
+2017-12-13 16:26:46 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:26:46 : Handling request 70 took 0.0014519691467285 seconds
+2017-12-13 16:26:46 : Sending data to ::1
+2017-12-13 16:26:46 : Received GET request
+2017-12-13 16:26:46 : GET request content was a:2:{s:11:"requesttype";s:2:"40";s:10:"variableid";s:1:"2";}
+2017-12-13 16:26:46 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:26:46 : O:12:"RequestModel":5:{s:11:"requestType";s:2:"40";s:10:"variableID";s:1:"2";s:11:"tableNumber";i:-1;s:9:"tableName";s:16:"PopulationChange";s:11:"constraints";a:0:{}}
+2017-12-13 16:26:46 : SELECT
+municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange ORDER BY municipalityID, pYear
+2017-12-13 16:26:46 : Handling request 40 took 0.058869123458862 seconds
+2017-12-13 16:26:46 : Sending data to ::1
+2017-12-13 16:26:47 : Received GET request
+2017-12-13 16:26:47 : GET request content was a:2:{s:11:"requesttype";s:2:"40";s:10:"variableid";s:1:"4";}
+2017-12-13 16:26:47 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:26:47 : O:12:"RequestModel":5:{s:11:"requestType";s:2:"40";s:10:"variableID";s:1:"4";s:11:"tableNumber";i:-1;s:9:"tableName";s:10:"Employment";s:11:"constraints";a:0:{}}
+2017-12-13 16:26:47 : SELECT 
+municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment ORDER BY municipalityID, pYear
+2017-12-13 16:26:47 : Handling request 40 took 0.1209728717804 seconds
+2017-12-13 16:26:47 : Sending data to ::1
+2017-12-13 16:26:47 : Received GET request
+2017-12-13 16:26:47 : GET request content was a:2:{s:11:"requesttype";s:2:"30";s:10:"variableid";s:1:"8";}
+2017-12-13 16:26:47 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:26:47 : Fatal error! 
+2017-12-13 16:26:47 : Invalid or missing request type
+2017-12-13 16:26:47 : Sending data to ::1 with content Array
+(
+    [0] => Invalid or missing request type
+)
+
+2017-12-13 16:28:42 : Received GET request
+2017-12-13 16:28:42 : GET request content was a:1:{s:11:"requesttype";s:2:"70";}
+2017-12-13 16:28:42 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:28:42 : Handling request 70 took 0.0015609264373779 seconds
+2017-12-13 16:28:42 : Sending data to ::1
+2017-12-13 16:28:42 : Received GET request
+2017-12-13 16:28:42 : GET request content was a:2:{s:11:"requesttype";s:2:"40";s:10:"variableid";s:1:"2";}
+2017-12-13 16:28:42 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:28:42 : O:12:"RequestModel":5:{s:11:"requestType";s:2:"40";s:10:"variableID";s:1:"2";s:11:"tableNumber";i:-1;s:9:"tableName";s:16:"PopulationChange";s:11:"constraints";a:0:{}}
+2017-12-13 16:28:42 : SELECT
+municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange ORDER BY municipalityID, pYear
+2017-12-13 16:28:42 : Handling request 40 took 0.064275026321411 seconds
+2017-12-13 16:28:42 : Sending data to ::1
+2017-12-13 16:28:42 : Received GET request
+2017-12-13 16:28:42 : GET request content was a:2:{s:11:"requesttype";s:2:"40";s:10:"variableid";s:1:"4";}
+2017-12-13 16:28:42 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:28:42 : O:12:"RequestModel":5:{s:11:"requestType";s:2:"40";s:10:"variableID";s:1:"4";s:11:"tableNumber";i:-1;s:9:"tableName";s:10:"Employment";s:11:"constraints";a:0:{}}
+2017-12-13 16:28:42 : SELECT 
+municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment ORDER BY municipalityID, pYear
+2017-12-13 16:28:42 : Handling request 40 took 0.083885908126831 seconds
+2017-12-13 16:28:42 : Sending data to ::1
+2017-12-13 16:28:42 : Received GET request
+2017-12-13 16:28:42 : GET request content was a:2:{s:11:"requesttype";s:2:"30";s:10:"variableid";s:1:"8";}
+2017-12-13 16:28:42 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:28:42 : Fatal error! 
+2017-12-13 16:28:42 : Invalid or missing request type
+2017-12-13 16:28:42 : Sending data to ::1
+2017-12-13 16:29:55 : Received GET request
+2017-12-13 16:29:55 : GET request content was a:1:{s:11:"requesttype";s:2:"70";}
+2017-12-13 16:29:55 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:29:55 : Handling request 70 took 0.0014538764953613 seconds
+2017-12-13 16:29:55 : Sending data to ::1
+2017-12-13 16:29:55 : Received GET request
+2017-12-13 16:29:55 : GET request content was a:2:{s:11:"requesttype";s:2:"40";s:10:"variableid";s:1:"2";}
+2017-12-13 16:29:55 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:29:55 : O:12:"RequestModel":5:{s:11:"requestType";s:2:"40";s:10:"variableID";s:1:"2";s:11:"tableNumber";i:-1;s:9:"tableName";s:16:"PopulationChange";s:11:"constraints";a:0:{}}
+2017-12-13 16:29:55 : SELECT
+municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange ORDER BY municipalityID, pYear
+2017-12-13 16:29:55 : Handling request 40 took 0.05463695526123 seconds
+2017-12-13 16:29:55 : Sending data to ::1
+2017-12-13 16:29:55 : Received GET request
+2017-12-13 16:29:55 : GET request content was a:2:{s:11:"requesttype";s:2:"40";s:10:"variableid";s:1:"4";}
+2017-12-13 16:29:55 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:29:55 : O:12:"RequestModel":5:{s:11:"requestType";s:2:"40";s:10:"variableID";s:1:"4";s:11:"tableNumber";i:-1;s:9:"tableName";s:10:"Employment";s:11:"constraints";a:0:{}}
+2017-12-13 16:29:55 : SELECT 
+municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment ORDER BY municipalityID, pYear
+2017-12-13 16:29:56 : Handling request 40 took 0.080631971359253 seconds
+2017-12-13 16:29:56 : Sending data to ::1
+2017-12-13 16:29:56 : Received GET request
+2017-12-13 16:29:56 : GET request content was a:2:{s:11:"requesttype";s:2:"30";s:10:"variableid";s:1:"8";}
+2017-12-13 16:29:56 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:29:56 : SELECT municipalityID, pYear, naceID, SUM(valueInNOK) AS value 
+FROM EnterpriseEntry, Enterprise
+WHERE Enterprise.enterpriseID = EnterpriseEntry.enterpriseID AND EnterpriseEntry.enterprisePostCategoryID = 7
+GROUP BY municipalityID, pYear, naceID;
+2017-12-13 16:29:56 : Handling request 30 took 0.073045015335083 seconds
+2017-12-13 16:29:56 : Sending data to ::1
+2017-12-13 16:30:06 : Received GET request
+2017-12-13 16:30:06 : GET request content was a:3:{s:11:"requesttype";s:2:"60";s:10:"variableid";s:2:"25";s:11:"tablenumber";s:2:"42";}
+2017-12-13 16:30:06 : Received GET request
+2017-12-13 16:30:06 : Handling request from ::1. content:  (omitted) 
+s:2:"60";s:10:"variableid";s:2:"25";s:11:"tablenumber";s:2:"47";}
+2017-12-13 16:30:06 : Received GET request
+2017-12-13 16:30:06 : Received GET request
+2017-12-13 16:30:06 : GET request content was a:3:{s:11:"requesttype";s:2:"60";s:10:"variableid";s:2:"25";s:11:"tablenumber";s:2:"44";}
+2017-12-13 16:30:06 : GET request content was a:2:{s:11:"requesttype";s:2:"40";s:10:"variableid";s:2:"25";}
+2017-12-13 16:30:06 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:30:06 : Fatal error! 
+2017-12-13 16:30:06 : Invalid or missing request type
+2017-12-13 16:30:06 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:30:06 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:30:06 : Fatal error! 
+2017-12-13 16:30:06 : Fatal error! 
+2017-12-13 16:30:06 : Sending data to ::1
+2017-12-13 16:30:06 : Invalid or missing request type
+2017-12-13 16:30:06 : Invalid or missing request type
+2017-12-13 16:30:06 : Sending data to ::1
+2017-12-13 16:30:06 : Sending data to ::1
+2017-12-13 16:30:06 : O:12:"RequestModel":5:{s:11:"requestType";s:2:"40";s:10:"variableID";s:2:"25";s:11:"tableNumber";i:-1;s:9:"tableName";s:13:"PopulationAge";s:11:"constraints";a:0:{}}
+2017-12-13 16:30:06 : SELECT 
+municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge ORDER BY municipalityID, pYear
+2017-12-13 16:30:06 : Handling request 40 took 0.12694406509399 seconds
+2017-12-13 16:30:06 : Sending data to ::1
+2017-12-13 16:36:32 : Received GET request
+2017-12-13 16:36:32 : GET request content was a:1:{s:11:"requesttype";s:2:"70";}
+2017-12-13 16:36:32 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:36:32 : Handling request 70 took 0.001777172088623 seconds
+2017-12-13 16:36:32 : Sending data to ::1
+2017-12-13 16:36:32 : Received GET request
+2017-12-13 16:36:32 : Received GET request
+2017-12-13 16:36:32 : GET request content was a:2:{s:11:"requesttype";s:2:"20";s:10:"variableid";s:2:"25";}
+11:"tablenumber";s:2:"42";}
+2017-12-13 16:36:32 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:36:32 : Received GET request
+2017-12-13 16:36:32 : Received GET request
+2017-12-13 16:36:32 : GET request content was a:3:{s:11:"requesttype";s:2:"50";s:10:"variableid";s:2:"25";s:11:"tablenumber";s:2:"44";}
+2017-12-13 16:36:32 : GET request content was a:3:{s:11:"requesttype";s:2:"40";s:10:"variableid";s:2:"25";s:11:"tablenumber";s:2:"47";}
+2017-12-13 16:36:32 : Fatal error! 
+2017-12-13 16:36:32 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:36:32 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:36:32 : Fatal error! 
+2017-12-13 16:36:32 : O:12:"RequestModel":5:{s:11:"requestType";s:2:"40";s:10:"variableID";s:2:"25";s:11:"tableNumber";s:2:"47";s:9:"tableName";s:13:"PopulationAge";s:11:"constraints";a:0:{}}
+2017-12-13 16:36:32 : Invalid or missing request type
+2017-12-13 16:36:32 : Invalid or missing request type
+2017-12-13 16:36:32 : SELECT 
+municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge ORDER BY municipalityID, pYear
+2017-12-13 16:36:32 : Sending data to ::1
+2017-12-13 16:36:32 : Sending data to ::1
+2017-12-13 16:36:32 : Handling request 40 took 0.091221809387207 seconds
+2017-12-13 16:36:32 : Sending data to ::1
+2017-12-13 16:46:39 : Received GET request
+2017-12-13 16:46:39 : GET request content was a:1:{s:11:"requesttype";s:2:"70";}
+2017-12-13 16:46:39 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:46:39 : Handling request 70 took 0.0037920475006104 seconds
+2017-12-13 16:46:39 : Sending data to ::1
+2017-12-13 16:46:40 : Received GET request
+2017-12-13 16:46:40 : GET request content was a:2:{s:11:"requesttype";s:2:"20";s:10:"variableid";s:2:"25";}
+2017-12-13 16:46:40 : Received GET request
+2017-12-13 16:46:40 : Received GET request
+2017-12-13 16:46:40 : Received GET request
+2017-12-13 16:46:40 : GET request content was a:3:{s:11:"requesttype";s:2:"50";s:10:"variableid";s:2:"25";s:11:"tablenumber";s:2:"44";}
+2017-12-13 16:46:40 : GET request content was a:3:{s:11:"requesttype";s:2:"30";s:10:"variableid";s:2:"25";s:11:"tablenumber";s:2:"42";}
+2017-12-13 16:46:40 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:46:40 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:46:40 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:46:40 : Fatal error! 
+2017-12-13 16:46:40 : Invalid or missing request type
+2017-12-13 16:46:40 : Handling request 30 took 0.0062229633331299 seconds
+2017-12-13 16:46:40 : Sending data to ::1
+2017-12-13 16:46:40 : Invalid or missing request type
+2017-12-13 16:46:40 : Sending data to ::1
+2017-12-13 16:47:54 : Received GET request
+2017-12-13 16:47:54 : GET request content was a:1:{s:11:"requesttype";s:2:"70";}
+2017-12-13 16:47:54 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:47:54 : Handling request 70 took 0.0016951560974121 seconds
+2017-12-13 16:47:54 : Sending data to ::1
+2017-12-13 16:47:54 : Received GET request
+2017-12-13 16:47:54 : Received GET request
+2017-12-13 16:47:54 : Received GET request
+2017-12-13 16:47:54 : GET request content was a:3:{s:11:"requesttype";s:2:"30";s:10:"variableid";s:2:"25";s:11:"tablenumber";s:2:"42";}
+2017-12-13 16:47:54 : GET request content was a:3:{s:11:"requesttype";s:2:"50";s:10:"variableid";s:2:"25";s:11:"tablenumber";s:2:"44";}
+2017-12-13 16:47:54 : GET request content was a:2:{s:11:"requesttype";s:2:"20";s:10:"variableid";s:2:"25";}
+2017-12-13 16:47:54 : GET request content was a:3:{s:11:"requesttype";s:2:"40";s:10:"variableid";s:2:"25";s:11:"tablenumber";s:2:"47";}
+2017-12-13 16:47:54 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:47:54 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:47:54 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:47:54 : Handling request from ::1. content:  (omitted) 
+2017-12-13 16:47:54 : Handling request 30 took 0.0029270648956299 seconds
+2017-12-13 16:47:54 : Handling request 50 took 0.006397008895874 seconds
+2017-12-13 16:47:54 : Sending data to ::1
+2017-12-13 16:47:54 : O:12:"RequestModel":5:{s:11:"requestType";s:2:"20";s:10:"variableID";s:2:"25";s:11:"tableNumber";i:-1;s:9:"tableName";s:13:"PopulationAge";s:11:"constraints";a:0:{}}
+2017-12-13 16:47:54 : SELECT 
+municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge ORDER BY municipalityID, pYear
+2017-12-13 16:47:54 : Handling request 20 took 0.078016996383667 seconds
+2017-12-13 16:47:54 : Sending data to ::1

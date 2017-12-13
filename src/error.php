@@ -2,13 +2,21 @@
 
 /**
  * Error handler, passes flow over the exception logger with new ErrorException.
+ * @param integer $num
+ * @param string $str
+ * @param string $file
+ * @param integer $line
+ * @return void
  */
-function log_error($num, $str, $file, $line, $context = null ) {
+function log_error($num, $str, $file, $line) {
     log_exception( new ErrorException( $str, 0, $num, $file, $line ) );
 }
 
+
 /**
  * Uncaught exception handler.
+ * @param Exception $e
+ * @return void
  */
 function log_exception(Exception $e ) {
 
@@ -35,10 +43,11 @@ function log_exception(Exception $e ) {
 
 /**
  * Checks for a fatal error, work around for set_error_handler not working on fatal errors.
+ * @return void
  */
 function check_for_fatal() {
     $error = error_get_last();
-    if ( $error["type"] == E_ERROR )
+    if ($error !== null && $error["type"] == E_ERROR )
         log_error( $error["type"], $error["message"], $error["file"], $error["line"] );
 }
 

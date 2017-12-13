@@ -1,5 +1,8 @@
 <?php
 class TableMap {
+    /**
+     * @return array
+     */
     static function getTableMap() {
         $tableMap = array();
         $tableMap[1] = 'AgeRange';

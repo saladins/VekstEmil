@@ -4,6 +4,7 @@
  * @throws Exception
  */
 class Validate {
+    /** @var DatabaseHandler  */
     private $db;
 
     /**
@@ -15,7 +16,9 @@ class Validate {
     }
 
     /**
+     * TODO rewrite to first check correct request type, then check for contents of said request
      * @param RequestModel $request
+     * @return void
      * @throws Exception
      */
     public function checkRequestOrDie($request) {
@@ -25,38 +28,41 @@ class Validate {
         if (!isset($request->requestType) || $request->requestType == null) {
             throw new Exception('Invalid or missing request type');
         } else {
-            $this->checkRequestTypeOrDie($request->requestType);
-        }
-        if (isset($request->variableID) && $request->variableID != null) {
-            $this->checkVariableOrDie($request);
-        } elseif (isset($request->tableNumber) && $request->tableNumber != null) {
-            $this->checkTableNumberOrDie($request);
-        } elseif (isset($request->tableName) && $request->tableName != null) {
-            $this->checkTableNameOrDie($request);
-        } else {
-            // todo figure out how to handle valid requests that are missing id/numbers like menu requests
-        }
-    }
+            // TODO named constants
+            switch ($request->requestType) {
+                case 10:
+                case 20:
+                    if (isset($request->variableID) && $request->variableID != null) {
+                        $this->checkVariableOrDie($request);
+                    } elseif (isset($request->tableNumber) && $request->tableNumber != null) {
+                        $this->checkTableNumberOrDie($request);
+                    } elseif (isset($request->tableName) && $request->tableName != null) {
+                        $this->checkTableNameOrDie($request);
+                    } else {
+                        // todo figure out how to handle valid requests that are missing id/numbers like menu requests
+                    }
+                    break;
+                case 30:
+                case 40:
+                case 50:
+                    if (isset($request->variableID) && $request->variableID != null) {
+                        $this->checkVariableOrDie($request);
+                    }
+                    break;
+                case 70: // Menu
 
-    /**
-     * Checks whether or not the request type is valid
-     * @param $requestType
-     * @return bool
-     * @throws Exception
-     */
-    public function checkRequestTypeOrDie($requestType) {
-        foreach (RequestMap::a() as $item) {
-            if ($item == $requestType) {
-                return true;
+                    break;
+                default:
+                    throw new Exception('Invalid or missing request type');
             }
         }
-        throw new Exception('Invalid or missing request type');
-
     }
+
 
     /**
      * Checks whether or not it's a valid variable ID
      * @param RequestModel $request
+     * @return void
      * @throws Exception
      */
     private function checkVariableOrDie($request) {
@@ -83,6 +89,7 @@ class Validate {
 
     /**
      * @param RequestModel $request
+     * @return void
      */
     private function checkTableNumberOrDie($request) {
         $request->tableName = $this->mapTableNumberToTableName($request->tableNumber);
@@ -90,6 +97,7 @@ class Validate {
 
     /**
      * @param RequestModel $request
+     * @return void
      */
     private function checkTableNameOrDie($request) {
         $request->tableNumber = $this->mapTableNameToTableNumber($request->tableName);

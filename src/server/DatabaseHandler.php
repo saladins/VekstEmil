@@ -1,9 +1,21 @@
 <?php
-include 'DatabaseConnector.php';
 class DatabaseHandler extends DatabaseConnector {
-    /** @var  PDOStatement $stmt */
+    /** @var PDOStatement $stmt */
     private $stmt;
 
+    /**
+     * DatabaseHandler constructor.
+     * @param string $configFilePath
+     */
+    public function __construct($configFilePath) {
+        parent::__construct($configFilePath);
+        $this->stmt = new PDOStatement;
+    }
+
+    /**
+     * @param string $query
+     * @return void
+     */
     function query($query) {
         $this->stmt = $this->dbh->prepare($query);
     }
@@ -18,13 +30,17 @@ class DatabaseHandler extends DatabaseConnector {
     /**
      * Returns resultSet. Defaults to associative array.
      * @param int $fetchStyle
-     * @return array
+     * @return mixed
      */
     function getResultSet($fetchStyle = PDO::FETCH_ASSOC) {
         $this->execute();
         return $this->stmt->fetchAll($fetchStyle);
     }
 
+    /**
+     * @param array $bindings
+     * @return array
+     */
     function getResultSetWithBinding($bindings) {
         $this->stmt->execute($bindings);
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -32,7 +48,7 @@ class DatabaseHandler extends DatabaseConnector {
 
     /**
      * Returns a single row. Defaults to associative array.
-     * @param int $fetchStyle
+     * @param integer $fetchStyle
      * @return mixed
      */
     function getSingleResult($fetchStyle = PDO::FETCH_ASSOC) {
@@ -42,7 +58,7 @@ class DatabaseHandler extends DatabaseConnector {
 
     /**
      * Returns row count for query.
-     * @return int
+     * @return integer
      */
     function getRowCount() {
         return $this->stmt->rowCount();
@@ -56,26 +72,50 @@ class DatabaseHandler extends DatabaseConnector {
         return $this->dbh->lastInsertId();
     }
 
+    /**
+     * @return bool
+     */
     function beginTransaction() {
         return $this->dbh->beginTransaction();
     }
 
+    /**
+     * @return bool
+     */
     function endTransaction() {
         return $this->dbh->commit();
     }
 
+    /**
+     * @return bool
+     */
     function rollbackTransaction() {
         return $this->dbh->rollBack();
     }
 
+    /**
+     * @param integer $attribute
+     * @param boolean $value
+     * @return void
+     */
     function setAttribute($attribute, $value) {
         $this->dbh->setAttribute($attribute, $value);
     }
 
+    /**
+     * @param string $sql
+     * @return void
+     */
     function prepare($sql) {
         $this->stmt = $this->dbh->prepare($sql);
     }
 
+    /**
+     * @param string $param
+     * @param mixed $value
+     * @param integer $type
+     * @return void
+     */
     function bind($param, $value, $type = null) {
         if (is_null($type)) {
             switch (true) {
@@ -96,20 +136,23 @@ class DatabaseHandler extends DatabaseConnector {
         $this->stmt->bindValue($param, $value, $type);
     }
 
+    /**
+     * Quotes string
+     * @param string $string
+     * @return string
+     */
     public function quote($string) {
         return $this->dbh->quote($string);
     }
 
-    public function DbhError($exception) {
-        $this->errorMessage = $exception;
-        parent::handleError();
-    }
 }
 
 class DatabaseHandlerFactory {
+    /**
+     * @return DatabaseHandler
+     */
     public static function getDatabaseHandler() {
-        $db = new DatabaseHandler($GLOBALS['configFile']);
-        $db->connect();
+        $db = new DatabaseHandler(Globals::getConfigFilePath());
         return $db;
     }
 }

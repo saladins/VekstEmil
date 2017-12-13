@@ -1,12 +1,15 @@
 <?php
 class RequestMap {
+    /**
+     * @return stdClass
+     */
     static function a() {
         $ret = new stdClass();
-        $ret->TableSurvey = 10;
-        $ret->TableAggregate = 20;
-        $ret->Detailed = 30;
-        $ret->Variable = 40;
-        $ret->View = 50;
+        $ret->Detailed = 10;
+        $ret->Variable = 20;
+        $ret->Description = 30;
+        $ret->Related = 40;
+        $ret->Links = 50;
         $ret->Auxiliary = 60;
         $ret->Menu = 70;
         $ret->Generic = 80;
