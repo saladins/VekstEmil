@@ -25,6 +25,11 @@ class DatabaseHandler extends DatabaseConnector {
         return $this->stmt->fetchAll($fetchStyle);
     }
 
+    function getResultSetWithBinding($bindings) {
+        $this->stmt->execute($bindings);
+        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     /**
      * Returns a single row. Defaults to associative array.
      * @param int $fetchStyle
@@ -88,7 +93,7 @@ class DatabaseHandler extends DatabaseConnector {
                     break;
             }
         }
-        $this->stmt->bindParam($param, $value, $type);
+        $this->stmt->bindValue($param, $value, $type);
     }
 
     public function quote($string) {

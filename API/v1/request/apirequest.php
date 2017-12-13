@@ -5,6 +5,7 @@ class APIrequest {
     private $db;
     private $logger;
     private $mysqltime;
+    private $binds;
     private $groupBy = [];
     public function __construct($initializeDB = true) {
         $this->mysqltime = date('Y-m-d H:i:s');
@@ -77,6 +78,7 @@ SQL;
      * @return array String array containing variable data
      */
     public function getVariableData($request) {
+        $this->logger->log(serialize($request));
         switch ($request->tableName) {
             case TableMap::getTableMap()[2]: // Bankruptcy
                 $sql = <<<SQL
@@ -293,10 +295,15 @@ SQL;
 
         }
         $sql .= $this->getSqlConstraints($request);
+
         $sql .= $this->getGroupByClause($request);
         $this->logger->log($sql);
         $this->db->query($sql);
-        $result = $this->db->getResultSet();
+        if ($this->binds) {
+            $result = $this->db->getResultSetWithBinding($this->binds);
+        } else {
+            $result = $this->db->getResultSet();
+        }
         if (isset($result[0]['value'])) {
             for ($i = 0; $i < sizeof($result); $i++) {
                 $var = $result[$i]['value'];
@@ -366,8 +373,12 @@ SQL;
                 $sqlGetConstraints .= $this->getSqlConstraints($request);
                 $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                 $this->db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
-                $this->db->query($sqlGetConstraints);
-                $constraints->{$column} = $this->db->getResultSet(PDO::FETCH_NUM);
+                $this->db->prepare($sqlGetConstraints);
+                if (isset($this->binds)) {
+                    $constraints->{$column} = $this->db->getResultSetWithBinding($this->binds);
+                } else {
+                    $constraints->{$column} = $this->db->getResultSet(PDO::FETCH_NUM);
+                }
                 $descriptions->{$column} = $this->getFieldDescriptions($column);
             }
         }
@@ -493,23 +504,50 @@ SQL;
      * Then adds the constraint to the SQL query.
      * @param $request
      * @return string
+     * @throws Exception
      */
     private function getSqlConstraints($request) {
-        $sql = '';
-        foreach ($request as $key => $value) {
-            if ($this->in_arrayi($key, columnMap::columns())) {
-                if (is_array($value)) {
-                    $sql .= $this->getSqlFromManyArgs($request->tableName, $key, $value);
-                    $sql .= ' AND ';
+        if (isset($request->constraints)) {
+            $this->binds = null;
+            $a = [];
+            foreach ($request->constraints as $constraintName => $valueArray) {
+                if ($this->in_arrayi($constraintName, columnMap::columns())) {
+                    $in = str_repeat('?,', count($valueArray) - 1) . '?';
+                    array_push($a, $constraintName . " IN ($in)");
+                    $this->bindLater($valueArray);
                 } else {
-                    if ($value != '') { // $key == columnMap::columns()[3] &&
-                        $sql .= $key . '=' . $value . ' AND ';
-                    }
-
+//                    throw new Exception('Invalid column constraint check');
                 }
             }
+            return ' WHERE ' . implode(' AND ', $a);
+        } else {
+            return null;
         }
-        return (strlen($sql) != 0 ? ' WHERE ' . substr($sql, 0, -5) : ''); // TODO hack! change to proper
+//
+//        $sql = '';
+//        foreach ($request as $key => $value) {
+//            if ($this->in_arrayi($key, columnMap::columns())) {
+//                if (is_array($value)) {
+//                    $sql .= $this->getSqlFromManyArgs($request->tableName, $key, $value);
+//                    $sql .= ' AND ';
+//                } else {
+//                    if ($value != '') { // $key == columnMap::columns()[3] &&
+//                        $sql .= $key . '=' . $value . ' AND ';
+//                    }
+//
+//                }
+//            }
+//        }
+//        return (strlen($sql) != 0 ? ' WHERE ' . substr($sql, 0, -5) : ''); // TODO hack! change to proper
+    }
+
+
+    private function bindLater($value) {
+        if (!isset($this->binds)) {
+            $this->binds = [];
+        }
+        $this->binds = array_merge($this->binds, $value);
+//        array_push($this->binds, $value);
     }
 
     /**
