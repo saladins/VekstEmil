@@ -1,4 +1,5 @@
 Options +FollowSymLinks
 RewriteEngine On
+RewriteRule ^api/v1/authenticate$ /auth.php [NC,L]
 RewriteRule ^api/v1$ /backend.php [NC,L]
 RewriteRule ^api/v1/(.*)$ /backend.php [NC,L]

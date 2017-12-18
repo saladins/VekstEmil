@@ -4,7 +4,8 @@ header('Access-Control-Allow-Origin: *');
 //header('Access-Control-Allow-Headers: Origin, Accept, Content-Type, X-Requested-With', false); // , X-Requested-With, origin, authorization, accept
 //header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Headers", false);
 header('Content-Type: application/json; charset=utf-8', false);
-include 'server/index.php';
+require '../vendor/autoload.php';
+include './server/index.php';
 include './model/tablemap.php';
 include './model/requestmap.php';
 include './model/columnmap.php';
@@ -19,7 +20,6 @@ include 'request/index.php';
 //session_destroy();
 
 $parser = new APIparser();
-$parser->handleRequest();
 
 /** Main class and entry point for any and all operations on the db */
 class APIparser {
@@ -35,33 +35,37 @@ class APIparser {
     private $metaTableName = 'meta';
 
     public function __construct() {
+//        echo hash('sha256', 'ringerike3511'); die;
         $this->logger = new Logger();
         $this->ApiRequest = new APIrequest();
-        if (file_get_contents('php://input') != null) {
-            $this->logger->log('Received POST request');
-            $this->parsePost();
-        } else {
-            $this->postContent = $this->parseGet();
-            if (Globals::isDebugging()) {
-                $this->logger->log('Received GET request');
-                $this->logger->log('GET request content was ' . serialize($_GET));
+//        $auth = new Authenticate();
+//        if ($auth->authenticate('default', '$2y$10$cLZqmlSn1DZEg7kYWMvwfuJfQXQ/A4lhFvLQw4tbQq40eiMXSvUi.')) {
+            if (file_get_contents('php://input') != null) {
+                $this->logger->log('Received POST request');
+                $this->parsePost();
+            } else {
+                $this->postContent = $this->parseGet();
+                if (Globals::isDebugging()) {
+                    $this->logger->log('Received GET request');
+                    $this->logger->log('GET request content was ' . serialize($_GET));
+                }
             }
-        }
-        if ($this->postContent == null || !is_object($this->postContent)) {
-            $this->logger->log('Malformed request from ' . $_SERVER['REMOTE_ADDR']);
-            $this->logger->log('Content was : ' . json_encode($this->postContent));
-            echo json_encode('{malformed request}') or die;
-            http_response_code(400);
-            die;
-        } else {
-            if (Globals::isDebugging()) {
-                $this->logger->log('Handling request from '
-                    . $_SERVER['REMOTE_ADDR']
-                    . '. content: '
-                    . ' (omitted) ');
-//                    . print_r($this->postContent, true));
+            if ($this->postContent == null || !is_object($this->postContent)) {
+                $this->logger->log('Malformed request from ' . $_SERVER['REMOTE_ADDR']);
+                $this->logger->log('Content was : ' . json_encode($this->postContent));
+                echo json_encode('{malformed request}') or die;
+                http_response_code(400);
+                die;
+            } else {
+                if (Globals::isDebugging()) {
+                    $this->logger->log('Handling request from '
+                        . $_SERVER['REMOTE_ADDR']
+                        . '. content: '
+                        . ' (omitted) ');
+                }
+                $this->handleRequest();
             }
-        }
+//        }
     }
 
 
@@ -72,6 +76,10 @@ class APIparser {
     private function parseGet() {
         /** @var RequestModel postContent */
         $postContent = new RequestModel;
+        if (!isset($_GET[ValidArgs::a()->requestType])) {
+            http_response_code(400);
+            $this->output(array('error' => 'No request type specified')); die;
+        }
         $postContent->requestType = $_GET[ValidArgs::a()->requestType];
         $postContent->variableID = (isset($_GET[ValidArgs::a()->variableID]) ? $_GET[ValidArgs::a()->variableID] : null);
         if (isset($_GET[ValidArgs::a()->constraints])) {
@@ -130,7 +138,6 @@ class APIparser {
         try {
                 $this->ApiRequest->checkRequestOrDie($this->postContent);
                 $response[$this->metaTableName] = $this->parseRequestMetaData($this->postContent);
-
                 switch ($this->postContent->requestType) {
                     case RequestMap::a()->Detailed:
                         $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getDetailedData($this->postContent);
@@ -268,5 +275,3 @@ class Logger {
         return ((float)$usec + (float)$sec);
     }
 }
-
-
