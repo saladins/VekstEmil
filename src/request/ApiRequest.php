@@ -80,10 +80,11 @@ SQL;
      * TODO refactor to use variableID and get tableName later
      * @param RequestModel $request
      * @return array String array containing variable data
+     * @throws Exception Throws exception when no valid table name is supplied
      */
     public function getVariableData($request) {
         switch ($request->tableName) {
-            case TableMap::getTableMap()[2]: // Bankruptcy
+            case 'Bankruptcy': // Bankruptcy
                 $sql = <<<SQL
 SELECT 
 municipalityID,
@@ -95,7 +96,7 @@ FROM Bankruptcy
 SQL;
 
                 break;
-            case TableMap::getTableMap()[5]: // ClosedEnterprise
+            case 'ClosedEnterprise': // ClosedEnterprise
                 $sql = <<<SQL
 SELECT
 municipalityID,
@@ -106,39 +107,17 @@ FROM ClosedEnterprise
 SQL;
                 break;
 
-            case TableMap::getTableMap()[30]: // 'PopulationAge':
+            case 'CommuteBalance': // CommuteBalance
                 $sql = <<<SQL
 SELECT 
 municipalityID,
-ageRangeID,
-genderID,
+workingMunicipalityID,
 pYear,
-population as value
-from PopulationAge
+commuters as value
+FROM CommuteBalance
 SQL;
                 break;
-            case TableMap::getTableMap()[31]: // 'PopulationChange':
-                $sql = <<<SQL
-SELECT
-municipalityID,
-pYear,
-pQuarter,
-born,
-dead,
-totalPopulation as value
-from PopulationChange
-SQL;
-                break;
-            case TableMap::getTableMap()[23]: // Movement
-                $sql = <<<SQL
-SELECT
-municipalityID,
-pYear,
-incomingAll as incoming, outgoingAll as outgoing, sumAll as value
-from Movement 
-SQL;
-                break;
-            case TableMap::getTableMap()[9]: // Employment
+            case 'Employment': // Employment
                 $sql = <<<SQL
 SELECT 
 municipalityID,
@@ -151,28 +130,7 @@ employmentBalance
 from Employment
 SQL;
                 break;
-            case TableMap::getTableMap()[6]: // CommuteBalance
-                $sql = <<<SQL
-SELECT 
-municipalityID,
-workingMunicipalityID,
-pYear,
-commuters as value
-FROM CommuteBalance
-SQL;
-                break;
-            case TableMap::getTableMap()[39]: // Unemployment
-                $sql = <<<SQL
-SELECT unemploymentID,
-municipalityID,
-ageRangeID,
-pYear,
-pMonth,
-unemploymentPercent as value
-FROM Unemployment
-SQL;
-                break;
-            case TableMap::getTableMap()[10]: // EmploymentRatio
+            case 'EmploymentRatio': // EmploymentRatio
                 $sql = <<<SQL
 SELECT employmentRatioID,
 municipalityID,
@@ -183,68 +141,7 @@ EmploymentPercent as value
 FROM EmploymentRatio
 SQL;
                 break;
-            case TableMap::getTableMap()[20]: // HomeBuildingArea
-                $sql = <<<SQL
-SELECT 
-municipalityID,
-buildingStatusID,
-buildingCategoryID,
-pYear,
-pQuarter,
-buildingValue as value
-FROM HomeBuildingArea
-SQL;
-                break;
-            case TableMap::getTableMap()[17]: // FunctionalBuildingArea
-                $sql = <<<SQL
-SELECT 
-municipalityID,
-buildingStatusID,
-buildingCategoryID,
-pYear,
-pQuarter,
-buildingValue as value
-FROM FunctionalBuildingArea
-SQL;
-                break;
-            case TableMap::getTableMap()[35]: // Proceeding
-                $sql = <<<SQL
-SELECT
-municipalityID,
-proceedingCategoryID,
-applicationTypeID,
-pYear,
-proceedingValue as value
-FROM Proceeding
-SQL;
-                break;
-            case TableMap::getTableMap()[34]: // PrivateEmployee
-                $sql = <<<SQL
-
-SQL;
-                break;
-            case TableMap::getTableMap()[29]: //NewEnterprise
-                $sql = <<<SQL
-SELECT 
-municipalityID,
-enterpriseCategoryID,
-employeeCountRangeID,
-pYear,
-newEnterprises as value
-FROM NewEnterprise
-SQL;
-                break;
-            case TableMap::getTableMap()[21]: //HouseholdIncome
-                $sql = <<<SQL
-SELECT
-municipalityID,
-householdTypeID,
-pYear,
-householdIncomeAvg as value
-FROM HouseholdIncome
-SQL;
-                break;
-            case TableMap::getTableMap()[7]: //Education
+            case 'Education': //Education
                 $sql = <<<SQL
 SELECT 
 municipalityID,
@@ -255,18 +152,7 @@ percentEducated as value
 FROM Education
 SQL;
                 break;
-            case TableMap::getTableMap()[25]: //RegionalCooperation
-                $sql = <<<SQL
-SELECT
-municipalityID,
-kostraCategoryID,
-municipalExpenseCategoryID,
-pYear,
-expense as value
-FROM RegionalCooperation
-SQL;
-                break;
-            case TableMap::getTableMap()[56]: //EmploymentSector
+            case 'EmploymentSector': //EmploymentSector
                 $sql = <<<SQL
 SELECT
 municipalityID,
@@ -278,7 +164,7 @@ livingplaceValue
 FROM EmploymentSector
 SQL;
                 break;
-            case TableMap::getTableMap()[57]:
+            case 'Enterprise':
                 $sql = <<<SQL
 SELECT 
 municipalityID,
@@ -290,12 +176,123 @@ organizationTypeID
 FROM Enterprise
 SQL;
                 break;
-            default:
-                $tableName = $request->tableName;
+            case 'FunctionalBuildingArea': // FunctionalBuildingArea
                 $sql = <<<SQL
-SELECT * FROM $tableName
+SELECT 
+municipalityID,
+buildingStatusID,
+buildingCategoryID,
+pYear,
+pQuarter,
+buildingValue as value
+FROM FunctionalBuildingArea
 SQL;
+                break;
+            case 'HomeBuildingArea': // HomeBuildingArea
+                $sql = <<<SQL
+SELECT 
+municipalityID,
+buildingStatusID,
+buildingCategoryID,
+pYear,
+pQuarter,
+buildingValue as value
+FROM HomeBuildingArea
+SQL;
+                break;
+            case 'HouseholdIncome': //HouseholdIncome
+                $sql = <<<SQL
+SELECT
+municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome
+SQL;
+                break;
+            case 'Movement': // Movement
+                $sql = <<<SQL
+SELECT
+municipalityID,
+pYear,
+incomingAll as incoming, outgoingAll as outgoing, sumAll as value
+from Movement 
+SQL;
+                break;
+            case 'NewEnterprise': //NewEnterprise
+                $sql = <<<SQL
+SELECT 
+municipalityID,
+enterpriseCategoryID,
+employeeCountRangeID,
+pYear,
+newEnterprises as value
+FROM NewEnterprise
+SQL;
+                break;
+            case 'PopulationAge': // 'PopulationAge':
+                $sql = <<<SQL
+SELECT 
+municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge
+SQL;
+                break;
+            case 'PopulationChange': // 'PopulationChange':
+                $sql = <<<SQL
+SELECT
+municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange
+SQL;
+                break;
+            case 'PrivateEmployee': // PrivateEmployee
+                $sql = <<<SQL
 
+SQL;
+                break;
+            case 'Proceeding': // Proceeding
+                $sql = <<<SQL
+SELECT
+municipalityID,
+proceedingCategoryID,
+applicationTypeID,
+pYear,
+proceedingValue as value
+FROM Proceeding
+SQL;
+                break;
+            case 'RegionalCooperation': //RegionalCooperation
+                $sql = <<<SQL
+SELECT
+municipalityID,
+kostraCategoryID,
+municipalExpenseCategoryID,
+pYear,
+expense as value
+FROM RegionalCooperation
+SQL;
+                break;
+            case 'Unemployment': // Unemployment
+                $sql = <<<SQL
+SELECT unemploymentID,
+municipalityID,
+ageRangeID,
+pYear,
+pMonth,
+unemploymentPercent as value
+FROM Unemployment
+SQL;
+                break;
+            default:
+               throw new Exception('No table name or variable id specified');
         }
         $sql .= $this->getSqlConstraints($request);
         $sql .= $this->getGroupByClause($request);
@@ -385,6 +382,7 @@ SQL;
      */
     private function getBearingColumns($tableName) {
         $sql = "SHOW COLUMNS FROM $tableName WHERE `Null` LIKE 'no' AND Extra NOT LIKE '%increment%'";
+        $this->logger->log($sql);
         $this->db->query($sql);
         return $this->db->getResultSet();
     }
@@ -430,13 +428,13 @@ SQL;
             $this->binds = [];
             $a = [];
             foreach ($request->constraints as $constraintName => $valueArray) {
-                if ($this->in_arrayi($constraintName, columnMap::columns())) {
+//                if ($this->in_arrayi($constraintName, columnMap::columns())) {
                     $in = str_repeat('?,', count($valueArray) - 1) . '?';
                     array_push($a, $constraintName . " IN ($in)");
                     $this->bindLater($valueArray);
-                } else {
+//                } else {
 //                    throw new Exception('Invalid column constraint check');
-                }
+//                }
             }
             return ' WHERE ' . implode(' AND ', $a);
         } else {
