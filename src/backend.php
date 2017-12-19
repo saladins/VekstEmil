@@ -41,7 +41,7 @@ class APIparser {
 //        $auth = new Authenticate();
 //        if ($auth->authenticate('default', '$2y$10$cLZqmlSn1DZEg7kYWMvwfuJfQXQ/A4lhFvLQw4tbQq40eiMXSvUi.')) {
             if (file_get_contents('php://input') != null) {
-                $this->logger->log('Received POST request');
+                $this->logger->log('Received POST request from ' . $_SERVER['REMOTE_ADDR']);
                 $this->parsePost();
             } else {
                 $this->postContent = $this->parseGet();
@@ -113,18 +113,6 @@ class APIparser {
             $this->postContent = json_decode($PostContent);
         }
     }
-//
-//    /**
-//     * Reads the raw POST data from the internal variable
-//     * @return string
-//     */
-//    private function getRawPostData() {
-//        if (!file_get_contents('php://input')) {
-//            die;
-//        } else {
-//            return file_get_contents('php://input') or die;
-//        }
-//    }
 
     /**
      * Common method that handles request checking and determines the type of request.
@@ -138,34 +126,36 @@ class APIparser {
         try {
                 $this->ApiRequest->checkRequestOrDie($this->postContent);
                 $response[$this->metaTableName] = $this->parseRequestMetaData($this->postContent);
-                switch ($this->postContent->requestType) {
-                    case RequestMap::a()->Detailed:
+                /** @var RequestMap $requestType */
+                $requestType = $this->postContent->requestType;
+                switch ($requestType) {
+                    case RequestMap::Detailed:
                         $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getDetailedData($this->postContent);
 //                        $response[$this->getRetArrID($this->postContent)] = $this->API->parseTable($this->postContent);
                         break;
-                    case RequestMap::a()->Variable:
+                    case RequestMap::Variable:
                         $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getVariableData($this->postContent);
                         $response[$this->metaTableName]->groupBy = $this->metaIncludeAfter();
                         break;
-                    case RequestMap::a()->Description:
+                    case RequestMap::Description:
                         $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getDescription($this->postContent->variableID);
                         break;
-                    case RequestMap::a()->Related:
+                    case RequestMap::Related:
                         $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getRelated($this->postContent->variableID);
                         break;
-                    case RequestMap::a()->Links:
+                    case RequestMap::Links:
                         $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getLinks($this->postContent->variableID);
                         break;
-                    case RequestMap::a()->Auxiliary:
+                    case RequestMap::Tags:
                         throw new Exception('Not yet implemented');
                         break;
-                    case RequestMap::a()->Menu:
+                    case RequestMap::Menu:
                         $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getMenu();
                         break;
-                    case RequestMap::a()->Generic:
+                    case RequestMap::Generic:
                         throw new Exception('Not yet implemented');
                         break;
-                    case RequestMap::a()->Update:
+                    case RequestMap::Update:
                         $ApiUpdate = new ApiUpdate();
                         $response[$this->getRetArrID($this->postContent)] = $ApiUpdate->update($this->postContent);
                         break;
@@ -185,7 +175,9 @@ class APIparser {
             die;
         }
         $endTime = $this->logger->microTimeFloat();
-        $this->logger->log('Handling request ' . $this->postContent->requestType . ' took ' . ($endTime - $startTime) . ' seconds');
+        if (Globals::isDebugging()) {
+            $this->logger->log('Handling request ' . $this->postContent->requestType . ' took ' . ($endTime - $startTime) . ' seconds');
+        }
         $this->output($response);
     }
 
@@ -241,7 +233,9 @@ class APIparser {
         }
         if ($content == null || !is_array($content) ||  count($content) == 0) {
         } else {
-            $this->logger->log('Sending data to ' . $_SERVER['REMOTE_ADDR']);
+            if (Globals::isDebugging()) {
+                $this->logger->log('Sending data to ' . $_SERVER['REMOTE_ADDR']);
+            }
             echo json_encode($content, $options);
         }
     }
