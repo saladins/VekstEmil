@@ -366,7 +366,7 @@ SQL;
             }
         }
         $ret[0] = $constraints;
-        $ret[1] = $descriptions;;
+        $ret[1] = $descriptions;
         return $ret;
     }
 

@@ -32,6 +32,13 @@ class Globals {
     }
 
     /**
+     * @return bool
+     */
+    public static function isDebuggingOutput() {
+        return false;
+    }
+
+    /**
      * @param string $schemaName
      * @return void
      */

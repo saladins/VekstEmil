@@ -236,13 +236,13 @@ class APIparser {
      */
     function output($content) {
         $options = 0;
-        if (Globals::isDebugging()) {
-            $options = JSON_UNESCAPED_UNICODE + JSON_UNESCAPED_SLASHES + JSON_NUMERIC_CHECK + JSON_PRETTY_PRINT;
+        if (Globals::isDebugging() && Globals::isDebuggingOutput()) {
+            $options = JSON_UNESCAPED_UNICODE + JSON_UNESCAPED_SLASHES + JSON_PRETTY_PRINT;
         }
         if ($content == null || !is_array($content) ||  count($content) == 0) {
         } else {
             $this->logger->log('Sending data to ' . $_SERVER['REMOTE_ADDR']);
-            echo (string)json_encode($content, $options);
+            echo json_encode($content, $options);
         }
     }
 }
