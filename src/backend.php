@@ -147,7 +147,7 @@ class APIparser {
                         $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getLinks($this->postContent->variableID);
                         break;
                     case RequestMap::Tags:
-                        throw new Exception('Not yet implemented');
+                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getTags($this->postContent->variableID);
                         break;
                     case RequestMap::Menu:
                         $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getMenu();
