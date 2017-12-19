@@ -58,7 +58,6 @@ GROUP BY municipalityID, pYear;
 SQL;
                 break;
         }
-        $this->logger->log($sql);
         $this->db->query($sql);
         $result = $this->db->getResultSet();
         if (isset($result[0]['value'])) {
@@ -83,7 +82,6 @@ SQL;
      * @return array String array containing variable data
      */
     public function getVariableData($request) {
-        $this->logger->log(serialize($request));
         switch ($request->tableName) {
             case TableMap::getTableMap()[2]: // Bankruptcy
                 $sql = <<<SQL
@@ -301,7 +299,6 @@ SQL;
         }
         $sql .= $this->getSqlConstraints($request);
         $sql .= $this->getGroupByClause($request);
-        $this->logger->log($sql);
         $this->db->query($sql);
         if (sizeof($this->binds) > 0) {
             $result = $this->db->getResultSetWithBinding($this->binds);
@@ -331,57 +328,65 @@ SQL;
     public function getMinimalMetaData($request) {
         $ret = new stdClass();
         if (isset($request->variableID) && $request->variableID != null) {
-            $fieldDescAndConstraints = $this->getFieldDescriptionsAndConstraints($request);
-            $ret->constraints = $fieldDescAndConstraints[0];
-            $ret->descriptions = $fieldDescAndConstraints[1];
+            $ret->constraints = $this->getConstraints($request->tableName);
+            $ret->descriptions = $this->getDescriptions($request->tableName);
             $ret->variable = $this->getVariableAndProvider($request->variableID);
         }
         return $ret;
     }
 
     /**
-     * Gets and returns constraints and descriptions for each column in the data table
-     * @param RequestModel $request
-     * @return array
+     * @param string $tableName
+     * @return stdClass
      */
-    private function getFieldDescriptionsAndConstraints($request) {
-        $ret = array();
+    private function getConstraints($tableName) {
         $constraints = new stdClass();
-        $descriptions = new stdClass();
-        foreach (columnMap::columns() as $column) {
-            $sqlCheckIfColumn = 'SHOW COLUMNS FROM ' . $request->tableName . " LIKE '$column' ";
-            $this->db->query($sqlCheckIfColumn);
-            if ($this->db->getResultSet()) {
-                $sqlGetConstraints = 'SELECT DISTINCT ' . $column . ' FROM ' . $request->tableName;
-                $sqlGetConstraints .= $this->getSqlConstraints($request);
-                $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                $this->db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
-                $this->db->prepare($sqlGetConstraints);
-                if (count($this->binds) > 0) {
-                    $constraints->{$column} = $this->db->getResultSetWithBinding($this->binds);
-                } else {
-                    $constraints->{$column} = $this->db->getResultSet(PDO::FETCH_NUM);
-                }
-                $descriptions->{$column} = $this->getFieldDescriptions($column);
+        foreach ($this->getBearingColumns($tableName) as $column) {
+            $itemSql = "SELECT DISTINCT {$column['Field']} FROM $tableName;";
+            $this->db->query($itemSql);
+            $constraints->{$column['Field']} = [];
+            foreach ($this->db->getResultSet(PDO::FETCH_NUM) as $item) {
+                array_push($constraints->{$column['Field']}, $item[0]);
             }
         }
-        $ret[0] = $constraints;
-        $ret[1] = $descriptions;
-        return $ret;
+        return $constraints;
     }
 
     /**
-     * Determines if there are returnable descriptions in child table. If there are, returns entire contents of said table.
-     * @param string $columnName
-     * @return stdClass|null
+     * @param string $tableName
+     * @return stdClass
+     * @throws PDOException
      */
-    private function getFieldDescriptions($columnName) {
-        if (columnMap::columnsTableParent()[$columnName] == null ) {
-            return null;
+    private function getDescriptions($tableName) {
+        $descriptions = new stdClass();
+        foreach ($this->getBearingColumns($tableName) as $column) {
+            $tableName = ucfirst(substr($column['Field'], 0, -2));
+            if ($tableName === 'Variable') { continue; }
+            $itemSql = "SELECT DISTINCT * FROM $tableName";
+            try {
+                $this->db->query($itemSql);
+                $descriptions->{$column['Field']} = [];
+                foreach ($this->db->getResultSet(PDO::FETCH_CLASS) as $item) {
+                    array_push($descriptions->{$column['Field']}, $item);
+                }
+            } catch (PDOException $exception) {
+//                 If table is NOT one of variableID or date field, throw the error
+                if ($exception->getCode() !== '42S02') {
+                    throw $exception;
+                }
+            }
         }
-        $sql = 'SELECT DISTINCT * FROM ' . columnMap::columnsTableParent()[$columnName];
+        return $descriptions;
+    }
+
+    /**
+     * @param string $tableName
+     * @return mixed
+     */
+    private function getBearingColumns($tableName) {
+        $sql = "SHOW COLUMNS FROM $tableName WHERE `Null` LIKE 'no' AND Extra NOT LIKE '%increment%'";
         $this->db->query($sql);
-        return $this->db->getResultSet(PDO::FETCH_CLASS);
+        return $this->db->getResultSet();
     }
 
     /**
