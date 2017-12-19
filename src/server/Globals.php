@@ -28,7 +28,7 @@ class Globals {
      * @return bool
      */
     public static function isDebugging() {
-        return true;
+        return false;
     }
 
     /**

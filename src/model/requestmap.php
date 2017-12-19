@@ -1,5 +1,5 @@
 <?php
-class RequestMap extends SplEnum {
+abstract class RequestMap {
     const Detailed = 10;
     const Variable = 20;
     const Description = 30;
@@ -9,4 +9,6 @@ class RequestMap extends SplEnum {
     const Menu = 70;
     const Generic = 80;
     const Update = 100;
+
+    const Unknown = -1;
 }

@@ -9,7 +9,7 @@ include './server/index.php';
 include './model/tablemap.php';
 include './model/requestmap.php';
 include './model/columnmap.php';
-include './model/ValidArgs.php';
+include './model/validarguments.php';
 include './model/requestmodel.php';
 include './helpers/variableupdatereasonmodel.php';
 include 'update/index.php';
@@ -76,14 +76,14 @@ class APIparser {
     private function parseGet() {
         /** @var RequestModel postContent */
         $postContent = new RequestModel;
-        if (!isset($_GET[ValidArgs::a()->requestType])) {
+        if (!isset($_GET[ValidArguments::requestType])) {
             http_response_code(400);
             $this->output(array('error' => 'No request type specified')); die;
         }
-        $postContent->requestType = $_GET[ValidArgs::a()->requestType];
-        $postContent->variableID = (isset($_GET[ValidArgs::a()->variableID]) ? $_GET[ValidArgs::a()->variableID] : null);
-        if (isset($_GET[ValidArgs::a()->constraints])) {
-            $groups = explode(';', $_GET[ValidArgs::a()->constraints]);
+        $postContent->requestType = $_GET[ValidArguments::requestType];
+        $postContent->variableID = (isset($_GET[ValidArguments::variableID]) ? $_GET[ValidArguments::variableID] : null);
+        if (isset($_GET[ValidArguments::constraints])) {
+            $groups = explode(';', $_GET[ValidArguments::constraints]);
             $postContent->constraints = [];
             foreach ($groups as $group) {
                 if (strlen($group) > 1) {
@@ -92,9 +92,6 @@ class APIparser {
                     $postContent->constraints[$item[0]] = $args;
                 }
             }
-        }
-        if (isset($_GET[ValidArgs::a()->tableNumber])) {
-            $postContent->tableNumber = $_GET[ValidArgs::a()->tableNumber];
         }
         return $postContent;
     }
@@ -124,46 +121,46 @@ class APIparser {
         $startTime = $this->logger->microTimeFloat();
         $response = [];
         try {
-                $this->ApiRequest->checkRequestOrDie($this->postContent);
-                $response[$this->metaTableName] = $this->parseRequestMetaData($this->postContent);
-                /** @var RequestMap $requestType */
-                $requestType = $this->postContent->requestType;
-                switch ($requestType) {
-                    case RequestMap::Detailed:
-                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getDetailedData($this->postContent);
+            $this->ApiRequest->checkRequestOrDie($this->postContent);
+            $response[$this->metaTableName] = $this->parseRequestMetaData($this->postContent);
+            /** @var RequestMap $requestType */
+            $requestType = $this->postContent->requestType;
+            switch ($requestType) {
+                case RequestMap::Detailed:
+                    $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getDetailedData($this->postContent);
 //                        $response[$this->getRetArrID($this->postContent)] = $this->API->parseTable($this->postContent);
-                        break;
-                    case RequestMap::Variable:
-                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getVariableData($this->postContent);
-                        $response[$this->metaTableName]->groupBy = $this->metaIncludeAfter();
-                        break;
-                    case RequestMap::Description:
-                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getDescription($this->postContent->variableID);
-                        break;
-                    case RequestMap::Related:
-                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getRelated($this->postContent->variableID);
-                        break;
-                    case RequestMap::Links:
-                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getLinks($this->postContent->variableID);
-                        break;
-                    case RequestMap::Tags:
-                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getTags($this->postContent->variableID);
-                        break;
-                    case RequestMap::Menu:
-                        $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getMenu();
-                        break;
-                    case RequestMap::Generic:
-                        throw new Exception('Not yet implemented');
-                        break;
-                    case RequestMap::Update:
-                        $ApiUpdate = new ApiUpdate();
-                        $response[$this->getRetArrID($this->postContent)] = $ApiUpdate->update($this->postContent);
-                        break;
-                    default:
-                        http_response_code(404);
-                        exit(0);
-                        break;
-                }
+                    break;
+                case RequestMap::Variable:
+                    $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getVariableData($this->postContent);
+                    $response[$this->metaTableName]->groupBy = $this->metaIncludeAfter();
+                    break;
+                case RequestMap::Description:
+                    $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getDescription($this->postContent->variableID);
+                    break;
+                case RequestMap::Related:
+                    $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getRelated($this->postContent->variableID);
+                    break;
+                case RequestMap::Links:
+                    $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getLinks($this->postContent->variableID);
+                    break;
+                case RequestMap::Tags:
+                    $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getTags($this->postContent->variableID);
+                    break;
+                case RequestMap::Menu:
+                    $response[$this->getRetArrID($this->postContent)] = $this->ApiRequest->getMenu();
+                    break;
+                case RequestMap::Generic:
+                    throw new Exception('Not yet implemented');
+                    break;
+                case RequestMap::Update:
+                    $ApiUpdate = new ApiUpdate();
+                    $response[$this->getRetArrID($this->postContent)] = $ApiUpdate->update($this->postContent);
+                    break;
+                default:
+                    http_response_code(404);
+                    exit(0);
+                    break;
+            }
         } catch (Exception $ex) {
             $this->logger->log('Fatal error! ');
             $this->logger->log($ex->getMessage());
@@ -189,7 +186,7 @@ class APIparser {
     private function getRetArrID($request) {
         if (isset($request->variableID) && $request->variableID != null) {
             return 'resultSet';
-        } elseif ($request->requestType == RequestMap::a()->Menu) {
+        } elseif ($request->requestType == RequestMap::Menu) {
             return 'Menu';
         } else {
             return $this->genericTableName;
@@ -203,8 +200,8 @@ class APIparser {
      */
     private function parseRequestMetaData($request) {
         switch ($request->requestType) {
-            case RequestMap::a()->Variable:
-            case RequestMap::a()->Detailed:
+            case RequestMap::Variable:
+            case RequestMap::Detailed:
                 return $this->ApiRequest->getMinimalMetaData($request);
                 break;
             default:
@@ -223,7 +220,7 @@ class APIparser {
 
     /**
      * Parses and returns the requested data packet back to sender
-     * @param string[] $content
+     * @param mixed $content
      * @return void
      */
     function output($content) {

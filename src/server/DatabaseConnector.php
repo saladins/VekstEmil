@@ -79,9 +79,9 @@ class DatabaseConnector {
             echo json_encode($message) or die;
             die;
         } else {
-            $logger->log($exception);
-           echo json_encode($exception) or die;
-           die;
+            $logger->log(print_r($exception, true));
+            echo json_encode($exception) or die;
+            die;
         }
     }
 }

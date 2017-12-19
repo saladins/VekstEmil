@@ -4,8 +4,9 @@ use Firebase\JWT\JWT;
 class Authenticate {
     /** @var DatabaseHandler */
     private $db;
-
+    /** @var int */
     private $validFor = 3600;
+    /** @var string */
     private $private_key = 'some_private_key';
 
     /**
@@ -18,7 +19,7 @@ class Authenticate {
     /**
      * @param string $userName
      * @param string $password
-     * @return integer
+     * @return boolean
      */
     function authenticate($userName, $password) {
         if ($userName && $password) {
@@ -40,9 +41,14 @@ class Authenticate {
             $token = array();
             $token['id'] = $dbID;
             $token['exp'] = time() + $this->validFor;
+            $encoded = JWT::encode($token, $this->private_key);
+            if ($encoded) {
+                echo json_encode(array('token' => $encoded));
+                return true;
+            } else {
+                return false;
+            }
 
-            echo json_encode(array('token' => JWT::encode($token, $this->private_key)));
-            return true;
         } else {
             $headers = getallheaders();
             if (array_key_exists('Authorization', $headers)) {

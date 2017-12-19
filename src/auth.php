@@ -5,7 +5,7 @@ include './server/index.php';
 $auth = new Authenticate();
 if (file_get_contents('php://input') != null) {
     $postContent = file_get_contents('php://input');
-    if (json_decode($postContent)) {
+    if ($postContent !== false && json_decode($postContent)) {
         $decoded = json_decode($postContent);
         if (isset($decoded->usr) && isset($decoded->pw)) {
 

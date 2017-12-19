@@ -22,30 +22,29 @@ class Validate {
      * @throws Exception
      */
     public function checkRequestOrDie($request) {
-        if (!isset($request) || $request == null) {
+        if (!isset($request) || $request === null) {
             throw new Exception('Invalid or missing request');
         }
-        if (!isset($request->requestType) || $request->requestType == null) {
+        if (!isset($request->requestType) || $request->requestType === RequestMap::Unknown) {
             throw new Exception('Invalid or missing request type');
         } else {
-            // TODO named constants
             switch ($request->requestType) {
                 case 10:
                 case 20:
-                    if (isset($request->variableID) && $request->variableID != null) {
+                    if ($request->variableID > 0) {
                         $this->checkVariableOrDie($request);
-                    } elseif (isset($request->tableNumber) && $request->tableNumber != null) {
-                        $this->checkTableNumberOrDie($request);
-                    } elseif (isset($request->tableName) && $request->tableName != null) {
+                    }
+                    if ($request->tableName !== '') {
                         $this->checkTableNameOrDie($request);
-                    } else {
-                        // todo figure out how to handle valid requests that are missing id/numbers like menu requests
+                    }
+                    if ($request->variableID < 0 && $request->tableName === '') {
+                        throw new Exception('Invalid or missing ID or table name');
                     }
                     break;
                 case 30:
                 case 40:
                 case 50:
-                    if (isset($request->variableID) && $request->variableID != null) {
+                    if (isset($request->variableID) && $request->variableID !== null) {
                         $this->checkVariableOrDie($request);
                     }
                     break;
@@ -72,63 +71,38 @@ class Validate {
         if ($request->variableID < 0) {
             throw new Exception('Variable ID is invalid');
         }
-        $sql = 'SELECT TableName FROM Variable WHERE VariableID =' . $request->variableID;
-        $this->db->query($sql);
+        $sql = 'SELECT TableName FROM Variable WHERE variableID = :variableID';
+        $this->db->prepare($sql);
+        $this->db->bind(':variableID', $request->variableID);
         $result = $this->db->getSingleResult();
         if (!$result['TableName']) {
             throw new Exception('Variable ID is invalid');
         } else {
-            if ($request->tableName == null) {
+            if ($request->tableName === '') {
                 $request->tableName = $result['TableName'];
             }
-            if ($request->tableNumber == null) {
-                $request->tableNumber = $this->mapTableNameToTableNumber($result['TableName']);
-            }
         }
     }
 
     /**
      * @param RequestModel $request
      * @return void
-     */
-    private function checkTableNumberOrDie($request) {
-        $request->tableName = $this->mapTableNumberToTableName($request->tableNumber);
-    }
-
-    /**
-     * @param RequestModel $request
-     * @return void
-     */
-    private function checkTableNameOrDie($request) {
-        $request->tableNumber = $this->mapTableNameToTableNumber($request->tableName);
-    }
-
-
-    /**
-     * Checks the internal table number => table name mapping and return the array ID
-     * @param string $tableName
-     * @return int              Array ID for the table table name
-     * @throws Exception        Throws exception if table is not found
-     */
-    private function mapTableNameToTableNumber($tableName) {
-        foreach (TableMap::getTableMap() as $key => $value) {
-            if (strtolower($value) == strtolower($tableName)) {
-                return $key;
-            }
-        }
-        throw new Exception('Table number and name mismatch. No table found with that number.');
-    }
-
-    /**
-     * Checks the internal table mapping array for the corresponding table
-     * @param int $tableNumber Table number
-     * @return String Table name
      * @throws Exception
      */
-    private function mapTableNumberToTableName($tableNumber) {
-        if ($tableNumber < 0 || $tableNumber > count(TableMap::getTableMap())) {
-            throw new Exception('Table name and number mismatch. No table found with that name.');
+    private function checkTableNameOrDie($request) {
+        if ($request->tableName !== null && strlen($request->tableName) < 1) {
+            throw new Exception('Table name is invalid');
         }
-        return TableMap::getTableMap()[$tableNumber];
+        $sql = 'SELECT variableID FROM Variable WHERE tableName = :tableName';
+        $this->db->prepare($sql);
+        $this->db->bind(':tableName', $request->tableName);
+        $result = $this->db->getSingleResult();
+        if (!$result['variableID']) {
+            throw new Exception('Table name is invalid');
+        } else {
+            if ($request->variableID === null) {
+                $request->variableID = $result['variableID'];
+            }
+        }
     }
 }
