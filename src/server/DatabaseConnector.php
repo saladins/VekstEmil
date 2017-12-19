@@ -32,7 +32,7 @@ class DatabaseConnector {
                     ';dbname=' . $settings['db']['db_schema'] . ';charset=utf8mb4';
                 $options = array(
                     PDO::ATTR_PERSISTENT => false,
-                    PDO::ATTR_EMULATE_PREPARES => true,
+                    PDO::ATTR_EMULATE_PREPARES => false,
                     PDO::ATTR_STRINGIFY_FETCHES => false,
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
                 );
@@ -61,6 +61,7 @@ class DatabaseConnector {
      * @return void
      */
     function handleError($exception) {
+        $logger = new Logger();
         if (!Globals::isDebugging()) {
             http_response_code(404);
             switch ($exception->getCode()) {
@@ -74,10 +75,11 @@ class DatabaseConnector {
                     $message = $exception->getMessage();
                     break;
             }
-
+            $logger->log($message);
             echo json_encode($message) or die;
             die;
         } else {
+            $logger->log($exception);
            echo json_encode($exception) or die;
            die;
         }
