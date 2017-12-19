@@ -1,2 +1,2 @@
 <?php
-echo 'testoo';
+phpinfo();
