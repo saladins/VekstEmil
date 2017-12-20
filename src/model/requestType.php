@@ -1,5 +1,5 @@
 <?php
-abstract class RequestMap {
+abstract class RequestType {
     const Detailed = 10;
     const Variable = 20;
     const Description = 30;

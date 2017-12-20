@@ -10,7 +10,7 @@ class RequestModel {
     public $constraints;
 
     public function __construct() {
-        $this->requestType = RequestMap::Unknown;
+        $this->requestType = RequestType::Unknown;
         $this->variableID = -1;
         $this->tableName = '';
         $this->constraints = [];
