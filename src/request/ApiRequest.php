@@ -1,17 +1,14 @@
 <?php
 /** Class for API (GET) requests */
-class APIrequest {
+class ApiRequest {
     /** @var DatabaseHandler */
     private $db;
     /** @var Logger */
     private $logger;
-//    private $mysqltime;
     /** @var array */
     private $binds = [];
-    /** @var array */
-    private $groupBy = [];
+
     public function __construct() {
-//        $this->mysqltime = date('Y-m-d H:i:s');
         $this->logger = new Logger();
         $this->db = DatabaseHandlerFactory::getDatabaseHandler();
     }
@@ -117,6 +114,17 @@ commuters as value
 FROM CommuteBalance
 SQL;
                 break;
+            case 'Education': //Education
+                $sql = <<<SQL
+SELECT 
+municipalityID,
+genderID,
+gradeID,
+pYear,
+percentEducated as value
+FROM Education
+SQL;
+                break;
             case 'Employment': // Employment
                 $sql = <<<SQL
 SELECT 
@@ -139,17 +147,6 @@ ageRangeID,
 pYear,
 EmploymentPercent as value
 FROM EmploymentRatio
-SQL;
-                break;
-            case 'Education': //Education
-                $sql = <<<SQL
-SELECT 
-municipalityID,
-genderID,
-gradeID,
-pYear,
-percentEducated as value
-FROM Education
 SQL;
                 break;
             case 'EmploymentSector': //EmploymentSector
@@ -322,13 +319,11 @@ SQL;
      * @param RequestModel $request
      * @return stdClass
      */
-    public function getMinimalMetaData($request) {
+    public function getMetaData($request) {
         $ret = new stdClass();
-        if (isset($request->variableID) && $request->variableID != null) {
-            $ret->constraints = $this->getConstraints($request->tableName);
-            $ret->descriptions = $this->getDescriptions($request->tableName);
-            $ret->variable = $this->getVariableAndProvider($request->variableID);
-        }
+        $ret->constraints = $this->getConstraints($request->tableName);
+        $ret->descriptions = $this->getDescriptions($request->tableName);
+        $ret->variable = $this->getVariableAndProvider($request->variableID);
         return $ret;
     }
 
@@ -393,7 +388,7 @@ SQL;
      * @return mixed
      */
     private function getVariableAndProvider($variableID) {
-        $sql = <<<SQL
+        $sql = <<<'SQL'
 SELECT a.variableID, a.providerID, a.statisticName, a.tableName, 
 a.lastUpdatedDate, a.providerCode, a.isImplemented, 
 b.providerName, b.providerNameShortForm, b.providerNotice, 
@@ -401,18 +396,11 @@ b.providerLink, b.providerAPIAddress, c.subCategoryName
 FROM Variable a, VariableProvider b, VariableSubCategory c
 WHERE a.providerID = b.providerID
 AND a.subCategoryID = c.subCategoryID
-AND   a.variableID = $variableID
+AND   a.variableID = :variableID
 SQL;
-        $this->db->query($sql);
+        $this->db->prepare($sql);
+        $this->db->bind(':variableID', $variableID);
         return $this->db->getResultSet(PDO::FETCH_CLASS)[0];
-    }
-
-    /**
-     * Returns any post data retrieval messages or meta data.
-     * @return array
-     */
-    public function metaIncludeAfter() {
-        return $this->groupBy;
     }
 
     /**
@@ -428,20 +416,15 @@ SQL;
             $this->binds = [];
             $a = [];
             foreach ($request->constraints as $constraintName => $valueArray) {
-//                if ($this->in_arrayi($constraintName, columnMap::columns())) {
-                    $in = str_repeat('?,', count($valueArray) - 1) . '?';
-                    array_push($a, $constraintName . " IN ($in)");
-                    $this->bindLater($valueArray);
-//                } else {
-//                    throw new Exception('Invalid column constraint check');
-//                }
+                $in = str_repeat('?,', count($valueArray) - 1) . '?';
+                array_push($a, $constraintName . " IN ($in)");
+                $this->bindLater($valueArray);
             }
             return ' WHERE ' . implode(' AND ', $a);
         } else {
             return '';
         }
     }
-
 
     /**
      * 'Hack'. Is called after sql string has been completed
@@ -459,30 +442,27 @@ SQL;
      * @return string
      */
     private function getGroupByClause($request) {
-        $ret = ' GROUP BY ';
         $sqlGetTableColumns = 'SHOW COLUMNS FROM ' . $request->tableName;
         $this->db->query($sqlGetTableColumns);
         $dbResult = $this->db->getResultSet();
-        if (isset($request->groupBy) && is_array($request->groupBy)) {
-            foreach ($dbResult as $item) {
-                if ($this->in_arrayi($item['Field'], $request->groupBy)) {
-                    $ret .= ' ' . $item['Field'];
-                    array_push($this->groupBy, $item['Field']);
-                    if (strtolower($item['Field']) != strtolower(end($request->groupBy))) {
-                        $ret .= ',';
-                    }
-                }
+        $order = [];
+        foreach ($dbResult as $item) {
+            switch ($item['Field']) {
+                case 'municipalityID':
+                    array_push($order, 'municipalityID');
+                    break;
+                case 'pYear':
+                    array_push($order, 'pYear');
+                    break;
+                case 'pQuarter':
+                    array_push($order, 'pQuarter');
+                    break;
+                case 'pMonth':
+                    array_push($order, 'pMonth');
+                    break;
             }
-            return $ret;
-        } else {
-            $text = ' ORDER BY municipalityID';
-            foreach ($dbResult as $item) {
-                if ($item['Field'] == 'pYear') {
-                    $text .= ', pYear';
-                }
-            }
-            return $text;
         }
+        return (sizeof($order) > 0 ? ' ORDER BY ' . implode(',', $order) : '');
     }
 
     /**
@@ -528,17 +508,6 @@ SQL;
     public function getTags($variableID) {
         $tags = new Tags($this->db);
         return $tags->getTagsForVariable($variableID);
-    }
-
-
-    /**
-     * TODO Implement cache and return if recent
-     * @return string[]
-     * @throws PDOException
-     */
-    function getVariableList() {
-        $this->db->query('SELECT variableID, tableName, statisticName, isImplemented FROM Variable');
-        return $this->db->getResultSet(PDO::FETCH_CLASS);
     }
 
     /**
