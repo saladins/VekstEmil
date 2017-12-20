@@ -25,7 +25,7 @@ class Validate {
         if (!isset($request) || $request === null) {
             throw new Exception('Invalid or missing request');
         }
-        if (!isset($request->requestType) || $request->requestType === RequestMap::Unknown) {
+        if (!isset($request->requestType) || $request->requestType === RequestType::Unknown) {
             throw new Exception('Invalid or missing request type');
         } else {
             switch ($request->requestType) {

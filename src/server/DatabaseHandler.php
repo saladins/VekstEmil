@@ -152,7 +152,7 @@ class DatabaseHandlerFactory {
      * @return DatabaseHandler
      */
     public static function getDatabaseHandler() {
-        $db = new DatabaseHandler(Globals::getConfigFilePath());
+        $db = new DatabaseHandler(Globals::configFilePath);
         return $db;
     }
 }

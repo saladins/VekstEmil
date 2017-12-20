@@ -1,41 +1,20 @@
 <?php
 date_default_timezone_set('UTC');
-class Globals {
+abstract class Globals {
     /** @var string */
     private static $schemaName = '';
-    /**
-     * @return string
-     */
-    public static function dateTimeFormat() {
-        return 'Y-m-d H:i:s';
-    }
-
-    /**
-     * @return string
-     */
-    public static function getConfigFilePath() {
-        return 'config/config.ini';
-    }
+    const dateTimeFormat = 'Y-m-d H:i:s';
+    const configFilePath = 'config/config.ini';
+    const debugging = false;
+    const debuggingOutput = false;
+    const resultSet = 'resultSet';
+    const meta = 'meta';
 
     /**
      * @return string
      */
     public static function getAppDir() {
         return $_SERVER['DOCUMENT_ROOT'];
-    }
-
-    /**
-     * @return bool
-     */
-    public static function isDebugging() {
-        return false;
-    }
-
-    /**
-     * @return bool
-     */
-    public static function isDebuggingOutput() {
-        return false;
     }
 
     /**

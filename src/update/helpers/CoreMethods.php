@@ -47,7 +47,7 @@ class CoreMethods {
     public function setLastUpdatedTime($variableID, $timestamp) {
         $sql = 'UPDATE Variable SET lastUpdatedDate = :timeValue WHERE variableID = :variableID';
         $this->db->prepare($sql);
-        $this->db->bind(':timeValue', Date(Globals::dateTimeFormat(), $timestamp));
+        $this->db->bind(':timeValue', Date(Globals::dateTimeFormat, $timestamp));
         $this->db->bind(':variableID', $variableID);
         return $this->db->execute();
     }

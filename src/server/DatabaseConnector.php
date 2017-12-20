@@ -23,8 +23,7 @@ class DatabaseConnector {
         if (!$this->isConnected || $this->dbh == null) {
             $settings = parse_ini_file($configFilePath, TRUE);
             if (!$settings) {
-                $this->handleError(new Exception('Unable to open configuration file. The file does not exist or has been moved.'));
-                // TODO Logging and/or e-mail alert
+                $this->handleError(new Exception('Unable to open configuration file. Contact the system administrator'));
             } else {
                 $dns = $settings['db']['db_driver'] .
                     ':host=' . $settings['db']['db_host'] .
@@ -62,7 +61,7 @@ class DatabaseConnector {
      */
     function handleError($exception) {
         $logger = new Logger();
-        if (!Globals::isDebugging()) {
+        if (!Globals::debugging) {
             http_response_code(404);
             switch ($exception->getCode()) {
                 case '42S02':   // Table not found

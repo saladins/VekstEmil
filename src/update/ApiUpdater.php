@@ -97,7 +97,7 @@ SQL;
         $sql = 'DELETE FROM ' . $tableName;
         $this->db->query($sql);
         $queryResult = $this->db->execute();
-        if (Globals::isDebugging()) {
+        if (Globals::debugging) {
             $this->logger->log('DB: Forcing replacement of table ' . $tableName);
             $this->logger->log('DB: Force request given by ' . $_SERVER['REMOTE_ADDR']);
             $this->logger->log('DB: Force delete request of table ' . $tableName . ' was a ' . ($queryResult ? 'success.' : 'failure.'));
