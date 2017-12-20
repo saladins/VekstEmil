@@ -377,7 +377,6 @@ SQL;
      */
     private function getBearingColumns($tableName) {
         $sql = "SHOW COLUMNS FROM $tableName WHERE `Null` LIKE 'no' AND Extra NOT LIKE '%increment%'";
-        $this->logger->log($sql);
         $this->db->query($sql);
         return $this->db->getResultSet();
     }
