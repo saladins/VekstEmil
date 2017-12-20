@@ -5,8 +5,8 @@ abstract class Globals {
     private static $schemaName = '';
     const dateTimeFormat = 'Y-m-d H:i:s';
     const configFilePath = 'config/config.ini';
-    const debugging = false;
-    const debuggingOutput = false;
+    const debugging = true;
+    const debuggingOutput = true;
     const resultSet = 'resultSet';
     const meta = 'meta';
 

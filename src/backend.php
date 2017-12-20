@@ -1,12 +1,16 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=utf-8', false);
 header('Access-Control-Allow-Headers: Authorization, Content-Type, Content-Range, Content-Disposition, Content-Description', false);
 require '../vendor/autoload.php';
-include './server/index.php';
-include './model/index.php';
-include './update/index.php';
-include './request/index.php';
+include 'model/index.php';
+include 'update/index.php';
+include 'request/index.php';
+include 'server/index.php';
 
 $headers = getallheaders();
 if (!isset($headers['Access-Control-Request-Method'])) {
@@ -203,7 +207,7 @@ class Logger {
     public function log($content, $clearlog = false) {
         if ($clearlog) $this->clearLog();
         $timestamp = date('Y-m-d H:i:s : ');
-        file_put_contents('log.log', $timestamp . $content . "\n", FILE_APPEND);
+        file_put_contents('log/log.log', $timestamp . $content . "\n", FILE_APPEND);
     }
 
     /**

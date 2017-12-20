@@ -1,0 +1,12 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /~khes/
+RewriteRule ^api/v1/authenticate$ src/auth.php [NC,L]
+RewriteRule ^api/v1$ src/backend.php [NC,L]
+RewriteRule ^api/v1/(.*)$ src/backend.php [NC,L]
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+    RewriteCond %{REQUEST_FILENAME} -l [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^.*$ - [NC,L]
+
+    RewriteRule ^(.*) index.html [NC,L]

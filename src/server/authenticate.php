@@ -15,7 +15,8 @@ class Authenticate {
      * @throws Exception
      */
     public function __construct($configFilePath) {
-        $settings = parse_ini_file($configFilePath, true);
+        $raw = file_get_contents($configFilePath);
+        $settings = parse_ini_string($raw, true);
         if (!$settings || !isset($settings['auth']) || !isset($settings['auth']['private_key'])) {
             throw new Exception('Unable to open configuration file. Contact the system administrator');
         }

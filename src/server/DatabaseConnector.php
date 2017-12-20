@@ -21,7 +21,8 @@ class DatabaseConnector {
      */
     private function connect($configFilePath) {
         if (!$this->isConnected || $this->dbh == null) {
-            $settings = parse_ini_file($configFilePath, TRUE);
+            $raw = file_get_contents($configFilePath);
+            $settings = parse_ini_string($raw, TRUE);
             if (!$settings) {
                 $this->handleError(new Exception('Unable to open configuration file. Contact the system administrator'));
             } else {
