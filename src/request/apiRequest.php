@@ -44,7 +44,7 @@ SQL;
 SELECT municipalityID, naceID, pYear, livingPlaceValue AS value 
 FROM EmploymentDetailed WHERE pYear =(
 	SELECT MAX(pYear) FROM EmploymentDetailed)
-GROUP BY municipalityID, naceID, pYear;
+GROUP BY municipalityID, naceID, pYear, livingPlaceValue;
 SQL;
                 break;
             case 43:
