@@ -1,6 +1,6 @@
 Options +FollowSymLinks
 RewriteEngine On
-RewriteBase /~khes/
+RewriteBase /
 RewriteRule ^api/v1/authenticate$ src/auth.php [NC,L]
 RewriteRule ^api/v1$ src/backend.php [NC,L]
 RewriteRule ^api/v1/(.*)$ src/backend.php [NC,L]
