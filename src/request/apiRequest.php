@@ -54,6 +54,16 @@ WHERE municipalExpenseCategoryID = 2
 GROUP BY municipalityID, pYear;
 SQL;
                 break;
+            case 48:
+                $sql = <<<SQL
+SELECT municipalityID, pYear, naceID, SUM(valueInNOK) AS value 
+FROM EnterpriseEntry, Enterprise
+WHERE Enterprise.enterpriseID = EnterpriseEntry.enterpriseID AND EnterpriseEntry.enterprisePostCategoryID = 7
+AND Enterprise.municipalityID <= 3
+GROUP BY municipalityID, pYear, naceID;
+SQL;
+                break;
+
         }
         $this->db->query($sql);
         $result = $this->db->getResultSet();
@@ -136,6 +146,19 @@ workplaceValue,
 livingplaceValue,
 employmentBalance
 from Employment
+SQL;
+                break;
+            case 'EmploymentDetailed':
+                $sql = <<<SQL
+SELECT
+municipalityID,
+naceID,
+genderID, 
+pYear,
+workplaceValue,
+livingPlaceValue,
+employmentBalance
+FROM EmploymentDetailed
 SQL;
                 break;
             case 'EmploymentRatio': // EmploymentRatio
