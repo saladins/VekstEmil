@@ -1,6 +1,6 @@
 <?php
 include '../helpers/CoreMethods.php';
-class SsbUpdater {
+class SsbUpdate {
     /** @var Logger */
     private $logger;
     /** @var CoreMethods  */
@@ -9,7 +9,7 @@ class SsbUpdater {
     private $db;
 
     /**
-     * XlsUpdater constructor.
+     * XlsUpdate constructor.
      * @param DatabaseHandler $db
      * @param Logger $logger
      */

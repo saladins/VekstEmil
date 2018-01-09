@@ -25,6 +25,8 @@ class ApiUpdate {
                 return $this->updateSSB($request);
             case 2:
                 return $this->updateXLS($request);
+            case 3:
+                return $this->updateSurvey($request);
             default:
                 return ['{unhandled update source type}'];
         }
@@ -50,8 +52,8 @@ class ApiUpdate {
                 $this->truncateTable($tableName);
             }
         }
-        include 'provider/SsbUpdater.php';
-        $ssbUpdater = new SsbUpdater($this->db, $this->logger);
+        include 'provider/SsbUpdate.php';
+        $ssbUpdater = new SsbUpdate($this->db, $this->logger);
         return $ssbUpdater->updateTable($request, $tableName, $variableID);
     }
 
@@ -82,9 +84,22 @@ SQL;
                 }
             }
         }
-        include 'provider/XlsUpdater.php';
-        $xlsUpdate = new XlsUpdater($this->db, $this->logger);
+        include 'provider/XlsUpdate.php';
+        $xlsUpdate = new XlsUpdate($this->db, $this->logger);
         return $xlsUpdate->updateTable($request, $tableName, $variableID);
+    }
+
+    private function updateSurvey($request) {
+        if ($request->forceReplace) {
+            try {
+
+            } catch (PDOException $ex) {
+                return 'Failed to delete existing survey data. Reason given by database: ' . $ex->getMessage();
+            }
+        }
+        include 'provider/SurveyUpdate.php';
+        $surveyUpdate = new SurveyUpdate($this->db, $this->logger);
+        return $surveyUpdate->updateTable($request);
     }
 
     /**
