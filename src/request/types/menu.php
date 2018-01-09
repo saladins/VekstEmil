@@ -22,6 +22,7 @@ VariableMasterCategory.Position as masterPosition,
 VariableSubCategory.subCategoryID as subCategoryID,
 VariableSubCategory.position as subPosition,
 masterCategoryName,
+masterCategoryText,
 subCategoryName,
 statisticName 
 FROM Variable, VariableSubCategory, VariableMasterCategory
