@@ -60,12 +60,12 @@ class ApiParser {
             $requestType = $this->requestModel->requestType;
             switch ($requestType) {
                 case RequestType::Detailed:
-                    $this->validateAccessOrDie();
+//                    $this->validateAccessOrDie();
                     $response[Globals::meta] = $this->apiRequest->getMetaData($this->requestModel);
                     $response[Globals::resultSet] = $this->apiRequest->getDetailedData($this->requestModel);
                     break;
                 case RequestType::Variable:
-                    $this->validateAccessOrDie();
+//                    $this->validateAccessOrDie();
                     $response[Globals::meta] = $this->apiRequest->getMetaData($this->requestModel);
                     $response[Globals::resultSet] = $this->apiRequest->getVariableData($this->requestModel);
                     break;
