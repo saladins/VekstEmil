@@ -1,6 +1,4 @@
 <?php
-include __DIR__ . '/../helpers/CoreMethods.php';
-include __DIR__ . '/../../model/SurveyModel.php';
 
 class SurveyUpdate {
     /** @var Logger */
@@ -29,8 +27,11 @@ class SurveyUpdate {
         $startTime = $this->logger->microTimeFloat();
         try {
             $surveyID = $this->getSurveyID($request->meta->startDate, $request->meta->endDate, $request->meta->title);
+            if ($request->forceReplace) {
+                $this->removeOldData($surveyID);
+            }
             $this->createSurveyData($request->dataSet, $surveyID);
-            $date = new DateTime();
+//            $date = new DateTime();
 //            $this->core->setLastUpdatedTime($variableID, $date->getTimestamp());
             $message = 'Successfully updated: Survey data. Elapsed time: ' . date('i:s:u', (integer)($this->logger->microTimeFloat() - $startTime));
             return $message;
@@ -46,32 +47,57 @@ class SurveyUpdate {
     /**
      * @param SurveyRequestModelDataSet[] $dataSet
      * @param integer $surveyID
-     * @return Exception|PDOException
+     * @throws PDOException
      */
     private function createSurveyData($dataSet, $surveyID) {
-//        $this->db->beginTransaction();
+        $this->db->beginTransaction();
         try {
-            $this->logger->log(print_r($dataSet, true));
             /** @var SurveyRequestModelDataSet $item */
             foreach ($dataSet as $item) {
-                $currentCompanyID = $this->getCompanyID($item->organizationNumber);
-                if (is_null($currentCompanyID)) {
+                $cerrentEnterpriseID = $this->getCompanyID($item->organizationNumber);
+                if (is_null($cerrentEnterpriseID)) {
+                    if (Globals::debugging) {
+                        $this->logger->log('Warning: Unable to find enterprise ID for ' . $item->organizationNumber);
+                    }
                     // TODO current company not in main list
                 }
                 foreach ($item->answers as $answer) {
                     $questionID = $this->getQuestionIdByText($answer->question);
                     $this->linkSurveyIdAndQuestionIdOrFailSilently($surveyID, $questionID);
                     $givenAnswerID = $this->insertAnswerToGivenQuestion($surveyID, $questionID, $answer->answer);
-                    if (!is_null($currentCompanyID)) {
+                    if (!is_null($cerrentEnterpriseID)) {
                         // TODO remove me once we've previously made sure there always is a company ID. Either we get it from the DB or we create it.
-                        $this->insertSurveyAnswerForCompany($surveyID, $questionID, $givenAnswerID, $currentCompanyID);
+                        $this->insertSurveyAnswerForCompany($surveyID, $questionID, $givenAnswerID, $cerrentEnterpriseID);
                     }
                 }
-
             }
+            $this->db->endTransaction();
         } catch (PDOException $ex) {
             $this->db->rollbackTransaction();
-            return $ex;;
+            throw $ex;
+        }
+    }
+
+    private function removeOldData($surveyID) {
+        $removeSurvey_Answer = 'DELETE FROM Survey_Answer WHERE surveyID = :surveyID';
+        $this->db->prepare($removeSurvey_Answer);
+        $this->db->bind(':surveyID', $surveyID);
+        $this->db->execute();
+        $removeSurveyQuestionAnswer = 'DELETE FROM SurveyQuestionAnswer WHERE surveyID = :surveyID';
+        $this->db->prepare($removeSurveyQuestionAnswer);
+        $this->db->bind(':surveyID', $surveyID);
+        $this->db->execute();
+        $removeSurvey_SurveyQuestion = 'DELETE FROM Survey_SurveyQuestion WHERE surveyID = :surveyID';
+        $this->db->prepare($removeSurvey_SurveyQuestion);
+        $this->db->bind(':surveyID', $surveyID);
+        $this->db->execute();
+        $removeSurvey = 'DELETE FROM Survey WHERE surveyID = :survey';
+        $this->db->prepare($removeSurvey);
+        $this->db->bind(':surveyID', $surveyID);
+        $this->db->execute();
+        if (Globals::debugging) {
+            $this->logger->log('DB: Removed survey data for ID ' . $surveyID);
+            $this->logger->log('DB: Remove request given by ' . $_SERVER['REMOTE_ADDR']);
         }
     }
 
@@ -79,15 +105,16 @@ class SurveyUpdate {
      * @param integer $surveyID
      * @param integer $questionID
      * @param integer $givenAnswerID
-     * @param integer $companyID
+     * @param integer $enterpriseID
+     * @throws PDOException
      */
-    private function insertSurveyAnswerForCompany($surveyID, $questionID, $givenAnswerID, $companyID) {
-        $sql = 'INSERT INTO Survey_Answer (surveyID, questionID, givenAnswerID, companyID) VALUES (:surveyID, :questionID, :givenAnswerID, :companyID)';
+    private function insertSurveyAnswerForCompany($surveyID, $questionID, $givenAnswerID, $enterpriseID) {
+        $sql = 'INSERT INTO Survey_Answer (surveyID, questionID, givenAnswerID, enterpriseID) VALUES (:surveyID, :questionID, :givenAnswerID, :enterpriseID)';
         $this->db->prepare($sql);
         $this->db->bind(':surveyID', $surveyID);
         $this->db->bind(':questionID', $questionID);
         $this->db->bind(':givenAnswerID', $givenAnswerID);
-        $this->db->bind(':companyID', $companyID);
+        $this->db->bind(':enterpriseID', $enterpriseID);
         $this->db->execute();
     }
 
@@ -96,6 +123,7 @@ class SurveyUpdate {
      * @param integer $questionID
      * @param string $answer
      * @return integer
+     * @throws PDOException
      */
     private function insertAnswerToGivenQuestion($surveyID, $questionID, $answer) {
         $sql = 'INSERT INTO Survey_GivenAnswer (answerText) VALUE (:answer)';
@@ -115,6 +143,7 @@ class SurveyUpdate {
     /**
      * @param $surveyID
      * @param $questionID
+     * @throws PDOException
      */
     private function linkSurveyIdAndQuestionIdOrFailSilently($surveyID, $questionID) {
         $sql = 'INSERT INTO Survey_SurveyQuestion (surveyID, questionID) VALUES (:surveyID, :questionID)';
@@ -131,6 +160,7 @@ class SurveyUpdate {
     /**
      * @param string $questionText
      * @return integer
+     * @throws PDOException
      */
     private function getQuestionIdByText($questionText) {
         foreach ($this->questions as $key => $question) {
@@ -165,13 +195,14 @@ class SurveyUpdate {
      * @param $endDate
      * @param $description
      * @return integer
+     * @throws PDOException
      */
     private function getSurveyID($startDate, $endDate, $description) {
         $sql = 'SELECT surveyID FROM Survey WHERE startDate = :startDate AND endDate = :endDate';
         $this->db->prepare($sql);
         $this->db->bind(':startDate', $startDate);
         $this->db->bind(':endDate', $endDate);
-        $resultSet = $this->db->getResultSet();
+        $resultSet = $this->db->getSingleResult();
         if (!isset($resultSet['surveyID'])) {
            return $this->insertSurvey($startDate, $endDate, $description);
         } else {
@@ -185,6 +216,7 @@ class SurveyUpdate {
      * @param $endDate
      * @param $description
      * @return integer
+     * @throws PDOException
      */
     private function insertSurvey($startDate, $endDate, $description) {
         $sql = 'INSERT INTO SURVEY (description, startDate, endDate) VALUES (:description, :startDate, :endDate)';
@@ -198,6 +230,7 @@ class SurveyUpdate {
 
     /**
      * @return array
+     * @throws PDOException
      */
     private function fetchCompaniesFromDb() {
         $sql = 'SELECT enterpriseID, organizationNumber FROM Enterprise';
