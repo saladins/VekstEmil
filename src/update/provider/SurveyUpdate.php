@@ -26,9 +26,12 @@ class SurveyUpdate {
     function updateTable($request) {
         $startTime = $this->logger->microTimeFloat();
         try {
-            $surveyID = $this->getSurveyID($request->meta->startDate, $request->meta->endDate, $request->meta->title);
+            $surveyID = $this->getSurveyID($request->meta->startDate, $request->meta->endDate);
             if ($request->forceReplace) {
                 $this->removeOldData($surveyID);
+            }
+            if ($surveyID === null) {
+                $surveyID = $this->insertSurvey($request->meta->startDate, $request->meta->endDate, $request->meta->title);
             }
             $this->createSurveyData($request->dataSet, $surveyID);
 //            $date = new DateTime();
@@ -54,8 +57,8 @@ class SurveyUpdate {
         try {
             /** @var SurveyRequestModelDataSet $item */
             foreach ($dataSet as $item) {
-                $cerrentEnterpriseID = $this->getCompanyID($item->organizationNumber);
-                if (is_null($cerrentEnterpriseID)) {
+                $currentEnterpriseID = $this->getCompanyID($item->organizationNumber);
+                if (is_null($currentEnterpriseID)) {
                     if (Globals::debugging) {
                         $this->logger->log('Warning: Unable to find enterprise ID for ' . $item->organizationNumber);
                     }
@@ -65,9 +68,9 @@ class SurveyUpdate {
                     $questionID = $this->getQuestionIdByText($answer->question);
                     $this->linkSurveyIdAndQuestionIdOrFailSilently($surveyID, $questionID);
                     $givenAnswerID = $this->insertAnswerToGivenQuestion($surveyID, $questionID, $answer->answer);
-                    if (!is_null($cerrentEnterpriseID)) {
+                    if (!is_null($currentEnterpriseID)) {
                         // TODO remove me once we've previously made sure there always is a company ID. Either we get it from the DB or we create it.
-                        $this->insertSurveyAnswerForCompany($surveyID, $questionID, $givenAnswerID, $cerrentEnterpriseID);
+                        $this->insertSurveyAnswerForCompany($surveyID, $questionID, $givenAnswerID, $currentEnterpriseID);
                     }
                 }
             }
@@ -91,7 +94,7 @@ class SurveyUpdate {
         $this->db->prepare($removeSurvey_SurveyQuestion);
         $this->db->bind(':surveyID', $surveyID);
         $this->db->execute();
-        $removeSurvey = 'DELETE FROM Survey WHERE surveyID = :survey';
+        $removeSurvey = 'DELETE FROM Survey WHERE surveyID = :surveyID';
         $this->db->prepare($removeSurvey);
         $this->db->bind(':surveyID', $surveyID);
         $this->db->execute();
@@ -193,22 +196,16 @@ class SurveyUpdate {
     /**
      * @param $startDate
      * @param $endDate
-     * @param $description
      * @return integer
      * @throws PDOException
      */
-    private function getSurveyID($startDate, $endDate, $description) {
+    private function getSurveyID($startDate, $endDate) {
         $sql = 'SELECT surveyID FROM Survey WHERE startDate = :startDate AND endDate = :endDate';
         $this->db->prepare($sql);
         $this->db->bind(':startDate', $startDate);
         $this->db->bind(':endDate', $endDate);
         $resultSet = $this->db->getSingleResult();
-        if (!isset($resultSet['surveyID'])) {
-           return $this->insertSurvey($startDate, $endDate, $description);
-        } else {
-            return $resultSet['surveyID'];
-        }
-
+        return $resultSet['surveyID'];
     }
 
     /**
@@ -219,9 +216,9 @@ class SurveyUpdate {
      * @throws PDOException
      */
     private function insertSurvey($startDate, $endDate, $description) {
-        $sql = 'INSERT INTO SURVEY (description, startDate, endDate) VALUES (:description, :startDate, :endDate)';
+        $sql = 'INSERT INTO SURVEY (description, startDate, endDate) VALUES (:title, :startDate, :endDate)';
         $this->db->prepare($sql);
-        $this->db->bind(':description', $description);
+        $this->db->bind(':title', $description);
         $this->db->bind('startDate', $startDate);
         $this->db->bind(':endDate', $endDate);
         $this->db->execute();
