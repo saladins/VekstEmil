@@ -1,5 +1,5 @@
 <?php
-include '../helpers/CoreMethods.php';
+
 class SsbUpdate {
     /** @var Logger */
     private $logger;
@@ -9,7 +9,7 @@ class SsbUpdate {
     private $db;
 
     /**
-     * XlsUpdate constructor.
+     * SsbUpdate constructor.
      * @param DatabaseHandler $db
      * @param Logger $logger
      */
@@ -227,7 +227,7 @@ class SsbUpdate {
             $kostraCategories[strval($result['kostraCategoryCode'])] = $result['kostraCategoryID'];
         }
         $municipalExpenseCategories = array();
-        $sqlMunicipalExpenseCategories = 'SELECT municipalExpenseCategoryID, municipalExpenseCategoryCode FROM MunicpalExpenseCategory';
+        $sqlMunicipalExpenseCategories = 'SELECT municipalExpenseCategoryID, municipalExpenseCategoryCode FROM MunicipalExpenseCategory';
         $this->db->query($sqlMunicipalExpenseCategories);
         foreach ($this->db->getResultSet() as $result) {
             $municipalExpenseCategories[strval($result['municipalExpenseCategoryCode'])] = $result['municipalExpenseCategoryID'];
