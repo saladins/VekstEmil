@@ -16,3 +16,11 @@ class RequestModel {
         $this->constraints = [];
     }
 }
+
+class InsertRequestModel extends RequestModel {
+    /** @var integer */
+    public $providerID;
+    public function __construct() {
+        parent::__construct();
+    }
+}
