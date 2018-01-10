@@ -1,14 +1,7 @@
 <?php
+include_once 'requestModel.php';
 
-require_once 'requestModel.php';
-
-class SurveyRequestModel extends RequestModel {
-    /** @var boolean */
-    public $forceReplace;
-    /** @var integer */
-    public $providerID;
-    /** @var string */
-    public $sourceCode;
+class SurveyRequestModel extends InsertRequestModel {
     /** @var mixed */
     public $meta;
     /** @var SurveyRequestModelDataSet[] */

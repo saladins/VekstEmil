@@ -20,6 +20,12 @@ class RequestModel {
 class InsertRequestModel extends RequestModel {
     /** @var integer */
     public $providerID;
+    /** @var string */
+    public $providerCode;
+    /** @var boolean */
+    public $forceReplace;
+    /** @var string */
+    public $sourceCode;
     public function __construct() {
         parent::__construct();
     }
