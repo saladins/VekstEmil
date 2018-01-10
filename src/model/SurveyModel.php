@@ -1,6 +1,6 @@
 <?php
 
-require_once './requestModel.php';
+require_once 'requestModel.php';
 
 class SurveyRequestModel extends RequestModel {
     /** @var boolean */
