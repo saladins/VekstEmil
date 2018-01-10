@@ -1,6 +1,7 @@
 <?php
-include '../helpers/CoreMethods.php';
-class XlsUpdate {
+include_once __DIR__ . '/../helpers/CoreMethods.php';
+include_once __DIR__ . '/../../model/ProffModel.php';
+class ProffUpdate {
     /** @var Logger */
     private $logger;
     /** @var CoreMethods  */
@@ -9,7 +10,7 @@ class XlsUpdate {
     private $db;
 
     /**
-     * XlsUpdate constructor.
+     * ProffUpdate constructor.
      * @param DatabaseHandler $db
      * @param Logger $logger
      */
@@ -21,7 +22,7 @@ class XlsUpdate {
 
     /**
      * Invokes correct database table update method based on table name.
-     * @param $request
+     * @param ProffModel $request
      * @param string $tableName
      * @param integer $variableID
      * @return string
@@ -38,7 +39,7 @@ class XlsUpdate {
             }
             $date = new DateTime();
             $this->core->setLastUpdatedTime($variableID, $date->getTimestamp());
-            $message = 'Successfully updated: ' . $tableName . '. Elapsed time: ' . date('i:s:u', (integer)($this->logger->microTimeFloat() - $startTime));
+            $message = 'Successfully updated: ' . $tableName . '. Elapsed time: ' . strval($this->logger->microTimeFloat() - $startTime);
             return $message;
         } catch (PDOException $PDOException) {
             $message = 'PDO error when performing database write on ' . $tableName . ': '
@@ -50,21 +51,24 @@ class XlsUpdate {
     }
 
     /**
-     * @param $dataSet
+     * @param ProffRequestModelDataSet[] $dataSet
      * @param integer $variableID
-     * @return bool|PDOException
+     * @throws PDOException
      */
     private function insertEnterprise($dataSet, $variableID) {
         set_time_limit(120);
         $this->db->beginTransaction();
         try {
+            /** @var ProffRequestModelDataSet $enterprise */
             foreach ($dataSet as $enterprise) {
                 $sqlGetEnterpriseID = 'SELECT enterpriseID FROM Enterprise WHERE organizationNumber = :organizationNumber;';
                 $this->db->prepare($sqlGetEnterpriseID);
                 $this->db->bind(':organizationNumber', $enterprise->organizationNumber);
                 $res = $this->db->getSingleResult();
+                $enterpriseEntries = [];
                 if ($res) {
                     $enterpriseID = $res['enterpriseID'];
+                    $enterpriseEntries = $this->getEnterpriseEntries($enterpriseID);
                 } else {
                     $municipalityID = $this->core->getMunicipalityID($this->core->getMunicipalityRegionCode($enterprise->municipalityName));
                     $naceID = $this->core->getNaceID($enterprise->nace);
@@ -92,22 +96,63 @@ SQL;
                 }
                 $sqlInsertEntry = "INSERT INTO EnterpriseEntry (enterpriseID, enterprisePostCategoryID, pYear, valueInNOK) 
                              VALUES (:enterpriseID, :enterprisePostCategoryID, :pYear, :valueInNOK)";
+                /** @var Entry $entry */
                 foreach ($enterprise->entry as $entry) {
                     $enterprisePostCategoryID = $this->core->getEnterprisePostCategory($entry->type);
                     $pYear = $entry->year;
                     $value = ($entry->value == null ? 0 : $entry->value);
-                    $this->db->prepare($sqlInsertEntry);
-                    $this->db->bind(':enterpriseID', $enterpriseID);
-                    $this->db->bind(':enterprisePostCategoryID', $enterprisePostCategoryID);
-                    $this->db->bind(':pYear', $pYear);
-                    $this->db->bind(':valueInNOK', $value);
-                    $this->db->execute();
+                    if (!$this->matchEnterpriseEntry($enterpriseEntries, $enterprisePostCategoryID, $pYear, $value)) {
+                        $this->db->prepare($sqlInsertEntry);
+                        $this->db->bind(':enterpriseID', $enterpriseID);
+                        $this->db->bind(':enterprisePostCategoryID', $enterprisePostCategoryID);
+                        $this->db->bind(':pYear', $pYear);
+                        $this->db->bind(':valueInNOK', $value);
+                        $this->db->execute();
+                    }
                 }
             }
-            return $this->db->endTransaction();
+            $this->db->endTransaction();
         } catch (PDOException $ex) {
             $this->db->rollbackTransaction();
-            return $ex;
+            throw $ex;
         }
+    }
+
+    /** Attempts to match if there exists matching EnterpriseEntry
+     * @param array $enterpriseEntries
+     * @param integer $enterprisePostCategoryID
+     * @param integer $pYear
+     * @param integer $valueInNOK
+     * @return bool
+     */
+    private function matchEnterpriseEntry($enterpriseEntries, $enterprisePostCategoryID, $pYear, $valueInNOK) {
+        foreach ($enterpriseEntries as $entry) {
+            if ($entry['enterprisePostCategoryID'] === $enterprisePostCategoryID
+            && $entry['pYear'] === $pYear
+            && $entry['valueInNOK'] === $valueInNOK) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** Gets all entries for current Enterprise
+     * @param integer $enterpriseID
+     * @return array
+     */
+    private function getEnterpriseEntries($enterpriseID) {
+        $sql = 'SELECT enterprisePostCategoryID, pYear, valueInNOK FROM EnterpriseEntry WHERE enterpriseID = :enterpriseID';
+        $this->db->prepare($sql);
+        $this->db->bind(':enterpriseID', $enterpriseID);
+        $resultSet = $this->db->getResultSet();
+        $temp = [];
+        foreach ($resultSet as $item) {
+            $single = array();
+            $single['enterprisePostCategoryID'] = $item['enterprisePostCategoryID'];
+            $single['pYear'] = $item['pYear'];
+            $single['valueInNOK'] = $item['valueInNOK'];
+            array_push($temp, $single);
+        }
+        return $temp;
     }
 }
