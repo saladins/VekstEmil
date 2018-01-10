@@ -1,4 +1,6 @@
 <?php
+include_once 'helpers/CoreMethods.php';
+
 /** Handles database updates */
 class ApiUpdate {
     /** @var DatabaseHandler  */
@@ -24,7 +26,7 @@ class ApiUpdate {
             case 1:
                 return $this->updateSSB($request);
             case 2:
-                return $this->updateXLS($request);
+                return $this->updateProff($request);
             case 3:
                 return $this->updateSurvey($request);
             default:
@@ -35,7 +37,7 @@ class ApiUpdate {
     /**
      * Checks whether or not the variable exists in the Variable data table.
      * Handles SSB data only
-     * @param $request
+     * @param InsertRequestModel $request
      * @return string
      */
     private function updateSSB($request) {
@@ -58,10 +60,10 @@ class ApiUpdate {
     }
 
     /**
-     * @param $request
+     * @param InsertRequestModel $request
      * @return string
      */
-    private function updateXLS($request) {
+    private function updateProff($request) {
         $sql = <<<SQL
 SELECT variableID, tableName FROM Variable WHERE providerCode LIKE CONCAT(:providerCode, '%');
 SQL;
@@ -78,14 +80,13 @@ SQL;
                     if ($tableName === 'Enterprise') {
                         $this->truncateTable('EnterpriseEntry');
                     }
-                    $this->truncateTable($tableName);
                 } catch (PDOException $ex) {
                     return 'Failed to delete from ' . $tableName . '. Reason given by database: ' . $ex->getMessage();
                 }
             }
         }
-        include 'provider/XlsUpdate.php';
-        $xlsUpdate = new XlsUpdate($this->db, $this->logger);
+        include 'provider/ProffUpdate.php';
+        $xlsUpdate = new ProffUpdate($this->db, $this->logger);
         return $xlsUpdate->updateTable($request, $tableName, $variableID);
     }
 

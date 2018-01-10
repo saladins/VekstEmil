@@ -1,6 +1,5 @@
 <?php
-include_once __DIR__ . '/../helpers/CoreMethods.php';
-include_once __DIR__ . '/../../model/ProffModel.php';
+
 class ProffUpdate {
     /** @var Logger */
     private $logger;
