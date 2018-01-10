@@ -15,7 +15,7 @@ class ApiUpdate {
     /**
      * Public entry point for database updates.
      * Determines which provider the data is from.
-     * @param $request
+     * @param InsertRequestModel $request
      * @return array|string
      */
     public function update($request) {
@@ -90,13 +90,13 @@ SQL;
     }
 
     private function updateSurvey($request) {
-        if ($request->forceReplace) {
-            try {
-
-            } catch (PDOException $ex) {
-                return 'Failed to delete existing survey data. Reason given by database: ' . $ex->getMessage();
-            }
-        }
+//        if ($request->forceReplace) {
+//            try {
+//
+//            } catch (PDOException $ex) {
+//                return 'Failed to delete existing survey data. Reason given by database: ' . $ex->getMessage();
+//            }
+//        }
         include 'provider/SurveyUpdate.php';
         $surveyUpdate = new SurveyUpdate($this->db, $this->logger);
         return $surveyUpdate->updateTable($request);
