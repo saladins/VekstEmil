@@ -150,7 +150,7 @@ VALUES ('$enterprisePostCategoryCode', '$enterprisePostCategoryCode')";
      */
     public function getNaceID($naceCode) {
         if ($this->naceMap == []) {
-            $sql = 'SELECT naceID, naceCodeStart, naceCodeEnd FROM Nace2007';
+            $sql = 'SELECT naceID, naceCodeStart, naceCodeEnd FROM Nace';
             $this->db->query($sql);
             foreach ($this->db->getResultSet() as $result) {
                 $start = $result['naceCodeStart'];
@@ -170,7 +170,7 @@ VALUES ('$enterprisePostCategoryCode', '$enterprisePostCategoryCode')";
                 $explodedCode[1] = $naceCode;
             }
             $sql = <<<SQL
-INSERT INTO Nace2007 (naceCodeStart, naceCodeEnd, naceText)
+INSERT INTO Nace (naceCodeStart, naceCodeEnd, naceText)
 VALUES($explodedCode[0], $explodedCode[1], 'Unknown NACE')
 SQL;
             $this->db->query($sql);
