@@ -62,26 +62,22 @@ class DatabaseConnector {
      */
     function handleError($exception) {
         $logger = new Logger();
-        if (!Globals::debugging) {
-            http_response_code(404);
-            switch ($exception->getCode()) {
-                case '42S02':   // Table not found
-                    $message = 'Misconfigured PDO statement.';
-                    break;
-                case 1045:      // Username or pw error
-                    $message = 'User access error. ';
-                    break;
-                default:
-                    $message = $exception->getMessage();
-                    break;
-            }
-            $logger->log($message);
-            echo json_encode($message) or die;
-            die;
-        } else {
-            $logger->log(print_r($exception, true));
-            echo json_encode($exception) or die;
-            die;
+        switch ($exception->getCode()) {
+            case '42S02':   // Table not found
+                http_response_code(404);
+                $message = 'Misconfigured PDO statement.';
+                break;
+            case 1045:      // Username or pw error
+                http_response_code(500);
+                $message = 'User access error. Check username or password.';
+                break;
+            default:
+                http_response_code(500);
+                $message = $exception->getMessage();
+                break;
         }
+        $logger->log($message);
+        echo json_encode('{' . $message . '}');
+        die;
     }
 }
