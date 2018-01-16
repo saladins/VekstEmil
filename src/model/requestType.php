@@ -9,6 +9,6 @@ abstract class RequestType {
     const Menu = 70;
     const Search = 80;
     const Update = 100;
-
+    const DataTables = 110;
     const Unknown = -1;
 }

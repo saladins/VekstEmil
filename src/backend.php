@@ -88,8 +88,11 @@ class ApiParser {
                     $response[GLOBALS::resultSet] = $this->apiRequest->getSearchResult($this->requestModel->searchTerm);
                     break;
                 case RequestType::Update:
-                    $ApiUpdate = new ApiUpdate();
-                    $response[Globals::resultSet] = $ApiUpdate->update($this->requestModel);
+                    $apiUpdate = new ApiUpdate();
+                    $response[Globals::resultSet] = $apiUpdate->update($this->requestModel);
+                    break;
+                case RequestType::DataTables:
+                    $response[GLOBALS::resultSet] = $this->apiRequest->getDataTables();
                     break;
                 default:
                     http_response_code(404);

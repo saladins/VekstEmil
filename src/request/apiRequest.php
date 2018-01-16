@@ -537,6 +537,11 @@ SQL;
         return $search->searchTerm($searchTerm);
     }
 
+    public function getDataTables() {
+        $dataTables = new DataTables($this->db);
+        return $dataTables->getDataTables();
+    }
+
     /**
      * @param string $needle
      * @param string[] $haystack
