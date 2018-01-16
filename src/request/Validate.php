@@ -49,7 +49,8 @@ class Validate {
                     }
                     break;
                 case 70: // Menu
-
+                    break;
+                case 80: // Search
                     break;
                 case 100: // Update
                     break;

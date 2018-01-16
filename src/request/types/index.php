@@ -4,3 +4,4 @@ include 'links.php';
 include 'menu.php';
 include 'related.php';
 include 'tags.php';
+include 'search.php';

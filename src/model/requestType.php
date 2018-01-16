@@ -7,7 +7,7 @@ abstract class RequestType {
     const Links = 50;
     const Tags = 60;
     const Menu = 70;
-    const Generic = 80;
+    const Search = 80;
     const Update = 100;
 
     const Unknown = -1;

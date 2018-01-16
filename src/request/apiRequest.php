@@ -412,7 +412,7 @@ SQL;
     private function getVariableAndProvider($variableID) {
         $sql = <<<'SQL'
 SELECT a.variableID, a.providerID, a.statisticName, a.tableName, 
-a.lastUpdatedDate, a.providerCode, a.isImplemented, 
+a.lastUpdatedDate, a.providerCode, 
 b.providerName, b.providerNameShortForm, b.providerNotice, 
 b.providerLink, b.providerAPIAddress, c.subCategoryName
 FROM Variable a, VariableProvider b, VariableSubCategory c
@@ -530,6 +530,11 @@ SQL;
     public function getTags($variableID) {
         $tags = new Tags($this->db);
         return $tags->getTagsForVariable($variableID);
+    }
+
+    public function getSearchResult($searchTerm) {
+        $search = new Search($this->db, $this->logger);
+        return $search->searchTerm($searchTerm);
     }
 
     /**

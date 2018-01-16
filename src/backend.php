@@ -84,8 +84,8 @@ class ApiParser {
                 case RequestType::Menu:
                     $response[Globals::resultSet] = $this->apiRequest->getMenu();
                     break;
-                case RequestType::Generic:
-                    throw new Exception('Not yet implemented');
+                case RequestType::Search:
+                    $response[GLOBALS::resultSet] = $this->apiRequest->getSearchResult($this->requestModel->searchTerm);
                     break;
                 case RequestType::Update:
                     $ApiUpdate = new ApiUpdate();
@@ -146,6 +146,7 @@ class ApiParser {
         }
         $postContent->requestType = $_GET[ValidParam::requestType];
         $postContent->variableID = (isset($_GET[ValidParam::variableID]) ? $_GET[ValidParam::variableID] : null);
+        $postContent->searchTerm = (isset($_GET[ValidParam::searchTerm]) ? $_GET[ValidParam::searchTerm] : null);
         if (isset($_GET[ValidParam::constraints])) {
             $groups = explode(';', $_GET[ValidParam::constraints]);
             $postContent->constraints = [];

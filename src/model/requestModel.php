@@ -6,6 +6,8 @@ class RequestModel {
     public $variableID;
     /** @var string */
     public $tableName;
+    /** @var string */
+    public $searchTerm;
     /** @var  string[][] */
     public $constraints;
 
@@ -13,6 +15,7 @@ class RequestModel {
         $this->requestType = RequestType::Unknown;
         $this->variableID = -1;
         $this->tableName = '';
+        $this->searchTerm = '';
         $this->constraints = [];
     }
 }
