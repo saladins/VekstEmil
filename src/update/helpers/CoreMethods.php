@@ -82,6 +82,13 @@ class CoreMethods {
         }
     }
 
+    /** Gets region codes for local region
+     * @return array
+     */
+    public function getRegionCodes() {
+        return ['0605', '0612', '0532'];
+    }
+
     /**
      * @param string $municipalityName
      * @return string
