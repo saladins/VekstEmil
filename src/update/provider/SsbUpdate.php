@@ -33,11 +33,14 @@ class SsbUpdate {
         }
         try {
             switch ($tableName) {
-                case 'PopulationChange':
-                    $this->insertPopulationChange($request->dataSet, $variableID);
+                case 'ClosedEnterprise':
+                    $this->insertClosedEnterprise($request->dataSet, $variableID);
                     break;
-                case 'Movement':
-                    $this->insertMovement($request->dataSet, $variableID);
+                case 'CommuteBalance':
+                    $this->insertCommuteBalance($request->dataSet, $variableID);
+                    break;
+                case 'Education':
+                    $this->insertEducation($request->dataSet, $variableID);
                     break;
                 case 'Employment':
                     $this->insertEmployment($request->dataSet, $variableID);
@@ -45,11 +48,11 @@ class SsbUpdate {
                 case 'EmploymentDetailed':
                     $this->insertEmploymentDetailed($request->dataSet, $variableID);
                     break;
-                case 'CommuteBalance':
-                    $this->insertCommuteBalance($request->dataSet, $variableID);
+                case 'EmploymentRatio':
+                    $this->insertEmploymentRatio($request->dataSet, $variableID);
                     break;
-                case 'Unemployment':
-                    $this->insertUnemployment($request->dataSet, $variableID);
+                case 'EmploymentSector':
+                    $this->insertEmploymentSector($request->dataSet, $variableID);
                     break;
                 case 'HomeBuildingArea':
                 case 'FunctionalBuildingArea':
@@ -58,28 +61,30 @@ class SsbUpdate {
                 case 'HouseholdIncome':
                     $this->insertHouseholdIncome($request->dataSet, $variableID);
                     break;
-                case 'Proceeding':
-                    $this->insertProceeding($request->dataSet, $variableID);
-                    break;
-                case 'Education':
-                    $this->insertEducation($request->dataSet, $variableID);
-                    break;
-                case 'RegionalCooperation':
-                    $this->insertRegionalCooperation($request->dataSet, $variableID);
+                case 'Movement':
+                    $this->insertMovement($request->dataSet, $variableID);
                     break;
                 case 'NewEnterprise':
                     $this->insertNewEnterprise($request->dataSet, $variableID);
                     break;
-                case 'ClosedEnterprise':
-                    $this->insertClosedEnterprise($request->dataSet, $variableID);
+                case 'PopulationAge':
+                    $this->insertPopulationAge($request->dataSet, $variableID);
                     break;
-                case 'EmploymentSector':
-                    $this->insertEmploymentSector($request->dataSet, $variableID);
+                case 'PopulationChange':
+                    $this->insertPopulationChange($request->dataSet, $variableID);
+                    break;
+                case 'Proceeding':
+                    $this->insertProceeding($request->dataSet, $variableID);
+                    break;
+                case 'RegionalCooperation':
+                    $this->insertRegionalCooperation($request->dataSet, $variableID);
+                    break;
+                case 'Unemployment':
+                    $this->insertUnemployment($request->dataSet, $variableID);
                     break;
                 default:
-                    $testTime = $this->logger->microTimeFloat();
+//                    throw new PDOException('Generic method used');
                     $this->insertGeneric($request->dataSet, $tableName, $variableID);
-                    $this->logger->log('Insert generic took ' . ($this->logger->microTimeFloat() - $testTime) . ' seconds');
             }
             $date = new DateTime();
             $this->core->setLastUpdatedTime($variableID, $date->getTimestamp());
@@ -142,6 +147,56 @@ class SsbUpdate {
             return $ex;
         }
 
+    }
+
+    private function insertEmploymentRatio($dataSet, $variableID) {
+        $sql = <<<'SQL'
+INSERT INTO EmploymentRatio (variableID, municipalityID, genderID, ageRangeID, pYear, employmentPercent)
+VALUES (:variableID, :municipalityID, :genderID, :ageRangeID, :pYear, :employmentPercent);
+SQL;
+        try {
+            $this->db->beginTransaction();
+            $region = [];
+            foreach ($dataSet as $item) {
+                $municipalityID = $this->core->getMunicipalityID($item->Region);
+                $genderID = $this->core->getGenderID($item->Kjonn);
+                $ageRangeID = $this->core->getAgeRangeID($item->Alder);
+                $pYear = $item->Tid;
+                $employmentPercent = $item->value;
+                if (in_array($item->Region, $this->core->getRegionCodes())) {
+                    if (!isset($region[$pYear][$genderID][$ageRangeID])) {$region[$pYear][$genderID][$ageRangeID] = 0; }
+                    $region[$pYear][$genderID][$ageRangeID] += $employmentPercent;
+                }
+                $this->db->prepare($sql);
+                $this->db->bind(':variableID', $variableID);
+                $this->db->bind(':municipalityID', $municipalityID);
+                $this->db->bind(':genderID', $genderID);
+                $this->db->bind(':ageRangeID', $ageRangeID);
+                $this->db->bind(':pYear', $pYear);
+                $this->db->bind(':employmentPercent', $employmentPercent);
+                $this->db->execute();
+
+            }
+            $regionID = $this->core->getMunicipalityID('9999');
+            foreach ($region as $pYear => $item3) {
+                foreach ($item3 as $genderID => $item2) {
+                    foreach ($item2 as $ageRangeID => $item) {
+                        $this->db->prepare($sql);
+                        $this->db->bind(':variableID', $variableID);
+                        $this->db->bind(':municipalityID', $regionID);
+                        $this->db->bind(':genderID', $genderID);
+                        $this->db->bind(':ageRangeID', $ageRangeID);
+                        $this->db->bind(':pYear', $pYear);
+                        $this->db->bind(':employmentPercent', $item / 3);
+                        $this->db->execute();
+                    }
+                }
+            }
+            return $this->db->endTransaction();
+        } catch (PDOException $ex) {
+            $this->db->rollbackTransaction();
+            return $ex;
+        }
     }
 
     /**
@@ -272,15 +327,42 @@ SQL;
         $sql = 'INSERT INTO Education (variableID, municipalityID, genderID, gradeID, pYear, percentEducated) 
                 VALUES (:varID, :munID, :genderID, :gradeID, :pYear, :percentEducated)';
         try {
+            $region = [];
             $this->db->beginTransaction();
             foreach ($dataSet as $item) {
+                $municipalityID = $this->core->getMunicipalityID($item->Region);
+                $genderID = $this->core->getGenderID($item->Kjonn);
+                $gradeID = $grades[strval($item->Nivaa)];
+                $pYear = $item->Tid;
                 $this->db->prepare($sql);
                 $this->db->bind(':varID', $variableID);
-                $this->db->bind(':munID', $this->core->getMunicipalityID($item->Region));
-                $this->db->bind(':genderID', $this->core->getGenderID($item->Kjonn));
-                $this->db->bind(':gradeID', $grades[strval($item->Nivaa)]);
+                $this->db->bind(':munID', $municipalityID);
+                $this->db->bind(':genderID', $genderID);
+                $this->db->bind(':gradeID', $gradeID);
+                $this->db->bind(':pYear', $pYear);
                 $this->db->bind(':percentEducated', $item->value);
                 $this->db->execute();
+                if (in_array($item->Region, $this->core->getRegionCodes())) {
+                    if (!isset($region[$pYear])) {$region[$pYear] = []; }
+                    if (!isset($region[$pYear][$genderID])) {$region[$pYear][$genderID] = []; }
+                    if (!isset($region[$pYear][$genderID][$gradeID])) {$region[$pYear][$genderID][$gradeID] = 0; }
+                    $region[$pYear][$genderID][$gradeID] += $item->value;
+                }
+            }
+            $regionID = $this->core->getMunicipalityID('9999');
+            foreach ($region as $pYear => $item3) {
+                foreach ($item3 as $genderID => $item2) {
+                    foreach ($item2 as $gradeID => $item) {
+                        $this->db->prepare($sql);
+                        $this->db->bind(':varID', $variableID);
+                        $this->db->bind(':munID', $regionID);
+                        $this->db->bind(':genderID', $genderID);
+                        $this->db->bind(':gradeID', $gradeID);
+                        $this->db->bind(':pYear', $pYear);
+                        $this->db->bind(':percentEducated', $item / 3);
+                        $this->db->execute();
+                    }
+                }
             }
             return $this->db->endTransaction();
         } catch (PDOException $ex) {
@@ -345,15 +427,36 @@ SQL;
         $sql = 'INSERT INTO HouseholdIncome (variableID, municipalityID, householdTypeID, pYear, householdIncomeAvg) 
                 VALUES (:varID, :munID, :householdTypeID, :pYear, :householdIncomeAvg);';
         try {
+            $region = [];
             $this->db->beginTransaction();
             foreach ($dataSet as $item) {
+                $pYear = $item->Tid;
+                $hid = $householdTypes[strval($item->HusholdType)];
+                $municipalityID = $this->core->getMunicipalityID($item->Region);
                 $this->db->prepare($sql);
                 $this->db->bind(':varID', $variableID);
-                $this->db->bind(':munID', $this->core->getMunicipalityID($item->Region));
-                $this->db->bind(':householdTypeID', $householdTypes[strval($item->HusholdType)]);
-                $this->db->bind(':pYear', $item->Tid);
+                $this->db->bind(':munID', $municipalityID);
+                $this->db->bind(':householdTypeID', $hid);
+                $this->db->bind(':pYear', $pYear);
                 $this->db->bind(':householdIncomeAvg', $item->value);
                 $this->db->execute();
+
+                if (in_array($item->Region, $this->core->getRegionCodes())) {
+                    if (!isset($region[$pYear])) {$region[$pYear] = []; }
+                    if (!isset($region[$pYear][$hid])) {$region[$pYear][$hid] = 0; }
+                    $region[$pYear][$hid] += $item->value;
+                }
+            }
+            foreach ($region as $pYear => $item2) {
+                foreach ($item2 as $hid => $item) {
+                    $this->db->prepare($sql);
+                    $this->db->bind(':varID', $variableID);
+                    $this->db->bind(':munID', $this->core->getMunicipalityID('9999'));
+                    $this->db->bind(':householdTypeID', $hid);
+                    $this->db->bind(':pYear', $pYear);
+                    $this->db->bind(':householdIncomeAvg', $item / 3);
+                    $this->db->execute();
+                }
             }
             return $this->db->endTransaction();
         } catch (PDOException $ex) {
@@ -418,19 +521,41 @@ SQL;
 INSERT INTO Unemployment (variableID, municipalityID, ageRangeID, pYear, pMonth, unemploymentPercent)
 VALUES (:varID, :munID, :ageRangeID, :pYear, :pMonth, :unemploymentPercent);
 SQL;
+        $region = [];
         try {
             $this->db->beginTransaction();
             foreach ($dataSet as $item) {
                 $pYear = substr($item->Tid, 0, 4);
                 $pMonth = substr($item->Tid, 5);
+                $ageRangeID = $this->core->getAgeRangeID($item->Alder);
                 $this->db->prepare($sql);
                 $this->db->bind(':varID', $variableID);
                 $this->db->bind(':munID', $this->core->getMunicipalityID($item->Region));
-                $this->db->bind(':ageRangeID', $this->core->getAgeRangeID($item->Alder));
+                $this->db->bind(':ageRangeID', $ageRangeID);
                 $this->db->bind(':pYear', $pYear);
                 $this->db->bind(':pMonth', $pMonth);
                 $this->db->bind(':unemploymentPercent', $item->value);
                 $this->db->execute();
+                if (in_array($item->Region, $this->core->getRegionCodes())) {
+                    if (!isset($region[$pYear])) {$region[$pYear] = []; }
+                    if (!isset($region[$pYear][$pMonth])) {$region[$pYear][$pMonth] = []; }
+                    if (!isset($region[$pYear][$pMonth][$ageRangeID])) {$region[$pYear][$pMonth][$ageRangeID] = 0; }
+                    $region[$pYear][$pMonth][$ageRangeID] += $item->value;
+                }
+            }
+            foreach ($region as $pYear => $item3) {
+                foreach ($item3 as $pMonth => $item2) {
+                    foreach ($item2 as $ageRangeID => $item) {
+                        $this->db->prepare($sql);
+                        $this->db->bind(':varID', $variableID);
+                        $this->db->bind(':munID', $this->core->getMunicipalityID('9999'));
+                        $this->db->bind(':ageRangeID', $ageRangeID);
+                        $this->db->bind(':pYear', $pYear);
+                        $this->db->bind(':pMonth', $pMonth);
+                        $this->db->bind(':unemploymentPercent', $item / 3);
+                        $this->db->execute();
+                    }
+                }
             }
             return $this->db->endTransaction();
 
@@ -450,6 +575,7 @@ SQL;
         $sql = 'INSERT INTO CommuteBalance (variableID, municipalityID, workingMunicipalityID, pYear, commuters)
                 VALUES (:varID, :munID, :workMunID, :pYear, :commuters);';
         try {
+            $region = [];
             $this->db->beginTransaction();
             foreach ($dataSet as $item) {
                 $this->db->prepare($sql);
@@ -459,6 +585,30 @@ SQL;
                 $this->db->bind(':pYear', $item->Tid);
                 $this->db->bind(':commuters', $item->value);
                 $this->db->execute();
+                if (in_array($item->Bokommuen, $this->core->getRegionCodes())) {
+                    if (!isset($region[$item->Tid])) {$region[$item->Tid] = []; }
+                    if (in_array($item->ArbstedKomm, $this->core->getRegionCodes())) {
+                        if (!isset($region[$item->Tid]['9999'])) {
+                            $region[$item->Tid]['9999'] = 0; }
+                        $region[$item->Tid]['9999']+= $item->value;
+                    } else {
+                        if (!isset($region[$item->Tid][$item->ArbstedKomm])) {
+                            $region[$item->Tid][$item->ArbstedKomm] = 0; }
+                        $region[$item->Tid][$item->ArbstedKomm] += $item->value;
+                    }
+                }
+            }
+            $regID = $this->core->getMunicipalityID('9999');
+            foreach ($region as $year => $item2) {
+                foreach ($item2 as $workMunID => $item) {
+                    $this->db->prepare($sql);
+                    $this->db->bind(':varID', $variableID);
+                    $this->db->bind(':munID', $regID);
+                    $this->db->bind(':workMunID', $this->core->getMunicipalityID($workMunID));
+                    $this->db->bind(':pYear', $year);
+                    $this->db->bind(':commuters', $item);
+                    $this->db->execute();
+                }
             }
             return $this->db->endTransaction();
         } catch (PDOException $ex) {
@@ -480,6 +630,8 @@ INSERT INTO Employment (variableID, municipalityID, naceID, genderID, pYear, wor
 VALUES (:varID, :munID, :naceID, :genderID, :pYear, :workVal, :livVal, :balance);
 SQL;
         $data = [];
+        $region = [];
+        $regionObj = '{"workVal": 0, "livVal": 0, "balance": 0}';
         try {
             $this->db->beginTransaction();
             foreach ($dataSet as $item) {
@@ -505,6 +657,14 @@ SQL;
                         $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['living']
                         -
                         $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['working'];
+                    if (in_array($item->Region, $this->core->getRegionCodes())) {
+                        if (!isset($region[$pYear])) { $region[$pYear] = []; }
+                        if (!isset($region[$pYear][$naceID])) { $region[$pYear][$naceID] = []; }
+                        if (!isset($region[$pYear][$naceID][$genderID])) { $region[$pYear][$naceID][$genderID] = json_decode($regionObj); }
+                        $region[$pYear][$naceID][$genderID]->workVal = $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['working'];;
+                        $region[$pYear][$naceID][$genderID]->livVal = $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['living'];
+                        $region[$pYear][$naceID][$genderID]->balance = $balance;
+                    }
                     $this->db->prepare($sql);
                     $this->db->bind(':varID', $variableID);
                     $this->db->bind(':munID', $municipalityID);
@@ -515,6 +675,23 @@ SQL;
                     $this->db->bind(':livVal', $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['living']);
                     $this->db->bind(':balance', $balance);
                     $this->db->execute();
+                }
+            }
+            $regionID = $this->core->getMunicipalityID('9999');
+            foreach ($region as $year => $item3) {
+                foreach ($item3 as $naceID => $item2) {
+                    foreach ($item2 as $genderID => $item) {
+                        $this->db->prepare($sql);
+                        $this->db->bind(':varID', $variableID);
+                        $this->db->bind(':munID', $regionID);
+                        $this->db->bind(':naceID', $naceID);
+                        $this->db->bind(':genderID', $genderID);
+                        $this->db->bind(':pYear', $year);
+                        $this->db->bind(':workVal', $item->workVal);
+                        $this->db->bind(':livVal', $item->livVal);
+                        $this->db->bind(':balance', $item->balance);
+                        $this->db->execute();
+                    }
                 }
             }
             return $this->db->endTransaction();
@@ -537,6 +714,8 @@ INSERT INTO EmploymentDetailed (variableID, municipalityID, naceID, genderID, pY
 VALUES (:variableID, :mun, :nace, :gend, :yr, :wo, :li, :ba)
 SQL;
         $data = [];
+        $regionObj = '{"workVal": 0, "livVal": 0, "balance": 0}';
+        $region = [];
         try {
             $this->db->beginTransaction();
             foreach ($dataSet as $item) {
@@ -562,16 +741,44 @@ SQL;
                     $living = $data[$item->Region][$item->NACE2007][$item->Kjonn][$item->Tid]['living'];
                     $working = $data[$item->Region][$item->NACE2007][$item->Kjonn][$item->Tid]['working'];
                     $balance = $living - $working;
+                    $genderID = $this->core->getGenderID($item->Kjonn);
+                    $naceID = $this->core->getNaceID($item->NACE2007);
+                    $pYear = $item->Tid;
                     $this->db->prepare($sql);
                     $this->db->bind(':variableID', $variableID);
                     $this->db->bind(':mun', $this->core->getMunicipalityID($item->Region));
-                    $this->db->bind(':nace', $this->core->getNaceID($item->NACE2007));
-                    $this->db->bind(':gend', $this->core->getGenderID($item->Kjonn));
-                    $this->db->bind(':yr', $item->Tid);
+                    $this->db->bind(':nace', $naceID);
+                    $this->db->bind(':gend', $genderID);
+                    $this->db->bind(':yr', $pYear);
                     $this->db->bind(':wo', $working);
                     $this->db->bind(':li', $living);
                     $this->db->bind(':ba', $balance);
                     $this->db->execute();
+                    if (in_array($item->Region, $this->core->getRegionCodes())) {
+                        if (!isset($region[$pYear])) {$region[$pYear] = [];}
+                        if (!isset($region[$pYear][$naceID])) {$region[$pYear][$naceID] = [];}
+                        if (!isset($region[$pYear][$naceID][$genderID])) {$region[$pYear][$naceID][$genderID] = json_decode($regionObj);}
+                        $region[$pYear][$naceID][$genderID]->workVal = $working;
+                        $region[$pYear][$naceID][$genderID]->livVal = $living;
+                        $region[$pYear][$naceID][$genderID]->balance = $balance;
+                    }
+                }
+            }
+            $regionID = $this->core->getMunicipalityID('9999');
+            foreach ($region as $year => $item3) {
+                foreach ($item3 as $naceID => $item2) {
+                    foreach ($item2 as $genderID => $item) {
+                        $this->db->prepare($sql);
+                        $this->db->bind(':varID', $variableID);
+                        $this->db->bind(':munID', $regionID);
+                        $this->db->bind(':naceID', $naceID);
+                        $this->db->bind(':genderID', $genderID);
+                        $this->db->bind(':pYear', $year);
+                        $this->db->bind(':workVal', $item->workVal);
+                        $this->db->bind(':livVal', $item->livVal);
+                        $this->db->bind(':balance', $item->balance);
+                        $this->db->execute();
+                    }
                 }
             }
             return $this->db->endTransaction();
@@ -589,8 +796,13 @@ SQL;
      */
     private function insertMovement($dataSet, $variableID) {
         $res = [];
+        $regionObj = '{"incoming": 0, "outgoing": 0, "sum": 0}';
+        $region = [];
         foreach ($dataSet as $item) {
-            $res[$item->Tid][$this->core->getMunicipalityID(strval($item->Region))][$item->ContentsCode] = $item->value;
+            $res[$item->Tid][$item->Region][$item->ContentsCode] = $item->value;
+            if (in_array($item->Region, $this->core->getRegionCodes())) {
+                if (!isset($region[$item->Tid])) {$region[$item->Tid] = json_decode($regionObj); }
+            }
         }
         $sql = 'INSERT INTO Movement (variableID, municipalityID, pYear, incomingAll, outgoingAll, sumAll) VALUES (:varID, :munID, :pYear, :incoming, :outgoing, :sum)';
         try {
@@ -599,19 +811,81 @@ SQL;
                 foreach ($outer1 as $munic => $data) {
                     $this->db->prepare($sql);
                     $this->db->bind(':varID', $variableID);
-                    $this->db->bind(':munID', $munic);
+                    $this->db->bind(':munID', $this->core->getMunicipalityID(strval($munic)));
                     $this->db->bind(':pYear', $year);
                     $this->db->bind(':incoming', $data['Innflytting']);
                     $this->db->bind(':outgoing', $data['Utflytting']);
                     $this->db->bind(':sum', $data['Netto']);
                     $this->db->execute();
+                    if (in_array($munic, $this->core->getRegionCodes())) {
+                        $region[$year]->incoming += $data['Innflytting'];
+                        $region[$year]->outgoing += $data['Utflytting'];
+                        $region[$year]->sum += $data['Netto'];
+                    }
                 }
+            }
+            $regionID = $this->core->getMunicipalityID('9999');
+            foreach ($region as $year => $item) {
+                $this->db->prepare($sql);
+                $this->db->bind(':varID', $variableID);
+                $this->db->bind(':munID', $regionID);
+                $this->db->bind(':pYear', $year);
+                $this->db->bind(':incoming', $item->incoming);
+                $this->db->bind(':outgoing', $item->outgoing);
+                $this->db->bind(':sum', $item->sum);
+                $this->db->execute();
             }
             return $this->db->endTransaction();
         } catch (PDOException $ex) {
             $this->db->rollbackTransaction();
             return $ex;
         }
+    }
+
+    private function insertPopulationAge($dataSet, $variableID) {
+        $sql = <<<'SQL'
+INSERT INTO PopulationAge (variableID, municipalityID, ageRangeID, genderID, pYear, population)
+VALUES (:variableID, :munID, :ageRangeID, :genderID, :pYear, :population);
+SQL;
+        $region = [];
+//        $temp = [];
+        $this->db->beginTransaction();
+        foreach ($dataSet as $item) {
+//            $temp[$item->Region][$item->Tid][$item->Alder][$item->Kjonn] = $item->value;
+            $municipalityID = $this->core->getMunicipalityID($item->Region);
+            $ageRangeID = $this->core->getAgeRangeID($item->Alder);
+            $genderID = $this->core->getGenderID($item->Kjonn);
+            $pYear = $item->Tid;
+            if (in_array($item->Region, $this->core->getRegionCodes())) {
+                if (!isset($region[$pYear][$ageRangeID][$genderID])) {$region[$pYear][$ageRangeID][$genderID] = 0; }
+                $region[$pYear][$ageRangeID][$genderID] += $item->value;
+            }
+            $this->db->prepare($sql);
+            $this->db->bind(':variableID', $variableID);
+            $this->db->bind(':munID', $municipalityID);
+            $this->db->bind(':ageRangeID', $ageRangeID);
+            $this->db->bind(':genderID', $genderID);
+            $this->db->bind(':pYear', $pYear);
+            $this->db->bind(':population', $item->value);
+            $this->db->execute();
+        }
+        $regionID = $this->core->getMunicipalityID('9999');
+        foreach ($region as $pYear => $item3) {
+            foreach ($item3 as $ageRangeID => $item2) {
+                foreach ($item2 as $genderID => $item) {
+                    $this->db->prepare($sql);
+                    $this->db->bind(':variableID', $variableID);
+                    $this->db->bind(':munID', $regionID);
+                    $this->db->bind(':ageRangeID', $ageRangeID);
+                    $this->db->bind(':genderID', $genderID);
+                    $this->db->bind(':pYear', $pYear);
+                    $this->db->bind(':population', $item);
+                    $this->db->execute();
+
+                }
+            }
+        }
+        return $this->db->endTransaction();
     }
 
     /**
@@ -626,7 +900,12 @@ SQL;
 INSERT INTO PopulationChange (variableID, municipalityID, pYear, pQuarter, born, dead, totalPopulation)
 VALUES(:variableID, :munID, :pYear, :pQuarter, :born, :dead, :total);
 SQL;
+        $jsonObject = <<<'JSON'
+{"municipalityID": 0, "dead": 0, "born": 0, "total": 0}
+JSON;
+
         try {
+            $regionSet = array();
             $this->db->beginTransaction();
             foreach ($dataSet as $item) {
                 $year = substr($item->Tid,0, 4);
@@ -647,6 +926,13 @@ SQL;
                 if (isset($temp[$municipalityID][$year][$quarter]->dead) &&
                     isset($temp[$municipalityID][$year][$quarter]->born) &&
                     isset($temp[$municipalityID][$year][$quarter]->total)) {
+                    if (in_array($item->Region, $this->core->getRegionCodes())) {
+                        if (!isset($regionSet[$year][$quarter])) {$regionSet[$year][$quarter] = json_decode($jsonObject); }
+                        $regionSet[$year][$quarter]->municipalityID = $this->core->getMunicipalityID('9999');
+                        $regionSet[$year][$quarter]->dead += $temp[$municipalityID][$year][$quarter]->dead;
+                        $regionSet[$year][$quarter]->born += $temp[$municipalityID][$year][$quarter]->born;
+                        $regionSet[$year][$quarter]->total += $temp[$municipalityID][$year][$quarter]->total;
+                    }
                     $this->db->prepare($sql);
                     $this->db->bind(':variableID', $variableID);
                     $this->db->bind(':munID', $municipalityID);
@@ -655,6 +941,19 @@ SQL;
                     $this->db->bind(':born', $temp[$municipalityID][$year][$quarter]->born);
                     $this->db->bind(':dead', $temp[$municipalityID][$year][$quarter]->dead);
                     $this->db->bind(':total', $temp[$municipalityID][$year][$quarter]->total);
+                    $this->db->execute();
+                }
+            }
+            foreach ($regionSet as $year => $qVal) {
+                foreach ($qVal as $quarter => $item) {
+                    $this->db->prepare($sql);
+                    $this->db->bind(':variableID', $variableID);
+                    $this->db->bind(':munID', $item->municipalityID);
+                    $this->db->bind(':pYear', $year);
+                    $this->db->bind(':pQuarter', $quarter);
+                    $this->db->bind(':born', $item->born);
+                    $this->db->bind(':dead', $item->dead);
+                    $this->db->bind(':total', $item->total);
                     $this->db->execute();
                 }
             }
@@ -725,6 +1024,7 @@ SQL;
         }
         $sql .= implode(',', $columns);
         $sql .= ') VALUES' . implode(',', $values);
+        var_dump($sql); die;
         $this->db->query($sql);
         return $this->db->execute();
     }
