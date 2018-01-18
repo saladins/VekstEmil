@@ -221,8 +221,7 @@ SQL;
             $sql = 'SELECT AgeRangeID, AgeRangeStart, AgeRangeEnd from AgeRange';
             $this->db->query($sql);
             foreach($this->db->getResultSet() as $result) {
-                $ageRangeString = $result['AgeRangeStart'] . '-' . $result['AgeRangeEnd'];
-                if (strlen($ageRangeString) < 5) $ageRangeString = '0'.$ageRangeString;
+                $ageRangeString = strval($result['AgeRangeStart']) . '-' . strval($result['AgeRangeEnd']);
                 $this->ageRangeMap[$ageRangeString] = $result['AgeRangeID'];
             }
         }
@@ -277,8 +276,11 @@ SQL;
                 if (!isset($temp[$item->Tid][$item->Region][$item->Kjonn])) {$temp[$item->Tid][$item->Region][$item->Kjonn] = []; }
                 $staticAge = $item->Alder;
                 switch ($staticAge) {
-                    case in_array($staticAge, range(0,14)):
-                        $range = '00-14';
+                    case in_array($staticAge, range(0,5)):
+                        $range = '0-5';
+                        break;
+                    case in_array($staticAge, range(6,14)):
+                        $range = '6-14';
                         break;
                     case in_array($staticAge, range(15,19)):
                         $range = '15-19';
