@@ -230,6 +230,12 @@ householdIncomeAvg as value
 FROM HouseholdIncome
 SQL;
                 break;
+            case 'ImmigrantPopulation':
+                $sql = <<<'SQL'
+SELECT municipalityID, genderID, countryBackgroundID, pYear, persons as value
+FROM ImmigrantPopulation
+SQL;
+                break;
             case 'Movement': // Movement
                 $sql = <<<SQL
 SELECT
