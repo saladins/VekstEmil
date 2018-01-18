@@ -185,15 +185,15 @@ SQL;
                     $this->db->bind(':outgoingAll', $item['Utflytting']);
                     $this->db->bind(':sumAll', $item['Netto']);
                     $this->db->execute();
-                    if (in_array($region, $this->core->getRegionCodes())) {
+                    if (in_array($muni, $this->core->getRegionCodes())) {
                         if (!isset($region[$pYear])) {
-                            $region[$pYear][0] = 0;
-                            $region[$pYear][1] = 0;
-                            $region[$pYear][2] = 0;
+                            $region[$pYear]['Innflytting'] = 0;
+                            $region[$pYear]['Utflytting'] = 0;
+                            $region[$pYear]['Netto'] = 0;
                         }
-                        $region[$pYear][0] += $item['Innflytting'];
-                        $region[$pYear][1] += $item['Utflytting'];
-                        $region[$pYear][2] += $item['Netto'];
+                        $region[$pYear]['Innflytting'] += $item['Innflytting'];
+                        $region[$pYear]['Utflytting'] += $item['Utflytting'];
+                        $region[$pYear]['Netto'] += $item['Netto'];
                     }
                 }
             }
@@ -627,61 +627,6 @@ SQL;
     }
 
     /**
-     * Inserts into Unemployment table
-     * @param $dataSet
-     * @param $variableID
-     * @return bool|PDOException
-     */
-    private function insertUnemployment($dataSet, $variableID) {
-        $sql = <<<SQL
-INSERT INTO Unemployment (variableID, municipalityID, ageRangeID, pYear, pMonth, unemploymentPercent)
-VALUES (:varID, :munID, :ageRangeID, :pYear, :pMonth, :unemploymentPercent);
-SQL;
-        $region = [];
-        try {
-            $this->db->beginTransaction();
-            foreach ($dataSet as $item) {
-                $pYear = substr($item->Tid, 0, 4);
-                $pMonth = substr($item->Tid, 5);
-                $ageRangeID = $this->core->getAgeRangeID($item->Alder);
-                $this->db->prepare($sql);
-                $this->db->bind(':varID', $variableID);
-                $this->db->bind(':munID', $this->core->getMunicipalityID($item->Region));
-                $this->db->bind(':ageRangeID', $ageRangeID);
-                $this->db->bind(':pYear', $pYear);
-                $this->db->bind(':pMonth', $pMonth);
-                $this->db->bind(':unemploymentPercent', $item->value);
-                $this->db->execute();
-                if (in_array($item->Region, $this->core->getRegionCodes())) {
-                    if (!isset($region[$pYear])) {$region[$pYear] = []; }
-                    if (!isset($region[$pYear][$pMonth])) {$region[$pYear][$pMonth] = []; }
-                    if (!isset($region[$pYear][$pMonth][$ageRangeID])) {$region[$pYear][$pMonth][$ageRangeID] = 0; }
-                    $region[$pYear][$pMonth][$ageRangeID] += $item->value;
-                }
-            }
-            foreach ($region as $pYear => $item3) {
-                foreach ($item3 as $pMonth => $item2) {
-                    foreach ($item2 as $ageRangeID => $item) {
-                        $this->db->prepare($sql);
-                        $this->db->bind(':varID', $variableID);
-                        $this->db->bind(':munID', $this->core->getMunicipalityID('9999'));
-                        $this->db->bind(':ageRangeID', $ageRangeID);
-                        $this->db->bind(':pYear', $pYear);
-                        $this->db->bind(':pMonth', $pMonth);
-                        $this->db->bind(':unemploymentPercent', $item / 3);
-                        $this->db->execute();
-                    }
-                }
-            }
-            return $this->db->endTransaction();
-
-        } catch (PDOException $ex) {
-            $this->db->rollbackTransaction();
-            return $ex;
-        }
-    }
-
-    /**
      * Inserts into CommuteBalance table
      * @param $dataSet
      * @param $variableID
@@ -964,10 +909,8 @@ INSERT INTO PopulationAge (variableID, municipalityID, ageRangeID, genderID, pYe
 VALUES (:variableID, :munID, :ageRangeID, :genderID, :pYear, :population);
 SQL;
         $region = [];
-//        $temp = [];
         $this->db->beginTransaction();
         foreach ($dataSet as $item) {
-//            $temp[$item->Region][$item->Tid][$item->Alder][$item->Kjonn] = $item->value;
             $municipalityID = $this->core->getMunicipalityID($item->Region);
             $ageRangeID = $this->core->getAgeRangeID($item->Alder);
             $genderID = $this->core->getGenderID($item->Kjonn);
@@ -1074,6 +1017,61 @@ JSON;
                 }
             }
             return $this->db->endTransaction();
+        } catch (PDOException $ex) {
+            $this->db->rollbackTransaction();
+            return $ex;
+        }
+    }
+
+    /**
+     * Inserts into Unemployment table
+     * @param $dataSet
+     * @param $variableID
+     * @return bool|PDOException
+     */
+    private function insertUnemployment($dataSet, $variableID) {
+        $sql = <<<SQL
+INSERT INTO Unemployment (variableID, municipalityID, ageRangeID, pYear, pMonth, unemploymentPercent)
+VALUES (:varID, :munID, :ageRangeID, :pYear, :pMonth, :unemploymentPercent);
+SQL;
+        $region = [];
+        try {
+            $this->db->beginTransaction();
+            foreach ($dataSet as $item) {
+                $pYear = substr($item->Tid, 0, 4);
+                $pMonth = substr($item->Tid, 5);
+                $ageRangeID = $this->core->getAgeRangeID($item->Alder);
+                $this->db->prepare($sql);
+                $this->db->bind(':varID', $variableID);
+                $this->db->bind(':munID', $this->core->getMunicipalityID($item->Region));
+                $this->db->bind(':ageRangeID', $ageRangeID);
+                $this->db->bind(':pYear', $pYear);
+                $this->db->bind(':pMonth', $pMonth);
+                $this->db->bind(':unemploymentPercent', $item->value);
+                $this->db->execute();
+                if (in_array($item->Region, $this->core->getRegionCodes())) {
+                    if (!isset($region[$pYear])) {$region[$pYear] = []; }
+                    if (!isset($region[$pYear][$pMonth])) {$region[$pYear][$pMonth] = []; }
+                    if (!isset($region[$pYear][$pMonth][$ageRangeID])) {$region[$pYear][$pMonth][$ageRangeID] = 0; }
+                    $region[$pYear][$pMonth][$ageRangeID] += $item->value;
+                }
+            }
+            foreach ($region as $pYear => $item3) {
+                foreach ($item3 as $pMonth => $item2) {
+                    foreach ($item2 as $ageRangeID => $item) {
+                        $this->db->prepare($sql);
+                        $this->db->bind(':varID', $variableID);
+                        $this->db->bind(':munID', $this->core->getMunicipalityID('9999'));
+                        $this->db->bind(':ageRangeID', $ageRangeID);
+                        $this->db->bind(':pYear', $pYear);
+                        $this->db->bind(':pMonth', $pMonth);
+                        $this->db->bind(':unemploymentPercent', $item / 3);
+                        $this->db->execute();
+                    }
+                }
+            }
+            return $this->db->endTransaction();
+
         } catch (PDOException $ex) {
             $this->db->rollbackTransaction();
             return $ex;
