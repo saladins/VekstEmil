@@ -31,6 +31,18 @@ class ApiRequest {
     public function getDetailedData($request) {
         $sql = '';
         switch ($request->variableID) {
+            case 1:
+                $sql = <<<SQL
+SELECT 
+municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge
+order by municipalityID, municipalityid, value;
+SQL;
+                break;
             case 8:
                 $sql = <<<SQL
 SELECT municipalityID, pYear, naceID, SUM(valueInNOK) AS value 
@@ -234,6 +246,12 @@ SQL;
                 $sql = <<<'SQL'
 SELECT municipalityID, genderID, countryBackgroundID, pYear, persons as value
 FROM ImmigrantPopulation
+SQL;
+                break;
+            case 'Immigration':
+                $sql = <<<'SQL'
+SELECT municipalityID, pYear, incomingAll as incoming, outgoingAll as outgoing, sumAll as value
+FROM Immigration
 SQL;
                 break;
             case 'Movement': // Movement
