@@ -61,6 +61,12 @@ class SsbUpdate {
                 case 'HouseholdIncome':
                     $this->insertHouseholdIncome($request->dataSet, $variableID);
                     break;
+                case 'ImmigrantPopulation':
+                    $this->insertImmigrantPopulation($request->dataSet, $variableID);
+                    break;
+                case 'Immigration':
+                    $this->insertImmigration($request->dataSet, $variableID);
+                    break;
                 case 'Movement':
                     $this->insertMovement($request->dataSet, $variableID);
                     break;
@@ -96,14 +102,124 @@ class SsbUpdate {
                 . $PDOException->getTraceAsString();
             $this->logger->log($message);
             return '{'.$message.'}';
-//            $this->db->rollbackTransaction();
+        }
+    }
+
+    private function insertImmigrantPopulation($dataSet, $variableID) {
+$sql = <<<'SQL'
+INSERT INTO ImmigrantPopulation (variableID, municipalityID, genderID, countryBackgroundID, pYear, persons) 
+VALUES (:variableID, :municipalityID, :genderID, :countryBackgroundID, :pYear, :persons);
+SQL;
+        try {
+            $countryBackgrounds = [];
+            $sqlCountryBackgrounds = 'SELECT countryBackgroundID, countryBackgroundCode FROM CountryBackground';
+            $this->db->query($sqlCountryBackgrounds);
+            $countries = $this->db->getResultSet();
+            foreach ($countries as $country) {
+                $countryBackgrounds[strval($country['countryBackgroundCode'])] = $country['countryBackgroundID'];
+            }
+            $region = [];
+            $this->db->beginTransaction();
+            foreach ($dataSet as $item) {
+                $municipalityID = $this->core->getMunicipalityID($item->Region);
+                $genderID = $this->core->getGenderID($item->Kjonn);
+                $countryBackgroundID = $countryBackgrounds[$item->Landbakgrunn];
+                $pYear = $item->Tid;
+                $this->db->prepare($sql);
+                $this->db->bind(':variableID', $variableID);
+                $this->db->bind(':municipalityID', $municipalityID);
+                $this->db->bind(':genderID', $genderID);
+                $this->db->bind(':countryBackgroundID', $countryBackgroundID);
+                $this->db->bind(':pYear', $pYear);
+                $this->db->bind(':persons', $item->value);
+                $this->db->execute();
+                if (in_array($item->Region, $this->core->getRegionCodes())) {
+                    if (!isset($region[$pYear][$genderID][$countryBackgroundID])) {
+                        $region[$pYear][$genderID][$countryBackgroundID] = 0;
+                    }
+                    $region[$pYear][$genderID][$countryBackgroundID] += $item->value;
+                }
+            }
+            $regionID = $this->core->getMunicipalityID('9999');
+            foreach ($region as $pYear => $item3) {
+                foreach ($item3 as $genderID => $item2) {
+                    foreach ($item2 as $countryBackgroundID => $item) {
+                        $this->db->prepare($sql);
+                        $this->db->bind(':variableID', $variableID);
+                        $this->db->bind(':municipalityID', $regionID);
+                        $this->db->bind(':genderID', $genderID);
+                        $this->db->bind(':countryBackgroundID', $countryBackgroundID);
+                        $this->db->bind(':pYear', $pYear);
+                        $this->db->bind(':persons', $item);
+                        $this->db->execute();
+                    }
+                }
+            }
+            return $this->db->endTransaction();
+        } catch (PDOException $ex) {
+            $this->db->rollbackTransaction();
+            throw $ex;
+        }
+    }
+
+    private function insertImmigration($dataSet, $variableID) {
+        $sql = <<<'SQL'
+INSERT INTO Immigration (variableID, municipalityID, pYear, incomingAll, outgoingAll, sumAll) 
+VALUES (:variableID, :municipalityID, :pYear, :incomingAll, :outgoingAll, :sumAll);
+SQL;
+        try {
+            $temp = [];
+            $region = [];
+            $this->db->beginTransaction();
+            foreach ($dataSet as $item) {
+                $temp[$item->Region][$item->Tid][$item->ContentsCode] = $item->value;
+            }
+            foreach ($temp as $muni => $item2) {
+                foreach ($item2 as $pYear => $item) {
+                    $municipalityID = $this->core->getMunicipalityID($muni);
+                    $this->db->prepare($sql);
+                    $this->db->bind(':variableID', $variableID);
+                    $this->db->bind(':municipalityID', $municipalityID);
+                    $this->db->bind(':pYear', $pYear);
+                    $this->db->bind(':incomingAll', $item['Innflytting']);
+                    $this->db->bind(':outgoingAll', $item['Utflytting']);
+                    $this->db->bind(':sumAll', $item['Netto']);
+                    $this->db->execute();
+                    if (in_array($region, $this->core->getRegionCodes())) {
+                        if (!isset($region[$pYear])) {
+                            $region[$pYear][0] = 0;
+                            $region[$pYear][1] = 0;
+                            $region[$pYear][2] = 0;
+                        }
+                        $region[$pYear][0] += $item['Innflytting'];
+                        $region[$pYear][1] += $item['Utflytting'];
+                        $region[$pYear][2] += $item['Netto'];
+                    }
+                }
+            }
+            $regionID = $this->core->getMunicipalityID('9999');
+            foreach ($region as $pYear => $item) {
+                $this->db->prepare($sql);
+                $this->db->bind(':variableID', $variableID);
+                $this->db->bind(':municipalityID', $regionID);
+                $this->db->bind(':pYear', $pYear);
+                $this->db->bind(':incomingAll', $item['Innflytting']);
+                $this->db->bind(':outgoingAll', $item['Utflytting']);
+                $this->db->bind(':sumAll', $item['Netto']);
+                $this->db->execute();
+            }
+            return $this->db->endTransaction();
+        } catch (PDOException $ex) {
+            $this->db->rollbackTransaction();
+            throw $ex;
         }
     }
 
     /**
      * @param $dataSet
      * @param $variableID
-     * @return bool|PDOException
+     * @return bool
+     * @throws PDOException
      */
     private function insertEmploymentSector($dataSet, $variableID) {
         $sql = 'INSERT INTO EmploymentSector (variableID, municipalityID, naceID, sectorID, pYear, workplaceValue, livingplaceValue) 
@@ -144,7 +260,7 @@ class SsbUpdate {
             return $this->db->endTransaction();
         } catch (PDOException $ex) {
             $this->db->rollbackTransaction();
-            return $ex;
+            throw $ex;
         }
 
     }
