@@ -29,7 +29,7 @@ statisticName
 FROM Variable, VariableSubCategory, VariableMasterCategory
 WHERE Variable.subCategoryID = VariableSubCategory.subCategoryID 
 AND VariableSubCategory.masterCategoryID = VariableMasterCategory.masterCategoryID
-ORDER BY VariableMasterCategory.position, listPosition;
+ORDER BY VariableMasterCategory.position, VariableSubCategory.position, listPosition;
 SQL;
         $this->db->query($sql);
         return $this->db->getResultSet();
