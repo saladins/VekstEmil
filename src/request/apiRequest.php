@@ -29,7 +29,6 @@ class ApiRequest {
      * @return mixed
      */
     public function getDetailedData($request) {
-        $sql = '';
         switch ($request->variableID) {
             case 1:
                 $sql = <<<SQL
@@ -49,6 +48,19 @@ SELECT municipalityID, pYear, naceID, SUM(valueInNOK) AS value
 FROM EnterpriseEntry, Enterprise
 WHERE Enterprise.enterpriseID = EnterpriseEntry.enterpriseID AND EnterpriseEntry.enterprisePostCategoryID = 7
 GROUP BY municipalityID, pYear, naceID;
+SQL;
+                break;
+            case 14:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 211;
 SQL;
                 break;
             case 42:
@@ -75,6 +87,8 @@ AND Enterprise.municipalityID <= 3
 GROUP BY municipalityID, pYear, naceID;
 SQL;
                 break;
+            default:
+                throw new PDOException('There is no SQL for this variable ID');
 
         }
         $this->db->query($sql);
@@ -96,7 +110,6 @@ SQL;
 
     /**
      * Gets and returns data about at specific variable (data table)
-     * TODO refactor to use variableID and get tableName later
      * @param RequestModel $request
      * @return array String array containing variable data
      * @throws Exception Throws exception when no valid table name is supplied
@@ -380,14 +393,27 @@ SQL;
      */
     private function getConstraints($tableName) {
         $constraints = new stdClass();
-        foreach ($this->getBearingColumns($tableName) as $column) {
-            $itemSql = "SELECT DISTINCT {$column['Field']} FROM $tableName;";
-            $this->db->query($itemSql);
-            $constraints->{$column['Field']} = [];
-            foreach ($this->db->getResultSet(PDO::FETCH_NUM) as $item) {
-                array_push($constraints->{$column['Field']}, $item[0]);
+//        if ($tableName === 'Survey') {
+//            $itemSql = <<<SQL
+//SELECT DISTINCT Survey_Question.questionID FROM Survey_Question, Survey_SurveyQuestion, Survey
+//WHERE Survey_Question.questionID = Survey_SurveyQuestion.questionID
+//AND Survey_SurveyQuestion.surveyID = Survey.surveyID
+//SQL;
+//            $this->db->query($itemSql);
+//            $constraints->SurveyQuestion = [];
+//            foreach ($this->db->getResultSet(PDO::FETCH_NUM) as $item) {
+//                array_push($constraints->SurveyQuestion, $item[0]);
+//            }
+//        } else {
+            foreach ($this->getBearingColumns($tableName) as $column) {
+                $itemSql = "SELECT DISTINCT {$column['Field']} FROM $tableName;";
+                $this->db->query($itemSql);
+                $constraints->{$column['Field']} = [];
+                foreach ($this->db->getResultSet(PDO::FETCH_NUM) as $item) {
+                    array_push($constraints->{$column['Field']}, $item[0]);
+                }
             }
-        }
+//        }
         return $constraints;
     }
 
@@ -398,20 +424,35 @@ SQL;
      */
     private function getDescriptions($tableName) {
         $descriptions = new stdClass();
-        foreach ($this->getBearingColumns($tableName) as $column) {
-            $tableName = ucfirst(substr($column['Field'], 0, -2));
-            if ($tableName === 'Variable') { continue; }
-            $itemSql = "SELECT DISTINCT * FROM $tableName";
-            try {
-                $this->db->query($itemSql);
-                $descriptions->{$column['Field']} = [];
-                foreach ($this->db->getResultSet(PDO::FETCH_CLASS) as $item) {
-                    array_push($descriptions->{$column['Field']}, $item);
+        if ($tableName === 'Survey') {
+            $itemSql = <<<SQL
+SELECT DISTINCT Survey_Question.questionID, Survey_Question.questionText FROM Survey_Question, Survey_SurveyQuestion, Survey
+WHERE Survey_Question.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.surveyID = Survey.surveyID
+SQL;
+            $this->db->query($itemSql);
+            $descriptions->questionID = [];
+            foreach ($this->db->getResultSet(PDO::FETCH_CLASS) as $item) {
+                array_push($descriptions->questionID, $item);
+            }
+        } else {
+            foreach ($this->getBearingColumns($tableName) as $column) {
+                $tableName = ucfirst(substr($column['Field'], 0, -2));
+                if ($tableName === 'Variable') {
+                    continue;
                 }
-            } catch (PDOException $exception) {
+                $itemSql = "SELECT DISTINCT * FROM $tableName";
+                try {
+                    $this->db->query($itemSql);
+                    $descriptions->{$column['Field']} = [];
+                    foreach ($this->db->getResultSet(PDO::FETCH_CLASS) as $item) {
+                        array_push($descriptions->{$column['Field']}, $item);
+                    }
+                } catch (PDOException $exception) {
 //                 If table is NOT one of variableID or date field, throw the error
-                if ($exception->getCode() !== '42S02') {
-                    throw $exception;
+                    if ($exception->getCode() !== '42S02') {
+                        throw $exception;
+                    }
                 }
             }
         }
