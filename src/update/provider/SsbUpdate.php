@@ -960,7 +960,7 @@ INSERT INTO PopulationChange (variableID, municipalityID, pYear, pQuarter, born,
 VALUES(:variableID, :munID, :pYear, :pQuarter, :born, :dead, :total);
 SQL;
         $jsonObject = <<<'JSON'
-{"municipalityID": 0, "dead": 0, "born": 0, "total": 0}
+{"dead": 0, "born": 0, "total": 0}
 JSON;
 
         try {
@@ -986,8 +986,10 @@ JSON;
                     isset($temp[$municipalityID][$year][$quarter]->born) &&
                     isset($temp[$municipalityID][$year][$quarter]->total)) {
                     if (in_array($item->Region, $this->core->getRegionCodes())) {
-                        if (!isset($regionSet[$year][$quarter])) {$regionSet[$year][$quarter] = json_decode($jsonObject); }
-                        $regionSet[$year][$quarter]->municipalityID = $this->core->getMunicipalityID('9999');
+                        if (!isset($regionSet[$year][$quarter])) {$regionSet[$year][$quarter] = new stdClass(); }
+                        if (!isset($regionSet[$year][$quarter]->dead)) {$regionSet[$year][$quarter]->dead = 0;}
+                        if (!isset($regionSet[$year][$quarter]->born)) {$regionSet[$year][$quarter]->born = 0;}
+                        if (!isset($regionSet[$year][$quarter]->total)) {$regionSet[$year][$quarter]->total = 0;}
                         $regionSet[$year][$quarter]->dead += $temp[$municipalityID][$year][$quarter]->dead;
                         $regionSet[$year][$quarter]->born += $temp[$municipalityID][$year][$quarter]->born;
                         $regionSet[$year][$quarter]->total += $temp[$municipalityID][$year][$quarter]->total;
@@ -1003,11 +1005,12 @@ JSON;
                     $this->db->execute();
                 }
             }
+            $regionID = $this->core->getMunicipalityID('9999');
             foreach ($regionSet as $year => $qVal) {
                 foreach ($qVal as $quarter => $item) {
                     $this->db->prepare($sql);
                     $this->db->bind(':variableID', $variableID);
-                    $this->db->bind(':munID', $item->municipalityID);
+                    $this->db->bind(':munID', $regionID);
                     $this->db->bind(':pYear', $year);
                     $this->db->bind(':pQuarter', $quarter);
                     $this->db->bind(':born', $item->born);
