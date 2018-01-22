@@ -40,15 +40,15 @@ class CoreMethods {
     }
 
     /**
-     * @param integer $variableID
+     * @param string $tableName
      * @param integer $timestamp
      * @return bool
      */
-    public function setLastUpdatedTime($variableID, $timestamp) {
-        $sql = 'UPDATE Variable SET lastUpdatedDate = :timeValue WHERE variableID = :variableID';
+    public function setLastUpdatedTime($tableName, $timestamp) {
+        $sql = 'UPDATE Variable SET lastUpdatedDate = :timeValue WHERE tableName LIKE :tableName';
         $this->db->prepare($sql);
         $this->db->bind(':timeValue', Date(Globals::dateTimeFormat, $timestamp));
-        $this->db->bind(':variableID', $variableID);
+        $this->db->bind(':tableName', $tableName);
         return $this->db->execute();
     }
 

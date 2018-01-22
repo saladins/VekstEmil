@@ -93,7 +93,7 @@ class SsbUpdate {
                     $this->insertGeneric($request->dataSet, $tableName, $variableID);
             }
             $date = new DateTime();
-            $this->core->setLastUpdatedTime($variableID, $date->getTimestamp());
+            $this->core->setLastUpdatedTime($tableName, $date->getTimestamp());
             $message = 'Successfully updated: ' . $tableName . '. Elapsed time: ' . date('i:s:u', (integer)($this->logger->microTimeFloat() - $startTime));
             return $message;
         } catch (PDOException $PDOException) {
@@ -722,9 +722,9 @@ SQL;
                         if (!isset($region[$pYear])) { $region[$pYear] = []; }
                         if (!isset($region[$pYear][$naceID])) { $region[$pYear][$naceID] = []; }
                         if (!isset($region[$pYear][$naceID][$genderID])) { $region[$pYear][$naceID][$genderID] = json_decode($regionObj); }
-                        $region[$pYear][$naceID][$genderID]->workVal = $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['working'];;
-                        $region[$pYear][$naceID][$genderID]->livVal = $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['living'];
-                        $region[$pYear][$naceID][$genderID]->balance = $balance;
+                        $region[$pYear][$naceID][$genderID]->workVal += $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['working'];;
+                        $region[$pYear][$naceID][$genderID]->livVal += $data[$municipalityID][$naceID][$genderID][$ageRangeID][$pYear]['living'];
+                        $region[$pYear][$naceID][$genderID]->balance += $balance;
                     }
                     $this->db->prepare($sql);
                     $this->db->bind(':varID', $variableID);
