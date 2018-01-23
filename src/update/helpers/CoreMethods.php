@@ -89,6 +89,10 @@ class CoreMethods {
         return ['0605', '0612', '0532'];
     }
 
+    public function getRegionUmbrellaCode() {
+        return '9999';
+    }
+
     /**
      * @param string $municipalityName
      * @return string
