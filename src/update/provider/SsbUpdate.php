@@ -67,6 +67,9 @@ class SsbUpdate {
                 case 'Immigration':
                     $this->insertImmigration($request->dataSet, $variableID);
                     break;
+                case 'MunicipalEconomy':
+                    $this->insertMunicipalEconomy($request->dataSet, $variableID);
+                    break;
                 case 'Movement':
                     $this->insertMovement($request->dataSet, $variableID);
                     break;
@@ -437,6 +440,65 @@ SQL;
         }
     }
 
+    private function insertMunicipalEconomy($dataSet, $variableID) {
+        $sql = <<<'SQL'
+INSERT INTO MunicipalEconomy (variableID, municipalityID, municipalIncomeCategoryID, pYear, income) 
+VALUES (:variableID, :municipalityID, :municipalIncomeCategoryID, :pYear, :income);
+SQL;
+        try {
+            $municipalIncomeCategories = [];
+            $incomeCategorySql = 'SELECT municipalIncomeCategoryID, municipalIncomeCategoryCode FROM MunicipalIncomeCategory';
+            $this->db->query($incomeCategorySql);
+            foreach ($this->db->getResultSet() as $item) {
+                $municipalIncomeCategories[strval($item['municipalIncomeCategoryCode'])] = $item['municipalIncomeCategoryID'];
+            }
+            $this->db->beginTransaction();
+            $temp = [];
+            foreach ($dataSet as $item) {
+                $temp[$item->Region][$item->Tid][$item->ContentsCode] = $item->value;
+            }
+            $regionSet = [];
+            foreach ($temp as $region => $item3) {
+                foreach ($item3 as $pYear => $item2) {
+                    foreach ($item2 as $municipalIncomeCategoryCode => $value) {
+                        $municipalityID = $this->core->getMunicipalityID($region);
+                        $municipalIncomeCategoryID = $municipalIncomeCategories[$municipalIncomeCategoryCode];
+                        $this->db->prepare($sql);
+                        $this->db->bind(':variableID', $variableID);
+                        $this->db->bind(':municipalityID', $municipalityID);
+                        $this->db->bind(':municipalIncomeCategoryID', $municipalIncomeCategoryID);
+                        $this->db->bind(':pYear', $pYear);
+                        $this->db->bind(':income', $value);
+                        $this->db->execute();
+                        if (in_array($region, $this->core->getRegionCodes())) {
+                            if (!isset($regionSet[$pYear])) {$regionSet[$pYear] = []; }
+                            if (!isset($regionSet[$pYear][$municipalIncomeCategoryID])) {
+                                $regionSet[$pYear][$municipalIncomeCategoryID] = 0; }
+                            $regionSet[$pYear][$municipalIncomeCategoryID] += $value;
+                        }
+                    }
+                }
+            }
+            $regionID = $this->core->getMunicipalityID($this->core->getRegionUmbrellaCode());
+            foreach ($regionSet as $pYear => $item2) {
+                foreach ($item2 as $municipalIncomeCategoryID => $value) {
+                    $this->db->prepare($sql);
+                    $this->db->bind(':variableID', $variableID);
+                    $this->db->bind(':municipalityID', $regionID);
+                    $this->db->bind(':municipalIncomeCategoryID', $municipalIncomeCategoryID);
+                    $this->db->bind(':pYear', $pYear);
+                    $this->db->bind(':income', $value);
+                    $this->db->execute();
+                }
+            }
+
+            return $this->db->endTransaction();
+        } catch (PDOException $ex) {
+            $this->db->rollbackTransaction();
+            throw $ex;
+        }
+    }
+
     private function insertImmigration($dataSet, $variableID) {
         $sql = <<<'SQL'
 INSERT INTO Immigration (variableID, municipalityID, pYear, incomingAll, outgoingAll, sumAll) 
@@ -569,7 +631,7 @@ SQL;
             return $this->db->endTransaction();
         } catch (PDOException $ex) {
             $this->db->rollbackTransaction();
-            return $ex;
+            throw $ex;
         }
     }
 
