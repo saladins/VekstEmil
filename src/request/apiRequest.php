@@ -276,6 +276,16 @@ incomingAll as incoming, outgoingAll as outgoing, sumAll as value
 from Movement 
 SQL;
                 break;
+            case 'MunicipalEconomy':
+                $sql = <<<'SQL'
+SELECT 
+municipalityID, 
+municipalIncomeCategoryID, 
+pYear, 
+income AS value 
+FROM MunicipalEconomy
+SQL;
+                break;
             case 'NewEnterprise': //NewEnterprise
                 $sql = <<<SQL
 SELECT 
