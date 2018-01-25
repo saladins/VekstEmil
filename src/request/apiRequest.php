@@ -87,6 +87,14 @@ AND Enterprise.municipalityID <= 3
 GROUP BY municipalityID, pYear, naceID;
 SQL;
                 break;
+            case 63:
+                $sql =<<<'SQL'
+SELECT municipalityID, pYear, SUM(born) as born, SUM(dead) as dead, AVG(totalPopulation) AS value 
+FROM PopulationChange
+GROUP BY municipalityID, pYear;
+SQL;
+                break;
+
             default:
                 throw new PDOException('There is no SQL for this variable ID');
 
