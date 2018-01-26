@@ -146,6 +146,243 @@ AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
 AND Survey_Question.questionID = 215;
 SQL;
                 break;
+            case 77:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 225;
+SQL;
+                break;
+            case 78:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 227;
+SQL;
+                break;
+            case 79:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID BETWEEN 230 AND 253 
+AND answerText NOT LIKE '' 
+AND answerText != 0;
+SQL;
+                break;
+            case 80:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 216;
+SQL;
+                break;
+            case 81:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 217;
+SQL;
+                break;
+            case 82:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 218;
+SQL;
+                break;
+            case 83:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 219;
+SQL;
+                break;
+            case 84:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 220;
+SQL;
+                break;
+            case 85:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 221;
+SQL;
+                break;
+            case 86:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 222;
+SQL;
+                break;
+            case 87:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 223;
+SQL;
+                break;
+            case 88:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 255
+UNION 
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 259;
+SQL;
+                break;
+            case 89:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 256
+UNION 
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 260;
+SQL;
+                break;
+            case 90:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 257
+UNION 
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID = 261;
+SQL;
+                break;
+            case 91:
+                $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
+AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
+AND Survey_Question.questionID BETWEEN 211 AND 215;
+SQL;
+                break;
+            case 9:
+                $sql = <<<SQL
+SELECT a.enterpriseID, a.municipalityID, a.naceID, c.vareideCategoryDescriptionID, a.employees, b.valueInNOK as value
+FROM Enterprise a, EnterpriseEntry b, VareideCategory c
+WHERE a.enterpriseID = b.enterpriseID
+AND a.naceID = c.naceID
+AND b.enterprisePostCategoryID = 7
+AND pYear = 2016;
+SQL;
+                break;
             default:
                 throw new PDOException('There is no SQL for this variable ID');
 
@@ -495,7 +732,8 @@ SQL;
         $descriptions = new stdClass();
         if ($tableName === 'Survey') {
             $itemSql = <<<SQL
-SELECT DISTINCT Survey_Question.questionID, Survey_Question.questionText FROM Survey_Question, Survey_SurveyQuestion, Survey
+SELECT DISTINCT Survey_Question.questionID, Survey_Question.questionText, Survey_Question.questionTextVariant1 
+FROM Survey_Question, Survey_SurveyQuestion, Survey
 WHERE Survey_Question.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.surveyID = Survey.surveyID
 SQL;
@@ -503,6 +741,22 @@ SQL;
             $descriptions->questionID = [];
             foreach ($this->db->getResultSet(PDO::FETCH_CLASS) as $item) {
                 array_push($descriptions->questionID, $item);
+            }
+            $itemSql = <<<SQL
+SELECT vareideCategoryDescriptionID, vareideCategoryDescriptionText FROM VareideCategoryDescription
+SQL;
+            $this->db->query($itemSql);
+            $descriptions->vareideCategoryDescriptionID = [];
+            foreach ($this->db->getResultSet(PDO::FETCH_CLASS) as $item) {
+                array_push($descriptions->vareideCategoryDescriptionID, $item);
+            }
+            $itemSql = <<<SQL
+SELECT municipalityID, municipalityCode, municipalityName FROM Municipality
+SQL;
+            $this->db->query($itemSql);
+            $descriptions->municipalityID = [];
+            foreach ($this->db->getResultSet(PDO::FETCH_CLASS) as $item) {
+                array_push($descriptions->municipalityID, $item);
             }
         } else {
             foreach ($this->getBearingColumns($tableName) as $column) {
