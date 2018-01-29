@@ -30,7 +30,7 @@ class SurveyUpdate {
             if ($request->forceReplace) {
                 $this->removeOldData($surveyID);
             }
-            if ($surveyID === null) {
+            if ($surveyID === null || $request->forceReplace) {
                 $surveyID = $this->insertSurvey($request->meta->startDate, $request->meta->endDate, $request->meta->title);
             }
             $this->createSurveyData($request->dataSet, $surveyID);
@@ -66,7 +66,7 @@ class SurveyUpdate {
                 }
                 foreach ($item->answers as $answer) {
                     $questionID = $this->getQuestionIdByText($answer->question);
-                    $this->linkSurveyIdAndQuestionIdOrFailSilently($surveyID, $questionID);
+                    $this->linkSurveyIdAndQuestionIdOrDie($surveyID, $questionID);
                     $givenAnswerID = $this->insertAnswerToGivenQuestion($surveyID, $questionID, $answer->answer);
                     if (!is_null($currentEnterpriseID)) {
                         // TODO remove me once we've previously made sure there always is a company ID. Either we get it from the DB or we create it.
@@ -82,10 +82,15 @@ class SurveyUpdate {
     }
 
     private function removeOldData($surveyID) {
+        $this->db->beginTransaction();
         $removeSurvey_Answer = 'DELETE FROM Survey_Answer WHERE surveyID = :surveyID';
         $this->db->prepare($removeSurvey_Answer);
         $this->db->bind(':surveyID', $surveyID);
         $this->db->execute();
+        $getGivenAnswer = 'SELECT givenAnswerID FROM SurveyQuestionAnswer WHERE surveyID = :surveyID';
+        $this->db->prepare($getGivenAnswer);
+        $this->db->bind(':surveyID', $surveyID);
+        $res = $this->db->getResultSet();
         $removeSurveyQuestionAnswer = 'DELETE FROM SurveyQuestionAnswer WHERE surveyID = :surveyID';
         $this->db->prepare($removeSurveyQuestionAnswer);
         $this->db->bind(':surveyID', $surveyID);
@@ -94,10 +99,17 @@ class SurveyUpdate {
         $this->db->prepare($removeSurvey_SurveyQuestion);
         $this->db->bind(':surveyID', $surveyID);
         $this->db->execute();
+        $removeSurvey_GivenAnswer = 'DELETE FROM Survey_GivenAnswer WHERE givenAnswerID = :givenAnswerID';
+        foreach ($res as $item) {
+            $this->db->prepare($removeSurvey_GivenAnswer);
+            $this->db->bind(':givenAnswerID', $item['givenAnswerID']);
+            $this->db->execute();
+        }
         $removeSurvey = 'DELETE FROM Survey WHERE surveyID = :surveyID';
         $this->db->prepare($removeSurvey);
         $this->db->bind(':surveyID', $surveyID);
         $this->db->execute();
+        $this->db->endTransaction();
         if (Globals::debugging) {
             $this->logger->log('DB: Removed survey data for ID ' . $surveyID);
             $this->logger->log('DB: Remove request given by ' . $_SERVER['REMOTE_ADDR']);
@@ -134,6 +146,9 @@ class SurveyUpdate {
         $this->db->bind(':answer', $answer);
         $this->db->execute();
         $givenAnswerID = $this->db->getLastInsertID();
+        $this->logger->log('id: ' . $givenAnswerID);
+//        $this->db->endTransaction();
+//        $this->db->beginTransaction();
         $sql2 = 'INSERT INTO SurveyQuestionAnswer (surveyID, questionID, givenAnswerID) VALUES (:surveyID, :questionID, :givenAnswerID)';
         $this->db->prepare($sql2);
         $this->db->bind(':surveyID', $surveyID);
@@ -148,13 +163,15 @@ class SurveyUpdate {
      * @param $questionID
      * @throws PDOException
      */
-    private function linkSurveyIdAndQuestionIdOrFailSilently($surveyID, $questionID) {
+    private function linkSurveyIdAndQuestionIdOrDie($surveyID, $questionID) {
         $sql = 'INSERT INTO Survey_SurveyQuestion (surveyID, questionID) VALUES (:surveyID, :questionID)';
         try {
             $this->db->prepare($sql);
             $this->db->bind(':surveyID', $surveyID);
             $this->db->bind(':questionID', $questionID);
             $this->db->execute();
+//            $this->db->endTransaction();
+//            $this->db->beginTransaction();
         } catch (PDOException $ex) {
             return;
         }
