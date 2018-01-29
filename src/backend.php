@@ -28,6 +28,7 @@ class ApiParser {
 
     public function __construct() {
         $this->logger = new Logger();
+        if (!GLOBALS::debugging) {$this->logger->clearLog(); }
         $this->apiRequest = new ApiRequest();
         $this->requestModel = new RequestModel();
         if (file_get_contents('php://input') || isset($_GET)) {
