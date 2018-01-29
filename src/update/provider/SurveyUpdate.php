@@ -216,9 +216,9 @@ class SurveyUpdate {
      * @throws PDOException
      */
     private function insertSurvey($startDate, $endDate, $description) {
-        $sql = 'INSERT INTO SURVEY (description, startDate, endDate) VALUES (:title, :startDate, :endDate)';
+        $sql = 'INSERT INTO Survey (description, startDate, endDate) VALUES (:description, :startDate, :endDate)';
         $this->db->prepare($sql);
-        $this->db->bind(':title', $description);
+        $this->db->bind(':description', $description);
         $this->db->bind('startDate', $startDate);
         $this->db->bind(':endDate', $endDate);
         $this->db->execute();
