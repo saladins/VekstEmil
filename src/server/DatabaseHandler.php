@@ -72,17 +72,24 @@ class DatabaseHandler extends DatabaseConnector {
         return $this->dbh->lastInsertId();
     }
 
-    /**
-     * @return bool
-     */
-    function beginTransaction() {
-        return $this->dbh->beginTransaction();
+    function isTransaction() {
+        return $this->dbh->inTransaction();
     }
 
     /**
      * @return bool
      */
-    function endTransaction() {
+    function beginTransaction() {
+        $this->dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+//        if (!$this->dbh->inTransaction()) {
+            return $this->dbh->beginTransaction();
+//        }
+    }
+
+    /**
+     * @return bool
+     */
+    function commit() {
         return $this->dbh->commit();
     }
 
@@ -143,6 +150,11 @@ class DatabaseHandler extends DatabaseConnector {
      */
     public function quote($string) {
         return $this->dbh->quote($string);
+    }
+
+    function disconnect() {
+        parent::disconnect();
+        $this->stmt = null;
     }
 
 }
