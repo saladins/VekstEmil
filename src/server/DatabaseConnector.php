@@ -55,6 +55,10 @@ class DatabaseConnector {
         return $this->dbh;
     }
 
+    function disconnect() {
+        $this->dbh = null;
+    }
+
     /**
      * Handles error processing and messages
      * @param Exception $exception
@@ -77,6 +81,7 @@ class DatabaseConnector {
                 break;
         }
         $logger->log($message);
+        $logger = null;
         echo json_encode('{' . $message . '}');
         die;
     }
