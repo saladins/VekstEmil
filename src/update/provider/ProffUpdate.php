@@ -38,9 +38,11 @@ class ProffUpdate {
             }
             $date = new DateTime();
             $this->core->setLastUpdatedTime($variableID, $date->getTimestamp());
+            $this->db->disconnect();
             $message = 'Successfully updated: ' . $tableName . '. Elapsed time: ' . strval($this->logger->microTimeFloat() - $startTime);
             return $message;
         } catch (PDOException $PDOException) {
+            $this->db->disconnect();
             $message = 'PDO error when performing database write on ' . $tableName . ': '
                 . $PDOException->getMessage() . ' '
                 . $PDOException->getTraceAsString();
@@ -110,7 +112,7 @@ SQL;
                     }
                 }
             }
-            $this->db->endTransaction();
+            $this->db->commit();
         } catch (PDOException $ex) {
             $this->db->rollbackTransaction();
             throw $ex;

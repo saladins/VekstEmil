@@ -34,11 +34,13 @@ class SurveyUpdate {
                 $surveyID = $this->insertSurvey($request->meta->startDate, $request->meta->endDate, $request->meta->title);
             }
             $this->createSurveyData($request->dataSet, $surveyID);
+            $this->db->disconnect();
 //            $date = new DateTime();
 //            $this->core->setLastUpdatedTime($variableID, $date->getTimestamp());
             $message = 'Successfully updated: Survey data. Elapsed time: ' . date('i:s:u', (integer)($this->logger->microTimeFloat() - $startTime));
             return $message;
         } catch (PDOException $PDOException) {
+            $this->db->disconnect();
             $message = 'PDO error when performing database write on Survey data: '
                 . $PDOException->getMessage() . ' '
                 . $PDOException->getTraceAsString();
@@ -74,7 +76,7 @@ class SurveyUpdate {
                     }
                 }
             }
-            $this->db->endTransaction();
+            $this->db->commit();
         } catch (PDOException $ex) {
             $this->db->rollbackTransaction();
             throw $ex;
@@ -109,7 +111,7 @@ class SurveyUpdate {
         $this->db->prepare($removeSurvey);
         $this->db->bind(':surveyID', $surveyID);
         $this->db->execute();
-        $this->db->endTransaction();
+        $this->db->commit();
         if (Globals::debugging) {
             $this->logger->log('DB: Removed survey data for ID ' . $surveyID);
             $this->logger->log('DB: Remove request given by ' . $_SERVER['REMOTE_ADDR']);
