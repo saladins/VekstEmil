@@ -80,10 +80,7 @@ class DatabaseHandler extends DatabaseConnector {
      * @return bool
      */
     function beginTransaction() {
-        $this->dbh->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
-//        if (!$this->dbh->inTransaction()) {
-            return $this->dbh->beginTransaction();
-//        }
+        return $this->dbh->beginTransaction();
     }
 
     /**
