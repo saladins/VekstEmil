@@ -415,7 +415,7 @@ SQL;
             case 'Bankruptcy': // Bankruptcy
                 $sql = <<<SQL
 SELECT 
-municipalityID,
+Bankruptcy.municipalityID,
 naceID,
 pYear,
 pQuarter,
@@ -427,7 +427,7 @@ SQL;
             case 'ClosedEnterprise': // ClosedEnterprise
                 $sql = <<<SQL
 SELECT
-municipalityID,
+ClosedEnterprise.municipalityID,
 naceID,
 pYear,
 closedEnterprises as value
@@ -438,7 +438,7 @@ SQL;
             case 'CommuteBalance': // CommuteBalance
                 $sql = <<<SQL
 SELECT 
-municipalityID,
+CommuteBalance.municipalityID,
 workingMunicipalityID,
 pYear,
 commuters as value
@@ -448,7 +448,7 @@ SQL;
             case 'Education': //Education
                 $sql = <<<SQL
 SELECT 
-municipalityID,
+Education.municipalityID,
 genderID,
 gradeID,
 pYear,
@@ -459,7 +459,7 @@ SQL;
             case 'Employment': // Employment
                 $sql = <<<SQL
 SELECT 
-municipalityID,
+Employment.municipalityID,
 naceID,
 genderID,
 pYear,
@@ -472,7 +472,7 @@ SQL;
             case 'EmploymentDetailed':
                 $sql = <<<SQL
 SELECT
-municipalityID,
+EmploymentDetailed.municipalityID,
 naceID,
 genderID, 
 pYear,
@@ -485,7 +485,7 @@ SQL;
             case 'EmploymentRatio': // EmploymentRatio
                 $sql = <<<SQL
 SELECT employmentRatioID,
-municipalityID,
+EmploymentRatio.municipalityID,
 genderID,
 ageRangeID,
 pYear,
@@ -496,7 +496,7 @@ SQL;
             case 'EmploymentSector': //EmploymentSector
                 $sql = <<<SQL
 SELECT
-municipalityID,
+EmploymentSector.municipalityID,
 naceID,
 sectorID,
 pYear,
@@ -508,7 +508,7 @@ SQL;
             case 'Enterprise':
                 $sql = <<<SQL
 SELECT 
-municipalityID,
+Enterprise.municipalityID,
 naceID,
 employees,
 enterpriseName,
@@ -520,7 +520,7 @@ SQL;
             case 'FunctionalBuildingArea': // FunctionalBuildingArea
                 $sql = <<<SQL
 SELECT 
-municipalityID,
+FunctionalBuildingArea.municipalityID,
 buildingStatusID,
 buildingCategoryID,
 pYear,
@@ -532,7 +532,7 @@ SQL;
             case 'HomeBuildingArea': // HomeBuildingArea
                 $sql = <<<SQL
 SELECT 
-municipalityID,
+HomeBuildingArea.municipalityID,
 buildingStatusID,
 buildingCategoryID,
 pYear,
@@ -544,7 +544,7 @@ SQL;
             case 'HouseholdIncome': //HouseholdIncome
                 $sql = <<<SQL
 SELECT
-municipalityID,
+HouseholdIncome.municipalityID,
 householdTypeID,
 pYear,
 householdIncomeAvg as value
@@ -553,20 +553,30 @@ SQL;
                 break;
             case 'ImmigrantPopulation':
                 $sql = <<<'SQL'
-SELECT municipalityID, genderID, countryBackgroundID, pYear, persons as value
+SELECT 
+ImmigrantPopulation.municipalityID, 
+genderID, 
+countryBackgroundID, 
+pYear, 
+persons as value
 FROM ImmigrantPopulation
 SQL;
                 break;
             case 'Immigration':
                 $sql = <<<'SQL'
-SELECT municipalityID, pYear, incomingAll as incoming, outgoingAll as outgoing, sumAll as value
+SELECT 
+Immigration.municipalityID,
+pYear, 
+incomingAll as incoming, 
+outgoingAll as outgoing, 
+sumAll as value
 FROM Immigration
 SQL;
                 break;
             case 'Movement': // Movement
                 $sql = <<<SQL
 SELECT
-municipalityID,
+Movement.municipalityID,
 pYear,
 incomingAll as incoming, outgoingAll as outgoing, sumAll as value
 from Movement 
@@ -575,7 +585,7 @@ SQL;
             case 'MunicipalEconomy':
                 $sql = <<<'SQL'
 SELECT 
-municipalityID, 
+MunicipalEconomy.municipalityID, 
 municipalIncomeCategoryID, 
 pYear, 
 income AS value 
@@ -585,7 +595,7 @@ SQL;
             case 'NewEnterprise': //NewEnterprise
                 $sql = <<<SQL
 SELECT 
-municipalityID,
+NewEnterprise.municipalityID,
 enterpriseCategoryID,
 employeeCountRangeID,
 pYear,
@@ -596,7 +606,7 @@ SQL;
             case 'PopulationAge': // 'PopulationAge':
                 $sql = <<<SQL
 SELECT 
-municipalityID,
+PopulationAge.municipalityID,
 ageRangeID,
 genderID,
 pYear,
@@ -607,7 +617,7 @@ SQL;
             case 'PopulationChange': // 'PopulationChange':
                 $sql = <<<SQL
 SELECT
-municipalityID,
+PopulationChange.municipalityID,
 pYear,
 pQuarter,
 born,
@@ -619,7 +629,7 @@ SQL;
             case 'PopulationEstimation':
                 $sql = <<<'SQL'
 SELECT
-municipalityID,
+PopulationEstimation.municipalityID,
 populationEstimationTypeID,
 genderID,
 ageRangeID,
@@ -636,7 +646,7 @@ SQL;
             case 'Proceeding': // Proceeding
                 $sql = <<<SQL
 SELECT
-municipalityID,
+Proceeding.municipalityID,
 proceedingCategoryID,
 applicationTypeID,
 pYear,
@@ -647,7 +657,7 @@ SQL;
             case 'RegionalCooperation': //RegionalCooperation
                 $sql = <<<SQL
 SELECT
-municipalityID,
+RegionalCooperation.municipalityID,
 kostraCategoryID,
 municipalExpenseCategoryID,
 pYear,
@@ -657,8 +667,9 @@ SQL;
                 break;
             case 'Unemployment': // Unemployment
                 $sql = <<<SQL
-SELECT unemploymentID,
-municipalityID,
+SELECT 
+unemploymentID,
+Unemployment.municipalityID,
 ageRangeID,
 pYear,
 pMonth,
@@ -671,6 +682,7 @@ SQL;
         }
         $sql .= $this->getSqlConstraints($request);
         $sql .= $this->getGroupByClause($request);
+        $this->logger->log($sql);
         $this->db->query($sql);
         if (sizeof($this->binds) > 0) {
             $result = $this->db->getResultSetWithBinding($this->binds);
@@ -835,14 +847,15 @@ SQL;
      */
     private function getSqlConstraints($request) {
         if ($request->constraints) {
+            $pre = ', Municipality WHERE ' .$request->tableName . '.municipalityID = Municipality.municipalityID';
             $this->binds = [];
             $a = [];
             foreach ($request->constraints as $constraintName => $valueArray) {
                 $in = str_repeat('?,', count($valueArray) - 1) . '?';
-                array_push($a, $constraintName . " IN ($in)");
+                array_push($a, $request->tableName . '.' . $constraintName . " IN ($in)");
                 $this->bindLater($valueArray);
             }
-            return ' WHERE ' . implode(' AND ', $a);
+            return $pre . ' AND ' . implode(' AND ', $a);
         } else {
             return '';
         }
@@ -864,6 +877,7 @@ SQL;
      * @return string
      */
     private function getGroupByClause($request) {
+        $pre = '';
         $sqlGetTableColumns = 'SHOW COLUMNS FROM ' . $request->tableName;
         $this->db->query($sqlGetTableColumns);
         $dbResult = $this->db->getResultSet();
@@ -871,7 +885,10 @@ SQL;
         foreach ($dbResult as $item) {
             switch ($item['Field']) {
                 case 'municipalityID':
-                    array_push($order, 'municipalityID');
+                    if (!$request->constraints) {
+                        $pre = ', Municipality WHERE ' .$request->tableName . '.municipalityID = Municipality.municipalityID';
+                    }
+                    array_push($order, 'municipalityOrder');
                     break;
                 case 'pYear':
                     array_push($order, 'pYear');
@@ -884,7 +901,7 @@ SQL;
                     break;
             }
         }
-        return (sizeof($order) > 0 ? ' ORDER BY ' . implode(',', $order) : '');
+        return $pre . (sizeof($order) > 0 ? ' ORDER BY ' . implode(',', $order) : '');
     }
 
     /**
