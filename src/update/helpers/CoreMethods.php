@@ -68,13 +68,18 @@ class CoreMethods {
         }
         if (!isset($this->municipalityMap[strval($regionCode)])) {
             $sql = 'INSERT INTO Municipality (municipalityCode, municipalityName) VALUES (:code, :name)';
-            $this->db->beginTransaction();
+            if (!$this->db->isTransaction()) {
+                $this->db->beginTransaction();
+            }
             $this->db->prepare($sql);
             $this->db->bind(':code', strval($regionCode));
             $this->db->bind(':name', strval($regionCode));
             $this->db->execute();
             $municipalityID = $this->db->getLastInsertID();
-            $this->db->endTransaction();
+            if ($this->db->isTransaction()) {
+                $this->db->commit();
+                $this->db->beginTransaction();
+            }
             $this->municipalityMap[strval($regionCode)] = $municipalityID;
             return $municipalityID;
         } else {
