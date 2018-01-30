@@ -616,6 +616,18 @@ totalPopulation as value
 from PopulationChange
 SQL;
                 break;
+            case 'PopulationEstimation':
+                $sql = <<<'SQL'
+SELECT
+municipalityID,
+populationEstimationTypeID,
+genderID,
+ageRangeID,
+pYear,
+population as value
+FROM PopulationEstimation
+SQL;
+                break;
             case 'PrivateEmployee': // PrivateEmployee
                 $sql = <<<SQL
 
