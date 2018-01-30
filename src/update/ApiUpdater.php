@@ -110,9 +110,11 @@ SQL;
      * @return void
      */
     private function truncateTable($tableName) {
+        $this->db->beginTransaction();
         $sql = 'DELETE FROM ' . $tableName;
         $this->db->query($sql);
         $queryResult = $this->db->execute();
+        $this->db->commit();
         if (Globals::debugging) {
             $this->logger->log('DB: Forcing replacement of table ' . $tableName);
             $this->logger->log('DB: Force request given by ' . $_SERVER['REMOTE_ADDR']);
