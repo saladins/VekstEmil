@@ -89,6 +89,7 @@ class ApiParser {
                     $response[GLOBALS::resultSet] = $this->apiRequest->getSearchResult($this->requestModel->searchTerm);
                     break;
                 case RequestType::Update:
+                    $this->validateAccessOrDie();
                     $apiUpdate = new ApiUpdate();
                     $response[Globals::resultSet] = $apiUpdate->update($this->requestModel);
                     break;
