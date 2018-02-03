@@ -1205,7 +1205,6 @@ SQL;
         }
         $sql .= implode(',', $columns);
         $sql .= ') VALUES' . implode(',', $values);
-        var_dump($sql); die;
         $this->db->query($sql);
         return $this->db->execute();
     }
