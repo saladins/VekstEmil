@@ -383,6 +383,17 @@ AND b.enterprisePostCategoryID = 7
 AND pYear = 2016;
 SQL;
                 break;
+            case 94:
+                $sql = <<<SQL
+SELECT M.municipalityID, M.pYear, ROUND((sumAll /P.totalPopulation) * 100,2) AS changePercent
+FROM Movement AS M, PopulationChange AS P, Municipality AS MP
+WHERE M.municipalityID = P.municipalityID
+    AND P.pYear = M.pYear
+    AND P.pQuarter = 4
+    AND M.municipalityID = MP.municipalityID
+    ORDER BY MP.municipalityOrder;
+SQL;
+                break;
             default:
                 throw new PDOException('There is no SQL for this variable ID');
 
