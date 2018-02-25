@@ -24,6 +24,76 @@ class ApiRequest {
         $validate->checkRequestOrDie($request);
     }
 
+
+    public function updateVariableSettings($request) {
+        $error = null;
+
+        /*
+         * Insert related variables first
+         */
+
+        //Start transaction
+        $this->db->beginTransaction();
+
+        //remove all related variables (easiest, as we need to commit)
+        $delete_sql = "DELETE FROM VariableRelated WHERE parentVariableID = :id";
+        $this->db->prepare($delete_sql);
+        $this->db->bind(':id', $request->variableID);
+        $this->db->execute();
+
+        //Sanitize
+        $relatedVariables = preg_replace('/[^0-9,]/', '', $request->relatedVariables);
+        //Check if any related variables is set
+        if($relatedVariables != '') {
+            //Create an array containing related variables
+            $relatedVariables = explode(',', $relatedVariables);
+
+
+            //Loop trough all related variables and add
+            foreach ($relatedVariables as $related) {
+                $sql = "INSERT INTO VariableRelated VALUES(:id, :related)";
+                $this->db->prepare($sql);
+                $this->db->bind(':id', $request->variableID);
+                $this->db->bind(':related', $related);
+                $this->db->execute();
+            }
+        }
+
+        $updateSql = <<<SQL
+        UPDATE Variable 
+        SET statisticName = :title,subtitle = :subtitle, description = :description
+        WHERE variableID = :id;
+SQL;
+        $this->db->prepare($updateSql);
+
+        $this->db->bind(':title', $request->title);
+        $this->db->bind(':subtitle', $request->subtitle);
+        $this->db->bind(':description', $request->description);
+        $this->db->bind(':id', $request->variableID);
+        $this->db->execute();
+
+        $this->db->commit();
+
+        return $error;
+    }
+
+    public function getVariableSettings($variableID) {
+        $sql = <<<SQL
+        SELECT variableID, statisticName, subtitle, description, R.relatedVariables 
+        FROM Variable AS V LEFT JOIN (
+            SELECT parentVariableID, GROUP_CONCAT(relatedVariableID SEPARATOR ',') AS relatedVariables
+            FROM VariableRelated
+            GROUP BY parentVariableID
+        ) AS R
+        ON V.variableID = R.parentVariableID
+        WHERE variableID = :id;
+SQL;
+
+        $this->db->prepare($sql);
+        $this->db->bind(':id', $variableID);
+        return $this->db->getResultSet(PDO::FETCH_CLASS);
+    }
+
     /**
      * @param RequestModel $request
      * @return mixed
@@ -834,7 +904,7 @@ SQL;
      */
     private function getVariableAndProvider($variableID) {
         $sql = <<<'SQL'
-SELECT a.variableID, a.providerID, a.statisticName, a.tableName, 
+SELECT a.variableID, a.providerID, a.statisticName, a.subtitle, a.description, a.tableName, 
 a.lastUpdatedDate, a.providerCode, 
 b.providerName, b.providerNameShortForm, b.providerNotice, 
 b.providerLink, b.providerAPIAddress, c.subCategoryName

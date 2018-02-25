@@ -54,11 +54,14 @@ class ApiParser {
     public function handleRequest() {
         $startTime = $this->logger->microTimeFloat();
         $response = [];
+
         try {
             $this->requestModel = $this->parseRequest();
+
             $this->apiRequest->checkRequestOrDie($this->requestModel);
             /** @var RequestType $requestType */
             $requestType = $this->requestModel->requestType;
+
             switch ($requestType) {
                 case RequestType::Detailed:
 //                    $this->validateAccessOrDie();
@@ -92,6 +95,15 @@ class ApiParser {
                     $this->validateAccessOrDie();
                     $apiUpdate = new ApiUpdate();
                     $response[Globals::resultSet] = $apiUpdate->update($this->requestModel);
+                    break;
+                case RequestType::VariableSettings:
+                    //$this->validateAccessOrDie();
+                    $response[GLOBALS::resultSet]  =  $this->apiRequest->getVariableSettings($this->requestModel->variableID);
+                    break;
+                case RequestType::VariableUpdate:
+                    //$this->validateAccessOrDie();
+                    $response[GLOBALS::resultSet]  =  $this->apiRequest->updateVariableSettings($this->requestModel);
+                    //$response[GLOBALS::resultSet] = $this->requestModel;
                     break;
                 case RequestType::DataTables:
                     $response[GLOBALS::resultSet] = $this->apiRequest->getDataTables();
@@ -175,6 +187,7 @@ class ApiParser {
     private function parsePost() {
         ini_set('memory_limit', '-1');
         $postContent = file_get_contents('php://input');
+
         if (!$postContent) {
             throw new Exception('Unable to parse POST data. Contact the administrator');
         } else {

@@ -10,5 +10,7 @@ abstract class RequestType {
     const Search = 80;
     const Update = 100;
     const DataTables = 110;
+    const VariableSettings = 120;
+    const VariableUpdate = 130;
     const Unknown = -1;
 }

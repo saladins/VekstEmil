@@ -56,6 +56,10 @@ class Validate {
                     break;
                 case 110: // DataTables
                     break;
+                case 120: //
+                    break;
+                case 130:
+                    break;
                 default:
                     throw new Exception('Invalid or missing request type');
             }

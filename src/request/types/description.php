@@ -18,10 +18,9 @@ class Description {
      */
     public function getVariableDescription($variableID) {
         $sql = <<<SQL
-SELECT a.descriptionID, a.variableID, a.descriptionText 
-FROM VariableDescription a, Variable b
-WHERE a.variableID = b.variableID
-AND b.variableID = :variableID
+SELECT description
+FROM Variable
+WHERE variableID = :variableID
 SQL;
         $this->db->prepare($sql);
         $this->db->bind(':variableID', $variableID);
