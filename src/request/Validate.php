@@ -60,6 +60,10 @@ class Validate {
                     break;
                 case 130:
                     break;
+                case 140:
+                    break;
+                case 150:
+                    break;
                 default:
                     throw new Exception('Invalid or missing request type');
             }

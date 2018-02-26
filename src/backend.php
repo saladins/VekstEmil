@@ -103,8 +103,16 @@ class ApiParser {
                 case RequestType::VariableUpdate:
                     //$this->validateAccessOrDie();
                     $response[GLOBALS::resultSet]  =  $this->apiRequest->updateVariableSettings($this->requestModel);
-                    //$response[GLOBALS::resultSet] = $this->requestModel;
                     break;
+                case RequestType::LinkInsert:
+                    //$this->validateAccessOrDie();
+                    $response[GLOBALS::resultSet]  =  $this->apiRequest->insertRelatedDocument($this->requestModel);
+                    break;
+                case RequestType::LinkDelete:
+                    //$this->validateAccessOrDie();
+                    $response[GLOBALS::resultSet]  =  $this->apiRequest->deleteRelatedDocument($this->requestModel);
+                    break;
+
                 case RequestType::DataTables:
                     $response[GLOBALS::resultSet] = $this->apiRequest->getDataTables();
                     break;

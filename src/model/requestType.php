@@ -12,5 +12,7 @@ abstract class RequestType {
     const DataTables = 110;
     const VariableSettings = 120;
     const VariableUpdate = 130;
+    const LinkInsert = 140;
+    const LinkDelete = 150;
     const Unknown = -1;
 }

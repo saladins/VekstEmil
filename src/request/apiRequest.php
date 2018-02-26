@@ -25,6 +25,39 @@ class ApiRequest {
     }
 
 
+    public function insertRelatedDocument($request) {
+        $error = null;
+
+        $sql = <<<SQL
+INSERT INTO 
+VariableLinkedDocument(variableID, linkedDocumentAddress, linkedDocumentTitle, linkedDocumentDescription) 
+VALUES(:id, :url,:title,:description);
+SQL;
+        $this->db->prepare($sql);
+        $this->db->bind(':id', $request->variableID);
+        $this->db->bind(':url', $request->url);
+        $this->db->bind(':title', $request->title);
+        $this->db->bind(':description', $request->description);
+        $this->db->execute();
+
+        return $error;
+    }
+
+    public function deleteRelatedDocument($request) {
+        $error = null;
+
+        $sql = <<<SQL
+DELETE FROM VariableLinkedDocument 
+WHERE linkedDocumentID = :documentID
+SQL;
+        $this->db->prepare($sql);
+        $this->db->bind(':documentID', $request->documentID);
+        $this->db->execute();
+
+        return $error;
+    }
+
+
     public function updateVariableSettings($request) {
         $error = null;
 
