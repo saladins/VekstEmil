@@ -157,6 +157,28 @@ AND Enterprise.municipalityID <= 3
 GROUP BY municipalityID, pYear, naceID;
 SQL;
                 break;
+            case 59:
+                $sql = <<<SQL
+SELECT 
+	M.municipalityID, 
+    M.pYear, 
+	M.sumAll AS sumMovement, 
+    PC.sumBorn, 
+    I.sumAll AS sumMigration
+FROM Movement AS M, Immigration AS I, (
+	SELECT municipalityID, pYear, SUM(born - dead) AS sumBorn
+	FROM PopulationChange 
+	GROUP BY municipalityID, pYear
+) AS PC
+WHERE M.municipalityID = PC.municipalityID
+	AND M.municipalityID = I.municipalityID
+    AND M.pYear = PC.pYear
+    AND M.pYear = I.pYear
+    AND M.municipalityID IN (1,2,3) -- only fetch results from ringeriksregionen
+GROUP BY M.municipalityID, M.pYear, sumMovement, sumBorn, sumMigration
+SQL;
+
+                break;
             case 63:
                 $sql =<<<'SQL'
 SELECT municipalityID, pYear, SUM(born) as born, SUM(dead) as dead, AVG(totalPopulation) AS value 
