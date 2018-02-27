@@ -97,19 +97,19 @@ class ApiParser {
                     $response[Globals::resultSet] = $apiUpdate->update($this->requestModel);
                     break;
                 case RequestType::VariableSettings:
-                    //$this->validateAccessOrDie();
+                    $this->validateAccessOrDie();
                     $response[GLOBALS::resultSet]  =  $this->apiRequest->getVariableSettings($this->requestModel->variableID);
                     break;
                 case RequestType::VariableUpdate:
-                    //$this->validateAccessOrDie();
+                    $this->validateAccessOrDie();
                     $response[GLOBALS::resultSet]  =  $this->apiRequest->updateVariableSettings($this->requestModel);
                     break;
                 case RequestType::LinkInsert:
-                    //$this->validateAccessOrDie();
+                    $this->validateAccessOrDie();
                     $response[GLOBALS::resultSet]  =  $this->apiRequest->insertRelatedDocument($this->requestModel);
                     break;
                 case RequestType::LinkDelete:
-                    //$this->validateAccessOrDie();
+                    $this->validateAccessOrDie();
                     $response[GLOBALS::resultSet]  =  $this->apiRequest->deleteRelatedDocument($this->requestModel);
                     break;
 
