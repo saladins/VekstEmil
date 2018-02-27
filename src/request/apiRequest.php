@@ -94,13 +94,12 @@ SQL;
 
         $updateSql = <<<SQL
         UPDATE Variable 
-        SET statisticName = :title,subtitle = :subtitle, description = :description
+        SET statisticName = :title, description = :description
         WHERE variableID = :id;
 SQL;
         $this->db->prepare($updateSql);
 
         $this->db->bind(':title', $request->title);
-        $this->db->bind(':subtitle', $request->subtitle);
         $this->db->bind(':description', $request->description);
         $this->db->bind(':id', $request->variableID);
         $this->db->execute();
@@ -112,7 +111,7 @@ SQL;
 
     public function getVariableSettings($variableID) {
         $sql = <<<SQL
-        SELECT variableID, statisticName, subtitle, description, R.relatedVariables 
+        SELECT variableID, statisticName, description, R.relatedVariables 
         FROM Variable AS V LEFT JOIN (
             SELECT parentVariableID, GROUP_CONCAT(relatedVariableID SEPARATOR ',') AS relatedVariables
             FROM VariableRelated
