@@ -518,6 +518,27 @@ WHERE M.municipalityID = P.municipalityID
     ORDER BY MP.municipalityOrder;
 SQL;
                 break;
+            case 95: //Frontpage
+                $sql = <<<SQL
+SELECT E.municipalityID, E.workplaceValue, E.livingplaceValue, PC.totalPopulation, EP.wealthNOK
+FROM Employment AS E, (
+	SELECT municipalityID, pYear, totalPopulation 
+    FROM PopulationChange 
+    WHERE pQuarter = 4
+    GROUP BY municipalityID, pYear, totalPopulation
+) AS PC, (
+	SELECT municipalityID, pYear, SUM(valueInNOK) AS wealthNOK
+	FROM EnterpriseEntry, Enterprise
+	WHERE Enterprise.enterpriseID = EnterpriseEntry.enterpriseID AND EnterpriseEntry.enterprisePostCategoryID = 7
+	GROUP BY municipalityID, pYear
+) AS EP
+WHERE E.municipalityID = PC.municipalityID
+	AND E.municipalityID = EP.municipalityID
+    AND E.pYear = PC.pYear
+    AND E.pYear = EP.pYear;
+SQL;
+
+                break;
             default:
                 throw new PDOException('There is no SQL for this variable ID');
 

@@ -2278,3 +2278,2967 @@ from Employment, Municipality WHERE Employment.municipalityID = Municipality.mun
 2018-02-25 13:43:33 : Sending data to ::1
 2018-02-25 13:43:34 : Handling request 10 took 0.75603294372559 seconds
 2018-02-25 13:43:34 : Sending data to ::1
+2018-02-25 13:47:37 : Received request from ::1
+2018-02-25 13:47:37 : Received request from ::1
+2018-02-25 13:47:37 : Received request from ::1
+2018-02-25 13:47:37 : 
+2018-02-25 13:47:37 : Received request from ::1
+2018-02-25 13:47:37 : Received request from ::1
+2018-02-25 13:47:37 : Received request from ::1
+2018-02-25 13:47:37 : Handling request 70 took 0.07203221321106 seconds
+2018-02-25 13:47:37 : Handling request 80 took 0.07635498046875 seconds
+2018-02-25 13:47:37 : Sending data to ::1
+2018-02-25 13:47:37 : Sending data to ::1
+2018-02-25 13:47:37 : Handling request 50 took 0.14116597175598 seconds
+2018-02-25 13:47:37 : Handling request 30 took 0.14226007461548 seconds
+2018-02-25 13:47:37 : Handling request 40 took 0.14355802536011 seconds
+2018-02-25 13:47:37 : Sending data to ::1
+2018-02-25 13:47:37 : Sending data to ::1
+2018-02-25 13:47:37 : Received request from ::1
+2018-02-25 13:47:37 : Received request from ::1
+2018-02-25 13:47:37 : Handling request 120 took 0.071612119674683 seconds
+2018-02-25 13:47:37 : Handling request 70 took 0.073008060455322 seconds
+2018-02-25 13:47:37 : Sending data to ::1
+2018-02-25 13:47:37 : Sending data to ::1
+2018-02-25 13:47:37 : Received request from ::1
+2018-02-25 13:47:37 : 
+2018-02-25 13:47:37 : Handling request 80 took 0.077223062515259 seconds
+2018-02-25 13:47:37 : Sending data to ::1
+2018-02-25 13:47:38 : Handling request 10 took 0.76530504226685 seconds
+2018-02-25 13:47:38 : Sending data to ::1
+2018-02-25 13:47:38 : Received request from ::1
+2018-02-25 13:47:38 : Received request from ::1
+2018-02-25 13:47:38 : 
+2018-02-25 13:47:38 : Received request from ::1
+2018-02-25 13:47:38 : Handling request 70 took 0.072280883789062 seconds
+2018-02-25 13:47:38 : Handling request 80 took 0.075532913208008 seconds
+2018-02-25 13:47:38 : Sending data to ::1
+2018-02-25 13:47:38 : Sending data to ::1
+2018-02-25 13:47:38 : Handling request 120 took 0.071254014968872 seconds
+2018-02-25 13:47:38 : Sending data to ::1
+2018-02-25 13:49:05 : Received request from ::1
+2018-02-25 13:49:05 : Received request from ::1
+2018-02-25 13:49:05 : 
+2018-02-25 13:49:05 : Received request from ::1
+2018-02-25 13:49:05 : Handling request 70 took 0.072709798812866 seconds
+2018-02-25 13:49:05 : Sending data to ::1
+2018-02-25 13:49:05 : Handling request 120 took 0.075230836868286 seconds
+2018-02-25 13:49:05 : Handling request 80 took 0.081807851791382 seconds
+2018-02-25 13:49:05 : Sending data to ::1
+2018-02-25 13:49:05 : Received request from ::1
+2018-02-25 13:49:05 : Received request from ::1
+2018-02-25 13:49:05 : Received request from ::1
+2018-02-25 13:49:05 : 
+2018-02-25 13:49:05 : Received request from ::1
+2018-02-25 13:49:05 : Received request from ::1
+2018-02-25 13:49:05 : Received request from ::1
+2018-02-25 13:49:05 : Handling request 80 took 0.078643083572388 seconds
+2018-02-25 13:49:05 : Handling request 70 took 0.074296951293945 seconds
+2018-02-25 13:49:05 : Sending data to ::1
+2018-02-25 13:49:05 : Handling request 30 took 0.14406299591064 seconds
+2018-02-25 13:49:06 : Sending data to ::1
+2018-02-25 13:49:06 : Handling request 50 took 0.14243102073669 seconds
+2018-02-25 13:49:06 : Handling request 40 took 0.1489679813385 seconds
+2018-02-25 13:49:06 : Sending data to ::1
+2018-02-25 13:49:06 : Handling request 10 took 0.7509548664093 seconds
+2018-02-25 13:49:06 : Sending data to ::1
+2018-02-25 13:49:07 : Received request from ::1
+2018-02-25 13:49:07 : Received request from ::1
+2018-02-25 13:49:07 : 
+2018-02-25 13:49:07 : Received request from ::1
+2018-02-25 13:49:07 : Handling request 70 took 0.073724031448364 seconds
+2018-02-25 13:49:07 : Handling request 80 took 0.079102993011475 seconds
+2018-02-25 13:49:07 : Sending data to ::1
+2018-02-25 13:49:07 : Sending data to ::1
+2018-02-25 13:49:07 : Sending data to ::1
+2018-02-25 13:49:31 : Received request from ::1
+2018-02-25 13:49:31 : Received request from ::1
+2018-02-25 13:49:31 : Received request from ::1
+2018-02-25 13:49:31 : 
+2018-02-25 13:49:31 : Received request from ::1
+2018-02-25 13:49:31 : Received request from ::1
+2018-02-25 13:49:31 : Received request from ::1
+2018-02-25 13:49:31 : Handling request 70 took 0.075640201568604 seconds
+2018-02-25 13:49:31 : Handling request 80 took 0.080066919326782 seconds
+2018-02-25 13:49:31 : Sending data to ::1
+2018-02-25 13:49:31 : Sending data to ::1
+2018-02-25 13:49:31 : Handling request 30 took 0.14093613624573 seconds
+2018-02-25 13:49:31 : Handling request 50 took 0.14124083518982 seconds
+2018-02-25 13:49:31 : Sending data to ::1
+2018-02-25 13:49:31 : Sending data to ::1
+2018-02-25 13:49:31 : Handling request 40 took 0.14694404602051 seconds
+2018-02-25 13:49:31 : Sending data to ::1
+2018-02-25 13:49:31 : Handling request 10 took 0.78590488433838 seconds
+2018-02-25 13:49:31 : Sending data to ::1
+2018-02-25 13:49:33 : Received request from ::1
+2018-02-25 13:49:33 : Received request from ::1
+2018-02-25 13:49:33 : 
+2018-02-25 13:49:33 : Received request from ::1
+2018-02-25 13:49:33 : Handling request 70 took 0.073675870895386 seconds
+2018-02-25 13:49:33 : Handling request 120 took 0.071203947067261 seconds
+2018-02-25 13:49:33 : Sending data to ::1
+2018-02-25 13:49:33 : Sending data to ::1
+2018-02-25 13:49:33 : Handling request 80 took 0.080971956253052 seconds
+2018-02-25 13:49:33 : Sending data to ::1
+2018-02-25 13:49:34 : Received request from ::1
+2018-02-25 13:49:34 : 
+2018-02-25 13:49:34 : Received request from ::1
+2018-02-25 13:49:34 : Handling request 70 took 0.074479818344116 seconds
+2018-02-25 13:49:34 : Handling request 80 took 0.076611042022705 seconds
+2018-02-25 13:49:34 : Sending data to ::1
+2018-02-25 13:49:34 : Sending data to ::1
+2018-02-25 13:49:34 : Handling request 120 took 0.074050903320312 seconds
+2018-02-25 13:49:34 : Sending data to ::1
+2018-02-25 13:50:02 : Received request from ::1
+2018-02-25 13:50:02 : Received request from ::1
+2018-02-25 13:50:02 : 
+2018-02-25 13:50:02 : Received request from ::1
+2018-02-25 13:50:02 : Received request from ::1
+2018-02-25 13:50:02 : Received request from ::1
+2018-02-25 13:50:02 : Received request from ::1
+2018-02-25 13:50:02 : Handling request 70 took 0.072690963745117 seconds
+2018-02-25 13:50:02 : Sending data to ::1
+2018-02-25 13:50:02 : Handling request 80 took 0.077960968017578 seconds
+2018-02-25 13:50:02 : Sending data to ::1
+2018-02-25 13:50:02 : Handling request 30 took 0.14218997955322 seconds
+2018-02-25 13:50:02 : Sending data to ::1
+2018-02-25 13:50:02 : Handling request 40 took 0.14118790626526 seconds
+2018-02-25 13:50:02 : Handling request 50 took 0.14272499084473 seconds
+2018-02-25 13:50:02 : Sending data to ::1
+2018-02-25 13:50:02 : Sending data to ::1
+2018-02-25 13:50:02 : Handling request 10 took 0.76377606391907 seconds
+2018-02-25 13:50:02 : Sending data to ::1
+2018-02-25 13:50:02 : Received request from ::1
+2018-02-25 13:50:02 : Received request from ::1
+2018-02-25 13:50:02 : Received request from ::1
+2018-02-25 13:50:02 : 
+2018-02-25 13:50:02 : Handling request 70 took 0.073308944702148 seconds
+2018-02-25 13:50:02 : Handling request 120 took 0.074670791625977 seconds
+2018-02-25 13:50:03 : Handling request 80 took 0.079206943511963 seconds
+2018-02-25 13:50:03 : Sending data to ::1
+2018-02-25 13:50:03 : Sending data to ::1
+2018-02-25 13:50:04 : Received request from ::1
+2018-02-25 13:50:04 : Received request from ::1
+2018-02-25 13:50:04 : 
+2018-02-25 13:50:04 : Received request from ::1
+2018-02-25 13:50:04 : Handling request 70 took 0.072591066360474 seconds
+2018-02-25 13:50:04 : Sending data to ::1
+2018-02-25 13:50:04 : Handling request 80 took 0.079750061035156 seconds
+2018-02-25 13:50:04 : Handling request 120 took 0.071949005126953 seconds
+2018-02-25 13:50:04 : Sending data to ::1
+2018-02-25 13:50:21 : Received request from ::1
+2018-02-25 13:50:21 : Received request from ::1
+2018-02-25 13:50:21 : 
+2018-02-25 13:50:21 : Received request from ::1
+2018-02-25 13:50:21 : Received request from ::1
+2018-02-25 13:50:21 : Received request from ::1
+2018-02-25 13:50:21 : Received request from ::1
+2018-02-25 13:50:21 : Handling request 70 took 0.072862148284912 seconds
+2018-02-25 13:50:21 : Sending data to ::1
+2018-02-25 13:50:21 : Handling request 80 took 0.078541994094849 seconds
+2018-02-25 13:50:21 : Sending data to ::1
+2018-02-25 13:50:21 : Handling request 40 took 0.14810109138489 seconds
+2018-02-25 13:50:21 : Handling request 50 took 0.14114618301392 seconds
+2018-02-25 13:50:21 : Handling request 30 took 0.14784812927246 seconds
+2018-02-25 13:50:21 : Sending data to ::1
+2018-02-25 13:50:21 : Sending data to ::1
+2018-02-25 13:50:22 : Handling request 10 took 0.74659085273743 seconds
+2018-02-25 13:50:22 : Sending data to ::1
+2018-02-25 13:50:23 : Received request from ::1
+2018-02-25 13:50:23 : Received request from ::1
+2018-02-25 13:50:23 : Received request from ::1
+2018-02-25 13:50:23 : 
+2018-02-25 13:50:23 : Handling request 70 took 0.072294950485229 seconds
+2018-02-25 13:50:23 : Handling request 80 took 0.076670169830322 seconds
+2018-02-25 13:50:23 : Handling request 120 took 0.072435855865479 seconds
+2018-02-25 13:50:23 : Sending data to ::1
+2018-02-25 13:50:23 : Sending data to ::1
+2018-02-25 13:50:23 : Sending data to ::1
+2018-02-25 13:50:24 : Received request from ::1
+2018-02-25 13:50:24 : Received request from ::1
+2018-02-25 13:50:24 : 
+2018-02-25 13:50:24 : Received request from ::1
+2018-02-25 13:50:24 : Handling request 70 took 0.072881937026978 seconds
+2018-02-25 13:50:24 : Handling request 120 took 0.0709228515625 seconds
+2018-02-25 13:50:24 : Sending data to ::1
+took 0.07837700843811 seconds
+2018-02-25 13:50:24 : Sending data to ::1
+2018-02-25 13:50:34 : Received request from ::1
+2018-02-25 13:50:34 : Received request from ::1
+2018-02-25 13:50:34 : Received request from ::1
+2018-02-25 13:50:34 : 
+2018-02-25 13:50:34 : Received request from ::1
+2018-02-25 13:50:34 : Received request from ::1
+2018-02-25 13:50:34 : Received request from ::1
+2018-02-25 13:50:34 : Handling request 70 took 0.0728600025177 seconds
+2018-02-25 13:50:34 : Handling request 80 took 0.078290939331055 seconds
+2018-02-25 13:50:34 : Sending data to ::1
+2018-02-25 13:50:34 : Handling request 50 took 0.14486217498779 seconds
+2018-02-25 13:50:34 : Handling request 30 took 0.14166402816772 seconds
+2018-02-25 13:50:34 : Sending data to ::1
+2018-02-25 13:50:34 : Sending data to ::1
+2018-02-25 13:50:34 : Handling request 40 took 0.14907717704773 seconds
+2018-02-25 13:50:34 : Sending data to ::1
+2018-02-25 13:50:35 : Handling request 10 took 0.76249313354492 seconds
+2018-02-25 13:50:35 : Sending data to ::1
+2018-02-25 13:50:36 : Received request from ::1
+2018-02-25 13:50:36 : Received request from ::1
+2018-02-25 13:50:36 : 
+2018-02-25 13:50:36 : Received request from ::1
+2018-02-25 13:50:37 : Handling request 70 took 0.07253885269165 seconds
+2018-02-25 13:50:37 : Sending data to ::1
+2018-02-25 13:50:37 : Handling request 80 took 0.078848838806152 seconds
+2018-02-25 13:50:37 : Sending data to ::1
+2018-02-25 13:50:37 : Handling request 120 took 0.074018001556396 seconds
+2018-02-25 13:50:37 : Sending data to ::1
+2018-02-25 13:50:37 : Received request from ::1
+2018-02-25 13:50:37 : Received request from ::1
+2018-02-25 13:50:37 : Received request from ::1
+2018-02-25 13:50:37 : 
+2018-02-25 13:50:38 : Handling request 70 took 0.072252035140991 seconds
+2018-02-25 13:50:38 : Handling request 120 took 0.07433295249939 seconds
+2018-02-25 13:50:38 : Sending data to ::1
+2018-02-25 13:50:38 : Handling request 80 took 0.081339836120605 seconds
+2018-02-25 13:50:38 : Sending data to ::1
+2018-02-25 13:50:56 : Received request from ::1
+2018-02-25 13:50:56 : Received request from ::1
+2018-02-25 13:50:56 : Received request from ::1
+2018-02-25 13:50:56 : 
+2018-02-25 13:50:56 : Handling request 70 took 0.072286128997803 seconds
+2018-02-25 13:50:56 : Sending data to ::1
+2018-02-25 13:50:56 : Handling request 120 took 0.072553873062134 seconds
+2018-02-25 13:50:56 : Handling request 80 took 0.081682920455933 seconds
+2018-02-25 13:50:56 : Sending data to ::1
+2018-02-25 13:50:56 : Received request from ::1
+2018-02-25 13:50:56 : Received request from ::1
+2018-02-25 13:50:56 : Received request from ::1
+2018-02-25 13:50:56 : Received request from ::1
+2018-02-25 13:50:56 : 
+2018-02-25 13:50:56 : Received request from ::1
+2018-02-25 13:50:56 : Received request from ::1
+2018-02-25 13:50:56 : Handling request 70 took 0.073853015899658 seconds
+2018-02-25 13:50:56 : Sending data to ::1
+2018-02-25 13:50:56 : Handling request 80 took 0.078027009963989 seconds
+2018-02-25 13:50:56 : Sending data to ::1
+2018-02-25 13:50:56 : Handling request 30 took 0.14057993888855 seconds
+2018-02-25 13:50:56 : Sending data to ::1
+2018-02-25 13:50:56 : Handling request 50 took 0.14044904708862 seconds
+2018-02-25 13:50:56 : Handling request 40 took 0.14090895652771 seconds
+2018-02-25 13:50:56 : Sending data to ::1
+2018-02-25 13:50:57 : Handling request 10 took 0.77783489227295 seconds
+2018-02-25 13:50:57 : Sending data to ::1
+2018-02-25 13:50:57 : Received request from ::1
+2018-02-25 13:50:57 : Received request from ::1
+2018-02-25 13:50:57 : 
+eceived request from ::1
+2018-02-25 13:50:57 : Handling request 70 took 0.072512865066528 seconds
+2018-02-25 13:50:57 : Handling request 80 took 0.077272176742554 seconds
+2018-02-25 13:50:57 : Sending data to ::1
+ took 0.072225093841553 seconds
+2018-02-25 13:50:57 : Sending data to ::1
+2018-02-25 13:50:57 : Sending data to ::1
+2018-02-25 13:51:30 : Received request from ::1
+2018-02-25 13:51:30 : Received request from ::1
+2018-02-25 13:51:30 : Received request from ::1
+2018-02-25 13:51:30 : Received request from ::1
+2018-02-25 13:51:30 : 
+2018-02-25 13:51:30 : Received request from ::1
+2018-02-25 13:51:30 : Received request from ::1
+2018-02-25 13:51:30 : Handling request 70 took 0.074418783187866 seconds
+2018-02-25 13:51:30 : Sending data to ::1
+2018-02-25 13:51:30 : Handling request 80 took 0.077927112579346 seconds
+2018-02-25 13:51:30 : Sending data to ::1
+2018-02-25 13:51:30 : Handling request 30 took 0.1399359703064 seconds
+2018-02-25 13:51:30 : Sending data to ::1
+2018-02-25 13:51:30 : Handling request 40 took 0.14122414588928 seconds
+2018-02-25 13:51:30 : Handling request 50 took 0.14168190956116 seconds
+2018-02-25 13:51:30 : Sending data to ::1
+2018-02-25 13:51:30 : Received request from ::1
+2018-02-25 13:51:30 : Received request from ::1
+2018-02-25 13:51:30 : Received request from ::1
+2018-02-25 13:51:30 : 
+2018-02-25 13:51:30 : Handling request 70 took 0.072002172470093 seconds
+
+2018-02-25 13:51:30 : Sending data to ::1
+took 0.077068090438843 seconds
+2018-02-25 13:51:30 : Sending data to ::1
+2018-02-25 13:51:30 : Sending data to ::1
+2018-02-25 13:51:30 : Handling request 10 took 0.7588849067688 seconds
+2018-02-25 13:51:30 : Sending data to ::1
+2018-02-25 13:51:32 : Received request from ::1
+2018-02-25 13:51:32 : Received request from ::1
+2018-02-25 13:51:32 : 
+2018-02-25 13:51:32 : Received request from ::1
+2018-02-25 13:51:32 : Handling request 70 took 0.072892904281616 seconds
+2018-02-25 13:51:32 : Sending data to ::1
+2018-02-25 13:51:32 : Handling request 120 took 0.071089029312134 seconds
+2018-02-25 13:51:32 : Handling request 80 took 0.080623865127563 seconds
+2018-02-25 13:51:32 : Sending data to ::1
+2018-02-25 13:51:32 : Sending data to ::1
+2018-02-25 13:52:08 : Received request from ::1
+2018-02-25 13:52:08 : Received request from ::1
+2018-02-25 13:52:08 : Received request from ::1
+2018-02-25 13:52:08 : Received request from ::1
+2018-02-25 13:52:08 : 
+2018-02-25 13:52:08 : Received request from ::1
+2018-02-25 13:52:08 : Received request from ::1
+2018-02-25 13:52:08 : Handling request 70 took 0.075490951538086 seconds
+2018-02-25 13:52:08 : Sending data to ::1
+2018-02-25 13:52:08 : Handling request 80 took 0.080450057983398 seconds
+2018-02-25 13:52:08 : Sending data to ::1
+2018-02-25 13:52:09 : Handling request 30 took 0.14419984817505 seconds
+2018-02-25 13:52:09 : Sending data to ::1
+2018-02-25 13:52:09 : Handling request 40 took 0.14225292205811 seconds
+2018-02-25 13:52:09 : Handling request 50 took 0.14323115348816 seconds
+2018-02-25 13:52:09 : Sending data to ::1
+2018-02-25 13:52:09 : Received request from ::1
+2018-02-25 13:52:09 : Received request from ::1
+2018-02-25 13:52:09 : Received request from ::1
+2018-02-25 13:52:09 : 
+2018-02-25 13:52:09 : Handling request 70 took 0.072567939758301 seconds
+2018-02-25 13:52:09 : Handling request 120 took 0.07262110710144 seconds
+2018-02-25 13:52:09 : Sending data to ::1
+2018-02-25 13:52:09 : Sending data to ::1
+2018-02-25 13:52:09 : Handling request 80 took 0.078788995742798 seconds
+2018-02-25 13:52:09 : Sending data to ::1
+2018-02-25 13:52:09 : Handling request 10 took 0.74763703346252 seconds
+2018-02-25 13:52:09 : Sending data to ::1
+2018-02-25 13:52:10 : Received request from ::1
+2018-02-25 13:52:10 : Received request from ::1
+2018-02-25 13:52:10 : 
+2018-02-25 13:52:10 : Received request from ::1
+2018-02-25 13:52:10 : Handling request 70 took 0.073895931243896 seconds
+2018-02-25 13:52:10 : Sending data to ::1
+2018-02-25 13:52:10 : Handling request 120 took 0.072448015213013 seconds
+2018-02-25 13:52:10 : Handling request 80 took 0.080589056015015 seconds
+2018-02-25 13:52:10 : Sending data to ::1
+2018-02-25 13:52:22 : Received request from ::1
+2018-02-25 13:52:22 : Received request from ::1
+2018-02-25 13:52:22 : Received request from ::1
+2018-02-25 13:52:22 : 
+2018-02-25 13:52:22 : Received request from ::1
+2018-02-25 13:52:22 : Received request from ::1
+2018-02-25 13:52:22 : Received request from ::1
+2018-02-25 13:52:22 : Handling request 70 took 0.073487997055054 seconds
+2018-02-25 13:52:22 : Handling request 80 took 0.077385902404785 seconds
+2018-02-25 13:52:22 : Sending data to ::1
+2018-02-25 13:52:22 : Handling request 50 took 0.14150714874268 seconds
+2018-02-25 13:52:22 : Sending data to ::1
+2018-02-25 13:52:22 : Handling request 30 took 0.14317297935486 seconds
+2018-02-25 13:52:22 : Handling request 40 took 0.14429903030396 seconds
+2018-02-25 13:52:22 : Sending data to ::1
+2018-02-25 13:52:22 : Sending data to ::1
+2018-02-25 13:52:23 : Handling request 10 took 0.81625413894653 seconds
+2018-02-25 13:52:23 : Sending data to ::1
+2018-02-25 13:52:24 : Received request from ::1
+2018-02-25 13:52:24 : Received request from ::1
+2018-02-25 13:52:24 : Received request from ::1
+2018-02-25 13:52:24 : 
+2018-02-25 13:52:24 : Handling request 120 took 0.072341918945312 seconds
+2018-02-25 13:52:24 : Handling request 70 took 0.075484037399292 seconds
+2018-02-25 13:52:24 : Handling request 80 took 0.079323053359985 seconds
+2018-02-25 13:52:24 : Sending data to ::1
+2018-02-25 13:52:24 : Sending data to ::1
+2018-02-25 13:52:25 : Received request from ::1
+2018-02-25 13:52:25 : Received request from ::1
+2018-02-25 13:52:25 : 
+2018-02-25 13:52:25 : Received request from ::1
+2018-02-25 13:52:25 : Handling request 70 took 0.073852062225342 seconds
+2018-02-25 13:52:25 : Handling request 80 took 0.076774120330811 seconds
+2018-02-25 13:52:25 : Handling request 120 took 0.07226300239563 seconds
+2018-02-25 13:52:25 : Sending data to ::1
+2018-02-25 13:52:25 : Sending data to ::1
+2018-02-25 13:54:23 : Received request from ::1
+2018-02-25 13:54:23 : Received request from ::1
+2018-02-25 13:54:23 : 
+2018-02-25 13:54:23 : Received request from ::1
+2018-02-25 13:54:23 : Received request from ::1
+2018-02-25 13:54:23 : Received request from ::1
+2018-02-25 13:54:23 : Handling request 70 took 0.072238922119141 seconds
+2018-02-25 13:54:23 : Handling request 80 took 0.077389001846313 seconds
+2018-02-25 13:54:23 : Sending data to ::1
+2018-02-25 13:54:23 : Sending data to ::1
+2018-02-25 13:54:23 : Handling request 30 took 0.14137697219849 seconds
+2018-02-25 13:54:23 : Sending data to ::1
+2018-02-25 13:54:23 : Handling request 40 took 0.1417670249939 seconds
+2018-02-25 13:54:23 : Sending data to ::1
+2018-02-25 13:54:23 : Handling request 50 took 0.15036392211914 seconds
+2018-02-25 13:54:23 : Sending data to ::1
+2018-02-25 13:54:23 : Handling request 10 took 0.77459192276001 seconds
+2018-02-25 13:54:23 : Sending data to ::1
+2018-02-25 13:54:24 : Received request from ::1
+2018-02-25 13:54:24 : Received request from ::1
+2018-02-25 13:54:24 : 
+2018-02-25 13:54:24 : Handling request 120 took 0.07213282585144 seconds
+2018-02-25 13:54:24 : Handling request 70 took 0.073671102523804 seconds
+2018-02-25 13:54:24 : Handling request 80 took 0.078450918197632 seconds
+2018-02-25 13:54:24 : Sending data to ::1
+2018-02-25 13:54:24 : Sending data to ::1
+2018-02-25 13:54:24 : Sending data to ::1
+2018-02-25 13:54:25 : Received request from ::1
+2018-02-25 13:54:25 : Received request from ::1
+2018-02-25 13:54:25 : 
+2018-02-25 13:54:25 : Received request from ::1
+2018-02-25 13:54:25 : Handling request 70 took 0.073390007019043 seconds
+2018-02-25 13:54:25 : Sending data to ::1
+2018-02-25 13:54:25 : Handling request 120 took 0.074774980545044 seconds
+2018-02-25 13:54:25 : Handling request 80 took 0.081738948822021 seconds
+2018-02-25 13:54:25 : Sending data to ::1
+2018-02-25 13:54:25 : Sending data to ::1
+2018-02-25 13:54:37 : Received request from ::1
+2018-02-25 13:54:37 : Received request from ::1
+2018-02-25 13:54:37 : Received request from ::1
+2018-02-25 13:54:37 : 
+2018-02-25 13:54:37 : Received request from ::1
+2018-02-25 13:54:37 : Received request from ::1
+2018-02-25 13:54:37 : Received request from ::1
+2018-02-25 13:54:37 : Handling request 70 took 0.072839021682739 seconds
+2018-02-25 13:54:37 : Handling request 80 took 0.077448844909668 seconds
+2018-02-25 13:54:37 : Sending data to ::1
+2018-02-25 13:54:37 : Handling request 30 took 0.14104509353638 seconds
+2018-02-25 13:54:37 : Sending data to ::1
+2018-02-25 13:54:37 : Handling request 40 took 0.14746594429016 seconds
+2018-02-25 13:54:37 : Sending data to ::1
+2018-02-25 13:54:37 : Handling request 50 took 0.14749383926392 seconds
+2018-02-25 13:54:37 : Sending data to ::1
+2018-02-25 13:54:38 : Handling request 10 took 0.76384305953979 seconds
+2018-02-25 13:54:38 : Sending data to ::1
+2018-02-25 13:54:38 : Received request from ::1
+2018-02-25 13:54:38 : Received request from ::1
+2018-02-25 13:54:38 : Received request from ::1
+2018-02-25 13:54:38 : 
+2018-02-25 13:54:38 : Handling request 70 took 0.071885108947754 seconds
+2018-02-25 13:54:38 : Sending data to ::1
+2018-02-25 13:54:38 : Handling request 120 took 0.071083068847656 seconds
+2018-02-25 13:54:38 : Handling request 80 took 0.077912092208862 seconds
+2018-02-25 13:54:38 : Sending data to ::1
+2018-02-25 13:54:38 : Sending data to ::1
+2018-02-25 13:54:40 : Received request from ::1
+2018-02-25 13:54:40 : Received request from ::1
+2018-02-25 13:54:40 : Received request from ::1
+2018-02-25 13:54:40 : 
+2018-02-25 13:54:40 : Handling request 70 took 0.073060989379883 seconds
+2018-02-25 13:54:40 : Handling request 80 took 0.077315092086792 seconds
+2018-02-25 13:54:40 : Handling request 120 took 0.071767091751099 seconds
+2018-02-25 13:54:40 : Sending data to ::1
+2018-02-25 13:54:40 : Sending data to ::1
+2018-02-25 13:54:40 : Sending data to ::1
+2018-02-25 13:54:47 : Received request from ::1
+2018-02-25 13:54:47 : Received request from ::1
+2018-02-25 13:54:47 : Received request from ::1
+2018-02-25 13:54:47 : 
+2018-02-25 13:54:47 : Received request from ::1
+2018-02-25 13:54:47 : Received request from ::1
+2018-02-25 13:54:47 : Received request from ::1
+2018-02-25 13:54:47 : Handling request 70 took 0.073220014572144 seconds
+2018-02-25 13:54:47 : Sending data to ::1
+2018-02-25 13:54:47 : Handling request 80 took 0.079591989517212 seconds
+2018-02-25 13:54:47 : Sending data to ::1
+2018-02-25 13:54:47 : Handling request 40 took 0.14299702644348 seconds
+2018-02-25 13:54:47 : Sending data to ::1
+2018-02-25 13:54:47 : Handling request 30 took 0.14449000358582 seconds
+2018-02-25 13:54:47 : Handling request 50 took 0.14872789382935 seconds
+2018-02-25 13:54:47 : Sending data to ::1
+2018-02-25 13:54:47 : Sending data to ::1
+2018-02-25 13:54:47 : Handling request 10 took 0.76038503646851 seconds
+2018-02-25 13:54:47 : Sending data to ::1
+2018-02-25 13:54:49 : Received request from ::1
+2018-02-25 13:54:49 : Received request from ::1
+2018-02-25 13:54:49 : Received request from ::1
+2018-02-25 13:54:49 : 
+2018-02-25 13:54:49 : Handling request 70 took 0.071460962295532 seconds
+2018-02-25 13:54:49 : Handling request 120 took 0.074228048324585 seconds
+2018-02-25 13:54:49 : Handling request 80 took 0.077740907669067 seconds
+2018-02-25 13:54:49 : Sending data to ::1
+2018-02-25 13:54:49 : Sending data to ::1
+2018-02-25 13:54:50 : Received request from ::1
+2018-02-25 13:54:50 : Received request from ::1
+2018-02-25 13:54:50 : 
+2018-02-25 13:54:50 : Received request from ::1
+2018-02-25 13:54:50 : Handling request 70 took 0.075202941894531 seconds
+2018-02-25 13:54:50 : Handling request 120 took 0.07089900970459 seconds
+2018-02-25 13:54:50 : Handling request 80 took 0.076292037963867 seconds
+2018-02-25 13:54:50 : Sending data to ::1
+2018-02-25 13:54:50 : Sending data to ::1
+2018-02-25 13:54:50 : Sending data to ::1
+2018-02-25 13:54:59 : Received request from ::1
+2018-02-25 13:54:59 : Received request from ::1
+2018-02-25 13:54:59 : 
+2018-02-25 13:54:59 : Received request from ::1
+2018-02-25 13:54:59 : Received request from ::1
+2018-02-25 13:54:59 : Received request from ::1
+2018-02-25 13:54:59 : Received request from ::1
+2018-02-25 13:54:59 : Handling request 70 took 0.073845148086548 seconds
+2018-02-25 13:54:59 : Handling request 80 took 0.076059818267822 seconds
+2018-02-25 13:54:59 : Sending data to ::1
+2018-02-25 13:54:59 : Handling request 30 took 0.1418559551239 seconds
+2018-02-25 13:54:59 : Sending data to ::1
+2018-02-25 13:54:59 : Handling request 40 took 0.15378189086914 seconds
+2018-02-25 13:54:59 : Sending data to ::1
+2018-02-25 13:54:59 : Sending data to ::1
+2018-02-25 13:54:59 : Handling request 10 took 0.78459000587463 seconds
+2018-02-25 13:54:59 : Sending data to ::1
+2018-02-25 13:55:01 : Received request from ::1
+2018-02-25 13:55:01 : Received request from ::1
+2018-02-25 13:55:01 : 
+2018-02-25 13:55:01 : Received request from ::1
+2018-02-25 13:55:01 : Handling request 70 took 0.071784019470215 seconds
+2018-02-25 13:55:01 : Sending data to ::1
+took 0.076663970947266 seconds
+2018-02-25 13:55:01 : Sending data to ::1
+2018-02-25 13:55:01 : Handling request 120 took 0.071213006973267 seconds
+2018-02-25 13:55:01 : Sending data to ::1
+2018-02-25 13:55:02 : Received request from ::1
+2018-02-25 13:55:02 : Received request from ::1
+2018-02-25 13:55:02 : Received request from ::1
+2018-02-25 13:55:02 : 
+2018-02-25 13:55:03 : Handling request 70 took 0.07271409034729 seconds
+2018-02-25 13:55:03 : Handling request 80 took 0.077033996582031 seconds
+2018-02-25 13:55:03 : Sending data to ::1
+2018-02-25 13:55:03 : Sending data to ::1
+ took 0.075531005859375 seconds
+2018-02-25 13:55:03 : Sending data to ::1
+2018-02-25 13:56:20 : Received request from ::1
+2018-02-25 13:56:20 : Received request from ::1
+2018-02-25 13:56:20 : 
+2018-02-25 13:56:20 : Received request from ::1
+2018-02-25 13:56:20 : Received request from ::1
+2018-02-25 13:56:20 : Received request from ::1
+2018-02-25 13:56:20 : Handling request 70 took 0.075989007949829 seconds
+2018-02-25 13:56:20 : Handling request 80 took 0.077898025512695 seconds
+2018-02-25 13:56:20 : Sending data to ::1
+2018-02-25 13:56:20 : Handling request 40 took 0.1468551158905 seconds
+
+2018-02-25 13:56:20 : Sending data to ::1
+2018-02-25 13:56:20 : Sending data to ::1
+2018-02-25 13:56:20 : Sending data to ::1
+2018-02-25 13:56:21 : Received request from ::1
+2018-02-25 13:56:21 : Received request from ::1
+2018-02-25 13:56:21 : 
+2018-02-25 13:56:21 : Handling request 120 took 0.072511196136475 seconds
+2018-02-25 13:56:21 : Handling request 70 took 0.072105169296265 seconds
+2018-02-25 13:56:21 : Sending data to ::1
+2018-02-25 13:56:21 : Handling request 80 took 0.078070878982544 seconds
+2018-02-25 13:56:21 : Sending data to ::1
+2018-02-25 13:56:21 : Handling request 10 took 0.79364395141602 seconds
+2018-02-25 13:56:21 : Sending data to ::1
+2018-02-25 13:56:22 : Received request from ::1
+2018-02-25 13:56:22 : Received request from ::1
+2018-02-25 13:56:22 : Received request from ::1
+2018-02-25 13:56:22 : 
+2018-02-25 13:56:22 : Handling request 70 took 0.073596954345703 seconds
+2018-02-25 13:56:22 : Handling request 120 took 0.069843053817749 seconds
+2018-02-25 13:56:22 : Sending data to ::1
+2018-02-25 13:56:22 : Handling request 80 took 0.075700998306274 seconds
+2018-02-25 13:56:22 : Sending data to ::1
+2018-02-25 13:56:30 : Received request from ::1
+2018-02-25 13:56:30 : Received request from ::1
+2018-02-25 13:56:30 : Received request from ::1
+2018-02-25 13:56:30 : 
+2018-02-25 13:56:30 : Handling request 70 took 0.073278903961182 seconds
+2018-02-25 13:56:30 : Handling request 120 took 0.073556900024414 seconds
+2018-02-25 13:56:30 : Sending data to ::1
+2018-02-25 13:56:30 : Sending data to ::1
+2018-02-25 13:56:30 : Handling request 80 took 0.078711032867432 seconds
+2018-02-25 13:56:30 : Sending data to ::1
+2018-02-25 13:56:35 : Received request from ::1
+2018-02-25 13:56:35 : Handling request 130 took 0.42602396011353 seconds
+2018-02-25 13:56:35 : Sending data to ::1
+2018-02-25 13:56:38 : Received request from ::1
+2018-02-25 13:56:38 : Received request from ::1
+2018-02-25 13:56:38 : 
+2018-02-25 13:56:38 : Received request from ::1
+2018-02-25 13:56:39 : Received request from ::1
+2018-02-25 13:56:39 : Received request from ::1
+2018-02-25 13:56:39 : Received request from ::1
+2018-02-25 13:56:39 : Handling request 70 took 0.073127031326294 seconds
+2018-02-25 13:56:39 : Sending data to ::1
+2018-02-25 13:56:39 : Handling request 80 took 0.082990169525146 seconds
+2018-02-25 13:56:39 : Sending data to ::1
+2018-02-25 13:56:39 : Handling request 30 took 0.14209890365601 seconds
+2018-02-25 13:56:39 : Sending data to ::1
+2018-02-25 13:56:39 : Handling request 50 took 0.14323091506958 seconds
+2018-02-25 13:56:39 : Handling request 40 took 0.14350700378418 seconds
+2018-02-25 13:56:39 : Sending data to ::1
+2018-02-25 13:56:39 : Sending data to ::1
+2018-02-25 13:56:39 : Handling request 10 took 0.77320694923401 seconds
+2018-02-25 13:56:39 : Sending data to ::1
+2018-02-25 13:57:14 : Received request from ::1
+2018-02-25 13:57:14 : Received request from ::1
+2018-02-25 13:57:14 : Received request from ::1
+2018-02-25 13:57:14 : Received request from ::1
+2018-02-25 13:57:14 : Handling request 40 took 0.14291095733643 seconds
+2018-02-25 13:57:14 : Handling request 50 took 0.14729905128479 seconds
+2018-02-25 13:57:14 : Handling request 30 took 0.14403295516968 seconds
+2018-02-25 13:57:14 : Sending data to ::1
+2018-02-25 13:57:14 : Sending data to ::1
+2018-02-25 13:57:14 : Handling request 10 took 0.62808704376221 seconds
+2018-02-25 13:57:14 : Sending data to ::1
+2018-02-25 13:57:14 : Received request from ::1
+2018-02-25 13:57:16 : Handling request 10 took 1.2633121013641 seconds
+2018-02-25 13:57:16 : Sending data to ::1
+2018-02-25 13:57:23 : Received request from ::1
+2018-02-25 13:57:23 : Received request from ::1
+2018-02-25 13:57:23 : Received request from ::1
+2018-02-25 13:57:23 : 
+2018-02-25 13:57:23 : Handling request 70 took 0.073000907897949 seconds
+2018-02-25 13:57:23 : Sending data to ::1
+2018-02-25 13:57:23 : Handling request 120 took 0.072771072387695 seconds
+2018-02-25 13:57:23 : Sending data to ::1
+2018-02-25 13:57:23 : Handling request 80 took 0.083518028259277 seconds
+2018-02-25 13:57:23 : Sending data to ::1
+2018-02-25 14:04:20 : Received request from ::1
+2018-02-25 14:04:20 : Received request from ::1
+2018-02-25 14:04:20 : Received request from ::1
+2018-02-25 14:04:20 : Received request from ::1
+2018-02-25 14:04:20 : Handling request 50 took 0.14065194129944 seconds
+2018-02-25 14:04:20 : Sending data to ::1
+2018-02-25 14:04:20 : Handling request 30 took 0.1479640007019 seconds
+2018-02-25 14:04:20 : Sending data to ::1
+2018-02-25 14:04:20 : Handling request 40 took 0.14715504646301 seconds
+2018-02-25 14:04:20 : Sending data to ::1
+2018-02-25 14:04:20 : Handling request 10 took 0.76130104064941 seconds
+2018-02-25 14:04:21 : Sending data to ::1
+2018-02-25 14:04:27 : Received request from ::1
+2018-02-25 14:04:27 : Received request from ::1
+2018-02-25 14:04:27 : Received request from ::1
+2018-02-25 14:04:27 : 
+2018-02-25 14:04:27 : Handling request 120 took 0.072411060333252 seconds
+2018-02-25 14:04:27 : Handling request 70 took 0.074054002761841 seconds
+2018-02-25 14:04:27 : Handling request 80 took 0.075920104980469 seconds
+2018-02-25 14:04:27 : Sending data to ::1
+2018-02-25 14:04:27 : Sending data to ::1
+2018-02-25 14:07:05 : Received request from ::1
+2018-02-25 14:07:05 : Received request from ::1
+2018-02-25 14:07:05 : 
+2018-02-25 14:07:05 : Received request from ::1
+2018-02-25 14:07:05 : Received request from ::1
+2018-02-25 14:07:05 : Received request from ::1
+2018-02-25 14:07:05 : Handling request 70 took 0.07250714302063 seconds
+2018-02-25 14:07:05 : Sending data to ::1
+2018-02-25 14:07:05 : Handling request 80 took 0.077661037445068 seconds
+2018-02-25 14:07:05 : Sending data to ::1
+2018-02-25 14:07:06 : Handling request 50 took 0.14895701408386 seconds
+2018-02-25 14:07:06 : Handling request 30 took 0.14117193222046 seconds
+2018-02-25 14:07:06 : Handling request 40 took 0.1457200050354 seconds
+2018-02-25 14:07:06 : Sending data to ::1
+2018-02-25 14:07:06 : Sending data to ::1
+2018-02-25 14:07:06 : Sending data to ::1
+2018-02-25 14:07:06 : Handling request 10 took 0.74214792251587 seconds
+2018-02-25 14:07:06 : Sending data to ::1
+2018-02-25 14:16:30 : Received request from ::1
+2018-02-25 14:16:31 : Handling request 10 took 0.758455991745 seconds
+2018-02-25 14:16:31 : Sending data to ::1
+2018-02-25 14:16:32 : Received request from ::1
+2018-02-25 14:16:33 : Handling request 10 took 0.77556705474854 seconds
+2018-02-25 14:16:33 : Sending data to ::1
+2018-02-25 14:16:36 : Received request from ::1
+2018-02-25 14:16:36 : Received request from ::1
+2018-02-25 14:16:36 : Received request from ::1
+2018-02-25 14:16:36 : Received request from ::1
+2018-02-25 14:16:36 : Handling request 40 took 0.14242005348206 seconds
+2018-02-25 14:16:36 : Sending data to ::1
+2018-02-25 14:16:36 : Handling request 50 took 0.14164710044861 seconds
+2018-02-25 14:16:36 : Handling request 30 took 0.14815497398376 seconds
+2018-02-25 14:16:36 : Sending data to ::1
+2018-02-25 14:16:37 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2018-02-25 14:16:37 : Handling request 20 took 1.2291071414948 seconds
+2018-02-25 14:16:37 : Sending data to ::1
+2018-02-25 14:16:40 : Received request from ::1
+2018-02-25 14:16:41 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2018-02-25 14:16:41 : Handling request 20 took 1.3267321586609 seconds
+2018-02-25 14:16:41 : Sending data to ::1
+2018-02-25 14:16:43 : Received request from ::1
+2018-02-25 14:16:44 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2018-02-25 14:16:44 : Handling request 20 took 1.2275671958923 seconds
+2018-02-25 14:16:44 : Sending data to ::1
+2018-02-25 14:16:45 : Received request from ::1
+2018-02-25 14:16:46 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2018-02-25 14:16:46 : Handling request 20 took 1.234601020813 seconds
+2018-02-25 14:16:46 : Sending data to ::1
+2018-02-25 14:16:47 : Received request from ::1
+2018-02-25 14:16:48 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2018-02-25 14:16:48 : Handling request 20 took 1.2610290050507 seconds
+2018-02-25 14:16:48 : Sending data to ::1
+2018-02-26 08:53:48 : Received request from ::1
+2018-02-26 08:53:48 : Received request from ::1
+2018-02-26 08:53:48 : 
+2018-02-26 08:53:49 : Handling request 70 took 0.33384990692139 seconds
+2018-02-26 08:53:49 : Handling request 80 took 0.33443808555603 seconds
+2018-02-26 08:53:49 : Sending data to ::1
+2018-02-26 08:53:49 : Sending data to ::1
+2018-02-26 08:53:49 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 08:53:50 : Handling request 20 took 1.2878630161285 seconds
+2018-02-26 08:53:50 : Sending data to ::1
+2018-02-26 08:53:50 : Received request from ::1
+2018-02-26 08:53:51 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 08:53:51 : Handling request 20 took 1.1950669288635 seconds
+2018-02-26 08:53:51 : Sending data to ::1
+2018-02-26 08:53:51 : Received request from ::1
+2018-02-26 08:53:52 : Handling request 10 took 1.293163061142 seconds
+2018-02-26 08:53:52 : Sending data to ::1
+2018-02-26 08:53:56 : Received request from ::1
+2018-02-26 08:53:56 : Received request from ::1
+2018-02-26 08:53:56 : Received request from ::1
+2018-02-26 08:53:56 : Received request from ::1
+2018-02-26 08:53:56 : Handling request 40 took 0.14176106452942 seconds
+2018-02-26 08:53:56 : Handling request 50 took 0.14351892471313 seconds
+2018-02-26 08:53:56 : Handling request 30 took 0.14483880996704 seconds
+2018-02-26 08:53:56 : Sending data to ::1
+2018-02-26 08:53:56 : Sending data to ::1
+2018-02-26 08:53:56 : Sending data to ::1
+2018-02-26 08:53:57 : Handling request 10 took 0.74945497512817 seconds
+2018-02-26 08:53:57 : Sending data to ::1
+2018-02-26 08:54:09 : Received request from ::1
+2018-02-26 08:54:10 : Handling request 110 took 0.074748039245605 seconds
+2018-02-26 08:54:10 : Sending data to ::1
+2018-02-26 08:54:14 : Received request from ::1
+2018-02-26 08:54:14 : Received request from ::1
+2018-02-26 08:54:14 : Received request from ::1
+2018-02-26 08:54:14 : Received request from ::1
+2018-02-26 08:54:14 : Handling request 30 took 0.14111399650574 seconds
+2018-02-26 08:54:14 : Handling request 50 took 0.14477896690369 seconds
+2018-02-26 08:54:14 : Sending data to ::1
+2018-02-26 08:54:14 : Sending data to ::1
+2018-02-26 08:54:15 : Handling request 10 took 0.75738906860352 seconds
+2018-02-26 08:54:15 : Sending data to ::1
+2018-02-26 08:54:20 : Received request from ::1
+2018-02-26 08:54:20 : Received request from ::1
+2018-02-26 08:54:20 : 
+2018-02-26 08:54:20 : Received request from ::1
+2018-02-26 08:54:20 : Handling request 70 took 0.074403047561646 seconds
+2018-02-26 08:54:20 : Handling request 80 took 0.075942993164062 seconds
+2018-02-26 08:54:20 : Sending data to ::1
+2018-02-26 08:54:20 : Handling request 120 took 0.18111801147461 seconds
+2018-02-26 08:54:20 : Sending data to ::1
+2018-02-26 08:54:55 : Received request from ::1
+2018-02-26 08:55:24 : Received request from ::1
+2018-02-26 08:55:24 : 
+2018-02-26 08:55:24 : Received request from ::1
+2018-02-26 08:55:24 : Received request from ::1
+2018-02-26 08:55:24 : Received request from ::1
+2018-02-26 08:55:24 : Received request from ::1
+2018-02-26 08:55:24 : Handling request 70 took 0.073758125305176 seconds
+2018-02-26 08:55:24 : Sending data to ::1
+2018-02-26 08:55:24 : Handling request 80 took 0.078306198120117 seconds
+2018-02-26 08:55:24 : Sending data to ::1
+2018-02-26 08:55:24 : Handling request 30 took 0.14193987846375 seconds
+2018-02-26 08:55:25 : Sending data to ::1
+2018-02-26 08:55:25 : Handling request 50 took 0.14393901824951 seconds
+2018-02-26 08:55:25 : Sending data to ::1
+2018-02-26 08:55:25 : Handling request 40 took 0.14503598213196 seconds
+2018-02-26 08:55:25 : Sending data to ::1
+2018-02-26 08:55:25 : Handling request 10 took 0.78604006767273 seconds
+2018-02-26 08:55:25 : Sending data to ::1
+2018-02-26 08:55:32 : Received request from ::1
+2018-02-26 08:55:32 : Received request from ::1
+2018-02-26 08:55:32 : Received request from ::1
+2018-02-26 08:55:32 : 
+2018-02-26 08:55:32 : Handling request 70 took 0.073725938796997 seconds
+2018-02-26 08:55:32 : Handling request 80 took 0.077077865600586 seconds
+2018-02-26 08:55:32 : Sending data to ::1
+2018-02-26 08:55:32 : Sending data to ::1
+2018-02-26 08:55:32 : Handling request 120 took 0.18487000465393 seconds
+2018-02-26 08:55:32 : Sending data to ::1
+2018-02-26 08:56:44 : Received request from ::1
+2018-02-26 08:58:14 : Received request from ::1
+2018-02-26 08:58:14 : Received request from ::1
+2018-02-26 08:58:14 : Received request from ::1
+2018-02-26 08:58:14 : 
+2018-02-26 08:58:14 : Handling request 70 took 0.071924924850464 seconds
+2018-02-26 08:58:14 : Sending data to ::1
+2018-02-26 08:58:14 : Handling request 80 took 0.078442096710205 seconds
+2018-02-26 08:58:14 : Sending data to ::1
+2018-02-26 08:58:14 : Handling request 120 took 0.18165707588196 seconds
+2018-02-26 08:58:14 : Sending data to ::1
+2018-02-26 08:59:57 : Received request from ::1
+2018-02-26 08:59:57 : Received request from ::1
+2018-02-26 08:59:57 : 
+2018-02-26 08:59:57 : Received request from ::1
+2018-02-26 08:59:57 : Handling request 70 took 0.075594186782837 seconds
+2018-02-26 08:59:57 : Sending data to ::1
+2018-02-26 08:59:57 : Handling request 80 took 0.076510906219482 seconds
+2018-02-26 08:59:57 : Sending data to ::1
+2018-02-26 08:59:57 : Handling request 120 took 0.1835560798645 seconds
+2018-02-26 08:59:57 : Sending data to ::1
+2018-02-26 09:04:27 : Received request from ::1
+2018-02-26 09:04:27 : Received request from ::1
+2018-02-26 09:04:27 : Received request from ::1
+2018-02-26 09:04:27 : 
+2018-02-26 09:04:27 : Handling request 70 took 0.07234001159668 seconds
+2018-02-26 09:04:27 : Sending data to ::1
+2018-02-26 09:04:27 : Handling request 80 took 0.077893972396851 seconds
+2018-02-26 09:04:27 : Sending data to ::1
+2018-02-26 09:04:27 : Handling request 120 took 0.21795392036438 seconds
+2018-02-26 09:04:27 : Sending data to ::1
+2018-02-26 09:06:31 : Received request from ::1
+2018-02-26 09:06:31 : Received request from ::1
+2018-02-26 09:06:31 : 
+2018-02-26 09:06:31 : Received request from ::1
+2018-02-26 09:06:31 : Handling request 70 took 0.072539091110229 seconds
+2018-02-26 09:06:31 : Sending data to ::1
+2018-02-26 09:06:31 : Handling request 80 took 0.078196048736572 seconds
+2018-02-26 09:06:31 : Sending data to ::1
+2018-02-26 09:06:31 : Handling request 120 took 0.18292307853699 seconds
+2018-02-26 09:06:31 : Sending data to ::1
+2018-02-26 09:06:54 : Received request from ::1
+2018-02-26 09:13:28 : Received request from ::1
+2018-02-26 09:13:28 : Received request from ::1
+2018-02-26 09:13:28 : Received request from ::1
+2018-02-26 09:13:28 : 
+2018-02-26 09:13:28 : Handling request 70 took 0.074234008789062 seconds
+2018-02-26 09:13:28 : Sending data to ::1
+2018-02-26 09:13:28 : Handling request 80 took 0.07877516746521 seconds
+2018-02-26 09:13:28 : Sending data to ::1
+2018-02-26 09:13:28 : Handling request 120 took 0.1813268661499 seconds
+2018-02-26 09:13:28 : Sending data to ::1
+2018-02-26 09:14:14 : Received request from ::1
+2018-02-26 09:14:14 : Received request from ::1
+2018-02-26 09:14:14 : Received request from ::1
+2018-02-26 09:14:14 : 
+2018-02-26 09:14:15 : Handling request 70 took 0.074343919754028 seconds
+2018-02-26 09:14:15 : Sending data to ::1
+2018-02-26 09:14:15 : Handling request 80 took 0.076362133026123 seconds
+2018-02-26 09:14:15 : Sending data to ::1
+2018-02-26 09:14:15 : Handling request 120 took 0.18164205551147 seconds
+2018-02-26 09:14:15 : Sending data to ::1
+2018-02-26 09:14:21 : Received request from ::1
+2018-02-26 09:16:34 : Received request from ::1
+2018-02-26 09:17:11 : Received request from ::1
+2018-02-26 09:20:48 : Received request from ::1
+2018-02-26 09:22:53 : Received request from ::1
+2018-02-26 09:23:13 : Received request from ::1
+2018-02-26 09:23:14 : Received request from ::1
+2018-02-26 09:23:29 : Received request from ::1
+2018-02-26 09:23:29 : 
+2018-02-26 09:23:29 : Received request from ::1
+2018-02-26 09:23:29 : Received request from ::1
+2018-02-26 09:23:29 : Handling request 70 took 0.072750091552734 seconds
+2018-02-26 09:23:29 : Handling request 80 took 0.082905054092407 seconds
+2018-02-26 09:23:29 : Sending data to ::1
+2018-02-26 09:23:30 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 09:23:30 : Handling request 20 took 0.96520686149597 seconds
+2018-02-26 09:23:30 : Sending data to ::1
+2018-02-26 09:23:30 : Received request from ::1
+2018-02-26 09:23:31 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 09:23:32 : Handling request 20 took 1.15922498703 seconds
+2018-02-26 09:23:32 : Sending data to ::1
+2018-02-26 09:23:32 : Received request from ::1
+2018-02-26 09:23:33 : Handling request 10 took 1.3059079647064 seconds
+2018-02-26 09:23:33 : Sending data to ::1
+2018-02-26 09:24:37 : Received request from ::1
+2018-02-26 09:24:37 : Received request from ::1
+2018-02-26 09:24:37 : 
+2018-02-26 09:24:37 : Received request from ::1
+2018-02-26 09:24:37 : Handling request 70 took 0.072206020355225 seconds
+2018-02-26 09:24:37 : Sending data to ::1
+2018-02-26 09:24:37 : Handling request 80 took 0.07743501663208 seconds
+2018-02-26 09:24:37 : Sending data to ::1
+2018-02-26 09:24:38 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 09:24:38 : Handling request 20 took 0.95390295982361 seconds
+2018-02-26 09:24:38 : Sending data to ::1
+2018-02-26 09:24:38 : Received request from ::1
+2018-02-26 09:24:38 : Received request from ::1
+2018-02-26 09:24:39 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 09:24:39 : Handling request 20 took 1.1642909049988 seconds
+2018-02-26 09:24:39 : Sending data to ::1
+2018-02-26 09:24:39 : Received request from ::1
+2018-02-26 09:24:41 : Handling request 10 took 1.2786200046539 seconds
+2018-02-26 09:24:41 : Sending data to ::1
+2018-02-26 09:24:45 : Received request from ::1
+2018-02-26 09:24:45 : Received request from ::1
+2018-02-26 09:24:45 : 
+2018-02-26 09:24:45 : Handling request 70 took 0.073760986328125 seconds
+2018-02-26 09:24:45 : Sending data to ::1
+2018-02-26 09:24:45 : Handling request 80 took 0.080643177032471 seconds
+2018-02-26 09:24:45 : Sending data to ::1
+2018-02-26 09:24:45 : Received request from ::1
+2018-02-26 09:24:46 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 09:24:46 : Handling request 20 took 0.9771580696106 seconds
+2018-02-26 09:24:46 : Sending data to ::1
+2018-02-26 09:24:47 : Received request from ::1
+2018-02-26 09:24:48 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 09:24:48 : Handling request 20 took 1.1962220668793 seconds
+2018-02-26 09:24:48 : Sending data to ::1
+2018-02-26 09:24:48 : Received request from ::1
+2018-02-26 09:24:49 : Handling request 10 took 1.3220889568329 seconds
+2018-02-26 09:24:49 : Sending data to ::1
+2018-02-26 09:26:18 : Received request from ::1
+2018-02-26 09:26:18 : Received request from ::1
+2018-02-26 09:26:18 : Received request from ::1
+2018-02-26 09:26:18 : 
+2018-02-26 09:26:18 : Handling request 70 took 0.076745986938477 seconds
+2018-02-26 09:26:18 : Sending data to ::1
+2018-02-26 09:26:18 : Handling request 80 took 0.13063716888428 seconds
+2018-02-26 09:26:18 : Sending data to ::1
+2018-02-26 09:26:18 : Handling request 120 took 0.20360684394836 seconds
+2018-02-26 09:26:18 : Sending data to ::1
+2018-02-26 09:26:21 : Received request from ::1
+2018-02-26 09:27:23 : Received request from ::1
+2018-02-26 09:27:37 : Received request from ::1
+2018-02-26 09:29:08 : Received request from ::1
+2018-02-26 09:31:24 : Received request from ::1
+2018-02-26 09:31:24 : Handling request 70 took 0.075585126876831 seconds
+2018-02-26 09:31:24 : Sending data to ::1
+2018-02-26 09:31:24 : Received request from ::1
+2018-02-26 09:31:24 : 
+2018-02-26 09:31:24 : Handling request 80 took 0.077921867370605 seconds
+2018-02-26 09:31:24 : Sending data to ::1
+2018-02-26 09:31:24 : Received request from ::1
+2018-02-26 09:31:24 : Handling request 120 took 0.18256783485413 seconds
+2018-02-26 09:31:24 : Sending data to ::1
+2018-02-26 09:31:27 : Received request from ::1
+2018-02-26 09:34:44 : Received request from ::1
+2018-02-26 09:34:49 : Received request from ::1
+2018-02-26 09:34:50 : Handling request 70 took 0.076753854751587 seconds
+2018-02-26 09:34:50 : Sending data to ::1
+2018-02-26 09:34:50 : Received request from ::1
+2018-02-26 09:34:50 : 
+2018-02-26 09:34:50 : Handling request 80 took 0.079403877258301 seconds
+2018-02-26 09:34:50 : Received request from ::1
+2018-02-26 09:34:50 : Sending data to ::1
+2018-02-26 09:34:50 : Handling request 120 took 0.18235516548157 seconds
+2018-02-26 09:34:50 : Sending data to ::1
+2018-02-26 09:35:52 : Received request from ::1
+2018-02-26 09:35:52 : Handling request 70 took 0.074732065200806 seconds
+2018-02-26 09:35:52 : Sending data to ::1
+2018-02-26 09:35:52 : Received request from ::1
+2018-02-26 09:35:52 : 
+2018-02-26 09:35:52 : Handling request 80 took 0.079498052597046 seconds
+2018-02-26 09:35:52 : Sending data to ::1
+2018-02-26 09:35:53 : Received request from ::1
+2018-02-26 09:35:53 : Received request from ::1
+2018-02-26 09:35:53 : Received request from ::1
+2018-02-26 09:35:53 : Handling request 30 took 0.1443510055542 seconds
+2018-02-26 09:35:53 : Handling request 50 took 0.14228200912476 seconds
+2018-02-26 09:35:53 : Handling request 40 took 0.14487195014954 seconds
+2018-02-26 09:35:53 : Sending data to ::1
+2018-02-26 09:35:53 : Sending data to ::1
+2018-02-26 09:35:53 : Handling request 10 took 0.7700469493866 seconds
+2018-02-26 09:35:54 : Sending data to ::1
+2018-02-26 09:35:58 : Received request from ::1
+2018-02-26 09:35:58 : Handling request 70 took 0.074713945388794 seconds
+2018-02-26 09:35:58 : Sending data to ::1
+2018-02-26 09:35:58 : Received request from ::1
+2018-02-26 09:35:58 : 
+2018-02-26 09:35:58 : Received request from ::1
+2018-02-26 09:35:58 : Handling request 80 took 0.079432964324951 seconds
+2018-02-26 09:35:58 : Sending data to ::1
+2018-02-26 09:35:58 : Handling request 120 took 0.18540382385254 seconds
+2018-02-26 09:35:58 : Sending data to ::1
+2018-02-26 09:36:07 : Received request from ::1
+2018-02-26 09:36:08 : Handling request 130 took 0.44664192199707 seconds
+2018-02-26 09:36:08 : Sending data to ::1
+2018-02-26 09:36:13 : Received request from ::1
+2018-02-26 09:36:13 : Handling request 70 took 0.07860803604126 seconds
+2018-02-26 09:36:13 : Sending data to ::1
+2018-02-26 09:36:13 : Received request from ::1
+2018-02-26 09:36:13 : 
+2018-02-26 09:36:13 : Handling request 80 took 0.083605051040649 seconds
+2018-02-26 09:36:13 : Sending data to ::1
+2018-02-26 09:36:13 : Received request from ::1
+2018-02-26 09:36:13 : Received request from ::1
+2018-02-26 09:36:13 : Received request from ::1
+2018-02-26 09:36:13 : Received request from ::1
+2018-02-26 09:36:13 : Handling request 40 took 0.14268898963928 seconds
+2018-02-26 09:36:13 : Handling request 30 took 0.14371013641357 seconds
+2018-02-26 09:36:13 : Sending data to ::1
+2018-02-26 09:36:13 : Sending data to ::1
+2018-02-26 09:36:14 : Handling request 10 took 0.74767899513245 seconds
+2018-02-26 09:36:14 : Sending data to ::1
+2018-02-26 09:38:32 : Received request from ::1
+2018-02-26 09:38:32 : Received request from ::1
+2018-02-26 09:38:32 : 
+2018-02-26 09:38:32 : Received request from ::1
+2018-02-26 09:38:32 : Received request from ::1
+2018-02-26 09:38:32 : Received request from ::1
+2018-02-26 09:38:32 : Received request from ::1
+2018-02-26 09:38:32 : Handling request 70 took 0.076042175292969 seconds
+2018-02-26 09:38:32 : Sending data to ::1
+2018-02-26 09:38:32 : Handling request 80 took 0.078703880310059 seconds
+2018-02-26 09:38:32 : Sending data to ::1
+2018-02-26 09:38:32 : Handling request 50 took 0.14267301559448 seconds
+2018-02-26 09:38:32 : Sending data to ::1
+2018-02-26 09:38:32 : Handling request 30 took 0.14387202262878 seconds
+2018-02-26 09:38:32 : Handling request 40 took 0.15275692939758 seconds
+2018-02-26 09:38:32 : Sending data to ::1
+2018-02-26 09:38:32 : Sending data to ::1
+2018-02-26 09:38:33 : Received request from ::1
+2018-02-26 09:38:33 : Received request from ::1
+2018-02-26 09:38:33 : 
+2018-02-26 09:38:33 : Received request from ::1
+2018-02-26 09:38:33 : Handling request 70 took 0.071894884109497 seconds
+2018-02-26 09:38:33 : Handling request 80 took 0.077617168426514 seconds
+2018-02-26 09:38:33 : Sending data to ::1
+2018-02-26 09:38:33 : Sending data to ::1
+2018-02-26 09:38:33 : Handling request 10 took 0.75864291191101 seconds
+2018-02-26 09:38:33 : Sending data to ::1
+2018-02-26 09:38:34 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 09:38:34 : Handling request 20 took 0.9264349937439 seconds
+2018-02-26 09:38:34 : Sending data to ::1
+2018-02-26 09:38:34 : Received request from ::1
+2018-02-26 09:38:35 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 09:38:35 : Handling request 20 took 1.1502649784088 seconds
+2018-02-26 09:38:35 : Sending data to ::1
+2018-02-26 09:38:35 : Received request from ::1
+2018-02-26 09:38:37 : Handling request 10 took 1.3182690143585 seconds
+2018-02-26 09:38:37 : Sending data to ::1
+2018-02-26 09:39:12 : Received request from ::1
+2018-02-26 09:39:12 : Received request from ::1
+2018-02-26 09:39:12 : 
+2018-02-26 09:39:12 : Received request from ::1
+2018-02-26 09:39:12 : Received request from ::1
+2018-02-26 09:39:12 : Received request from ::1
+2018-02-26 09:39:12 : Received request from ::1
+2018-02-26 09:39:12 : Handling request 70 took 0.073647975921631 seconds
+2018-02-26 09:39:12 : Handling request 80 took 0.076910972595215 seconds
+2018-02-26 09:39:12 : Sending data to ::1
+2018-02-26 09:39:12 : Sending data to ::1
+2018-02-26 09:39:13 : Handling request 30 took 0.14359188079834 seconds
+2018-02-26 09:39:13 : Handling request 50 took 0.14219403266907 seconds
+2018-02-26 09:39:13 : Handling request 40 took 0.14395022392273 seconds
+2018-02-26 09:39:13 : Sending data to ::1
+2018-02-26 09:39:13 : Sending data to ::1
+2018-02-26 09:39:13 : Sending data to ::1
+2018-02-26 09:39:13 : Received request from ::1
+2018-02-26 09:39:13 : Received request from ::1
+2018-02-26 09:39:13 : 
+2018-02-26 09:39:13 : Received request from ::1
+2018-02-26 09:39:13 : Handling request 10 took 0.75530695915222 seconds
+2018-02-26 09:39:13 : Sending data to ::1
+2018-02-26 09:39:13 : Handling request 70 took 0.077955007553101 seconds
+2018-02-26 09:39:13 : Sending data to ::1
+2018-02-26 09:39:13 : Handling request 80 took 0.079185009002686 seconds
+2018-02-26 09:39:13 : Sending data to ::1
+2018-02-26 09:39:14 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 09:39:14 : Handling request 20 took 0.95255589485168 seconds
+2018-02-26 09:39:14 : Sending data to ::1
+2018-02-26 09:39:14 : Received request from ::1
+2018-02-26 09:39:15 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 09:39:15 : Handling request 20 took 1.1954560279846 seconds
+2018-02-26 09:39:15 : Sending data to ::1
+2018-02-26 09:39:17 : Received request from ::1
+2018-02-26 09:39:19 : Handling request 10 took 1.3443131446838 seconds
+2018-02-26 09:39:19 : Sending data to ::1
+2018-02-26 09:39:22 : Received request from ::1
+2018-02-26 09:39:22 : Received request from ::1
+2018-02-26 09:39:22 : Received request from ::1
+2018-02-26 09:39:22 : 
+2018-02-26 09:39:22 : Received request from ::1
+2018-02-26 09:39:22 : Received request from ::1
+2018-02-26 09:39:22 : Received request from ::1
+2018-02-26 09:39:22 : Handling request 70 took 0.077353000640869 seconds
+2018-02-26 09:39:22 : Sending data to ::1
+2018-02-26 09:39:22 : Handling request 80 took 0.081081867218018 seconds
+2018-02-26 09:39:22 : Sending data to ::1
+2018-02-26 09:39:22 : Handling request 40 took 0.14437794685364 seconds
+2018-02-26 09:39:22 : Sending data to ::1
+2018-02-26 09:39:22 : Handling request 50 took 0.14738512039185 seconds
+2018-02-26 09:39:22 : Handling request 30 took 0.14529013633728 seconds
+2018-02-26 09:39:22 : Sending data to ::1
+2018-02-26 09:39:22 : Sending data to ::1
+2018-02-26 09:39:23 : Handling request 10 took 0.75534701347351 seconds
+2018-02-26 09:39:23 : Sending data to ::1
+2018-02-26 09:39:24 : Received request from ::1
+2018-02-26 09:39:24 : Received request from ::1
+2018-02-26 09:39:24 : 
+2018-02-26 09:39:24 : Received request from ::1
+2018-02-26 09:39:24 : Handling request 70 took 0.072532892227173 seconds
+2018-02-26 09:39:24 : Sending data to ::1
+2018-02-26 09:39:24 : Handling request 80 took 0.082612991333008 seconds
+2018-02-26 09:39:24 : Sending data to ::1
+2018-02-26 09:39:25 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 09:39:25 : Handling request 20 took 0.95675301551819 seconds
+2018-02-26 09:39:25 : Sending data to ::1
+2018-02-26 09:39:25 : Received request from ::1
+2018-02-26 09:39:26 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 09:39:26 : Handling request 20 took 1.2455279827118 seconds
+2018-02-26 09:39:26 : Sending data to ::1
+2018-02-26 09:39:26 : Received request from ::1
+2018-02-26 09:39:28 : Handling request 10 took 1.2849390506744 seconds
+2018-02-26 09:39:28 : Sending data to ::1
+2018-02-26 09:40:43 : Received request from ::1
+2018-02-26 09:40:43 : Received request from ::1
+2018-02-26 09:40:43 : 
+2018-02-26 09:40:43 : Received request from ::1
+2018-02-26 09:40:43 : Received request from ::1
+2018-02-26 09:40:43 : Received request from ::1
+2018-02-26 09:40:43 : Received request from ::1
+2018-02-26 09:40:43 : Handling request 70 took 0.073325157165527 seconds
+2018-02-26 09:40:43 : Handling request 80 took 0.077160835266113 seconds
+2018-02-26 09:40:43 : Sending data to ::1
+2018-02-26 09:40:43 : Sending data to ::1
+2018-02-26 09:40:43 : Handling request 30 took 0.14409399032593 seconds
+2018-02-26 09:40:43 : Sending data to ::1
+2018-02-26 09:40:43 : Handling request 40 took 0.14176201820374 seconds
+2018-02-26 09:40:43 : Sending data to ::1
+2018-02-26 09:40:43 : Handling request 50 took 0.14520883560181 seconds
+2018-02-26 09:40:43 : Sending data to ::1
+2018-02-26 09:40:44 : Handling request 10 took 0.91603088378906 seconds
+2018-02-26 09:40:44 : Sending data to ::1
+2018-02-26 09:41:15 : Received request from ::1
+2018-02-26 09:41:15 : Received request from ::1
+2018-02-26 09:41:15 : Received request from ::1
+2018-02-26 09:41:15 : Received request from ::1
+2018-02-26 09:41:15 : Handling request 40 took 0.14545798301697 seconds
+2018-02-26 09:41:15 : Handling request 30 took 0.14322304725647 seconds
+2018-02-26 09:41:15 : Handling request 50 took 0.14616203308105 seconds
+2018-02-26 09:41:15 : Sending data to ::1
+2018-02-26 09:41:15 : Sending data to ::1
+2018-02-26 09:41:15 : Handling request 10 took 0.64278793334961 seconds
+2018-02-26 09:41:15 : Sending data to ::1
+2018-02-26 09:41:16 : Received request from ::1
+2018-02-26 09:41:17 : Handling request 10 took 1.2968368530273 seconds
+2018-02-26 09:41:17 : Sending data to ::1
+2018-02-26 09:44:43 : Received request from ::1
+2018-02-26 09:44:43 : Received request from ::1
+2018-02-26 09:44:43 : 
+2018-02-26 09:44:43 : Received request from ::1
+2018-02-26 09:44:43 : Handling request 70 took 0.072535037994385 seconds
+2018-02-26 09:44:43 : Sending data to ::1
+2018-02-26 09:44:43 : Handling request 80 took 0.078610181808472 seconds
+2018-02-26 09:44:43 : Sending data to ::1
+2018-02-26 09:44:44 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 09:44:44 : Handling request 20 took 0.93332600593567 seconds
+2018-02-26 09:44:44 : Sending data to ::1
+2018-02-26 09:44:44 : Received request from ::1
+2018-02-26 09:44:44 : Received request from ::1
+2018-02-26 09:44:44 : 
+2018-02-26 09:44:44 : Received request from ::1
+2018-02-26 09:44:44 : Received request from ::1
+2018-02-26 09:44:44 : Received request from ::1
+2018-02-26 09:44:44 : Received request from ::1
+2018-02-26 09:44:44 : Handling request 70 took 0.073652029037476 seconds
+2018-02-26 09:44:44 : Sending data to ::1
+2018-02-26 09:44:44 : Handling request 80 took 0.076595067977905 seconds
+2018-02-26 09:44:44 : Sending data to ::1
+2018-02-26 09:44:44 : Handling request 30 took 0.14511299133301 seconds
+2018-02-26 09:44:44 : Sending data to ::1
+2018-02-26 09:44:44 : Handling request 40 took 0.148756980896 seconds
+2018-02-26 09:44:44 : Sending data to ::1
+2018-02-26 09:44:44 : Handling request 50 took 0.14446496963501 seconds
+2018-02-26 09:44:44 : Sending data to ::1
+2018-02-26 09:44:44 : Received request from ::1
+2018-02-26 09:44:44 : Handling request 10 took 0.63195705413818 seconds
+2018-02-26 09:44:44 : Sending data to ::1
+2018-02-26 09:44:45 : Received request from ::1
+2018-02-26 09:44:45 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 09:44:45 : Handling request 20 took 1.152606010437 seconds
+2018-02-26 09:44:45 : Sending data to ::1
+2018-02-26 09:44:45 : Received request from ::1
+2018-02-26 09:44:46 : Handling request 10 took 1.2530798912048 seconds
+2018-02-26 09:44:46 : Sending data to ::1
+2018-02-26 09:44:47 : Handling request 10 took 1.2642540931702 seconds
+2018-02-26 09:44:47 : Sending data to ::1
+2018-02-26 09:45:29 : Received request from ::1
+2018-02-26 09:45:29 : Received request from ::1
+2018-02-26 09:45:29 : 
+2018-02-26 09:45:29 : Received request from ::1
+2018-02-26 09:45:29 : Handling request 70 took 0.072088956832886 seconds
+2018-02-26 09:45:29 : Sending data to ::1
+2018-02-26 09:45:29 : Handling request 80 took 0.079936027526855 seconds
+2018-02-26 09:45:29 : Sending data to ::1
+2018-02-26 09:45:30 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 09:45:30 : Handling request 20 took 0.93451881408691 seconds
+2018-02-26 09:45:30 : Sending data to ::1
+2018-02-26 09:45:30 : Received request from ::1
+2018-02-26 09:45:30 : Received request from ::1
+2018-02-26 09:45:30 : Received request from ::1
+2018-02-26 09:45:30 : 
+2018-02-26 09:45:30 : Received request from ::1
+2018-02-26 09:45:30 : Received request from ::1
+2018-02-26 09:45:30 : Received request from ::1
+2018-02-26 09:45:30 : Handling request 70 took 0.073441028594971 seconds
+2018-02-26 09:45:30 : Sending data to ::1
+2018-02-26 09:45:30 : Handling request 80 took 0.080195903778076 seconds
+2018-02-26 09:45:30 : Sending data to ::1
+2018-02-26 09:45:31 : Handling request 30 took 0.1404709815979 seconds
+2018-02-26 09:45:31 : Sending data to ::1
+2018-02-26 09:45:31 : Handling request 40 took 0.14421200752258 seconds
+2018-02-26 09:45:31 : Sending data to ::1
+2018-02-26 09:45:31 : Received request from ::1
+2018-02-26 09:45:31 : Handling request 50 took 0.14477705955505 seconds
+2018-02-26 09:45:31 : Sending data to ::1
+2018-02-26 09:45:31 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 09:45:31 : Handling request 20 took 1.1652748584747 seconds
+2018-02-26 09:45:31 : Sending data to ::1
+2018-02-26 09:45:31 : Handling request 10 took 0.61576104164124 seconds
+2018-02-26 09:45:31 : Sending data to ::1
+2018-02-26 09:45:31 : Received request from ::1
+2018-02-26 09:45:31 : Received request from ::1
+2018-02-26 09:45:32 : Handling request 10 took 1.3419280052185 seconds
+2018-02-26 09:45:32 : Sending data to ::1
+2018-02-26 09:45:32 : Handling request 10 took 1.3185510635376 seconds
+2018-02-26 09:45:32 : Sending data to ::1
+2018-02-26 09:45:41 : Received request from ::1
+2018-02-26 09:45:41 : Received request from ::1
+2018-02-26 09:45:41 : Received request from ::1
+2018-02-26 09:45:42 : Received request from ::1
+2018-02-26 09:45:42 : Handling request 40 took 0.13940095901489 seconds
+2018-02-26 09:45:42 : Handling request 30 took 0.13976311683655 seconds
+2018-02-26 09:45:42 : Sending data to ::1
+2018-02-26 09:45:42 : Sending data to ::1
+2018-02-26 09:45:42 : Handling request 50 took 0.14500904083252 seconds
+2018-02-26 09:45:42 : Sending data to ::1
+2018-02-26 09:45:42 : Handling request 10 took 0.62934803962708 seconds
+2018-02-26 09:45:42 : Sending data to ::1
+2018-02-26 09:45:42 : Received request from ::1
+2018-02-26 09:45:44 : Handling request 10 took 1.263200044632 seconds
+2018-02-26 09:45:44 : Sending data to ::1
+2018-02-26 09:46:32 : Received request from ::1
+2018-02-26 09:46:32 : Received request from ::1
+2018-02-26 09:46:32 : Received request from ::1
+2018-02-26 09:46:32 : 
+2018-02-26 09:46:32 : Handling request 70 took 0.074235916137695 seconds
+2018-02-26 09:46:32 : Sending data to ::1
+2018-02-26 09:46:32 : Handling request 80 took 0.080816030502319 seconds
+2018-02-26 09:46:32 : Sending data to ::1
+2018-02-26 09:46:32 : Handling request 120 took 0.19101905822754 seconds
+2018-02-26 09:46:32 : Sending data to ::1
+2018-02-26 09:56:19 : Received request from ::1
+2018-02-26 09:56:19 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 09:56:20 : Handling request 20 took 0.96886014938354 seconds
+2018-02-26 09:56:20 : Sending data to ::1
+2018-02-26 09:56:20 : Received request from ::1
+2018-02-26 09:56:21 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 09:56:21 : Handling request 20 took 1.2220301628113 seconds
+2018-02-26 09:56:21 : Sending data to ::1
+2018-02-26 09:56:21 : Received request from ::1
+2018-02-26 09:56:22 : Handling request 10 took 1.2740008831024 seconds
+2018-02-26 09:56:22 : Sending data to ::1
+2018-02-26 09:59:27 : Received request from ::1
+2018-02-26 09:59:27 : Received request from ::1
+2018-02-26 09:59:27 : Received request from ::1
+2018-02-26 09:59:27 : Received request from ::1
+2018-02-26 09:59:27 : Handling request 50 took 0.14153504371643 seconds
+2018-02-26 09:59:27 : Handling request 40 took 0.14141607284546 seconds
+2018-02-26 09:59:27 : Handling request 30 took 0.14248204231262 seconds
+2018-02-26 09:59:27 : Sending data to ::1
+2018-02-26 09:59:28 : Handling request 10 took 0.61359286308289 seconds
+2018-02-26 09:59:28 : Sending data to ::1
+2018-02-26 09:59:28 : Received request from ::1
+2018-02-26 09:59:29 : Handling request 10 took 1.3054130077362 seconds
+2018-02-26 09:59:29 : Sending data to ::1
+2018-02-26 10:01:56 : Received request from ::1
+2018-02-26 10:01:56 : Received request from ::1
+2018-02-26 10:01:56 : 
+2018-02-26 10:01:56 : Received request from ::1
+2018-02-26 10:01:56 : Received request from ::1
+2018-02-26 10:01:56 : Received request from ::1
+2018-02-26 10:01:56 : Received request from ::1
+2018-02-26 10:01:56 : Handling request 70 took 0.072221994400024 seconds
+2018-02-26 10:01:56 : Sending data to ::1
+2018-02-26 10:01:56 : Handling request 80 took 0.078849077224731 seconds
+2018-02-26 10:01:56 : Sending data to ::1
+2018-02-26 10:01:56 : Handling request 30 took 0.14350700378418 seconds
+2018-02-26 10:01:56 : Sending data to ::1
+2018-02-26 10:01:56 : Handling request 40 took 0.14455604553223 seconds
+2018-02-26 10:01:56 : Sending data to ::1
+2018-02-26 10:01:57 : Handling request 10 took 0.65950512886047 seconds
+2018-02-26 10:01:57 : Sending data to ::1
+2018-02-26 10:01:57 : Received request from ::1
+2018-02-26 10:01:58 : Received request from ::1
+2018-02-26 10:01:58 : Received request from ::1
+2018-02-26 10:01:58 : Received request from ::1
+2018-02-26 10:01:58 : 
+2018-02-26 10:01:58 : Received request from ::1
+2018-02-26 10:01:58 : Received request from ::1
+2018-02-26 10:01:58 : Handling request 70 took 0.073747873306274 seconds
+2018-02-26 10:01:58 : Handling request 80 took 0.077167987823486 seconds
+2018-02-26 10:01:58 : Sending data to ::1
+2018-02-26 10:01:58 : Handling request 30 took 0.14433312416077 seconds
+2018-02-26 10:01:58 : Sending data to ::1
+2018-02-26 10:01:58 : Handling request 40 took 0.14928412437439 seconds
+2018-02-26 10:01:58 : Sending data to ::1
+2018-02-26 10:01:58 : Received request from ::1
+2018-02-26 10:01:58 : Handling request 50 took 0.14564895629883 seconds
+2018-02-26 10:01:58 : Sending data to ::1
+2018-02-26 10:01:58 : Handling request 10 took 0.60802006721497 seconds
+2018-02-26 10:01:58 : Sending data to ::1
+2018-02-26 10:01:58 : Handling request 10 took 1.2973899841309 seconds
+2018-02-26 10:01:58 : Sending data to ::1
+2018-02-26 10:01:59 : Received request from ::1
+2018-02-26 10:02:00 : Handling request 10 took 1.2645039558411 seconds
+2018-02-26 10:02:00 : Sending data to ::1
+2018-02-26 10:02:42 : Received request from ::1
+2018-02-26 10:02:42 : Received request from ::1
+2018-02-26 10:02:43 : 
+2018-02-26 10:02:43 : Received request from ::1
+2018-02-26 10:02:43 : Received request from ::1
+2018-02-26 10:02:43 : Received request from ::1
+2018-02-26 10:02:43 : Received request from ::1
+2018-02-26 10:02:43 : Handling request 70 took 0.073104858398438 seconds
+2018-02-26 10:02:43 : Sending data to ::1
+2018-02-26 10:02:43 : Handling request 80 took 0.079447984695435 seconds
+2018-02-26 10:02:43 : Sending data to ::1
+2018-02-26 10:02:43 : Handling request 30 took 0.14324188232422 seconds
+2018-02-26 10:02:43 : Handling request 40 took 0.14405202865601 seconds
+2018-02-26 10:02:43 : Handling request 50 took 0.14600801467896 seconds
+2018-02-26 10:02:43 : Sending data to ::1
+2018-02-26 10:02:43 : Sending data to ::1
+2018-02-26 10:02:43 : Sending data to ::1
+2018-02-26 10:02:43 : Handling request 10 took 0.62337398529053 seconds
+2018-02-26 10:02:43 : Sending data to ::1
+2018-02-26 10:02:43 : Received request from ::1
+2018-02-26 10:02:45 : Received request from ::1
+2018-02-26 10:02:45 : Received request from ::1
+2018-02-26 10:02:45 : Received request from ::1
+2018-02-26 10:02:45 : Received request from ::1
+2018-02-26 10:02:45 : 
+2018-02-26 10:02:45 : Received request from ::1
+2018-02-26 10:02:45 : Handling request 70 took 0.072097778320312 seconds
+2018-02-26 10:02:45 : Sending data to ::1
+2018-02-26 10:02:45 : Handling request 80 took 0.078827142715454 seconds
+2018-02-26 10:02:45 : Sending data to ::1
+2018-02-26 10:02:45 : Handling request 10 took 1.3013970851898 seconds
+2018-02-26 10:02:45 : Sending data to ::1
+2018-02-26 10:02:45 : Handling request 40 took 0.14194798469543 seconds
+2018-02-26 10:02:45 : Handling request 50 took 0.14486598968506 seconds
+2018-02-26 10:02:45 : Sending data to ::1
+2018-02-26 10:02:45 : Sending data to ::1
+2018-02-26 10:02:45 : Received request from ::1
+2018-02-26 10:02:45 : Handling request 30 took 0.1419849395752 seconds
+2018-02-26 10:02:45 : Sending data to ::1
+2018-02-26 10:02:45 : Handling request 10 took 0.62478518486023 seconds
+2018-02-26 10:02:45 : Sending data to ::1
+2018-02-26 10:02:45 : Received request from ::1
+2018-02-26 10:02:47 : Handling request 10 took 1.2721540927887 seconds
+2018-02-26 10:02:47 : Sending data to ::1
+2018-02-26 10:02:57 : Received request from ::1
+2018-02-26 10:02:57 : Handling request 10 took 0.62273812294006 seconds
+2018-02-26 10:02:57 : Sending data to ::1
+2018-02-26 10:02:57 : Received request from ::1
+2018-02-26 10:02:59 : Handling request 10 took 1.3063869476318 seconds
+2018-02-26 10:02:59 : Sending data to ::1
+2018-02-26 10:03:12 : Received request from ::1
+2018-02-26 10:03:12 : Handling request 10 took 0.63412308692932 seconds
+2018-02-26 10:03:12 : Sending data to ::1
+2018-02-26 10:03:13 : Received request from ::1
+2018-02-26 10:03:14 : Handling request 10 took 1.2878580093384 seconds
+2018-02-26 10:03:14 : Sending data to ::1
+2018-02-26 10:03:23 : Received request from ::1
+2018-02-26 10:03:23 : Handling request 10 took 0.62834405899048 seconds
+2018-02-26 10:03:23 : Sending data to ::1
+2018-02-26 10:03:24 : Received request from ::1
+2018-02-26 10:03:25 : Handling request 10 took 1.2680900096893 seconds
+2018-02-26 10:03:25 : Sending data to ::1
+2018-02-26 10:03:57 : Received request from ::1
+2018-02-26 10:03:57 : Received request from ::1
+2018-02-26 10:03:57 : Received request from ::1
+2018-02-26 10:03:57 : 
+2018-02-26 10:03:57 : Handling request 70 took 0.075482845306396 seconds
+2018-02-26 10:03:58 : Sending data to ::1
+2018-02-26 10:03:58 : Received request from ::1
+2018-02-26 10:03:58 : Received request from ::1
+2018-02-26 10:03:58 : Received request from ::1
+2018-02-26 10:03:58 : Handling request 80 took 0.12644219398499 seconds
+2018-02-26 10:03:58 : Sending data to ::1
+2018-02-26 10:03:58 : Handling request 40 took 0.14440608024597 seconds
+2018-02-26 10:03:58 : Handling request 50 took 0.14455890655518 seconds
+2018-02-26 10:03:58 : Sending data to ::1
+2018-02-26 10:03:58 : Sending data to ::1
+2018-02-26 10:03:58 : Handling request 30 took 0.14587116241455 seconds
+2018-02-26 10:03:58 : Sending data to ::1
+2018-02-26 10:03:58 : Handling request 10 took 0.6280369758606 seconds
+2018-02-26 10:03:58 : Sending data to ::1
+2018-02-26 10:03:58 : Received request from ::1
+2018-02-26 10:04:00 : Handling request 10 took 1.3126749992371 seconds
+2018-02-26 10:04:00 : Sending data to ::1
+2018-02-26 10:04:02 : Received request from ::1
+2018-02-26 10:04:02 : Received request from ::1
+2018-02-26 10:04:02 : 
+2018-02-26 10:04:02 : Received request from ::1
+2018-02-26 10:04:02 : Received request from ::1
+2018-02-26 10:04:02 : Received request from ::1
+2018-02-26 10:04:02 : Received request from ::1
+2018-02-26 10:04:02 : Handling request 70 took 0.073450088500977 seconds
+2018-02-26 10:04:02 : Sending data to ::1
+2018-02-26 10:04:02 : Handling request 80 took 0.077393054962158 seconds
+2018-02-26 10:04:02 : Sending data to ::1
+2018-02-26 10:04:02 : Handling request 40 took 0.17938089370728 seconds
+2018-02-26 10:04:02 : Handling request 30 took 0.18738508224487 seconds
+2018-02-26 10:04:02 : Handling request 50 took 0.17956805229187 seconds
+2018-02-26 10:04:03 : Sending data to ::1
+2018-02-26 10:04:03 : Sending data to ::1
+2018-02-26 10:04:03 : Sending data to ::1
+2018-02-26 10:04:03 : Handling request 10 took 0.67142605781555 seconds
+2018-02-26 10:04:03 : Sending data to ::1
+2018-02-26 10:04:03 : Received request from ::1
+2018-02-26 10:04:04 : Handling request 10 took 1.2911839485168 seconds
+2018-02-26 10:04:04 : Sending data to ::1
+2018-02-26 10:04:33 : Received request from ::1
+2018-02-26 10:04:33 : Received request from ::1
+2018-02-26 10:04:33 : 
+2018-02-26 10:04:33 : Received request from ::1
+2018-02-26 10:04:33 : Received request from ::1
+2018-02-26 10:04:33 : Handling request 70 took 0.072531938552856 seconds
+2018-02-26 10:04:33 : Sending data to ::1
+2018-02-26 10:04:33 : Handling request 80 took 0.078473806381226 seconds
+2018-02-26 10:04:33 : Sending data to ::1
+2018-02-26 10:04:33 : Handling request 30 took 0.14463305473328 seconds
+2018-02-26 10:04:33 : Handling request 40 took 0.14409279823303 seconds
+2018-02-26 10:04:33 : Sending data to ::1
+2018-02-26 10:04:33 : Sending data to ::1
+2018-02-26 10:04:34 : Handling request 10 took 0.62173795700073 seconds
+2018-02-26 10:04:34 : Sending data to ::1
+2018-02-26 10:04:34 : Received request from ::1
+2018-02-26 10:04:34 : Received request from ::1
+2018-02-26 10:04:34 : Received request from ::1
+2018-02-26 10:04:34 : 
+2018-02-26 10:04:34 : Received request from ::1
+2018-02-26 10:04:34 : Received request from ::1
+2018-02-26 10:04:34 : Received request from ::1
+2018-02-26 10:04:34 : Handling request 70 took 0.074851989746094 seconds
+2018-02-26 10:04:34 : Handling request 80 took 0.080632925033569 seconds
+2018-02-26 10:04:34 : Sending data to ::1
+2018-02-26 10:04:35 : Handling request 30 took 0.14058589935303 seconds
+2018-02-26 10:04:35 : Sending data to ::1
+2018-02-26 10:04:35 : Handling request 40 took 0.14697790145874 seconds
+2018-02-26 10:04:35 : Sending data to ::1
+2018-02-26 10:04:35 : Received request from ::1
+2018-02-26 10:04:35 : Handling request 50 took 0.144700050354 seconds
+2018-02-26 10:04:35 : Sending data to ::1
+2018-02-26 10:04:35 : Handling request 10 took 0.61065316200256 seconds
+2018-02-26 10:04:35 : Sending data to ::1
+2018-02-26 10:04:35 : Handling request 10 took 1.2950530052185 seconds
+2018-02-26 10:04:35 : Sending data to ::1
+2018-02-26 10:04:35 : Received request from ::1
+2018-02-26 10:04:37 : Handling request 10 took 1.2844169139862 seconds
+2018-02-26 10:04:37 : Sending data to ::1
+2018-02-26 10:05:33 : Received request from ::1
+2018-02-26 10:05:33 : Received request from ::1
+2018-02-26 10:05:33 : 
+2018-02-26 10:05:33 : Received request from ::1
+2018-02-26 10:05:33 : Received request from ::1
+2018-02-26 10:05:33 : Received request from ::1
+2018-02-26 10:05:33 : Received request from ::1
+2018-02-26 10:05:33 : Handling request 70 took 0.073740005493164 seconds
+2018-02-26 10:05:33 : Sending data to ::1
+2018-02-26 10:05:33 : Handling request 80 took 0.078875064849854 seconds
+2018-02-26 10:05:34 : Sending data to ::1
+2018-02-26 10:05:34 : Handling request 30 took 0.1463840007782 seconds
+2018-02-26 10:05:34 : Sending data to ::1
+2018-02-26 10:05:34 : Handling request 50 took 0.14159893989563 seconds
+2018-02-26 10:05:34 : Handling request 40 took 0.14440393447876 seconds
+2018-02-26 10:05:34 : Sending data to ::1
+2018-02-26 10:05:34 : Sending data to ::1
+2018-02-26 10:05:34 : Handling request 10 took 0.63120889663696 seconds
+2018-02-26 10:05:34 : Sending data to ::1
+2018-02-26 10:05:34 : Received request from ::1
+2018-02-26 10:05:36 : Handling request 10 took 1.2885410785675 seconds
+2018-02-26 10:05:36 : Sending data to ::1
+2018-02-26 10:05:45 : Received request from ::1
+2018-02-26 10:05:45 : Handling request 110 took 0.072309017181396 seconds
+2018-02-26 10:05:45 : Sending data to ::1
+2018-02-26 10:05:49 : Received request from ::1
+2018-02-26 10:05:49 : Received request from ::1
+2018-02-26 10:05:49 : Received request from ::1
+2018-02-26 10:05:49 : Received request from ::1
+2018-02-26 10:05:50 : Handling request 50 took 0.1423192024231 seconds
+2018-02-26 10:05:50 : Handling request 30 took 0.14103412628174 seconds
+2018-02-26 10:05:50 : Handling request 40 took 0.14348006248474 seconds
+2018-02-26 10:05:50 : Sending data to ::1
+2018-02-26 10:05:50 : Sending data to ::1
+2018-02-26 10:05:50 : Sending data to ::1
+2018-02-26 10:05:50 : Handling request 10 took 0.63301491737366 seconds
+2018-02-26 10:05:50 : Sending data to ::1
+2018-02-26 10:05:50 : Received request from ::1
+2018-02-26 10:05:52 : Handling request 10 took 1.3408241271973 seconds
+2018-02-26 10:05:52 : Sending data to ::1
+2018-02-26 10:06:01 : Received request from ::1
+2018-02-26 10:06:01 : Received request from ::1
+2018-02-26 10:06:01 : Received request from ::1
+2018-02-26 10:06:01 : 
+2018-02-26 10:06:01 : Handling request 70 took 0.072247982025146 seconds
+2018-02-26 10:06:01 : Sending data to ::1
+2018-02-26 10:06:01 : Handling request 80 took 0.079242944717407 seconds
+2018-02-26 10:06:01 : Sending data to ::1
+2018-02-26 10:06:01 : Handling request 120 took 0.1830370426178 seconds
+2018-02-26 10:06:01 : Sending data to ::1
+2018-02-26 10:06:13 : Received request from ::1
+2018-02-26 10:06:14 : Handling request 130 took 0.21976113319397 seconds
+2018-02-26 10:06:14 : Sending data to ::1
+2018-02-26 10:06:18 : Received request from ::1
+2018-02-26 10:06:18 : Received request from ::1
+2018-02-26 10:06:18 : 
+2018-02-26 10:06:18 : Received request from ::1
+2018-02-26 10:06:18 : Received request from ::1
+2018-02-26 10:06:18 : Received request from ::1
+2018-02-26 10:06:18 : Received request from ::1
+2018-02-26 10:06:18 : Handling request 70 took 0.073765993118286 seconds
+2018-02-26 10:06:18 : Handling request 80 took 0.079041004180908 seconds
+2018-02-26 10:06:18 : Sending data to ::1
+2018-02-26 10:06:18 : Handling request 30 took 0.14763212203979 seconds
+2018-02-26 10:06:18 : Sending data to ::1
+2018-02-26 10:06:18 : Handling request 50 took 0.14344596862793 seconds
+2018-02-26 10:06:18 : Sending data to ::1
+2018-02-26 10:06:18 : Handling request 40 took 0.14665293693542 seconds
+2018-02-26 10:06:18 : Sending data to ::1
+2018-02-26 10:06:19 : Handling request 10 took 0.628497838974 seconds
+2018-02-26 10:06:19 : Sending data to ::1
+2018-02-26 10:06:19 : Received request from ::1
+2018-02-26 10:06:20 : Handling request 10 took 1.277999162674 seconds
+2018-02-26 10:06:20 : Sending data to ::1
+2018-02-26 10:09:35 : Received request from ::1
+2018-02-26 10:09:35 : Received request from ::1
+2018-02-26 10:09:35 : 
+2018-02-26 10:09:35 : Received request from ::1
+2018-02-26 10:09:35 : Received request from ::1
+2018-02-26 10:09:35 : Received request from ::1
+2018-02-26 10:09:35 : Received request from ::1
+2018-02-26 10:09:35 : Handling request 70 took 0.072050094604492 seconds
+2018-02-26 10:09:35 : Sending data to ::1
+2018-02-26 10:09:35 : Handling request 80 took 0.078574180603027 seconds
+2018-02-26 10:09:35 : Sending data to ::1
+2018-02-26 10:09:36 : Handling request 30 took 0.14572501182556 seconds
+2018-02-26 10:09:36 : Sending data to ::1
+2018-02-26 10:09:36 : Handling request 40 took 0.15818381309509 seconds
+2018-02-26 10:09:36 : Handling request 50 took 0.15236306190491 seconds
+2018-02-26 10:09:36 : Sending data to ::1
+2018-02-26 10:09:36 : Sending data to ::1
+2018-02-26 10:09:36 : Handling request 10 took 0.63300108909607 seconds
+2018-02-26 10:09:36 : Sending data to ::1
+2018-02-26 10:09:36 : Received request from ::1
+2018-02-26 10:09:37 : Handling request 10 took 1.2958528995514 seconds
+2018-02-26 10:09:37 : Sending data to ::1
+2018-02-26 10:10:44 : Received request from ::1
+2018-02-26 10:10:44 : Received request from ::1
+2018-02-26 10:10:44 : Received request from ::1
+2018-02-26 10:10:44 : 
+2018-02-26 10:10:44 : Received request from ::1
+2018-02-26 10:10:44 : Received request from ::1
+2018-02-26 10:10:44 : Received request from ::1
+2018-02-26 10:10:44 : Handling request 70 took 0.073356866836548 seconds
+2018-02-26 10:10:44 : Sending data to ::1
+2018-02-26 10:10:44 : Handling request 80 took 0.078393936157227 seconds
+2018-02-26 10:10:44 : Sending data to ::1
+2018-02-26 10:10:44 : Handling request 30 took 0.14477014541626 seconds
+2018-02-26 10:10:44 : Sending data to ::1
+2018-02-26 10:10:44 : Handling request 50 took 0.14362788200378 seconds
+2018-02-26 10:10:44 : Handling request 40 took 0.14449501037598 seconds
+2018-02-26 10:10:44 : Sending data to ::1
+2018-02-26 10:10:44 : Handling request 10 took 0.62327098846436 seconds
+2018-02-26 10:10:44 : Sending data to ::1
+2018-02-26 10:10:45 : Received request from ::1
+2018-02-26 10:10:46 : Handling request 10 took 1.2723619937897 seconds
+2018-02-26 10:10:46 : Sending data to ::1
+2018-02-26 10:13:15 : Received request from ::1
+2018-02-26 10:13:15 : 
+2018-02-26 10:13:15 : Received request from ::1
+2018-02-26 10:13:15 : Received request from ::1
+2018-02-26 10:13:15 : Received request from ::1
+2018-02-26 10:13:15 : Received request from ::1
+2018-02-26 10:13:15 : Handling request 70 took 0.074052095413208 seconds
+2018-02-26 10:13:15 : Handling request 80 took 0.078544855117798 seconds
+2018-02-26 10:13:15 : Sending data to ::1
+2018-02-26 10:13:15 : Handling request 30 took 0.14147901535034 seconds
+2018-02-26 10:13:15 : Sending data to ::1
+2018-02-26 10:13:15 : Handling request 40 took 0.14246320724487 seconds
+2018-02-26 10:13:15 : Sending data to ::1
+2018-02-26 10:13:16 : Handling request 10 took 0.63575005531311 seconds
+2018-02-26 10:13:16 : Sending data to ::1
+2018-02-26 10:13:16 : Received request from ::1
+2018-02-26 10:13:16 : Received request from ::1
+2018-02-26 10:13:16 : Received request from ::1
+2018-02-26 10:13:16 : 
+2018-02-26 10:13:16 : Received request from ::1
+2018-02-26 10:13:16 : Received request from ::1
+2018-02-26 10:13:16 : Received request from ::1
+2018-02-26 10:13:16 : Handling request 70 took 0.072020053863525 seconds
+2018-02-26 10:13:16 : Sending data to ::1
+2018-02-26 10:13:16 : Handling request 80 took 0.078435897827148 seconds
+2018-02-26 10:13:16 : Sending data to ::1
+2018-02-26 10:13:16 : Handling request 40 took 0.14620494842529 seconds
+2018-02-26 10:13:16 : Handling request 30 took 0.1473560333252 seconds
+2018-02-26 10:13:16 : Sending data to ::1
+2018-02-26 10:13:16 : Sending data to ::1
+2018-02-26 10:13:16 : Received request from ::1
+2018-02-26 10:13:17 : Handling request 50 took 0.14189600944519 seconds
+2018-02-26 10:13:17 : Sending data to ::1
+2018-02-26 10:13:17 : Handling request 10 took 0.61617588996887 seconds
+2018-02-26 10:13:17 : Sending data to ::1
+2018-02-26 10:13:17 : Handling request 10 took 1.2846891880035 seconds
+2018-02-26 10:13:17 : Sending data to ::1
+2018-02-26 10:13:17 : Received request from ::1
+2018-02-26 10:13:17 : Received request from ::1
+2018-02-26 10:13:18 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 10:13:18 : Handling request 20 took 0.95934104919434 seconds
+2018-02-26 10:13:18 : Sending data to ::1
+2018-02-26 10:13:18 : Handling request 10 took 1.2881979942322 seconds
+2018-02-26 10:13:18 : Sending data to ::1
+2018-02-26 10:13:19 : Received request from ::1
+2018-02-26 10:13:20 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 10:13:20 : Handling request 20 took 1.1799168586731 seconds
+2018-02-26 10:13:20 : Sending data to ::1
+2018-02-26 10:13:20 : Received request from ::1
+2018-02-26 10:13:21 : Handling request 10 took 1.2832698822021 seconds
+2018-02-26 10:13:21 : Sending data to ::1
+2018-02-26 10:14:45 : Received request from ::1
+2018-02-26 10:14:45 : Received request from ::1
+2018-02-26 10:14:45 : 
+2018-02-26 10:14:45 : Received request from ::1
+2018-02-26 10:14:45 : Handling request 70 took 0.074375152587891 seconds
+2018-02-26 10:14:45 : Handling request 80 took 0.078758001327515 seconds
+2018-02-26 10:14:45 : Sending data to ::1
+2018-02-26 10:14:46 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 10:14:46 : Handling request 20 took 0.94187998771667 seconds
+2018-02-26 10:14:46 : Sending data to ::1
+2018-02-26 10:14:46 : Received request from ::1
+2018-02-26 10:14:47 : Received request from ::1
+2018-02-26 10:14:47 : Received request from ::1
+2018-02-26 10:14:47 : 
+2018-02-26 10:14:47 : Received request from ::1
+2018-02-26 10:14:47 : Received request from ::1
+2018-02-26 10:14:47 : Received request from ::1
+2018-02-26 10:14:47 : Handling request 70 took 0.07375693321228 seconds
+2018-02-26 10:14:47 : Sending data to ::1
+took 0.078639030456543 seconds
+2018-02-26 10:14:47 : Sending data to ::1
+2018-02-26 10:14:47 : Handling request 30 took 0.14141297340393 seconds
+2018-02-26 10:14:47 : Handling request 40 took 0.14122104644775 seconds
+2018-02-26 10:14:47 : Sending data to ::1
+2018-02-26 10:14:47 : Sending data to ::1
+2018-02-26 10:14:47 : Received request from ::1
+2018-02-26 10:14:47 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 10:14:48 : Handling request 50 took 0.1443657875061 seconds
+2018-02-26 10:14:48 : Sending data to ::1
+2018-02-26 10:14:48 : Handling request 20 took 1.1748199462891 seconds
+2018-02-26 10:14:48 : Sending data to ::1
+2018-02-26 10:14:48 : Received request from ::1
+2018-02-26 10:14:48 : Handling request 10 took 0.63006496429443 seconds
+2018-02-26 10:14:48 : Sending data to ::1
+2018-02-26 10:14:48 : Received request from ::1
+2018-02-26 10:14:49 : Handling request 10 took 1.2999670505524 seconds
+2018-02-26 10:14:49 : Sending data to ::1
+2018-02-26 10:14:49 : Handling request 10 took 1.3006479740143 seconds
+2018-02-26 10:14:49 : Sending data to ::1
+2018-02-26 10:18:00 : Received request from ::1
+2018-02-26 10:18:00 : Received request from ::1
+2018-02-26 10:18:00 : Received request from ::1
+2018-02-26 10:18:00 : Handling request 50 took 0.14245080947876 seconds
+2018-02-26 10:18:00 : Handling request 30 took 0.14224290847778 seconds
+2018-02-26 10:18:00 : Handling request 40 took 0.14219999313354 seconds
+2018-02-26 10:18:00 : Sending data to ::1
+2018-02-26 10:18:00 : Sending data to ::1
+2018-02-26 10:18:01 : SELECT 
+FunctionalBuildingArea.municipalityID,
+buildingStatusID,
+buildingCategoryID,
+pYear,
+pQuarter,
+buildingValue as value
+FROM FunctionalBuildingArea, Municipality WHERE FunctionalBuildingArea.municipalityID = Municipality.municipalityID AND FunctionalBuildingArea.buildingStatusID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 10:18:01 : Handling request 20 took 1.4676368236542 seconds
+2018-02-26 10:18:01 : Sending data to ::1
+2018-02-26 10:18:06 : Received request from ::1
+2018-02-26 10:18:06 : Received request from ::1
+2018-02-26 10:18:06 : Received request from ::1
+2018-02-26 10:18:06 : Received request from ::1
+2018-02-26 10:18:06 : Received request from ::1
+2018-02-26 10:18:06 : Received request from ::1
+2018-02-26 10:18:06 : Handling request 70 took 0.074161052703857 seconds
+2018-02-26 10:18:06 : Sending data to ::1
+2018-02-26 10:18:06 : Handling request 80 took 0.085133790969849 seconds
+2018-02-26 10:18:06 : Sending data to ::1
+2018-02-26 10:18:06 : Handling request 30 took 0.14285707473755 seconds
+2018-02-26 10:18:06 : Sending data to ::1
+2018-02-26 10:18:07 : Handling request 40 took 0.14560604095459 seconds
+2018-02-26 10:18:07 : Sending data to ::1
+2018-02-26 10:18:07 : Handling request 50 took 0.15402102470398 seconds
+2018-02-26 10:18:07 : Sending data to ::1
+2018-02-26 10:18:07 : Handling request 10 took 0.92673707008362 seconds
+2018-02-26 10:18:07 : Sending data to ::1
+2018-02-26 10:18:41 : Received request from ::1
+2018-02-26 10:18:41 : Received request from ::1
+2018-02-26 10:18:41 : Received request from ::1
+2018-02-26 10:18:41 : Received request from ::1
+2018-02-26 10:18:41 : Handling request 30 took 0.13961601257324 seconds
+2018-02-26 10:18:41 : Handling request 50 took 0.14578294754028 seconds
+2018-02-26 10:18:41 : Sending data to ::1
+2018-02-26 10:18:41 : Sending data to ::1
+2018-02-26 10:18:41 : Sending data to ::1
+2018-02-26 10:18:42 : Handling request 10 took 0.62446188926697 seconds
+2018-02-26 10:18:42 : Sending data to ::1
+2018-02-26 10:18:42 : Received request from ::1
+2018-02-26 10:18:43 : Handling request 10 took 1.2874319553375 seconds
+2018-02-26 10:18:43 : Sending data to ::1
+2018-02-26 10:18:48 : Received request from ::1
+2018-02-26 10:18:49 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 10:18:49 : Handling request 20 took 0.93712711334229 seconds
+2018-02-26 10:18:49 : Sending data to ::1
+2018-02-26 10:18:49 : Received request from ::1
+2018-02-26 10:18:50 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 10:18:50 : Handling request 20 took 1.1864769458771 seconds
+2018-02-26 10:18:50 : Sending data to ::1
+2018-02-26 10:18:50 : Received request from ::1
+2018-02-26 10:18:52 : Handling request 10 took 1.2883059978485 seconds
+2018-02-26 10:18:52 : Sending data to ::1
+2018-02-26 14:43:02 : Received request from ::1
+2018-02-26 14:43:02 : Received request from ::1
+2018-02-26 14:43:02 : 
+2018-02-26 14:43:02 : Received request from ::1
+2018-02-26 14:43:02 : Handling request 70 took 0.073339939117432 seconds
+2018-02-26 14:43:02 : Sending data to ::1
+2018-02-26 14:43:02 : Handling request 80 took 0.07839298248291 seconds
+2018-02-26 14:43:02 : Sending data to ::1
+2018-02-26 14:43:03 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 14:43:03 : Handling request 20 took 0.95847392082214 seconds
+2018-02-26 14:43:03 : Sending data to ::1
+2018-02-26 14:43:04 : Received request from ::1
+2018-02-26 14:43:05 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 14:43:05 : Handling request 20 took 1.1524658203125 seconds
+2018-02-26 14:43:05 : Sending data to ::1
+2018-02-26 14:43:05 : Received request from ::1
+2018-02-26 14:43:06 : Handling request 10 took 1.3217179775238 seconds
+2018-02-26 14:43:06 : Sending data to ::1
+2018-02-26 14:43:10 : Received request from ::1
+2018-02-26 14:43:10 : Received request from ::1
+2018-02-26 14:43:10 : Received request from ::1
+2018-02-26 14:43:10 : 
+2018-02-26 14:43:10 : Received request from ::1
+2018-02-26 14:43:10 : Received request from ::1
+2018-02-26 14:43:10 : Received request from ::1
+2018-02-26 14:43:10 : Handling request 70 took 0.072575092315674 seconds
+2018-02-26 14:43:10 : Sending data to ::1
+2018-02-26 14:43:10 : Handling request 80 took 0.079256057739258 seconds
+2018-02-26 14:43:10 : Sending data to ::1
+2018-02-26 14:43:10 : Handling request 30 took 0.14436602592468 seconds
+2018-02-26 14:43:10 : Sending data to ::1
+2018-02-26 14:43:10 : Handling request 40 took 0.140704870224 seconds
+2018-02-26 14:43:10 : Sending data to ::1
+2018-02-26 14:43:10 : Handling request 50 took 0.14460897445679 seconds
+2018-02-26 14:43:10 : Sending data to ::1
+2018-02-26 14:43:10 : Handling request 10 took 0.62348794937134 seconds
+2018-02-26 14:43:10 : Sending data to ::1
+2018-02-26 14:43:10 : Received request from ::1
+2018-02-26 14:43:12 : Handling request 10 took 1.2741949558258 seconds
+2018-02-26 14:43:12 : Sending data to ::1
+2018-02-26 14:45:07 : Received request from ::1
+2018-02-26 14:45:07 : 
+2018-02-26 14:45:07 : Received request from ::1
+2018-02-26 14:45:07 : Received request from ::1
+2018-02-26 14:45:07 : Received request from ::1
+2018-02-26 14:45:07 : Received request from ::1
+2018-02-26 14:45:07 : Received request from ::1
+2018-02-26 14:45:07 : Handling request 80 took 0.081975936889648 seconds
+2018-02-26 14:45:07 : Handling request 70 took 0.081007957458496 seconds
+2018-02-26 14:45:07 : Sending data to ::1
+2018-02-26 14:45:07 : Sending data to ::1
+2018-02-26 14:45:07 : Handling request 30 took 0.14573097229004 seconds
+2018-02-26 14:45:07 : Handling request 50 took 0.14497303962708 seconds
+2018-02-26 14:45:07 : Sending data to ::1
+2018-02-26 14:45:07 : Handling request 40 took 0.15104293823242 seconds
+2018-02-26 14:45:07 : Sending data to ::1
+2018-02-26 14:45:08 : Handling request 10 took 0.651859998703 seconds
+2018-02-26 14:45:08 : Sending data to ::1
+2018-02-26 14:45:08 : Received request from ::1
+2018-02-26 14:45:09 : Handling request 10 took 1.3275091648102 seconds
+2018-02-26 14:45:09 : Sending data to ::1
+2018-02-26 14:45:10 : Received request from ::1
+2018-02-26 14:45:10 : Received request from ::1
+2018-02-26 14:45:10 : 
+2018-02-26 14:45:10 : Received request from ::1
+2018-02-26 14:45:10 : Handling request 70 took 0.073975086212158 seconds
+2018-02-26 14:45:10 : Sending data to ::1
+2018-02-26 14:45:10 : Handling request 80 took 0.078396081924438 seconds
+2018-02-26 14:45:10 : Sending data to ::1
+2018-02-26 14:45:11 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 14:45:11 : Handling request 20 took 0.9537091255188 seconds
+2018-02-26 14:45:11 : Sending data to ::1
+2018-02-26 14:45:11 : Received request from ::1
+2018-02-26 14:45:12 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 14:45:12 : Handling request 20 took 1.2034809589386 seconds
+2018-02-26 14:45:12 : Sending data to ::1
+2018-02-26 14:45:13 : Received request from ::1
+2018-02-26 14:45:14 : Handling request 10 took 1.2977440357208 seconds
+2018-02-26 14:45:14 : Sending data to ::1
+2018-02-26 14:48:37 : Received request from ::1
+2018-02-26 14:48:38 : Handling request 110 took 0.072814226150513 seconds
+2018-02-26 14:48:38 : Sending data to ::1
+2018-02-26 14:48:43 : Received request from ::1
+2018-02-26 14:48:43 : Received request from ::1
+2018-02-26 14:48:43 : Received request from ::1
+2018-02-26 14:48:43 : Received request from ::1
+2018-02-26 14:48:43 : Handling request 30 took 0.14004707336426 seconds
+2018-02-26 14:48:43 : Handling request 50 took 0.14050388336182 seconds
+2018-02-26 14:48:43 : Sending data to ::1
+2018-02-26 14:48:43 : Sending data to ::1
+2018-02-26 14:48:43 : Handling request 40 took 0.14408206939697 seconds
+2018-02-26 14:48:43 : Sending data to ::1
+2018-02-26 14:48:44 : Handling request 10 took 0.76322603225708 seconds
+2018-02-26 14:48:44 : Sending data to ::1
+2018-02-26 14:48:49 : Received request from ::1
+2018-02-26 14:48:49 : Received request from ::1
+2018-02-26 14:48:49 : 
+2018-02-26 14:48:49 : Received request from ::1
+2018-02-26 14:48:49 : Handling request 70 took 0.071787118911743 seconds
+2018-02-26 14:48:49 : Sending data to ::1
+2018-02-26 14:48:49 : Handling request 80 took 0.078133106231689 seconds
+2018-02-26 14:48:49 : Sending data to ::1
+2018-02-26 14:48:49 : Handling request 50 took 0.14401602745056 seconds
+2018-02-26 14:48:49 : Sending data to ::1
+2018-02-26 14:48:53 : Received request from ::1
+2018-02-26 14:48:53 : Handling request 150 took 0.074985027313232 seconds
+2018-02-26 14:48:53 : Sending data to ::1
+2018-02-26 14:48:53 : Received request from ::1
+2018-02-26 14:48:53 : Handling request 50 took 0.14197587966919 seconds
+2018-02-26 14:48:53 : Sending data to ::1
+2018-02-26 14:49:01 : Received request from ::1
+2018-02-26 14:49:01 : Received request from ::1
+2018-02-26 14:49:01 : 
+2018-02-26 14:49:01 : Received request from ::1
+2018-02-26 14:49:01 : Received request from ::1
+2018-02-26 14:49:01 : Received request from ::1
+2018-02-26 14:49:01 : Received request from ::1
+2018-02-26 14:49:01 : Handling request 70 took 0.074349164962769 seconds
+2018-02-26 14:49:01 : Handling request 80 took 0.080352067947388 seconds
+2018-02-26 14:49:01 : Sending data to ::1
+2018-02-26 14:49:01 : Sending data to ::1
+2018-02-26 14:49:01 : Handling request 30 took 0.14346599578857 seconds
+2018-02-26 14:49:01 : Sending data to ::1
+2018-02-26 14:49:01 : Handling request 50 took 0.14352488517761 seconds
+2018-02-26 14:49:01 : Sending data to ::1
+2018-02-26 14:49:01 : Handling request 40 took 0.14764308929443 seconds
+2018-02-26 14:49:01 : Sending data to ::1
+2018-02-26 14:49:02 : Handling request 10 took 0.76788306236267 seconds
+2018-02-26 14:49:02 : Sending data to ::1
+2018-02-26 14:49:06 : Received request from ::1
+2018-02-26 14:49:06 : Handling request 70 took 0.076969146728516 seconds
+2018-02-26 14:49:06 : Sending data to ::1
+2018-02-26 14:49:07 : Received request from ::1
+2018-02-26 14:49:07 : 
+2018-02-26 14:49:07 : Handling request 80 took 0.079406023025513 seconds
+2018-02-26 14:49:07 : Sending data to ::1
+2018-02-26 14:49:07 : Handling request 120 took 0.18384599685669 seconds
+2018-02-26 14:49:07 : Sending data to ::1
+2018-02-26 20:46:57 : Received request from ::1
+2018-02-26 20:46:58 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-26 20:46:58 : Handling request 20 took 0.96559286117554 seconds
+2018-02-26 20:46:58 : Sending data to ::1
+2018-02-26 20:46:58 : Received request from ::1
+2018-02-26 20:46:59 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-26 20:46:59 : Handling request 20 took 1.1489081382751 seconds
+2018-02-26 20:46:59 : Sending data to ::1
+2018-02-26 20:47:00 : Received request from ::1
+2018-02-26 20:47:01 : Handling request 10 took 1.2828648090363 seconds
+2018-02-26 20:47:01 : Sending data to ::1
+2018-02-26 20:47:01 : Received request from ::1
+2018-02-26 20:47:01 : Received request from ::1
+2018-02-26 20:47:01 : Received request from ::1
+2018-02-26 20:47:01 : Received request from ::1
+2018-02-26 20:47:01 : Handling request 40 took 0.1439528465271 seconds
+2018-02-26 20:47:01 : Handling request 50 took 0.14293003082275 seconds
+2018-02-26 20:47:01 : Handling request 30 took 0.14673185348511 seconds
+2018-02-26 20:47:01 : Sending data to ::1
+2018-02-26 20:47:01 : Sending data to ::1
+2018-02-26 20:47:01 : Sending data to ::1
+2018-02-26 20:47:02 : Handling request 10 took 0.75355195999146 seconds
+2018-02-26 20:47:02 : Sending data to ::1
+2018-02-26 20:50:47 : Received request from ::1
+2018-02-26 20:50:47 : Received request from ::1
+2018-02-26 20:50:47 : Received request from ::1
+2018-02-26 20:50:47 : Received request from ::1
+2018-02-26 20:50:47 : Handling request 30 took 0.14137601852417 seconds
+2018-02-26 20:50:47 : Sending data to ::1
+2018-02-26 20:50:47 : Handling request 50 took 0.14393782615662 seconds
+2018-02-26 20:50:47 : Handling request 40 took 0.14481806755066 seconds
+2018-02-26 20:50:47 : Sending data to ::1
+2018-02-26 20:50:47 : Sending data to ::1
+2018-02-26 20:50:48 : Handling request 10 took 0.77383208274841 seconds
+2018-02-26 20:50:48 : Sending data to ::1
+2018-02-26 20:52:22 : Received request from ::1
+2018-02-26 20:52:22 : Handling request 110 took 0.0869140625 seconds
+2018-02-26 20:52:22 : Sending data to ::1
+2018-02-26 20:54:27 : Received request from ::1
+2018-02-26 20:54:27 : Received request from ::1
+2018-02-26 20:54:27 : Received request from ::1
+2018-02-26 20:54:27 : Received request from ::1
+2018-02-26 20:54:27 : Handling request 30 took 0.14059591293335 seconds
+2018-02-26 20:54:27 : Handling request 50 took 0.14389705657959 seconds
+2018-02-26 20:54:27 : Handling request 40 took 0.14443206787109 seconds
+2018-02-26 20:54:27 : Sending data to ::1
+2018-02-26 20:54:27 : Sending data to ::1
+2018-02-26 20:54:28 : Handling request 10 took 0.7473030090332 seconds
+2018-02-26 20:54:28 : Sending data to ::1
+2018-02-26 20:54:33 : Received request from ::1
+2018-02-26 20:54:33 : 
+2018-02-26 20:54:33 : Received request from ::1
+2018-02-26 20:54:33 : Handling request 70 took 0.074337959289551 seconds
+2018-02-26 20:54:33 : Handling request 80 took 0.081037044525146 seconds
+2018-02-26 20:54:33 : Sending data to ::1
+2018-02-26 20:54:33 : Sending data to ::1
+2018-02-26 20:54:33 : Handling request 50 took 0.14403390884399 seconds
+2018-02-26 20:54:33 : Sending data to ::1
+2018-02-26 20:55:04 : Received request from ::1
+2018-02-26 20:55:04 : Received request from ::1
+2018-02-26 20:55:05 : 
+2018-02-26 20:55:05 : Received request from ::1
+2018-02-26 20:55:05 : Handling request 80 took 0.081571102142334 seconds
+2018-02-26 20:55:05 : Handling request 70 took 0.084505796432495 seconds
+2018-02-26 20:55:05 : Sending data to ::1
+2018-02-26 20:55:05 : Sending data to ::1
+2018-02-26 20:55:05 : Handling request 50 took 0.14630913734436 seconds
+2018-02-26 20:55:05 : Sending data to ::1
+2018-02-26 20:55:11 : Received request from ::1
+2018-02-26 20:55:11 : Received request from ::1
+2018-02-26 20:55:11 : 
+2018-02-26 20:55:11 : Received request from ::1
+2018-02-26 20:55:11 : Handling request 70 took 0.07682204246521 seconds
+2018-02-26 20:55:11 : Sending data to ::1
+2018-02-26 20:55:11 : Handling request 80 took 0.085752010345459 seconds
+2018-02-26 20:55:11 : Sending data to ::1
+2018-02-26 20:55:11 : Handling request 50 took 0.14585995674133 seconds
+2018-02-26 20:55:11 : Sending data to ::1
+2018-02-27 08:37:21 : Received request from ::1
+2018-02-27 08:37:21 : Received request from ::1
+2018-02-27 08:37:21 : Received request from ::1
+2018-02-27 08:37:21 : 
+2018-02-27 08:37:21 : Handling request 70 took 0.072674036026001 seconds
+2018-02-27 08:37:21 : Sending data to ::1
+2018-02-27 08:37:21 : Handling request 80 took 0.07843017578125 seconds
+2018-02-27 08:37:21 : Sending data to ::1
+2018-02-27 08:37:22 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-27 08:37:22 : Handling request 20 took 0.95739316940308 seconds
+2018-02-27 08:37:22 : Sending data to ::1
+2018-02-27 08:37:22 : Received request from ::1
+2018-02-27 08:37:24 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-27 08:37:24 : Handling request 20 took 1.238972902298 seconds
+2018-02-27 08:37:24 : Sending data to ::1
+2018-02-27 08:37:24 : Received request from ::1
+2018-02-27 08:37:25 : Handling request 10 took 1.3376960754395 seconds
+2018-02-27 08:37:25 : Sending data to ::1
+2018-02-27 08:52:36 : Received request from ::1
+2018-02-27 08:52:36 : Received request from ::1
+2018-02-27 08:52:36 : Received request from ::1
+2018-02-27 08:52:36 : Handling request 40 took 0.14163112640381 seconds
+2018-02-27 08:52:36 : Handling request 30 took 0.14039206504822 seconds
+2018-02-27 08:52:36 : Handling request 50 took 0.1452100276947 seconds
+2018-02-27 08:52:36 : Sending data to ::1
+2018-02-27 08:52:36 : Sending data to ::1
+2018-02-27 08:52:36 : Sending data to ::1
+2018-02-27 08:52:37 : SELECT
+Movement.municipalityID,
+pYear,
+incomingAll as incoming, outgoingAll as outgoing, sumAll as value
+from Movement , Municipality WHERE Movement.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2018-02-27 08:52:37 : Handling request 20 took 0.84272122383118 seconds
+2018-02-27 08:52:37 : Sending data to ::1
+2018-02-27 08:52:42 : Received request from ::1
+2018-02-27 08:52:42 : Received request from ::1
+2018-02-27 08:52:42 : Received request from ::1
+2018-02-27 08:52:42 : Received request from ::1
+2018-02-27 08:52:42 : 
+2018-02-27 08:52:42 : Received request from ::1
+2018-02-27 08:52:42 : Received request from ::1
+2018-02-27 08:52:42 : Handling request 70 took 0.072035074234009 seconds
+2018-02-27 08:52:42 : Sending data to ::1
+2018-02-27 08:52:42 : Handling request 80 took 0.075101852416992 seconds
+2018-02-27 08:52:42 : Sending data to ::1
+2018-02-27 08:52:42 : Handling request 30 took 0.14467096328735 seconds
+2018-02-27 08:52:42 : Sending data to ::1
+2018-02-27 08:52:42 : Handling request 40 took 0.13996005058289 seconds
+2018-02-27 08:52:42 : Handling request 50 took 0.14194989204407 seconds
+2018-02-27 08:52:42 : Sending data to ::1
+2018-02-27 08:52:42 : Sending data to ::1
+2018-02-27 08:52:43 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2018-02-27 08:52:43 : Handling request 20 took 1.2462270259857 seconds
+2018-02-27 08:52:43 : Sending data to ::1
+2018-02-27 08:52:45 : Received request from ::1
+2018-02-27 08:52:45 : Received request from ::1
+2018-02-27 08:52:45 : 
+2018-02-27 08:52:45 : Handling request 70 took 0.073649168014526 seconds
+2018-02-27 08:52:45 : Sending data to ::1
+2018-02-27 08:52:45 : Handling request 80 took 0.08044695854187 seconds
+2018-02-27 08:52:45 : Sending data to ::1
+2018-02-27 08:52:45 : Received request from ::1
+2018-02-27 08:52:45 : Received request from ::1
+2018-02-27 08:52:45 : Handling request 40 took 0.13989615440369 seconds
+2018-02-27 08:52:45 : Handling request 50 took 0.1412079334259 seconds
+2018-02-27 08:52:45 : Handling request 30 took 0.1415548324585 seconds
+2018-02-27 08:52:45 : Sending data to ::1
+2018-02-27 08:52:45 : Sending data to ::1
+2018-02-27 08:52:45 : Sending data to ::1
+2018-02-27 08:52:46 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-27 08:52:46 : Handling request 20 took 1.0365500450134 seconds
+2018-02-27 08:52:46 : Sending data to ::1
+2018-02-27 08:53:14 : Received request from ::1
+2018-02-27 08:53:15 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-27 08:53:15 : Handling request 20 took 1.0687260627747 seconds
+2018-02-27 08:53:15 : Sending data to ::1
+2018-02-27 08:53:29 : Received request from ::1
+2018-02-27 08:53:30 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-27 08:53:30 : Handling request 20 took 0.96933007240295 seconds
+2018-02-27 08:53:30 : Sending data to ::1
+2018-02-27 08:53:30 : Received request from ::1
+2018-02-27 08:53:31 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-27 08:53:31 : Handling request 20 took 1.2014939785004 seconds
+2018-02-27 08:53:31 : Sending data to ::1
+2018-02-27 08:53:31 : Received request from ::1
+2018-02-27 08:53:33 : Handling request 10 took 1.3284411430359 seconds
+2018-02-27 08:53:33 : Sending data to ::1
+2018-02-27 08:59:29 : Received request from ::1
+2018-02-27 08:59:29 : Handling request 110 took 0.073659896850586 seconds
+2018-02-27 08:59:29 : Sending data to ::1
+2018-02-27 09:02:24 : Received request from ::1
+2018-02-27 09:02:24 : Received request from ::1
+2018-02-27 09:02:24 : Received request from ::1
+2018-02-27 09:02:24 : Received request from ::1
+2018-02-27 09:02:24 : Handling request 30 took 0.14007091522217 seconds
+2018-02-27 09:02:24 : Sending data to ::1
+2018-02-27 09:02:24 : Handling request 50 took 0.14224886894226 seconds
+2018-02-27 09:02:24 : Sending data to ::1
+2018-02-27 09:02:24 : Sending data to ::1
+2018-02-27 09:02:25 : Handling request 10 took 0.76642084121704 seconds
+2018-02-27 09:02:25 : Sending data to ::1
+2018-02-27 09:02:38 : Received request from ::1
+2018-02-27 09:02:38 : Received request from ::1
+2018-02-27 09:02:38 : Received request from ::1
+2018-02-27 09:02:38 : 
+2018-02-27 09:02:38 : Handling request 70 took 0.073899984359741 seconds
+2018-02-27 09:02:38 : Handling request 80 took 0.08439302444458 seconds
+2018-02-27 09:02:38 : Sending data to ::1
+2018-02-27 09:02:38 : Sending data to ::1
+2018-02-27 09:02:38 : Handling request 50 took 0.14528203010559 seconds
+2018-02-27 09:02:38 : Sending data to ::1
+2018-02-27 09:07:32 : Received request from ::1
+2018-02-27 09:07:33 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-27 09:07:33 : Handling request 20 took 1.2526800632477 seconds
+2018-02-27 09:07:33 : Sending data to ::1
+2018-02-27 09:07:34 : Received request from ::1
+2018-02-27 09:07:35 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-27 09:07:35 : Handling request 20 took 1.5266809463501 seconds
+2018-02-27 09:07:35 : Sending data to ::1
+2018-02-27 09:07:35 : Received request from ::1
+2018-02-27 09:07:37 : Handling request 10 took 1.3086249828339 seconds
+2018-02-27 09:07:37 : Sending data to ::1
+2018-02-27 09:17:34 : Received request from ::1
+2018-02-27 09:17:34 : Received request from ::1
+2018-02-27 09:17:34 : Received request from ::1
+2018-02-27 09:17:34 : Received request from ::1
+2018-02-27 09:17:34 : Handling request 30 took 0.14164304733276 seconds
+2018-02-27 09:17:34 : Handling request 50 took 0.14387893676758 seconds
+2018-02-27 09:17:34 : Handling request 40 took 0.14462208747864 seconds
+2018-02-27 09:17:34 : Sending data to ::1
+2018-02-27 09:17:34 : Sending data to ::1
+2018-02-27 09:17:35 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2018-02-27 09:17:35 : Handling request 20 took 1.2443149089813 seconds
+2018-02-27 09:17:35 : Sending data to ::1
+2018-02-27 09:27:04 : Received request from ::1
+2018-02-27 09:27:05 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-27 09:27:05 : Handling request 20 took 1.0766930580139 seconds
+2018-02-27 09:27:05 : Sending data to ::1
+2018-02-27 09:27:05 : Received request from ::1
+2018-02-27 09:27:06 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-27 09:27:06 : Handling request 20 took 1.1804239749908 seconds
+2018-02-27 09:27:06 : Sending data to ::1
+2018-02-27 09:27:06 : Received request from ::1
+2018-02-27 09:27:08 : Handling request 10 took 1.2799987792969 seconds
+2018-02-27 09:27:08 : Sending data to ::1
+2018-02-28 08:59:32 : Received request from ::1
+2018-02-28 08:59:32 : 
+2018-02-28 08:59:32 : Handling request 80 took 0.23525810241699 seconds
+2018-02-28 08:59:32 : Handling request 70 took 0.23686695098877 seconds
+2018-02-28 08:59:32 : Sending data to ::1
+2018-02-28 09:00:43 : Received request from ::1
+2018-02-28 09:00:43 : Received request from ::1
+2018-02-28 09:00:43 : 
+2018-02-28 09:00:43 : Received request from ::1
+2018-02-28 09:00:43 : Handling request 70 took 0.073240995407104 seconds
+2018-02-28 09:00:43 : Sending data to ::1
+2018-02-28 09:00:43 : Handling request 80 took 0.077524900436401 seconds
+2018-02-28 09:00:43 : Sending data to ::1
+2018-02-28 09:00:44 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-28 09:00:44 : Handling request 20 took 1.0505399703979 seconds
+2018-02-28 09:00:44 : Sending data to ::1
+2018-02-28 09:00:44 : Received request from ::1
+2018-02-28 09:00:45 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-28 09:00:45 : Handling request 20 took 1.1746881008148 seconds
+2018-02-28 09:00:45 : Sending data to ::1
+2018-02-28 09:00:46 : Received request from ::1
+2018-02-28 09:00:47 : Handling request 10 took 1.3249118328094 seconds
+2018-02-28 09:00:47 : Sending data to ::1
+2018-02-28 09:00:56 : Received request from ::1
+2018-02-28 09:00:56 : Received request from ::1
+2018-02-28 09:00:56 : 
+2018-02-28 09:00:56 : Received request from ::1
+2018-02-28 09:00:56 : Handling request 70 took 0.07463002204895 seconds
+2018-02-28 09:00:56 : Sending data to ::1
+2018-02-28 09:00:56 : Handling request 80 took 0.080087184906006 seconds
+2018-02-28 09:00:56 : Sending data to ::1
+2018-02-28 09:00:57 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-28 09:00:57 : Handling request 20 took 0.9320821762085 seconds
+2018-02-28 09:00:57 : Sending data to ::1
+2018-02-28 09:00:57 : Received request from ::1
+2018-02-28 09:00:58 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-28 09:00:58 : Handling request 20 took 1.177453994751 seconds
+2018-02-28 09:00:58 : Sending data to ::1
+2018-02-28 09:00:59 : Received request from ::1
+2018-02-28 09:01:00 : Handling request 10 took 1.4245131015778 seconds
+2018-02-28 09:01:00 : Sending data to ::1
+2018-02-28 09:01:01 : Received request from ::1
+2018-02-28 09:01:01 : Received request from ::1
+2018-02-28 09:01:01 : Received request from ::1
+2018-02-28 09:01:01 : Received request from ::1
+2018-02-28 09:01:01 : Handling request 40 took 0.14020204544067 seconds
+2018-02-28 09:01:01 : Handling request 30 took 0.14272308349609 seconds
+2018-02-28 09:01:01 : Sending data to ::1
+2018-02-28 09:01:01 : Handling request 50 took 0.14574289321899 seconds
+2018-02-28 09:01:01 : Sending data to ::1
+2018-02-28 09:01:02 : Handling request 10 took 0.91595983505249 seconds
+2018-02-28 09:01:02 : Sending data to ::1
+2018-02-28 09:01:14 : Received request from ::1
+2018-02-28 09:01:14 : Received request from ::1
+2018-02-28 09:01:14 : 
+2018-02-28 09:01:14 : Received request from ::1
+2018-02-28 09:01:14 : Received request from ::1
+2018-02-28 09:01:14 : Received request from ::1
+2018-02-28 09:01:14 : Handling request 70 took 0.07165002822876 seconds
+2018-02-28 09:01:14 : Sending data to ::1
+2018-02-28 09:01:14 : Received request from ::1
+2018-02-28 09:01:14 : Handling request 80 took 0.079463958740234 seconds
+2018-02-28 09:01:14 : Sending data to ::1
+2018-02-28 09:01:14 : Handling request 30 took 0.14315986633301 seconds
+2018-02-28 09:01:14 : Sending data to ::1
+2018-02-28 09:01:14 : Handling request 40 took 0.14355802536011 seconds
+2018-02-28 09:01:14 : Sending data to ::1
+2018-02-28 09:01:14 : Handling request 50 took 0.14101314544678 seconds
+2018-02-28 09:01:14 : Sending data to ::1
+2018-02-28 09:01:15 : Handling request 10 took 0.9073691368103 seconds
+2018-02-28 09:01:15 : Sending data to ::1
+2018-02-28 09:01:31 : Received request from ::1
+2018-02-28 09:01:31 : Received request from ::1
+2018-02-28 09:01:31 : Received request from ::1
+2018-02-28 09:01:31 : 
+2018-02-28 09:01:31 : Received request from ::1
+2018-02-28 09:01:31 : Received request from ::1
+2018-02-28 09:01:31 : Received request from ::1
+2018-02-28 09:01:32 : Handling request 70 took 0.074006080627441 seconds
+2018-02-28 09:01:32 : Sending data to ::1
+2018-02-28 09:01:32 : Handling request 80 took 0.079455852508545 seconds
+2018-02-28 09:01:32 : Sending data to ::1
+2018-02-28 09:01:32 : Handling request 40 took 0.13909506797791 seconds
+2018-02-28 09:01:32 : Handling request 30 took 0.14427709579468 seconds
+2018-02-28 09:01:32 : Sending data to ::1
+2018-02-28 09:01:32 : Handling request 50 took 0.14497804641724 seconds
+2018-02-28 09:01:32 : Sending data to ::1
+2018-02-28 09:01:32 : Sending data to ::1
+2018-02-28 09:01:32 : Handling request 10 took 0.90431904792786 seconds
+2018-02-28 09:01:32 : Sending data to ::1
+2018-02-28 09:01:37 : Received request from ::1
+2018-02-28 09:01:37 : Received request from ::1
+2018-02-28 09:01:37 : Received request from ::1
+2018-02-28 09:01:37 : Received request from ::1
+2018-02-28 09:01:37 : Handling request 40 took 0.14105010032654 seconds
+2018-02-28 09:01:37 : Sending data to ::1
+2018-02-28 09:01:37 : Handling request 50 took 0.14107513427734 seconds
+2018-02-28 09:01:37 : Handling request 30 took 0.14247822761536 seconds
+2018-02-28 09:01:37 : Sending data to ::1
+2018-02-28 09:01:37 : Sending data to ::1
+2018-02-28 09:01:38 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2018-02-28 09:01:38 : Handling request 20 took 1.3207290172577 seconds
+2018-02-28 09:01:38 : Sending data to ::1
+2018-02-28 09:01:42 : Received request from ::1
+2018-02-28 09:01:42 : Received request from ::1
+2018-02-28 09:01:43 : Handling request 30 took 0.14166212081909 seconds
+2018-02-28 09:01:43 : Handling request 40 took 0.14476895332336 seconds
+2018-02-28 09:01:43 : Handling request 50 took 0.14557099342346 seconds
+2018-02-28 09:01:43 : Sending data to ::1
+2018-02-28 09:01:43 : Sending data to ::1
+2018-02-28 09:01:43 : Handling request 10 took 0.91211199760437 seconds
+2018-02-28 09:01:43 : Sending data to ::1
+2018-02-28 09:03:13 : Received request from ::1
+2018-02-28 09:03:13 : Received request from ::1
+2018-02-28 09:03:13 : 
+2018-02-28 09:03:13 : Received request from ::1
+2018-02-28 09:03:13 : Received request from ::1
+2018-02-28 09:03:13 : Received request from ::1
+2018-02-28 09:03:13 : Received request from ::1
+2018-02-28 09:03:13 : Handling request 70 took 0.074989080429077 seconds
+2018-02-28 09:03:13 : Handling request 80 took 0.079358100891113 seconds
+2018-02-28 09:03:13 : Sending data to ::1
+2018-02-28 09:03:13 : Sending data to ::1
+2018-02-28 09:03:13 : Handling request 50 took 0.14331221580505 seconds
+2018-02-28 09:03:13 : Sending data to ::1
+2018-02-28 09:03:13 : Handling request 30 took 0.14092302322388 seconds
+2018-02-28 09:03:13 : Handling request 40 took 0.14391589164734 seconds
+2018-02-28 09:03:13 : Sending data to ::1
+2018-02-28 09:03:14 : Handling request 10 took 0.9011390209198 seconds
+2018-02-28 09:03:14 : Sending data to ::1
+2018-02-28 09:06:10 : Received request from ::1
+2018-02-28 09:06:10 : Received request from ::1
+2018-02-28 09:06:10 : 
+2018-02-28 09:06:10 : Received request from ::1
+2018-02-28 09:06:10 : Received request from ::1
+2018-02-28 09:06:10 : Received request from ::1
+2018-02-28 09:06:10 : Handling request 70 took 0.07260799407959 seconds
+2018-02-28 09:06:10 : Sending data to ::1
+took 0.07879114151001 seconds
+2018-02-28 09:06:10 : Sending data to ::1
+2018-02-28 09:06:10 : Handling request 30 took 0.14348387718201 seconds
+2018-02-28 09:06:10 : Sending data to ::1
+2018-02-28 09:06:10 : Handling request 50 took 0.1412661075592 seconds
+2018-02-28 09:06:10 : Handling request 40 took 0.14496278762817 seconds
+2018-02-28 09:06:11 : Sending data to ::1
+2018-02-28 09:06:11 : Sending data to ::1
+2018-02-28 09:06:11 : Handling request 10 took 0.91732716560364 seconds
+2018-02-28 09:06:11 : Sending data to ::1
+2018-02-28 09:07:11 : Received request from ::1
+2018-02-28 09:07:11 : Received request from ::1
+2018-02-28 09:07:11 : 
+2018-02-28 09:07:11 : Received request from ::1
+2018-02-28 09:07:11 : Received request from ::1
+2018-02-28 09:07:11 : Received request from ::1
+2018-02-28 09:07:11 : Received request from ::1
+2018-02-28 09:07:11 : Handling request 80 took 0.084805011749268 seconds
+2018-02-28 09:07:11 : Handling request 70 took 0.087047815322876 seconds
+2018-02-28 09:07:11 : Sending data to ::1
+2018-02-28 09:07:11 : Handling request 30 took 0.14113187789917 seconds
+2018-02-28 09:07:11 : Handling request 40 took 0.14038991928101 seconds
+2018-02-28 09:07:11 : Handling request 50 took 0.14338517189026 seconds
+2018-02-28 09:07:11 : Sending data to ::1
+2018-02-28 09:07:11 : Sending data to ::1
+2018-02-28 09:07:11 : Sending data to ::1
+2018-02-28 09:07:12 : Handling request 10 took 0.93058204650879 seconds
+2018-02-28 09:07:12 : Sending data to ::1
+2018-02-28 09:07:15 : Received request from ::1
+2018-02-28 09:07:16 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-28 09:07:16 : Handling request 20 took 0.96037912368774 seconds
+2018-02-28 09:07:16 : Sending data to ::1
+2018-02-28 09:07:16 : Received request from ::1
+2018-02-28 09:07:17 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-28 09:07:18 : Handling request 20 took 1.161477804184 seconds
+2018-02-28 09:07:18 : Sending data to ::1
+2018-02-28 09:07:18 : Received request from ::1
+2018-02-28 09:07:19 : Handling request 10 took 1.2658958435059 seconds
+2018-02-28 09:07:19 : Sending data to ::1
+2018-02-28 09:07:24 : Received request from ::1
+2018-02-28 09:07:24 : Received request from ::1
+2018-02-28 09:07:24 : Received request from ::1
+2018-02-28 09:07:24 : Received request from ::1
+2018-02-28 09:07:24 : Handling request 40 took 0.14241003990173 seconds
+2018-02-28 09:07:24 : Handling request 30 took 0.1439220905304 seconds
+2018-02-28 09:07:24 : Handling request 50 took 0.14567089080811 seconds
+2018-02-28 09:07:24 : Sending data to ::1
+2018-02-28 09:07:24 : Sending data to ::1
+2018-02-28 09:07:25 : Handling request 10 took 1.271185874939 seconds
+2018-02-28 09:07:25 : Sending data to ::1
+2018-02-28 09:07:26 : Received request from ::1
+2018-02-28 09:07:27 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2018-02-28 09:07:27 : Handling request 20 took 1.3823509216309 seconds
+2018-02-28 09:07:27 : Sending data to ::1
+2018-02-28 09:07:30 : Received request from ::1
+2018-02-28 09:07:30 : Received request from ::1
+2018-02-28 09:07:30 : Received request from ::1
+2018-02-28 09:07:30 : Received request from ::1
+2018-02-28 09:07:31 : Handling request 30 took 0.14368104934692 seconds
+2018-02-28 09:07:31 : Handling request 40 took 0.14349603652954 seconds
+2018-02-28 09:07:31 : Sending data to ::1
+2018-02-28 09:07:31 : Sending data to ::1
+2018-02-28 09:07:31 : Sending data to ::1
+2018-02-28 09:07:31 : Handling request 10 took 0.90341997146606 seconds
+2018-02-28 09:07:31 : Sending data to ::1
+2018-02-28 09:08:02 : Received request from ::1
+2018-02-28 09:08:02 : Received request from ::1
+2018-02-28 09:08:02 : 
+2018-02-28 09:08:02 : Received request from ::1
+2018-02-28 09:08:02 : Received request from ::1
+2018-02-28 09:08:02 : Received request from ::1
+2018-02-28 09:08:02 : Received request from ::1
+2018-02-28 09:08:02 : Handling request 70 took 0.073186874389648 seconds
+2018-02-28 09:08:02 : Sending data to ::1
+2018-02-28 09:08:02 : Handling request 80 took 0.0800621509552 seconds
+2018-02-28 09:08:02 : Sending data to ::1
+2018-02-28 09:08:02 : Handling request 30 took 0.1410961151123 seconds
+2018-02-28 09:08:02 : Handling request 40 took 0.14133882522583 seconds
+2018-02-28 09:08:02 : Handling request 50 took 0.14325308799744 seconds
+2018-02-28 09:08:02 : Sending data to ::1
+2018-02-28 09:08:02 : Sending data to ::1
+2018-02-28 09:08:02 : Sending data to ::1
+2018-02-28 09:08:03 : Handling request 10 took 0.93022894859314 seconds
+2018-02-28 09:08:03 : Sending data to ::1
+2018-02-28 09:09:29 : Received request from ::1
+2018-02-28 09:09:29 : Received request from ::1
+2018-02-28 09:09:29 : Received request from ::1
+2018-02-28 09:09:29 : 
+2018-02-28 09:09:29 : Received request from ::1
+2018-02-28 09:09:29 : Received request from ::1
+2018-02-28 09:09:29 : Received request from ::1
+2018-02-28 09:09:29 : Handling request 70 took 0.073214769363403 seconds
+2018-02-28 09:09:29 : Handling request 80 took 0.077642917633057 seconds
+2018-02-28 09:09:29 : Sending data to ::1
+2018-02-28 09:09:29 : Sending data to ::1
+2018-02-28 09:09:29 : Handling request 30 took 0.14388799667358 seconds
+2018-02-28 09:09:29 : Sending data to ::1
+2018-02-28 09:09:29 : Handling request 50 took 0.1405918598175 seconds
+2018-02-28 09:09:29 : Handling request 40 took 0.14283394813538 seconds
+2018-02-28 09:09:29 : Sending data to ::1
+2018-02-28 09:09:30 : Handling request 10 took 0.7475950717926 seconds
+2018-02-28 09:09:30 : Sending data to ::1
+2018-02-28 09:10:54 : Received request from ::1
+2018-02-28 09:10:54 : Received request from ::1
+2018-02-28 09:10:54 : 
+2018-02-28 09:10:54 : Handling request 70 took 0.075165033340454 seconds
+2018-02-28 09:10:54 : Handling request 80 took 0.076880931854248 seconds
+2018-02-28 09:10:54 : Sending data to ::1
+2018-02-28 09:10:55 : Received request from ::1
+2018-02-28 09:10:55 : Received request from ::1
+2018-02-28 09:10:55 : Received request from ::1
+2018-02-28 09:10:55 : Handling request 30 took 0.14203095436096 seconds
+2018-02-28 09:10:55 : Handling request 50 took 0.14229607582092 seconds
+2018-02-28 09:10:55 : Handling request 40 took 0.14400315284729 seconds
+2018-02-28 09:10:55 : Sending data to ::1
+2018-02-28 09:10:55 : Sending data to ::1
+2018-02-28 09:10:55 : Sending data to ::1
+2018-02-28 09:11:10 : Received request from ::1
+2018-02-28 09:11:10 : Received request from ::1
+2018-02-28 09:11:10 : 
+2018-02-28 09:11:10 : Received request from ::1
+2018-02-28 09:11:10 : Received request from ::1
+2018-02-28 09:11:10 : Received request from ::1
+2018-02-28 09:11:10 : Handling request 70 took 0.074119091033936 seconds
+2018-02-28 09:11:10 : Handling request 80 took 0.079916000366211 seconds
+2018-02-28 09:11:10 : Sending data to ::1
+2018-02-28 09:11:10 : Sending data to ::1
+2018-02-28 09:11:10 : Handling request 30 took 0.14357495307922 seconds
+2018-02-28 09:11:10 : Sending data to ::1
+2018-02-28 09:11:10 : Handling request 50 took 0.14160704612732 seconds
+2018-02-28 09:11:10 : Handling request 40 took 0.14307594299316 seconds
+2018-02-28 09:11:10 : Sending data to ::1
+2018-02-28 09:11:10 : Sending data to ::1
+2018-02-28 09:11:11 : Handling request 10 took 0.74790596961975 seconds
+2018-02-28 09:11:11 : Sending data to ::1
+2018-02-28 09:14:17 : Received request from ::1
+2018-02-28 09:14:17 : Received request from ::1
+2018-02-28 09:14:17 : 
+2018-02-28 09:14:17 : Received request from ::1
+2018-02-28 09:14:17 : Received request from ::1
+2018-02-28 09:14:17 : Received request from ::1
+2018-02-28 09:14:17 : Received request from ::1
+2018-02-28 09:14:17 : Handling request 70 took 0.073776006698608 seconds
+2018-02-28 09:14:17 : Handling request 80 took 0.07890510559082 seconds
+2018-02-28 09:14:17 : Sending data to ::1
+2018-02-28 09:14:17 : Handling request 30 took 0.14295601844788 seconds
+2018-02-28 09:14:17 : Sending data to ::1
+2018-02-28 09:14:17 : Handling request 40 took 0.14067411422729 seconds
+2018-02-28 09:14:17 : Handling request 50 took 0.1438159942627 seconds
+2018-02-28 09:14:17 : Sending data to ::1
+2018-02-28 09:14:18 : Handling request 10 took 0.74386405944824 seconds
+2018-02-28 09:14:18 : Sending data to ::1
+2018-02-28 09:14:59 : Received request from ::1
+2018-02-28 09:14:59 : Received request from ::1
+2018-02-28 09:14:59 : 
+2018-02-28 09:14:59 : Received request from ::1
+2018-02-28 09:14:59 : Received request from ::1
+2018-02-28 09:14:59 : Received request from ::1
+2018-02-28 09:14:59 : Received request from ::1
+2018-02-28 09:14:59 : Handling request 70 took 0.073818922042847 seconds
+2018-02-28 09:14:59 : Handling request 80 took 0.078457117080688 seconds
+2018-02-28 09:14:59 : Sending data to ::1
+2018-02-28 09:14:59 : Sending data to ::1
+2018-02-28 09:14:59 : Handling request 30 took 0.1396210193634 seconds
+2018-02-28 09:14:59 : Sending data to ::1
+2018-02-28 09:14:59 : Handling request 50 took 0.14425992965698 seconds
+2018-02-28 09:14:59 : Handling request 40 took 0.14543890953064 seconds
+2018-02-28 09:14:59 : Sending data to ::1
+2018-02-28 09:14:59 : Sending data to ::1
+2018-02-28 09:15:00 : Handling request 10 took 0.75888895988464 seconds
+2018-02-28 09:15:00 : Sending data to ::1
+2018-02-28 09:15:14 : Received request from ::1
+2018-02-28 09:15:14 : Received request from ::1
+2018-02-28 09:15:14 : 
+2018-02-28 09:15:14 : Received request from ::1
+2018-02-28 09:15:14 : Received request from ::1
+2018-02-28 09:15:14 : Received request from ::1
+2018-02-28 09:15:14 : Handling request 70 took 0.07404088973999 seconds
+2018-02-28 09:15:14 : Handling request 80 took 0.080793142318726 seconds
+2018-02-28 09:15:14 : Sending data to ::1
+2018-02-28 09:15:14 : Handling request 30 took 0.20508098602295 seconds
+2018-02-28 09:15:14 : Handling request 40 took 0.19953894615173 seconds
+2018-02-28 09:15:14 : Handling request 50 took 0.19885993003845 seconds
+2018-02-28 09:15:14 : Sending data to ::1
+2018-02-28 09:15:14 : Sending data to ::1
+2018-02-28 09:15:14 : Sending data to ::1
+2018-02-28 09:15:14 : Handling request 10 took 0.82472395896912 seconds
+2018-02-28 09:15:14 : Sending data to ::1
+2018-02-28 09:20:36 : Received request from ::1
+2018-02-28 09:20:36 : Received request from ::1
+2018-02-28 09:20:36 : 
+2018-02-28 09:20:36 : Received request from ::1
+2018-02-28 09:20:36 : Received request from ::1
+2018-02-28 09:20:36 : Received request from ::1
+2018-02-28 09:20:36 : Received request from ::1
+2018-02-28 09:20:36 : Handling request 70 took 0.072329044342041 seconds
+2018-02-28 09:20:36 : Sending data to ::1
+2018-02-28 09:20:36 : Handling request 80 took 0.079160928726196 seconds
+2018-02-28 09:20:36 : Sending data to ::1
+2018-02-28 09:20:36 : Handling request 50 took 0.15531706809998 seconds
+2018-02-28 09:20:36 : Handling request 30 took 0.18661880493164 seconds
+2018-02-28 09:20:36 : Handling request 40 took 0.15796399116516 seconds
+2018-02-28 09:20:36 : Sending data to ::1
+2018-02-28 09:20:36 : Sending data to ::1
+2018-02-28 09:20:36 : Sending data to ::1
+2018-02-28 09:20:36 : Handling request 10 took 0.80903291702271 seconds
+2018-02-28 09:20:36 : Sending data to ::1
+2018-02-28 09:27:42 : Received request from ::1
+2018-02-28 09:27:42 : Received request from ::1
+2018-02-28 09:27:42 : Received request from ::1
+2018-02-28 09:27:42 : 
+2018-02-28 09:27:42 : Received request from ::1
+2018-02-28 09:27:42 : Received request from ::1
+2018-02-28 09:27:42 : Received request from ::1
+2018-02-28 09:27:42 : Handling request 70 took 0.07630181312561 seconds
+2018-02-28 09:27:42 : Handling request 80 took 0.079319000244141 seconds
+2018-02-28 09:27:42 : Sending data to ::1
+2018-02-28 09:27:42 : Sending data to ::1
+2018-02-28 09:27:43 : Handling request 50 took 0.17476987838745 seconds
+2018-02-28 09:27:43 : Sending data to ::1
+2018-02-28 09:27:43 : Handling request 40 took 0.20268988609314 seconds
+2018-02-28 09:27:43 : Sending data to ::1
+2018-02-28 09:27:43 : Handling request 10 took 0.79003000259399 seconds
+2018-02-28 09:27:43 : Sending data to ::1
+2018-02-28 09:30:40 : Received request from ::1
+2018-02-28 09:30:40 : Received request from ::1
+2018-02-28 09:30:40 : 
+2018-02-28 09:30:40 : Received request from ::1
+2018-02-28 09:30:40 : Received request from ::1
+2018-02-28 09:30:40 : Received request from ::1
+2018-02-28 09:30:40 : Received request from ::1
+2018-02-28 09:30:40 : Handling request 70 took 0.075513124465942 seconds
+2018-02-28 09:30:40 : Handling request 80 took 0.075926065444946 seconds
+2018-02-28 09:30:40 : Sending data to ::1
+2018-02-28 09:30:40 : Handling request 30 took 0.14566206932068 seconds
+2018-02-28 09:30:40 : Sending data to ::1
+2018-02-28 09:30:40 : Handling request 50 took 0.14612078666687 seconds
+2018-02-28 09:30:40 : Handling request 40 took 0.14535689353943 seconds
+2018-02-28 09:30:40 : Sending data to ::1
+2018-02-28 09:30:41 : Handling request 10 took 0.76881194114685 seconds
+2018-02-28 09:30:41 : Sending data to ::1
+2018-02-28 09:30:43 : Received request from ::1
+2018-02-28 09:30:44 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-28 09:30:44 : Handling request 20 took 0.95241498947144 seconds
+2018-02-28 09:30:44 : Sending data to ::1
+2018-02-28 09:30:45 : Received request from ::1
+2018-02-28 09:30:46 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-28 09:30:46 : Handling request 20 took 1.1804630756378 seconds
+2018-02-28 09:30:46 : Sending data to ::1
+2018-02-28 09:30:46 : Received request from ::1
+2018-02-28 09:30:47 : Handling request 10 took 1.2761151790619 seconds
+2018-02-28 09:30:47 : Sending data to ::1
+2018-02-28 09:30:52 : Received request from ::1
+2018-02-28 09:30:52 : Received request from ::1
+2018-02-28 09:30:52 : Received request from ::1
+2018-02-28 09:30:52 : Received request from ::1
+2018-02-28 09:30:52 : Handling request 40 took 0.14176797866821 seconds
+2018-02-28 09:30:52 : Handling request 30 took 0.14325714111328 seconds
+2018-02-28 09:30:52 : Handling request 50 took 0.14609813690186 seconds
+2018-02-28 09:30:52 : Sending data to ::1
+2018-02-28 09:30:52 : Sending data to ::1
+2018-02-28 09:30:52 : Sending data to ::1
+2018-02-28 09:30:52 : Handling request 10 took 0.75020503997803 seconds
+2018-02-28 09:30:52 : Sending data to ::1
+2018-02-28 09:32:30 : Received request from ::1
+2018-02-28 09:32:30 : Received request from ::1
+2018-02-28 09:32:30 : Received request from ::1
+2018-02-28 09:32:30 : Received request from ::1
+2018-02-28 09:32:31 : Handling request 40 took 0.14281582832336 seconds
+2018-02-28 09:32:31 : Handling request 30 took 0.14702701568604 seconds
+2018-02-28 09:32:31 : Handling request 50 took 0.14872908592224 seconds
+2018-02-28 09:32:31 : Sending data to ::1
+2018-02-28 09:32:31 : Sending data to ::1
+2018-02-28 09:32:31 : Sending data to ::1
+2018-02-28 09:32:31 : SELECT
+Movement.municipalityID,
+pYear,
+incomingAll as incoming, outgoingAll as outgoing, sumAll as value
+from Movement , Municipality WHERE Movement.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2018-02-28 09:32:31 : Handling request 20 took 0.85799908638 seconds
+2018-02-28 09:32:31 : Sending data to ::1
+2018-02-28 09:32:41 : Received request from ::1
+2018-02-28 09:32:42 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-28 09:32:42 : Handling request 20 took 0.9588098526001 seconds
+2018-02-28 09:32:42 : Sending data to ::1
+2018-02-28 09:32:43 : Received request from ::1
+2018-02-28 09:32:44 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-28 09:32:44 : Handling request 20 took 1.1906449794769 seconds
+2018-02-28 09:32:44 : Sending data to ::1
+2018-02-28 09:32:44 : Received request from ::1
+2018-02-28 09:32:45 : Handling request 10 took 1.3098318576813 seconds
+2018-02-28 09:32:45 : Sending data to ::1
+2018-02-28 09:36:55 : Received request from ::1
+2018-02-28 09:36:55 : Received request from ::1
+2018-02-28 09:36:55 : 
+2018-02-28 09:36:55 : Received request from ::1
+2018-02-28 09:36:55 : Handling request 70 took 0.075031042098999 seconds
+2018-02-28 09:36:55 : Sending data to ::1
+2018-02-28 09:36:55 : Handling request 80 took 0.079461097717285 seconds
+2018-02-28 09:36:55 : Sending data to ::1
+2018-02-28 09:36:56 : SELECT
+PopulationChange.municipalityID,
+pYear,
+pQuarter,
+born,
+dead,
+totalPopulation as value
+from PopulationChange, Municipality WHERE PopulationChange.municipalityID = Municipality.municipalityID AND PopulationChange.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear,pQuarter
+2018-02-28 09:36:56 : Handling request 20 took 0.95989799499512 seconds
+2018-02-28 09:36:56 : Sending data to ::1
+2018-02-28 09:36:56 : Received request from ::1
+2018-02-28 09:36:57 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID AND Employment.municipalityID IN (?,?,?) ORDER BY municipalityOrder,pYear
+2018-02-28 09:36:58 : Handling request 20 took 1.194925069809 seconds
+2018-02-28 09:36:58 : Sending data to ::1
+2018-02-28 09:36:58 : Received request from ::1
+2018-02-28 09:36:59 : Handling request 10 took 1.3101830482483 seconds
+2018-02-28 09:36:59 : Sending data to ::1

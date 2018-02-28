@@ -1,6 +1,7 @@
 <?php
-header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8', false);
+
 use Firebase\JWT\JWT;
 class Authenticate {
     /** @var DatabaseHandler */
