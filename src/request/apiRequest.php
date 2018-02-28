@@ -979,7 +979,7 @@ SQL;
      */
     private function getVariableAndProvider($variableID) {
         $sql = <<<'SQL'
-SELECT a.variableID, a.providerID, a.statisticName, a.subtitle, a.description, a.tableName, 
+SELECT a.variableID, a.providerID, a.statisticName, a.description, a.tableName, 
 a.lastUpdatedDate, a.providerCode, 
 b.providerName, b.providerNameShortForm, b.providerNotice, 
 b.providerLink, b.providerAPIAddress, c.subCategoryName
