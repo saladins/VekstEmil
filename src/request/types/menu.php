@@ -29,6 +29,7 @@ subCategoryName,
 statisticName 
 FROM Variable, VariableSubCategory, VariableMasterCategory
 WHERE Variable.subCategoryID = VariableSubCategory.subCategoryID 
+  AND variableID != 95 -- exclude frontpage
 AND VariableSubCategory.masterCategoryID = VariableMasterCategory.masterCategoryID
 ORDER BY VariableMasterCategory.position, VariableSubCategory.position, listPosition;
 SQL;

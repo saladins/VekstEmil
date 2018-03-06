@@ -146,10 +146,17 @@ SQL;
                 break;
             case 8:
                 $sql = <<<SQL
-SELECT municipalityID, pYear, naceID, SUM(valueInNOK) AS value 
-FROM EnterpriseEntry, Enterprise
-WHERE Enterprise.enterpriseID = EnterpriseEntry.enterpriseID AND EnterpriseEntry.enterprisePostCategoryID = 7
-GROUP BY municipalityID, pYear, naceID;
+SELECT E.municipalityID, EE.pYear, naceID, PC.livingplaceValue, SUM(valueInNOK) AS value 
+FROM EnterpriseEntry AS EE, Enterprise AS E, (
+	SELECT municipalityID, pYear,  SUM(livingplaceValue) AS livingplaceValue
+    FROM Employment 
+    GROUP BY municipalityID, pYear
+) AS PC
+WHERE E.enterpriseID = EE.enterpriseID 
+	AND PC.MunicipalityID = E.municipalityID
+    AND PC.pYear = EE.pYear
+	AND EE.enterprisePostCategoryID = 7
+GROUP BY E.municipalityID, EE.pYear, naceID 
 SQL;
                 break;
             case 14:
@@ -518,24 +525,11 @@ WHERE M.municipalityID = P.municipalityID
     ORDER BY MP.municipalityOrder;
 SQL;
                 break;
-            case 95: //Frontpage
+            case 95:
                 $sql = <<<SQL
-SELECT E.municipalityID, E.workplaceValue, E.livingplaceValue, PC.totalPopulation, EP.wealthNOK
-FROM Employment AS E, (
-	SELECT municipalityID, pYear, totalPopulation 
-    FROM PopulationChange 
-    WHERE pQuarter = 4
-    GROUP BY municipalityID, pYear, totalPopulation
-) AS PC, (
-	SELECT municipalityID, pYear, SUM(valueInNOK) AS wealthNOK
-	FROM EnterpriseEntry, Enterprise
-	WHERE Enterprise.enterpriseID = EnterpriseEntry.enterpriseID AND EnterpriseEntry.enterprisePostCategoryID = 7
-	GROUP BY municipalityID, pYear
-) AS EP
-WHERE E.municipalityID = PC.municipalityID
-	AND E.municipalityID = EP.municipalityID
-    AND E.pYear = PC.pYear
-    AND E.pYear = EP.pYear;
+	SELECT municipalityID, pYear,  SUM(livingplaceValue) AS livingplaceValue
+    FROM Employment 
+    GROUP BY municipalityID, pYear
 SQL;
 
                 break;
