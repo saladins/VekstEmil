@@ -22,7 +22,7 @@ class ApiUpdate {
      */
     public function update($request) {
         //Extending max executing time
-        ini_set('max_execution_time', 300);
+        ini_set('max_execution_time', 2600);
 
         // TODO Must ensure we use proper account for these operations
         switch ($request->providerID) {

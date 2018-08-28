@@ -146,17 +146,14 @@ SQL;
                 break;
             case 8:
                 $sql = <<<SQL
-SELECT E.municipalityID, EE.pYear, naceID, PC.livingplaceValue, SUM(valueInNOK) AS value 
-FROM EnterpriseEntry AS EE, Enterprise AS E, (
+SELECT EE.municipalityID, EE.pYear, naceID, PC.livingplaceValue, valueInNOK AS value   
+FROM EnterpriseEntryEBIDTA AS EE,(
 	SELECT municipalityID, pYear,  SUM(livingplaceValue) AS livingplaceValue
     FROM Employment 
     GROUP BY municipalityID, pYear
 ) AS PC
-WHERE E.enterpriseID = EE.enterpriseID 
-	AND PC.MunicipalityID = E.municipalityID
-    AND PC.pYear = EE.pYear
-	AND EE.enterprisePostCategoryID = 7
-GROUP BY E.municipalityID, EE.pYear, naceID 
+WHERE PC.municipalityID = EE.municipalityID
+	AND PC.pYear = EE.pYear
 SQL;
                 break;
             case 14:
@@ -224,6 +221,31 @@ SELECT municipalityID, pYear, SUM(born) as born, SUM(dead) as dead, AVG(totalPop
 FROM PopulationChange
 GROUP BY municipalityID, pYear;
 SQL;
+            case 64:
+                $sql = <<<'SQL'
+SELECT 
+municipalityID, 
+pYear, 
+Boligtype, 
+antallBoliger
+FROM
+	(SELECT municipalityID, pYear,
+	 CASE
+		WHEN buildingCategoryCode >= 151 THEN 'Andre boliger'
+		WHEN buildingCategoryCode >= 141 THEN 'Boligblokker'
+		WHEN buildingCategoryCode >= 131 THEN 'Rekkehus' 
+		WHEN buildingCategoryCode >= 121 THEN 'Tomannsbolig'
+		ELSE 'Enebolig'
+		END AS Boligtype,  
+	SUM(buildingValue) AS antallBoliger
+	FROM HomeBuildingArea AS BA, BuildingCategory AS BC 
+	WHERE BA.buildingCategoryID =BC.buildingCategoryID
+	AND buildingStatusID = 13
+	GROUP BY municipalityID, pYear, Boligtype) AS U
+GROUP BY municipalityID, pYear, Boligtype, antallBoliger
+SQL;
+
+                break;
                 break;
             case 73:
                 $sql = <<<SQL
@@ -522,14 +544,26 @@ WHERE M.municipalityID = P.municipalityID
     AND P.pYear = M.pYear
     AND P.pQuarter = 4
     AND M.municipalityID = MP.municipalityID
-    ORDER BY MP.municipalityOrder;
+    ORDER BY P.pYear, MP.municipalityOrder;
 SQL;
                 break;
             case 95:
                 $sql = <<<SQL
-	SELECT municipalityID, pYear,  SUM(livingplaceValue) AS livingplaceValue
-    FROM Employment 
-    GROUP BY municipalityID, pYear
+SELECT E.municipalityID,  E.pYear, totalPopulation AS population, livingplaceValue AS employment, workplaceValue AS jobs, EBIDTA
+FROM 
+	( 
+	SELECT municipalityID, pYear, SUM(workplaceValue) AS workplaceValue, SUM(livingplaceValue) AS livingplaceValue 
+	FROM Employment AS E
+	GROUP BY municipalityID, pYear) AS E,
+	(SELECT municipalityID, pYear, totalPopulation FROM PopulationChange
+	WHERE pQuarter = 4) AS PC,
+	(SELECT EE.municipalityID, EE.pYear, SUM(valueInNOK) AS EBIDTA
+	FROM EnterpriseEntryEBIDTA AS EE
+	GROUP BY EE.municipalityID, EE.pYear) AS EBIDTA
+WHERE E.municipalityID = PC.municipalityID
+	AND E.municipalityID = EBIDTA.municipalityID
+    AND E.pYear = PC.pYear
+    AND E.pYear = EBIDTA.pYear; 
 SQL;
 
                 break;
