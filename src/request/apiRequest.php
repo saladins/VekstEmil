@@ -131,6 +131,7 @@ SQL;
      * @return mixed
      */
     public function getDetailedData($request) {
+        ini_set('max_execution_time', 300);
         switch ($request->variableID) {
             case 1:
                 $sql = <<<SQL
@@ -157,6 +158,7 @@ WHERE PC.municipalityID = EE.municipalityID
 SQL;
                 break;
             case 14:
+/*
                 $sql = <<<SQL
 SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
 FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
@@ -168,6 +170,26 @@ AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
 AND Survey_Question.questionID = 211;
 SQL;
+*/
+
+            $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 211
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
+SQL;
+
+
                 break;
             case 42:
                 $sql = <<<SQL
@@ -249,80 +271,110 @@ SQL;
                 break;
             case 73:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 212;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 212
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 74:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 213;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 213
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 75:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 214;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 214
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 76:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 215;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 215
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 77:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 225;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 225
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 78:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 227;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 227
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 79:
@@ -342,179 +394,249 @@ SQL;
                 break;
             case 80:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 216;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 216
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 81:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 217;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 217
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 82:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 218;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 218
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 83:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 219;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 219
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 84:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 220;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 220
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 85:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 221;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 221
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 86:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 222;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 222
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 87:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 223;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 223
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 88:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 255
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 255
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016
 UNION 
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 259;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 259
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 89:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 256
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 256
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016
 UNION 
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 260;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 260
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 90:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 257
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 257
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016
 UNION 
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID = 261;
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID = 261
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
 SQL;
                 break;
             case 91:
-                $sql = <<<SQL
+               /* $sql = <<<SQL
 SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
 FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
@@ -524,7 +646,27 @@ AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
 AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
 AND Survey_Question.questionID BETWEEN 211 AND 215;
+SQL;*/
+
+               $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID BETWEEN 211 AND 215
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
+
 SQL;
+
+
                 break;
             case 9:
                 $sql = <<<SQL
@@ -535,6 +677,23 @@ AND a.naceID = c.naceID
 AND b.enterprisePostCategoryID = 7
 AND pYear = 2016;
 SQL;
+
+             /*   $sql = <<<SQL
+SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, EE.valueInNOK, answerText AS value 
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID BETWEEN 211 AND 215
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016
+SQL;*/
                 break;
             case 94:
                 $sql = <<<SQL
