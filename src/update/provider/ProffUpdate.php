@@ -79,6 +79,7 @@ class ProffUpdate {
                     if (strlen($name) > 63) {
                         $name = substr($name, 0, 63);
                     }
+                    //$this->logger->log($name);
                     $organizationNumber = $enterprise->organizationNumber;
                     $sql = <<<SQL
 INSERT INTO Enterprise (variableID, municipalityID, naceID, organizationTypeID, employees, enterpriseName, organizationNumber)
@@ -89,7 +90,7 @@ SQL;
                     $this->db->bind(':municipalityID', $municipalityID);
                     $this->db->bind(':naceID', $naceID);
                     $this->db->bind(':employees', $employees);
-                    $this->db->bind(':businessName', $name);
+                    $this->db->bind(':businessName', $enterprise->name);
                     $this->db->bind(':organizationNumber', $organizationNumber);
                     $this->db->bind(':organizationTypeID', $organizationTypeID);
                     $this->db->execute();

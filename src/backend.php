@@ -1,6 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
+ini_set('memory_limit','512M');
 error_reporting(E_ALL);
 
 header('Access-Control-Allow-Origin: *');
@@ -225,13 +226,15 @@ class ApiParser {
 }
 
 /** Logging class */
-class Logger {
+class Logger
+{
     /**
      * @param string $content
      * @param bool $clearlog
      * @return void
      */
-    public function log($content, $clearlog = false) {
+    public function log($content, $clearlog = false)
+    {
         if ($clearlog) $this->clearLog();
         $timestamp = date('Y-m-d H:i:s : ');
         file_put_contents('log/log.log', $timestamp . $content . "\n", FILE_APPEND);
@@ -240,14 +243,16 @@ class Logger {
     /**
      * @return void
      */
-    public function clearLog() {
+    public function clearLog()
+    {
         file_put_contents('log.log', '');
     }
 
     /**
      * @return float
      */
-    function microTimeFloat() {
+    function microTimeFloat()
+    {
         list($usec, $sec) = explode(' ', microtime());
         return ((float)$usec + (float)$sec);
     }

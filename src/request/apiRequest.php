@@ -156,6 +156,29 @@ FROM EnterpriseEntryEBIDTA AS EE,(
 WHERE PC.municipalityID = EE.municipalityID
 	AND PC.pYear = EE.pYear
 SQL;
+            case 11:
+                $sql = <<<SQL
+SELECT municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue AS value
+FROM homebuildingarea
+WHERE pYear BETWEEN (SELECT MAX(pYear)-4 FROM homebuildingarea) AND (SELECT MAX(pYear) FROM homebuildingarea)
+	AND municipalityID IN (1,2,3)
+	AND buildingStatusID BETWEEN 4 AND 6
+ORDER BY municipalityID
+SQL;
+                break;
+            case 12:
+                $sql = <<<SQL
+SELECT municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue AS value
+FROM functionalbuildingarea
+WHERE pYear BETWEEN (SELECT MAX(pYear)-4 FROM functionalbuildingarea) AND (SELECT MAX(pYear) FROM functionalbuildingarea)
+	AND municipalityID IN (1,2,3)
+	AND buildingStatusID BETWEEN 1 AND 3
+ORDER BY municipalityID
+SQL;
+                break;
+
+                break;
+
                 break;
             case 14:
 /*
@@ -190,6 +213,41 @@ AND pYear = 2016;
 SQL;
 
 
+            case 34:
+                $sql = <<<SQL
+SELECT municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue AS value
+FROM homebuildingarea
+WHERE municipalityID IN (1,2,3)
+	AND buildingStatusID = 6
+ORDER BY municipalityID
+SQL;
+                break;
+            case 35:
+                $sql = <<<SQL
+SELECT municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue AS value
+FROM homebuildingarea
+WHERE municipalityID IN (1,2,3)
+	AND buildingStatusID = 11
+ORDER BY municipalityID
+SQL;
+                break;
+            case 36:
+                $sql = <<<SQL
+SELECT municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue AS value
+FROM homebuildingarea
+WHERE municipalityID IN (1,2,3)
+	AND buildingStatusID = 13
+ORDER BY municipalityID
+SQL;
+                break;
+            case 39:
+                $sql = <<<SQL
+SELECT municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue AS value
+FROM homebuildingarea
+WHERE municipalityID IN (1,2,3)
+	AND buildingStatusID = 13
+ORDER BY municipalityID
+SQL;
                 break;
             case 42:
                 $sql = <<<SQL
