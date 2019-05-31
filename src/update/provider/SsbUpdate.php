@@ -70,6 +70,9 @@ class SsbUpdate {
                 case 'MunicipalEconomy':
                     $this->insertMunicipalEconomy($request->dataSet, $variableID);
                     break;
+                case 'municipaldeailted':
+                    $this->insertMunicipalEconomyDetailed($request->dataSet, $variableID);
+                    break;
                 case 'Movement':
                     $this->insertMovement($request->dataSet, $variableID);
                     break;
@@ -800,7 +803,7 @@ SQL;
             $this->db->beginTransaction();
             $temp = [];
             foreach ($dataSet as $item) {
-                $temp[$item->Region][$item->Tid][$item->ContentsCode] = $item->value;
+                $temp[$item->KOKkommuneregion0000][$item->Tid][$item->ContentsCode] = $item->value;
             }
             $regionSet = [];
             foreach ($temp as $region => $item3) {
@@ -843,6 +846,66 @@ SQL;
             throw $ex;
         }
     }
+
+    private function insertMunicipalEconomyDetailed($dataSet, $variableID) {
+        $sql = <<<'SQL'
+INSERT INTO municipaldeailted ( municipalityID, municipaldeailtedcategory, pYear, value) 
+VALUES ( :municipalityID, :municipaldeailtedcategoryID, :pYear, :value);
+SQL;
+        try {
+            $municipalIncomeCategories = [];
+            $incomeCategorySql = 'SELECT id, municipalDetailedCategoryCode FROM municipaldeailtedcategory';
+            $this->db->query($incomeCategorySql);
+            foreach ($this->db->getResultSet() as $item) {
+                $municipalIncomeCategories[strval($item['municipalDetailedCategoryCode'])] = $item['id'];
+            }
+            $this->db->beginTransaction();
+            $temp = [];
+            //print_r($dataSet);
+            //die();
+            foreach ($dataSet as $item) {
+                $temp[$item->KOKkommuneregion0000][$item->Tid][$item->KOKartkap0000] = $item->value;
+            }
+            $regionSet = [];
+            foreach ($temp as $region => $item3) {
+                foreach ($item3 as $pYear => $item2) {
+                    foreach ($item2 as $municipalIncomeCategoryCode => $value) {
+                        $municipalityID = $this->core->getMunicipalityID($region);
+                        $municipalIncomeCategoryID = $municipalIncomeCategories[$municipalIncomeCategoryCode];
+                        $this->db->prepare($sql);
+                        $this->db->bind(':municipalityID', $municipalityID);
+                        $this->db->bind(':municipaldeailtedcategoryID', $municipalIncomeCategoryID);
+                        $this->db->bind(':pYear', $pYear);
+                        $this->db->bind(':value', $value);
+                        $this->db->execute();
+                        if (in_array($region, $this->core->getRegionCodes())) {
+                            if (!isset($regionSet[$pYear])) {$regionSet[$pYear] = []; }
+                            if (!isset($regionSet[$pYear][$municipalIncomeCategoryID])) {
+                                $regionSet[$pYear][$municipalIncomeCategoryID] = 0; }
+                            $regionSet[$pYear][$municipalIncomeCategoryID] += $value;
+                        }
+                    }
+                }
+            }
+            $regionID = $this->core->getMunicipalityID($this->core->getRegionUmbrellaCode());
+            foreach ($regionSet as $pYear => $item2) {
+                foreach ($item2 as $municipalIncomeCategoryID => $value) {
+                    $this->db->prepare($sql);
+                    $this->db->bind(':municipalityID', $regionID);
+                    $this->db->bind(':municipaldeailtedcategoryID', $municipalIncomeCategoryID);
+                    $this->db->bind(':pYear', $pYear);
+                    $this->db->bind(':value', $value);
+                    $this->db->execute();
+                }
+            }
+
+            return $this->db->commit();
+        } catch (PDOException $ex) {
+            $this->db->rollbackTransaction();
+            throw $ex;
+        }
+    }
+
 
     /**
      * Inserts into NewEnterprise table

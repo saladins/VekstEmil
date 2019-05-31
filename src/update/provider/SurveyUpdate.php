@@ -67,7 +67,7 @@ class SurveyUpdate {
                     // TODO current company not in main list
                 }
                 foreach ($item->answers as $answer) {
-                    $this->logger->log($answer);
+                   // $this->logger->log($answer);
                     $questionID = $this->getQuestionIdByText($answer->question);
                     $this->linkSurveyIdAndQuestionIdOrDie($surveyID, $questionID);
                     $givenAnswerID = $this->insertAnswerToGivenQuestion($surveyID, $questionID, $answer->answer);

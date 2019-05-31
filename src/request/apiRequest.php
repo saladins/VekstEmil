@@ -155,12 +155,14 @@ FROM EnterpriseEntryEBIDTA AS EE,(
 ) AS PC
 WHERE PC.municipalityID = EE.municipalityID
 	AND PC.pYear = EE.pYear
+ORDER BY municipalityID, EE.pYear;
 SQL;
+                break;
             case 11:
                 $sql = <<<SQL
 SELECT municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue AS value
-FROM homebuildingarea
-WHERE pYear BETWEEN (SELECT MAX(pYear)-4 FROM homebuildingarea) AND (SELECT MAX(pYear) FROM homebuildingarea)
+FROM HomeBuildingArea
+WHERE pYear BETWEEN (SELECT MAX(pYear)-4 FROM HomeBuildingArea) AND (SELECT MAX(pYear) FROM HomeBuildingArea)
 	AND municipalityID IN (1,2,3)
 	AND buildingStatusID BETWEEN 4 AND 6
 ORDER BY municipalityID
@@ -169,8 +171,8 @@ SQL;
             case 12:
                 $sql = <<<SQL
 SELECT municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue AS value
-FROM functionalbuildingarea
-WHERE pYear BETWEEN (SELECT MAX(pYear)-4 FROM functionalbuildingarea) AND (SELECT MAX(pYear) FROM functionalbuildingarea)
+FROM FunctionalBuildingArea
+WHERE pYear BETWEEN (SELECT MAX(pYear)-4 FROM FunctionalBuildingArea) AND (SELECT MAX(pYear) FROM FunctionalBuildingArea)
 	AND municipalityID IN (1,2,3)
 	AND buildingStatusID BETWEEN 1 AND 3
 ORDER BY municipalityID
@@ -196,27 +198,46 @@ SQL;
 */
 
             $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 211
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value
 SQL;
 
-
+break;
             case 34:
                 $sql = <<<SQL
 SELECT municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue AS value
-FROM homebuildingarea
+FROM HomeBuildingArea
 WHERE municipalityID IN (1,2,3)
 	AND buildingStatusID = 6
 ORDER BY municipalityID
@@ -225,7 +246,7 @@ SQL;
             case 35:
                 $sql = <<<SQL
 SELECT municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue AS value
-FROM homebuildingarea
+FROM HomeBuildingArea
 WHERE municipalityID IN (1,2,3)
 	AND buildingStatusID = 11
 ORDER BY municipalityID
@@ -234,7 +255,7 @@ SQL;
             case 36:
                 $sql = <<<SQL
 SELECT municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue AS value
-FROM homebuildingarea
+FROM HomeBuildingArea
 WHERE municipalityID IN (1,2,3)
 	AND buildingStatusID = 13
 ORDER BY municipalityID
@@ -243,7 +264,7 @@ SQL;
             case 39:
                 $sql = <<<SQL
 SELECT municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue AS value
-FROM homebuildingarea
+FROM HomeBuildingArea
 WHERE municipalityID IN (1,2,3)
 	AND buildingStatusID = 13
 ORDER BY municipalityID
@@ -295,12 +316,29 @@ GROUP BY M.municipalityID, M.pYear, sumMovement, sumBorn, sumMigration
 SQL;
 
                 break;
+
+
+            case 62:
+
+
+                $sql =<<<'SQL'
+SELECT  M.municipalityID, M.pYear, municipalIncomeCategoryCode, municipalIncomeCategoryText, income as value, ROUND(income * 1000 / totalPopulation, 2) AS totalValue
+FROM MunicipalEconomy AS M, MunicipalIncomeCategory AS C, 
+(SELECT municipalityID, pYear, totalPopulation FROM PopulationChange
+	WHERE pQuarter = 4) AS PC
+WHERE M.municipalityID = PC.municipalityID
+AND M.pYear = PC.pYear
+AND M.municipalIncomeCategoryID = C.municipalIncomeCategoryID 
+AND M.pYear < 2015 -- limit rows to 2013-2014
+SQL;
+                break;
             case 63:
                 $sql =<<<'SQL'
 SELECT municipalityID, pYear, SUM(born) as born, SUM(dead) as dead, AVG(totalPopulation) AS value 
 FROM PopulationChange
 GROUP BY municipalityID, pYear;
 SQL;
+                break;
             case 64:
                 $sql = <<<'SQL'
 SELECT 
@@ -329,92 +367,187 @@ SQL;
                 break;
             case 73:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 212
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 74:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 213
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 75:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 214
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 76:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 215
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 77:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 225
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 78:
@@ -452,261 +585,414 @@ SQL;
                 break;
             case 80:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 216
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 81:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 217
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 82:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 218
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 83:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 219
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 84:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 220
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 85:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 221
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 86:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 222
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 87:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
 AND SA.questionID = 223
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND pYear = 2016
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 88:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
-AND SA.questionID = 255
+AND SA.questionID  IN(255,259) 
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
 AND pYear = 2016
-UNION 
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
-WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
-AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
-AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = SA.questionID
-AND SurveyQuestionAnswer.surveyID = SA.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
-AND SA.questionID = 259
-AND SA.EnterpriseID = EE.EnterpriseID
-AND E.EnterpriseID = EE.EnterpriseID
-AND E.naceID = VC.naceID
-AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 89:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
-AND SA.questionID = 256
+AND SA.questionID  IN(256,260) 
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
 AND pYear = 2016
-UNION 
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
-WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
-AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
-AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = SA.questionID
-AND SurveyQuestionAnswer.surveyID = SA.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
-AND SA.questionID = 260
-AND SA.EnterpriseID = EE.EnterpriseID
-AND E.EnterpriseID = EE.EnterpriseID
-AND E.naceID = VC.naceID
-AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 90:
                 $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
 AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
 AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
 AND SurveyQuestionAnswer.questionID = SA.questionID
 AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
 AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
-AND SA.questionID = 257
+AND SA.questionID  IN(257,261) 
 AND SA.EnterpriseID = EE.EnterpriseID
 AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
 AND pYear = 2016
-UNION 
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
-WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
-AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
-AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = SA.questionID
-AND SurveyQuestionAnswer.surveyID = SA.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
-AND SA.questionID = 261
-AND SA.EnterpriseID = EE.EnterpriseID
-AND E.EnterpriseID = EE.EnterpriseID
-AND E.naceID = VC.naceID
-AND enterprisePostCategoryID = 7
-AND pYear = 2016;
+AND E.municipalityID IN (1,2,3)
+ORDER BY value 
 SQL;
                 break;
             case 91:
-               /* $sql = <<<SQL
-SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, enterpriseID, answerText AS value 
-FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer
-WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
-AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
-AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
-AND SurveyQuestionAnswer.questionID = Survey_Answer.questionID
-AND SurveyQuestionAnswer.surveyID = Survey_Answer.surveyID
-AND SurveyQuestionAnswer.givenAnswerID = Survey_Answer.givenAnswerID
-AND Survey_Question.questionID BETWEEN 211 AND 215;
-SQL;*/
-
-               $sql = <<<SQL
+                /*
+                $sql = <<<SQL
 SELECT Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID, EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value 
 FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
 WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
@@ -721,9 +1007,42 @@ AND E.EnterpriseID = EE.EnterpriseID
 AND E.naceID = VC.naceID
 AND enterprisePostCategoryID = 7
 AND pYear = 2016;
-
 SQL;
+                */
 
+               $sql = <<<SQL
+SELECT S.surveyID, YEAR(S.startDate) as pYear, Survey_Question.questionID, Survey_GivenAnswer.givenAnswerID,
+ EE.enterpriseID, VC.vareideCategoryDescriptionID, E.employees, E.municipalityID, EE.valueInNOK, answerText AS value,
+ CASE 
+	WHEN EE.valueInNOK > 10000  THEN 'Over 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 1000  THEN 'Mellom 1 og 10 mill'
+    WHEN EE.valueInNOK > 0  THEN 'Mindre enn 1 mill'
+    WHEN EE.valueInNOK < 0  THEN 'Negativ verdiskapning'
+    ELSE 'Ukjent verdiskapning'
+ END AS ebidta_breakpoint,
+  CASE 
+	WHEN E.employees > 50  THEN '50+'
+    WHEN E.employees > 10  THEN '10-49'
+    WHEN E.employees > 0  THEN '1-9'
+    ELSE  'Ingen ansatte'
+
+ END AS employee_breakpoint
+FROM Survey_GivenAnswer, SurveyQuestionAnswer, Survey_SurveyQuestion, Survey_Question, Survey_Answer AS SA, Survey AS S, EnterpriseEntry AS EE, Enterprise AS E, VareideCategory AS VC
+WHERE Survey_GivenAnswer.givenAnswerID = SurveyQuestionAnswer.givenAnswerID
+AND SurveyQuestionAnswer.questionID = Survey_SurveyQuestion.questionID
+AND Survey_SurveyQuestion.questionID = Survey_Question.questionID
+AND SurveyQuestionAnswer.questionID = SA.questionID
+AND SurveyQuestionAnswer.surveyID = SA.surveyID
+AND S.surveyID = SurveyQuestionAnswer.surveyID
+AND SurveyQuestionAnswer.givenAnswerID = SA.givenAnswerID
+AND SA.questionID BETWEEN 211 AND 215
+AND SA.EnterpriseID = EE.EnterpriseID
+AND E.EnterpriseID = EE.EnterpriseID
+AND E.naceID = VC.naceID
+AND enterprisePostCategoryID = 7
+AND pYear = 2016;
+SQL;
 
                 break;
             case 9:
@@ -765,6 +1084,7 @@ WHERE M.municipalityID = P.municipalityID
 SQL;
                 break;
             case 95:
+                /*
                 $sql = <<<SQL
 SELECT E.municipalityID,  E.pYear, totalPopulation AS population, livingplaceValue AS employment, workplaceValue AS jobs, EBIDTA
 FROM 
@@ -781,6 +1101,50 @@ WHERE E.municipalityID = PC.municipalityID
 	AND E.municipalityID = EBIDTA.municipalityID
     AND E.pYear = PC.pYear
     AND E.pYear = EBIDTA.pYear; 
+SQL;
+*/
+                $sql = <<<SQL
+SELECT E.municipalityID,  E.pYear, totalPopulation AS population, livingplaceValue AS employment, workplaceValue AS jobs, PC.value AS EBIDTA
+FROM 
+	( 
+	SELECT municipalityID, pYear, SUM(workplaceValue) AS workplaceValue, SUM(livingplaceValue) AS livingplaceValue 
+	FROM Employment AS E
+	GROUP BY municipalityID, pYear) AS E,
+    
+	(SELECT P.municipalityID, P.pYear, totalPopulation, EB.value
+		FROM PopulationChange AS P
+    	LEFT JOIN (
+			SELECT EE.municipalityID, EE.pYear, SUM(valueInNOK) AS value
+			FROM EnterpriseEntryEBIDTA AS EE
+			GROUP BY EE.municipalityID, EE.pYear) EB
+		ON P.municipalityID = EB.municipalityID
+			AND P.pYear = EB.pYear
+	WHERE pQuarter = 4) AS PC
+WHERE E.municipalityID = PC.municipalityID
+    AND E.pYear = PC.pYear
+    AND E.municipalityID != 33
+SQL;
+
+                break;
+
+
+            case 97:
+                $sql = <<<SQL
+SELECT MD.municipalityID, MD.pYear, municipalDetailedCategoryCode, municipalDetailedCategoryText, value, ROUND(value * 1000 / totalPopulation, 2) AS totalValue 
+FROM municipaldeailted AS MD,
+(SELECT municipalityID, pYear, totalPopulation FROM PopulationChange
+	WHERE pQuarter = 4) AS PC,
+    municipaldeailtedcategory AS C
+WHERE MD.municipalityID = PC.municipalityID
+AND MD.pYear = PC.pYear
+AND MD.municipaldeailtedcategory = C.id
+SQL;
+                break;
+            case 98:
+                $sql = <<<SQL
+SELECT municipalityID, pYear, householdIncomeAvg AS value 
+FROM HouseholdIncome
+WHERE householdTypeID = 1
 SQL;
 
                 break;
@@ -1076,6 +1440,12 @@ pYear,
 pMonth,
 unemploymentPercent as value
 FROM Unemployment
+SQL;
+                break;
+            case 'municipaldeailted': // Unemployment
+                $sql = <<<SQL
+SELECT id, municipalityID, pYear, municipaldeailtedcategory, value 
+FROM municipaldeailted
 SQL;
                 break;
             default:

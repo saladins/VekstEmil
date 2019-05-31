@@ -57,7 +57,7 @@ class ProffUpdate {
      * @throws PDOException
      */
     private function insertEnterprise($dataSet, $variableID) {
-        set_time_limit(120);
+        set_time_limit(500);
         $this->db->beginTransaction();
         try {
             /** @var ProffRequestModelDataSet $enterprise */
@@ -115,6 +115,7 @@ SQL;
             }
             $this->db->commit();
         } catch (PDOException $ex) {
+            $this->logger->log($ex);
             $this->db->rollbackTransaction();
             throw $ex;
         }
