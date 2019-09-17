@@ -163,7 +163,7 @@ SQL;
 SELECT municipalityID, buildingStatusID, buildingCategoryID, pYear, pQuarter, buildingValue AS value
 FROM HomeBuildingArea
 WHERE pYear BETWEEN (SELECT MAX(pYear)-4 FROM HomeBuildingArea) AND (SELECT MAX(pYear) FROM HomeBuildingArea)
-	AND municipalityID IN (1,2,3)
+	AND municipalityID IN (3,4,5)
 	AND buildingStatusID BETWEEN 4 AND 6
 ORDER BY municipalityID
 SQL;
@@ -311,7 +311,7 @@ WHERE M.municipalityID = PC.municipalityID
 	AND M.municipalityID = I.municipalityID
     AND M.pYear = PC.pYear
     AND M.pYear = I.pYear
-    AND M.municipalityID IN (1,2,3) -- only fetch results from ringeriksregionen
+    AND M.municipalityID IN (3,4,5) -- only fetch results from hadelandsregionen
 GROUP BY M.municipalityID, M.pYear, sumMovement, sumBorn, sumMigration
 SQL;
 
