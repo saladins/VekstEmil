@@ -59207,3 +59207,2515 @@ from Employment, Municipality WHERE Employment.municipalityID = Municipality.mun
 2019-09-17 08:14:09 : Sending data to ::1
 2019-09-17 08:14:09 : Sending data to ::1
 2019-09-17 08:14:09 : Sending data to ::1
+2019-09-24 11:40:19 : Received request from ::1
+2019-09-24 11:40:19 : Received request from ::1
+2019-09-24 11:40:19 : Received request from ::1
+2019-09-24 11:40:19 : 
+2019-09-24 11:40:19 : Handling request 80 took 0.10239291191101 seconds
+2019-09-24 11:40:19 : Sending data to ::1
+2019-09-24 11:40:19 : Handling request 70 took 0.1075918674469 seconds
+2019-09-24 11:40:19 : Sending data to ::1
+2019-09-24 11:40:19 : Handling request 10 took 0.27907800674438 seconds
+2019-09-24 11:40:19 : Sending data to ::1
+2019-09-24 11:40:20 : Received request from ::1
+2019-09-24 11:40:20 : Handling request 30 took 0.0030498504638672 seconds
+2019-09-24 11:40:20 : Sending data to ::1
+2019-09-24 11:40:20 : Received request from ::1
+2019-09-24 11:40:20 : Handling request 50 took 0.0066549777984619 seconds
+2019-09-24 11:40:20 : Sending data to ::1
+2019-09-24 11:40:20 : Received request from ::1
+2019-09-24 11:40:20 : Handling request 40 took 0.0077698230743408 seconds
+2019-09-24 11:40:20 : Sending data to ::1
+2019-09-24 11:40:23 : Received request from ::1
+2019-09-24 11:40:23 : Handling request 10 took 0.15762710571289 seconds
+2019-09-24 11:40:23 : Sending data to ::1
+2019-09-24 11:40:24 : Received request from ::1
+2019-09-24 11:40:24 : Handling request 30 took 0.01006293296814 seconds
+2019-09-24 11:40:24 : Sending data to ::1
+2019-09-24 11:40:24 : Received request from ::1
+2019-09-24 11:40:24 : Received request from ::1
+2019-09-24 11:40:24 : Handling request 40 took 0.0007939338684082 seconds
+2019-09-24 11:40:24 : Sending data to ::1
+2019-09-24 11:40:24 : Handling request 50 took 0.00062203407287598 seconds
+2019-09-24 11:40:24 : Sending data to ::1
+2019-09-24 11:40:24 : Received request from ::1
+2019-09-24 11:40:24 : Handling request 30 took 0.001366138458252 seconds
+2019-09-24 11:40:24 : Sending data to ::1
+2019-09-24 11:40:24 : Received request from ::1
+2019-09-24 11:40:24 : Handling request 50 took 0.00073909759521484 seconds
+2019-09-24 11:40:24 : Sending data to ::1
+2019-09-24 11:40:24 : Received request from ::1
+2019-09-24 11:40:24 : Handling request 40 took 0.00079512596130371 seconds
+2019-09-24 11:40:24 : Sending data to ::1
+2019-09-24 11:40:25 : Received request from ::1
+2019-09-24 11:40:25 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:40:25 : Handling request 20 took 0.10882019996643 seconds
+2019-09-24 11:40:25 : Sending data to ::1
+2019-09-24 11:40:26 : Received request from ::1
+2019-09-24 11:40:26 : Handling request 30 took 0.0055141448974609 seconds
+2019-09-24 11:40:26 : Sending data to ::1
+2019-09-24 11:40:26 : Received request from ::1
+2019-09-24 11:40:26 : Handling request 40 took 0.0016450881958008 seconds
+2019-09-24 11:40:26 : Sending data to ::1
+2019-09-24 11:40:26 : Received request from ::1
+2019-09-24 11:40:26 : Received request from ::1
+2019-09-24 11:40:26 : Handling request 50 took 0.0028460025787354 seconds
+2019-09-24 11:40:26 : Sending data to ::1
+2019-09-24 11:40:26 : Received request from ::1
+2019-09-24 11:40:26 : Handling request 30 took 0.0072150230407715 seconds
+2019-09-24 11:40:26 : Sending data to ::1
+2019-09-24 11:40:26 : Handling request 40 took 0.0025088787078857 seconds
+2019-09-24 11:40:26 : Sending data to ::1
+2019-09-24 11:40:26 : Received request from ::1
+2019-09-24 11:40:26 : Handling request 50 took 0.0007789134979248 seconds
+2019-09-24 11:40:26 : Sending data to ::1
+2019-09-24 11:40:50 : Received request from ::1
+2019-09-24 11:40:50 : Received request from ::1
+.0012869834899902 seconds
+2019-09-24 11:40:50 : Sending data to ::1
+2019-09-24 11:40:50 : 
+2019-09-24 11:40:50 : Handling request 80 took 0.0012731552124023 seconds
+2019-09-24 11:40:50 : Sending data to ::1
+2019-09-24 11:40:50 : Received request from ::1
+2019-09-24 11:40:50 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:40:50 : Handling request 20 took 0.14276099205017 seconds
+2019-09-24 11:40:50 : Sending data to ::1
+2019-09-24 11:40:51 : Received request from ::1
+2019-09-24 11:40:51 : Handling request 30 took 0.0011391639709473 seconds
+2019-09-24 11:40:51 : Sending data to ::1
+2019-09-24 11:40:51 : Received request from ::1
+2019-09-24 11:40:51 : Received request from ::1
+2019-09-24 11:40:51 : Handling request 50 took 0.0090229511260986 seconds
+2019-09-24 11:40:51 : Sending data to ::1
+2019-09-24 11:40:51 : Handling request 40 took 0.0036110877990723 seconds
+2019-09-24 11:40:51 : Sending data to ::1
+2019-09-24 11:40:52 : Received request from ::1
+2019-09-24 11:40:52 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:40:52 : Handling request 20 took 0.089864015579224 seconds
+2019-09-24 11:40:52 : Sending data to ::1
+2019-09-24 11:40:53 : Received request from ::1
+2019-09-24 11:40:53 : Handling request 30 took 0.0011889934539795 seconds
+2019-09-24 11:40:53 : Sending data to ::1
+2019-09-24 11:40:53 : Received request from ::1
+2019-09-24 11:40:53 : Handling request 40 took 0.00084877014160156 seconds
+2019-09-24 11:40:53 : Sending data to ::1
+2019-09-24 11:40:53 : Received request from ::1
+2019-09-24 11:40:53 : Handling request 50 took 0.00092411041259766 seconds
+2019-09-24 11:40:53 : Sending data to ::1
+2019-09-24 11:40:54 : Received request from ::1
+2019-09-24 11:40:54 : Handling request 10 took 0.089292049407959 seconds
+2019-09-24 11:40:54 : Sending data to ::1
+2019-09-24 11:40:54 : Received request from ::1
+2019-09-24 11:40:54 : Handling request 10 took 0.12480092048645 seconds
+2019-09-24 11:40:54 : Sending data to ::1
+2019-09-24 11:40:54 : Received request from ::1
+2019-09-24 11:40:54 : Received request from ::1
+2019-09-24 11:40:54 : Handling request 30 took 0.0014338493347168 seconds
+2019-09-24 11:40:54 : Handling request 40 took 0.00081110000610352 seconds
+2019-09-24 11:40:54 : Sending data to ::1
+2019-09-24 11:40:54 : Sending data to ::1
+2019-09-24 11:40:54 : Received request from ::1
+2019-09-24 11:40:54 : Handling request 50 took 0.0010101795196533 seconds
+2019-09-24 11:40:54 : Sending data to ::1
+2019-09-24 11:40:55 : Received request from ::1
+2019-09-24 11:40:56 : Handling request 10 took 0.2690122127533 seconds
+2019-09-24 11:40:56 : Sending data to ::1
+2019-09-24 11:40:56 : Received request from ::1
+2019-09-24 11:40:56 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:40:56 : Handling request 20 took 0.080441951751709 seconds
+2019-09-24 11:40:56 : Sending data to ::1
+2019-09-24 11:40:56 : Received request from ::1
+2019-09-24 11:40:56 : Handling request 30 took 0.0006260871887207 seconds
+2019-09-24 11:40:56 : Sending data to ::1
+2019-09-24 11:40:56 : Received request from ::1
+2019-09-24 11:40:56 : Handling request 50 took 0.00083279609680176 seconds
+2019-09-24 11:40:56 : Received request from ::1
+2019-09-24 11:40:56 : Sending data to ::1
+2019-09-24 11:40:56 : Handling request 40 took 0.00085210800170898 seconds
+2019-09-24 11:40:56 : Sending data to ::1
+2019-09-24 11:40:57 : Received request from ::1
+2019-09-24 11:40:57 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:40:57 : Handling request 20 took 0.093755006790161 seconds
+2019-09-24 11:40:57 : Sending data to ::1
+2019-09-24 11:40:58 : Received request from ::1
+2019-09-24 11:40:58 : Received request from ::1
+2019-09-24 11:40:58 : Handling request 30 took 0.0026669502258301 seconds
+2019-09-24 11:40:58 : Sending data to ::1
+2019-09-24 11:40:58 : Handling request 50 took 0.0067179203033447 seconds
+2019-09-24 11:40:58 : Sending data to ::1
+2019-09-24 11:40:58 : Received request from ::1
+2019-09-24 11:40:58 : Handling request 40 took 0.0028560161590576 seconds
+2019-09-24 11:40:58 : Sending data to ::1
+2019-09-24 11:40:59 : Received request from ::1
+2019-09-24 11:40:59 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:40:59 : Handling request 20 took 0.09807300567627 seconds
+2019-09-24 11:40:59 : Sending data to ::1
+2019-09-24 11:40:59 : Received request from ::1
+2019-09-24 11:40:59 : Handling request 30 took 0.00074291229248047 seconds
+2019-09-24 11:40:59 : Sending data to ::1
+2019-09-24 11:40:59 : Received request from ::1
+2019-09-24 11:40:59 : Received request from ::1
+2019-09-24 11:40:59 : Handling request 40 took 0.00095582008361816 seconds
+2019-09-24 11:40:59 : Sending data to ::1
+2019-09-24 11:40:59 : Handling request 50 took 0.00075793266296387 seconds
+2019-09-24 11:40:59 : Sending data to ::1
+2019-09-24 11:41:21 : Received request from ::1
+2019-09-24 11:41:21 : Handling request 70 took 0.0010240077972412 seconds
+2019-09-24 11:41:21 : Sending data to ::1
+2019-09-24 11:41:21 : Received request from ::1
+2019-09-24 11:41:21 : 
+2019-09-24 11:41:21 : Handling request 80 took 0.0011000633239746 seconds
+2019-09-24 11:41:21 : Sending data to ::1
+2019-09-24 11:41:21 : Received request from ::1
+2019-09-24 11:41:21 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:41:21 : Handling request 20 took 0.12476706504822 seconds
+2019-09-24 11:41:21 : Sending data to ::1
+2019-09-24 11:41:22 : Received request from ::1
+2019-09-24 11:41:22 : Received request from ::1
+2019-09-24 11:41:22 : Received request from ::1
+2019-09-24 11:41:22 : Handling request 50 took 0.0007011890411377 seconds
+2019-09-24 11:41:22 : Sending data to ::1
+2019-09-24 11:41:22 : Handling request 30 took 0.029110908508301 seconds
+2019-09-24 11:41:22 : Sending data to ::1
+2019-09-24 11:41:22 : Handling request 40 took 0.009660005569458 seconds
+2019-09-24 11:41:22 : Sending data to ::1
+2019-09-24 11:51:33 : Received request from ::1
+2019-09-24 11:51:33 : Handling request 70 took 0.0064139366149902 seconds
+2019-09-24 11:51:33 : Received request from ::1
+2019-09-24 11:51:33 : Sending data to ::1
+2019-09-24 11:51:33 : Received request from ::1
+2019-09-24 11:51:33 : 
+2019-09-24 11:51:33 : Handling request 80 took 0.0038988590240479 seconds
+2019-09-24 11:51:33 : Sending data to ::1
+2019-09-24 11:51:33 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:51:33 : Handling request 20 took 0.1140308380127 seconds
+2019-09-24 11:51:33 : Sending data to ::1
+2019-09-24 11:51:34 : Received request from ::1
+2019-09-24 11:51:34 : Handling request 30 took 0.00057506561279297 seconds
+2019-09-24 11:51:34 : Sending data to ::1
+2019-09-24 11:51:34 : Received request from ::1
+2019-09-24 11:51:34 : Handling request 50 took 0.00091385841369629 seconds
+2019-09-24 11:51:34 : Sending data to ::1
+2019-09-24 11:51:34 : Received request from ::1
+2019-09-24 11:51:34 : Handling request 40 took 0.00078487396240234 seconds
+2019-09-24 11:51:34 : Sending data to ::1
+2019-09-24 11:51:36 : Received request from ::1
+2019-09-24 11:51:36 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:51:36 : Handling request 20 took 0.074010133743286 seconds
+2019-09-24 11:51:36 : Sending data to ::1
+2019-09-24 11:51:36 : Received request from ::1
+2019-09-24 11:51:36 : Handling request 30 took 0.0011000633239746 seconds
+2019-09-24 11:51:36 : Sending data to ::1
+2019-09-24 11:51:36 : Received request from ::1
+2019-09-24 11:51:36 : Received request from ::1
+2019-09-24 11:51:36 : Handling request 40 took 0.00078201293945312 seconds
+2019-09-24 11:51:36 : Sending data to ::1
+2019-09-24 11:51:36 : Handling request 50 took 0.0010759830474854 seconds
+2019-09-24 11:51:36 : Sending data to ::1
+2019-09-24 11:51:37 : Received request from ::1
+2019-09-24 11:51:37 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:51:37 : Handling request 20 took 0.093961000442505 seconds
+2019-09-24 11:51:37 : Sending data to ::1
+2019-09-24 11:51:38 : Received request from ::1
+2019-09-24 11:51:38 : Handling request 30 took 0.00060105323791504 seconds
+2019-09-24 11:51:38 : Sending data to ::1
+2019-09-24 11:51:38 : Received request from ::1
+2019-09-24 11:51:38 : Received request from ::1
+2019-09-24 11:51:38 : Handling request 50 took 0.0010240077972412 seconds
+2019-09-24 11:51:38 : Handling request 40 took 0.0013048648834229 seconds
+2019-09-24 11:51:38 : Sending data to ::1
+2019-09-24 11:51:39 : Received request from ::1
+2019-09-24 11:51:39 : Handling request 10 took 0.10831809043884 seconds
+2019-09-24 11:51:39 : Sending data to ::1
+2019-09-24 11:51:39 : Received request from ::1
+2019-09-24 11:51:39 : Handling request 10 took 0.15880489349365 seconds
+2019-09-24 11:51:39 : Sending data to ::1
+2019-09-24 11:51:39 : Received request from ::1
+2019-09-24 11:51:39 : Received request from ::1
+2019-09-24 11:51:39 : Handling request 30 took 0.0040509700775146 seconds
+2019-09-24 11:51:39 : Handling request 40 took 0.0037360191345215 seconds
+2019-09-24 11:51:39 : Sending data to ::1
+2019-09-24 11:51:39 : Received request from ::1
+2019-09-24 11:51:39 : Handling request 50 took 0.0020589828491211 seconds
+2019-09-24 11:51:39 : Sending data to ::1
+2019-09-24 11:51:40 : Received request from ::1
+2019-09-24 11:51:41 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:51:41 : Handling request 20 took 0.098200082778931 seconds
+2019-09-24 11:51:41 : Sending data to ::1
+2019-09-24 11:51:41 : Received request from ::1
+2019-09-24 11:51:41 : Handling request 30 took 0.0012731552124023 seconds
+2019-09-24 11:51:41 : Sending data to ::1
+2019-09-24 11:51:41 : Received request from ::1
+2019-09-24 11:51:41 : Handling request 40 took 0.0008540153503418 seconds
+2019-09-24 11:51:41 : Received request from ::1
+2019-09-24 11:51:41 : Sending data to ::1
+2019-09-24 11:51:41 : Handling request 50 took 0.00065207481384277 seconds
+2019-09-24 11:51:41 : Sending data to ::1
+2019-09-24 11:51:42 : Received request from ::1
+2019-09-24 11:51:42 : Handling request 10 took 0.21477699279785 seconds
+2019-09-24 11:51:42 : Sending data to ::1
+2019-09-24 11:51:42 : Received request from ::1
+2019-09-24 11:51:42 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:51:42 : Handling request 20 took 0.062764883041382 seconds
+2019-09-24 11:51:42 : Sending data to ::1
+2019-09-24 11:51:42 : Received request from ::1
+2019-09-24 11:51:42 : Handling request 40 took 0.00071120262145996 seconds
+2019-09-24 11:51:42 : Sending data to ::1
+2019-09-24 11:51:42 : Received request from ::1
+2019-09-24 11:51:42 : Handling request 50 took 0.00064587593078613 seconds
+2019-09-24 11:51:42 : Sending data to ::1
+2019-09-24 11:51:42 : Received request from ::1
+2019-09-24 11:51:42 : Handling request 30 took 0.00066709518432617 seconds
+2019-09-24 11:51:42 : Sending data to ::1
+2019-09-24 11:51:44 : Received request from ::1
+2019-09-24 11:51:44 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:51:44 : Handling request 20 took 0.08309006690979 seconds
+2019-09-24 11:51:44 : Sending data to ::1
+2019-09-24 11:51:44 : Received request from ::1
+2019-09-24 11:51:44 : Handling request 30 took 0.001107931137085 seconds
+2019-09-24 11:51:44 : Sending data to ::1
+2019-09-24 11:51:44 : Received request from ::1
+2019-09-24 11:51:44 : Received request from ::1
+2019-09-24 11:51:44 : Handling request 50 took 0.00082802772521973 seconds
+2019-09-24 11:51:44 : Sending data to ::1
+2019-09-24 11:51:44 : Handling request 40 took 0.0011360645294189 seconds
+2019-09-24 11:51:44 : Sending data to ::1
+2019-09-24 11:51:53 : Received request from ::1
+2019-09-24 11:51:53 : Handling request 70 took 0.001147985458374 seconds
+2019-09-24 11:51:53 : Sending data to ::1
+2019-09-24 11:51:53 : Received request from ::1
+2019-09-24 11:51:53 : Received request from ::1
+2019-09-24 11:51:53 : 
+2019-09-24 11:51:53 : Handling request 80 took 0.0012719631195068 seconds
+2019-09-24 11:51:53 : Sending data to ::1
+2019-09-24 11:51:53 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:51:53 : Handling request 20 took 0.11596298217773 seconds
+2019-09-24 11:51:53 : Sending data to ::1
+2019-09-24 11:51:53 : Received request from ::1
+2019-09-24 11:51:54 : Handling request 30 took 0.024624109268188 seconds
+2019-09-24 11:51:54 : Sending data to ::1
+2019-09-24 11:51:54 : Received request from ::1
+2019-09-24 11:51:54 : Handling request 40 took 0.0012350082397461 seconds
+2019-09-24 11:51:54 : Sending data to ::1
+2019-09-24 11:51:54 : Received request from ::1
+2019-09-24 11:51:54 : Handling request 50 took 0.0011460781097412 seconds
+2019-09-24 11:51:54 : Sending data to ::1
+2019-09-24 11:51:55 : Received request from ::1
+2019-09-24 11:51:55 : Handling request 10 took 0.18423986434937 seconds
+2019-09-24 11:51:55 : Sending data to ::1
+2019-09-24 11:51:55 : Received request from ::1
+2019-09-24 11:51:55 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:51:55 : Handling request 20 took 0.087852954864502 seconds
+2019-09-24 11:51:55 : Sending data to ::1
+2019-09-24 11:51:55 : Received request from ::1
+2019-09-24 11:51:55 : Handling request 30 took 0.00070309638977051 seconds
+2019-09-24 11:51:55 : Sending data to ::1
+2019-09-24 11:51:55 : Received request from ::1
+2019-09-24 11:51:55 : Received request from ::1
+2019-09-24 11:51:55 : Handling request 50 took 0.0027799606323242 seconds
+2019-09-24 11:51:55 : Sending data to ::1
+2019-09-24 11:51:55 : Handling request 40 took 0.0052270889282227 seconds
+2019-09-24 11:51:55 : Sending data to ::1
+2019-09-24 11:51:56 : Received request from ::1
+2019-09-24 11:51:56 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:51:56 : Handling request 20 took 0.079782009124756 seconds
+2019-09-24 11:51:56 : Sending data to ::1
+2019-09-24 11:51:56 : Received request from ::1
+2019-09-24 11:51:56 : Handling request 30 took 0.00081110000610352 seconds
+2019-09-24 11:51:56 : Received request from ::1
+2019-09-24 11:51:56 : Sending data to ::1
+2019-09-24 11:51:56 : Handling request 40 took 0.00075197219848633 seconds
+2019-09-24 11:51:56 : Received request from ::1
+2019-09-24 11:51:56 : Sending data to ::1
+2019-09-24 11:51:56 : Handling request 50 took 0.0011088848114014 seconds
+2019-09-24 11:51:56 : Sending data to ::1
+2019-09-24 11:51:57 : Received request from ::1
+2019-09-24 11:51:57 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:51:57 : Handling request 20 took 0.085422039031982 seconds
+2019-09-24 11:51:57 : Sending data to ::1
+2019-09-24 11:51:57 : Received request from ::1
+2019-09-24 11:51:57 : Handling request 50 took 0.00082087516784668 seconds
+2019-09-24 11:51:57 : Sending data to ::1
+2019-09-24 11:51:57 : Received request from ::1
+2019-09-24 11:51:57 : Handling request 30 took 0.00062990188598633 seconds
+2019-09-24 11:51:57 : Sending data to ::1
+2019-09-24 11:51:57 : Received request from ::1
+2019-09-24 11:51:57 : Handling request 40 took 0.00073814392089844 seconds
+2019-09-24 11:51:57 : Sending data to ::1
+2019-09-24 11:51:59 : Received request from ::1
+2019-09-24 11:51:59 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:51:59 : Handling request 20 took 0.095689058303833 seconds
+2019-09-24 11:51:59 : Sending data to ::1
+2019-09-24 11:51:59 : Received request from ::1
+2019-09-24 11:51:59 : Handling request 30 took 0.0005791187286377 seconds
+2019-09-24 11:51:59 : Sending data to ::1
+2019-09-24 11:51:59 : Received request from ::1
+2019-09-24 11:51:59 : Handling request 40 took 0.00075507164001465 seconds
+2019-09-24 11:51:59 : Received request from ::1
+2019-09-24 11:51:59 : Sending data to ::1
+2019-09-24 11:51:59 : Handling request 50 took 0.00085878372192383 seconds
+2019-09-24 11:51:59 : Sending data to ::1
+2019-09-24 11:52:00 : Received request from ::1
+2019-09-24 11:52:00 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:52:00 : Handling request 20 took 0.093161106109619 seconds
+2019-09-24 11:52:00 : Sending data to ::1
+2019-09-24 11:52:00 : Received request from ::1
+2019-09-24 11:52:00 : Handling request 30 took 0.00072908401489258 seconds
+2019-09-24 11:52:00 : Sending data to ::1
+2019-09-24 11:52:00 : Received request from ::1
+2019-09-24 11:52:00 : Handling request 40 took 0.001723051071167 seconds
+2019-09-24 11:52:00 : Sending data to ::1
+2019-09-24 11:52:00 : Received request from ::1
+2019-09-24 11:52:00 : Handling request 50 took 0.00081610679626465 seconds
+2019-09-24 11:52:00 : Sending data to ::1
+2019-09-24 11:58:27 : Received request from ::1
+2019-09-24 11:58:27 : Received request from ::1
+2019-09-24 11:58:27 : Received request from ::1
+2019-09-24 11:58:27 : 
+2019-09-24 11:58:27 : Handling request 70 took 0.0010230541229248 seconds
+2019-09-24 11:58:27 : Sending data to ::1
+2019-09-24 11:58:27 : Handling request 80 took 0.0062179565429688 seconds
+2019-09-24 11:58:27 : Sending data to ::1
+2019-09-24 11:58:27 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:58:27 : Handling request 20 took 0.098944902420044 seconds
+2019-09-24 11:58:27 : Sending data to ::1
+2019-09-24 11:58:27 : Received request from ::1
+2019-09-24 11:58:27 : Handling request 30 took 0.001021146774292 seconds
+2019-09-24 11:58:27 : Sending data to ::1
+2019-09-24 11:58:27 : Received request from ::1
+2019-09-24 11:58:27 : Received request from ::1
+2019-09-24 11:58:27 : Handling request 50 took 0.00079083442687988 seconds
+2019-09-24 11:58:27 : Sending data to ::1
+2019-09-24 11:58:27 : Handling request 40 took 0.0026719570159912 seconds
+2019-09-24 11:58:27 : Sending data to ::1
+2019-09-24 11:58:30 : Received request from ::1
+2019-09-24 11:58:30 : Handling request 10 took 0.20526599884033 seconds
+2019-09-24 11:58:30 : Sending data to ::1
+2019-09-24 11:58:30 : Received request from ::1
+2019-09-24 11:58:30 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:58:30 : Handling request 20 took 0.075953960418701 seconds
+2019-09-24 11:58:30 : Sending data to ::1
+2019-09-24 11:58:30 : Received request from ::1
+2019-09-24 11:58:30 : Received request from ::1
+2019-09-24 11:58:30 : Handling request 40 took 0.0015180110931396 seconds
+2019-09-24 11:58:30 : Sending data to ::1
+2019-09-24 11:58:30 : Handling request 30 took 0.0006110668182373 seconds
+2019-09-24 11:58:30 : Sending data to ::1
+2019-09-24 11:58:30 : Received request from ::1
+2019-09-24 11:58:30 : Handling request 50 took 0.00072693824768066 seconds
+2019-09-24 11:58:30 : Sending data to ::1
+2019-09-24 11:58:31 : Received request from ::1
+2019-09-24 11:58:31 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:58:31 : Handling request 20 took 0.27478981018066 seconds
+2019-09-24 11:58:31 : Sending data to ::1
+2019-09-24 11:58:31 : Received request from ::1
+2019-09-24 11:58:31 : Received request from ::1
+2019-09-24 11:58:31 : Handling request 30 took 0.000762939453125 seconds
+2019-09-24 11:58:31 : Sending data to ::1
+2019-09-24 11:58:31 : Handling request 40 took 0.0011229515075684 seconds
+2019-09-24 11:58:31 : Sending data to ::1
+2019-09-24 11:58:31 : Received request from ::1
+2019-09-24 11:58:31 : Handling request 50 took 0.0010280609130859 seconds
+2019-09-24 11:58:31 : Sending data to ::1
+2019-09-24 11:58:33 : Received request from ::1
+2019-09-24 11:58:33 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:58:33 : Handling request 20 took 0.07369589805603 seconds
+2019-09-24 11:58:33 : Sending data to ::1
+2019-09-24 11:58:33 : Received request from ::1
+2019-09-24 11:58:33 : Handling request 30 took 0.00068306922912598 seconds
+2019-09-24 11:58:33 : Sending data to ::1
+2019-09-24 11:58:33 : Received request from ::1
+2019-09-24 11:58:33 : Handling request 40 took 0.00079107284545898 seconds
+2019-09-24 11:58:33 : Sending data to ::1
+2019-09-24 11:58:33 : Received request from ::1
+2019-09-24 11:58:33 : Handling request 50 took 0.00073504447937012 seconds
+2019-09-24 11:58:33 : Sending data to ::1
+2019-09-24 11:58:34 : Received request from ::1
+2019-09-24 11:58:34 : Handling request 10 took 0.2239089012146 seconds
+2019-09-24 11:58:34 : Sending data to ::1
+2019-09-24 11:58:35 : Received request from ::1
+2019-09-24 11:58:35 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:58:35 : Handling request 20 took 0.079105854034424 seconds
+2019-09-24 11:58:35 : Sending data to ::1
+2019-09-24 11:58:35 : Received request from ::1
+2019-09-24 11:58:35 : Received request from ::1
+2019-09-24 11:58:35 : Handling request 30 took 0.00058698654174805 seconds
+2019-09-24 11:58:35 : Handling request 50 took 0.00057482719421387 seconds
+2019-09-24 11:58:35 : Sending data to ::1
+2019-09-24 11:58:35 : Sending data to ::1
+2019-09-24 11:58:35 : Received request from ::1
+2019-09-24 11:58:35 : Handling request 40 took 0.0017249584197998 seconds
+2019-09-24 11:58:35 : Sending data to ::1
+2019-09-24 11:58:39 : Received request from ::1
+2019-09-24 11:58:39 : SELECT
+Movement.municipalityID,
+pYear,
+incomingAll as incoming, outgoingAll as outgoing, sumAll as value
+from Movement , Municipality WHERE Movement.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:58:39 : Handling request 20 took 0.073710203170776 seconds
+2019-09-24 11:58:39 : Sending data to ::1
+2019-09-24 11:58:39 : Received request from ::1
+2019-09-24 11:58:39 : Handling request 30 took 0.0039300918579102 seconds
+2019-09-24 11:58:39 : Sending data to ::1
+2019-09-24 11:58:39 : Received request from ::1
+2019-09-24 11:58:39 : Handling request 50 took 0.0010340213775635 seconds
+2019-09-24 11:58:39 : Sending data to ::1
+2019-09-24 11:58:39 : Received request from ::1
+2019-09-24 11:58:39 : Handling request 40 took 0.00093507766723633 seconds
+2019-09-24 11:58:39 : Sending data to ::1
+2019-09-24 11:59:34 : Received request from ::1
+2019-09-24 11:59:34 : Received request from ::1
+2019-09-24 11:59:34 : 
+2019-09-24 11:59:34 : Handling request 70 took 0.0028800964355469 seconds
+2019-09-24 11:59:34 : Sending data to ::1
+2019-09-24 11:59:34 : Handling request 80 took 0.0014488697052002 seconds
+2019-09-24 11:59:34 : Sending data to ::1
+2019-09-24 11:59:34 : Received request from ::1
+2019-09-24 11:59:34 : SELECT
+Movement.municipalityID,
+pYear,
+incomingAll as incoming, outgoingAll as outgoing, sumAll as value
+from Movement , Municipality WHERE Movement.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:59:34 : Handling request 20 took 0.065521001815796 seconds
+2019-09-24 11:59:34 : Sending data to ::1
+2019-09-24 11:59:34 : Received request from ::1
+2019-09-24 11:59:34 : Handling request 30 took 0.0012719631195068 seconds
+2019-09-24 11:59:34 : Sending data to ::1
+2019-09-24 11:59:34 : Received request from ::1
+2019-09-24 11:59:34 : Handling request 40 took 0.0008089542388916 seconds
+2019-09-24 11:59:34 : Sending data to ::1
+2019-09-24 11:59:34 : Received request from ::1
+2019-09-24 11:59:34 : Handling request 50 took 0.00072097778320312 seconds
+2019-09-24 11:59:34 : Sending data to ::1
+2019-09-24 11:59:39 : Received request from ::1
+2019-09-24 11:59:39 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 11:59:39 : Handling request 20 took 0.069436073303223 seconds
+2019-09-24 11:59:39 : Sending data to ::1
+2019-09-24 11:59:39 : Received request from ::1
+2019-09-24 11:59:39 : Handling request 30 took 0.0008699893951416 seconds
+2019-09-24 11:59:39 : Sending data to ::1
+2019-09-24 11:59:39 : Received request from ::1
+2019-09-24 11:59:39 : Handling request 40 took 0.00093603134155273 seconds
+2019-09-24 11:59:39 : Sending data to ::1
+2019-09-24 11:59:39 : Received request from ::1
+2019-09-24 11:59:39 : Handling request 50 took 0.0007929801940918 seconds
+2019-09-24 11:59:39 : Sending data to ::1
+2019-09-24 11:59:40 : Received request from ::1
+2019-09-24 11:59:40 : Handling request 10 took 0.078318119049072 seconds
+2019-09-24 11:59:40 : Sending data to ::1
+2019-09-24 11:59:40 : Received request from ::1
+2019-09-24 11:59:40 : Handling request 10 took 0.10659289360046 seconds
+2019-09-24 11:59:40 : Sending data to ::1
+2019-09-24 11:59:40 : Received request from ::1
+2019-09-24 11:59:40 : Received request from ::1
+2019-09-24 11:59:40 : Handling request 40 took 0.00077986717224121 seconds
+2019-09-24 11:59:40 : Received request from ::1
+2019-09-24 11:59:40 : Handling request 30 took 0.0036389827728271 seconds
+2019-09-24 11:59:40 : Sending data to ::1
+2019-09-24 11:59:40 : Handling request 50 took 0.0036070346832275 seconds
+2019-09-24 11:59:40 : Sending data to ::1
+2019-09-24 12:00:07 : Received request from ::1
+2019-09-24 12:00:07 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:00:07 : Handling request 20 took 0.085222005844116 seconds
+2019-09-24 12:00:07 : Sending data to ::1
+2019-09-24 12:00:07 : Received request from ::1
+2019-09-24 12:00:07 : Handling request 30 took 0.00077390670776367 seconds
+2019-09-24 12:00:07 : Sending data to ::1
+2019-09-24 12:00:07 : Received request from ::1
+2019-09-24 12:00:07 : Handling request 40 took 0.00082015991210938 seconds
+2019-09-24 12:00:07 : Received request from ::1
+2019-09-24 12:00:07 : Sending data to ::1
+2019-09-24 12:00:07 : Handling request 50 took 0.00067615509033203 seconds
+2019-09-24 12:00:07 : Sending data to ::1
+2019-09-24 12:00:34 : Received request from ::1
+2019-09-24 12:00:34 : Handling request 70 took 0.001101016998291 seconds
+2019-09-24 12:00:34 : Sending data to ::1
+2019-09-24 12:00:34 : Received request from ::1
+2019-09-24 12:00:34 : 
+2019-09-24 12:00:34 : Received request from ::1
+2019-09-24 12:00:34 : Handling request 80 took 0.0092389583587646 seconds
+2019-09-24 12:00:34 : Sending data to ::1
+2019-09-24 12:00:34 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:00:34 : Handling request 20 took 0.081027984619141 seconds
+2019-09-24 12:00:34 : Sending data to ::1
+2019-09-24 12:00:34 : Received request from ::1
+2019-09-24 12:00:34 : Handling request 30 took 0.00070810317993164 seconds
+2019-09-24 12:00:34 : Sending data to ::1
+2019-09-24 12:00:34 : Received request from ::1
+2019-09-24 12:00:34 : Handling request 40 took 0.00084900856018066 seconds
+2019-09-24 12:00:34 : Sending data to ::1
+2019-09-24 12:00:34 : Received request from ::1
+2019-09-24 12:00:34 : Handling request 50 took 0.00070810317993164 seconds
+2019-09-24 12:00:34 : Sending data to ::1
+2019-09-24 12:00:40 : Received request from ::1
+2019-09-24 12:00:40 : Handling request 10 took 0.070199966430664 seconds
+2019-09-24 12:00:40 : Sending data to ::1
+2019-09-24 12:00:40 : Received request from ::1
+2019-09-24 12:00:40 : Handling request 10 took 0.12230610847473 seconds
+2019-09-24 12:00:40 : Sending data to ::1
+2019-09-24 12:00:41 : Received request from ::1
+2019-09-24 12:00:41 : Handling request 30 took 0.00074410438537598 seconds
+2019-09-24 12:00:41 : Sending data to ::1
+2019-09-24 12:00:41 : Received request from ::1
+2019-09-24 12:00:41 : Received request from ::1
+2019-09-24 12:00:41 : Handling request 50 took 0.00066804885864258 seconds
+2019-09-24 12:00:41 : Handling request 40 took 0.00072789192199707 seconds
+2019-09-24 12:00:41 : Sending data to ::1
+2019-09-24 12:00:41 : Sending data to ::1
+2019-09-24 12:00:46 : Received request from ::1
+2019-09-24 12:00:46 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:00:46 : Handling request 20 took 0.076327085494995 seconds
+2019-09-24 12:00:46 : Sending data to ::1
+2019-09-24 12:00:46 : Received request from ::1
+2019-09-24 12:00:46 : Handling request 30 took 0.0012321472167969 seconds
+2019-09-24 12:00:46 : Sending data to ::1
+2019-09-24 12:00:46 : Received request from ::1
+2019-09-24 12:00:46 : Handling request 40 took 0.00092482566833496 seconds
+2019-09-24 12:00:46 : Sending data to ::1
+2019-09-24 12:00:46 : Received request from ::1
+2019-09-24 12:00:46 : Handling request 50 took 0.001060962677002 seconds
+2019-09-24 12:00:46 : Sending data to ::1
+2019-09-24 12:00:48 : Received request from ::1
+2019-09-24 12:00:48 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:00:48 : Handling request 20 took 0.075566053390503 seconds
+2019-09-24 12:00:48 : Sending data to ::1
+2019-09-24 12:00:49 : Received request from ::1
+2019-09-24 12:00:49 : Handling request 30 took 0.0009620189666748 seconds
+2019-09-24 12:00:49 : Sending data to ::1
+2019-09-24 12:00:49 : Received request from ::1
+2019-09-24 12:00:49 : Received request from ::1
+2019-09-24 12:00:49 : Handling request 50 took 0.00064206123352051 seconds
+2019-09-24 12:00:49 : Handling request 40 took 0.0017280578613281 seconds
+2019-09-24 12:00:49 : Sending data to ::1
+2019-09-24 12:00:49 : Sending data to ::1
+2019-09-24 12:00:52 : Received request from ::1
+2019-09-24 12:00:52 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:00:52 : Handling request 20 took 0.084378004074097 seconds
+2019-09-24 12:00:52 : Sending data to ::1
+2019-09-24 12:00:52 : Received request from ::1
+2019-09-24 12:00:52 : Handling request 30 took 0.00092506408691406 seconds
+2019-09-24 12:00:52 : Sending data to ::1
+2019-09-24 12:00:52 : Received request from ::1
+2019-09-24 12:00:52 : Handling request 40 took 0.00084495544433594 seconds
+2019-09-24 12:00:52 : Sending data to ::1
+2019-09-24 12:00:52 : Received request from ::1
+2019-09-24 12:00:52 : Handling request 50 took 0.00071215629577637 seconds
+2019-09-24 12:00:52 : Sending data to ::1
+2019-09-24 12:00:54 : Received request from ::1
+2019-09-24 12:00:54 : SELECT
+RegionalCooperation.municipalityID,
+kostraCategoryID,
+municipalExpenseCategoryID,
+pYear,
+expense as value
+FROM RegionalCooperation, Municipality WHERE RegionalCooperation.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:00:54 : Handling request 20 took 0.10584402084351 seconds
+2019-09-24 12:00:54 : Sending data to ::1
+2019-09-24 12:00:54 : Received request from ::1
+2019-09-24 12:00:55 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:00:55 : Handling request 20 took 0.073551177978516 seconds
+2019-09-24 12:00:55 : Sending data to ::1
+2019-09-24 12:00:55 : Received request from ::1
+2019-09-24 12:00:55 : Received request from ::1
+2019-09-24 12:00:55 : Received request from ::1
+2019-09-24 12:00:55 : Handling request 30 took 0.00077414512634277 seconds
+2019-09-24 12:00:55 : Handling request 50 took 0.00095510482788086 seconds
+2019-09-24 12:00:55 : Sending data to ::1
+2019-09-24 12:00:55 : Sending data to ::1
+2019-09-24 12:00:55 : Handling request 40 took 0.0015859603881836 seconds
+2019-09-24 12:00:55 : Sending data to ::1
+2019-09-24 12:00:57 : Received request from ::1
+2019-09-24 12:00:57 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:00:57 : Handling request 20 took 0.073784828186035 seconds
+2019-09-24 12:00:57 : Sending data to ::1
+2019-09-24 12:00:57 : Received request from ::1
+2019-09-24 12:00:57 : Received request from ::1
+2019-09-24 12:00:57 : Handling request 30 took 0.00089192390441895 seconds
+2019-09-24 12:00:57 : Sending data to ::1
+2019-09-24 12:00:57 : Handling request 50 took 0.00088214874267578 seconds
+2019-09-24 12:00:57 : Sending data to ::1
+2019-09-24 12:00:57 : Received request from ::1
+2019-09-24 12:00:57 : Handling request 40 took 0.00098299980163574 seconds
+2019-09-24 12:00:57 : Sending data to ::1
+2019-09-24 12:01:00 : Received request from ::1
+2019-09-24 12:01:00 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:01:00 : Handling request 20 took 0.086327075958252 seconds
+2019-09-24 12:01:00 : Sending data to ::1
+2019-09-24 12:01:00 : Received request from ::1
+2019-09-24 12:01:00 : Handling request 30 took 0.0005800724029541 seconds
+2019-09-24 12:01:00 : Sending data to ::1
+2019-09-24 12:01:00 : Received request from ::1
+2019-09-24 12:01:00 : Handling request 50 took 0.0006251335144043 seconds
+2019-09-24 12:01:00 : Sending data to ::1
+2019-09-24 12:01:00 : Received request from ::1
+2019-09-24 12:01:00 : Handling request 40 took 0.00069594383239746 seconds
+2019-09-24 12:01:00 : Sending data to ::1
+2019-09-24 12:01:01 : Received request from ::1
+2019-09-24 12:01:01 : Handling request 10 took 0.1986870765686 seconds
+2019-09-24 12:01:01 : Sending data to ::1
+2019-09-24 12:01:01 : Received request from ::1
+2019-09-24 12:01:01 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:01:01 : Handling request 20 took 0.060251951217651 seconds
+2019-09-24 12:01:01 : Sending data to ::1
+2019-09-24 12:01:01 : Received request from ::1
+2019-09-24 12:01:01 : Received request from ::1
+2019-09-24 12:01:01 : Received request from ::1
+2019-09-24 12:01:01 : Handling request 40 took 0.0010042190551758 seconds
+2019-09-24 12:01:01 : Handling request 30 took 0.0011119842529297 seconds
+2019-09-24 12:01:01 : Handling request 50 took 0.0015659332275391 seconds
+2019-09-24 12:01:01 : Sending data to ::1
+2019-09-24 12:01:01 : Sending data to ::1
+2019-09-24 12:01:01 : Sending data to ::1
+2019-09-24 12:01:03 : Received request from ::1
+2019-09-24 12:01:03 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:01:03 : Handling request 20 took 0.098069190979004 seconds
+2019-09-24 12:01:03 : Sending data to ::1
+2019-09-24 12:01:03 : Received request from ::1
+2019-09-24 12:01:03 : Handling request 30 took 0.00093698501586914 seconds
+2019-09-24 12:01:03 : Sending data to ::1
+2019-09-24 12:01:03 : Received request from ::1
+2019-09-24 12:01:03 : Handling request 40 took 0.0011699199676514 seconds
+2019-09-24 12:01:03 : Sending data to ::1
+2019-09-24 12:01:03 : Received request from ::1
+2019-09-24 12:01:03 : Handling request 50 took 0.00065898895263672 seconds
+2019-09-24 12:01:03 : Sending data to ::1
+2019-09-24 12:01:04 : Received request from ::1
+2019-09-24 12:01:04 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:01:04 : Handling request 20 took 0.10392713546753 seconds
+2019-09-24 12:01:04 : Sending data to ::1
+2019-09-24 12:01:05 : Received request from ::1
+2019-09-24 12:01:05 : Handling request 30 took 0.0019528865814209 seconds
+2019-09-24 12:01:05 : Sending data to ::1
+2019-09-24 12:01:05 : Received request from ::1
+2019-09-24 12:01:05 : Handling request 50 took 0.00089001655578613 seconds
+2019-09-24 12:01:05 : Sending data to ::1
+2019-09-24 12:01:05 : Received request from ::1
+2019-09-24 12:01:05 : Handling request 40 took 0.00090479850769043 seconds
+2019-09-24 12:01:05 : Sending data to ::1
+2019-09-24 12:01:06 : Received request from ::1
+2019-09-24 12:01:06 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:01:06 : Handling request 20 took 0.081097841262817 seconds
+2019-09-24 12:01:06 : Sending data to ::1
+2019-09-24 12:01:06 : Received request from ::1
+2019-09-24 12:01:06 : Received request from ::1
+2019-09-24 12:01:06 : Handling request 30 took 0.0006258487701416 seconds
+2019-09-24 12:01:06 : Handling request 40 took 0.0007328987121582 seconds
+2019-09-24 12:01:06 : Sending data to ::1
+2019-09-24 12:01:06 : Sending data to ::1
+2019-09-24 12:01:06 : Received request from ::1
+2019-09-24 12:01:06 : Handling request 50 took 0.00091314315795898 seconds
+2019-09-24 12:01:06 : Sending data to ::1
+2019-09-24 12:10:43 : Received request from ::1
+2019-09-24 12:10:43 : Handling request 70 took 0.0012071132659912 seconds
+2019-09-24 12:10:43 : Sending data to ::1
+2019-09-24 12:10:43 : Received request from ::1
+2019-09-24 12:10:43 : 
+2019-09-24 12:10:43 : Handling request 80 took 0.0012710094451904 seconds
+2019-09-24 12:10:43 : Sending data to ::1
+2019-09-24 12:10:43 : Received request from ::1
+2019-09-24 12:10:43 : Handling request 10 took 0.067660808563232 seconds
+2019-09-24 12:10:43 : Sending data to ::1
+2019-09-24 12:10:43 : Received request from ::1
+2019-09-24 12:10:43 : Handling request 30 took 0.0015068054199219 seconds
+2019-09-24 12:10:43 : Sending data to ::1
+2019-09-24 12:10:43 : Received request from ::1
+2019-09-24 12:10:43 : Handling request 40 took 0.0038008689880371 seconds
+2019-09-24 12:10:43 : Sending data to ::1
+2019-09-24 12:10:43 : Received request from ::1
+2019-09-24 12:10:43 : Handling request 50 took 0.00071191787719727 seconds
+2019-09-24 12:10:43 : Sending data to ::1
+2019-09-24 12:25:10 : Received request from ::1
+2019-09-24 12:25:10 : Handling request 70 took 0.0013182163238525 seconds
+2019-09-24 12:25:10 : Sending data to ::1
+2019-09-24 12:25:10 : Received request from ::1
+2019-09-24 12:25:10 : Received request from ::1
+2019-09-24 12:25:10 : 
+2019-09-24 12:25:10 : Handling request 80 took 0.0011720657348633 seconds
+2019-09-24 12:25:10 : Sending data to ::1
+2019-09-24 12:25:10 : Handling request 10 took 0.73359704017639 seconds
+2019-09-24 12:25:10 : Sending data to ::1
+2019-09-24 12:25:10 : Received request from ::1
+2019-09-24 12:25:11 : SELECT
+EmploymentDetailed.municipalityID,
+naceID,
+genderID, 
+pYear,
+workplaceValue,
+livingPlaceValue,
+employmentBalance
+FROM EmploymentDetailed, Municipality WHERE EmploymentDetailed.municipalityID = Municipality.municipalityID AND EmploymentDetailed.municipalityID IN (?,?,?,?) ORDER BY municipalityOrder,pYear
+2019-09-24 12:25:11 : Handling request 20 took 0.16656804084778 seconds
+2019-09-24 12:25:11 : Sending data to ::1
+2019-09-24 12:25:11 : Received request from ::1
+2019-09-24 12:25:11 : Handling request 30 took 0.0049960613250732 seconds
+2019-09-24 12:25:11 : Sending data to ::1
+2019-09-24 12:25:11 : Received request from ::1
+2019-09-24 12:25:11 : Handling request 50 took 0.00081205368041992 seconds
+2019-09-24 12:25:11 : Sending data to ::1
+2019-09-24 12:25:11 : Received request from ::1
+2019-09-24 12:25:11 : Handling request 40 took 0.0008389949798584 seconds
+2019-09-24 12:25:11 : Sending data to ::1
+2019-09-24 12:25:33 : Received request from ::1
+2019-09-24 12:25:33 : Handling request 70 took 0.0011980533599854 seconds
+2019-09-24 12:25:33 : Sending data to ::1
+2019-09-24 12:25:33 : Received request from ::1
+2019-09-24 12:25:33 : Received request from ::1
+2019-09-24 12:25:33 : 
+2019-09-24 12:25:33 : Handling request 80 took 0.0011570453643799 seconds
+2019-09-24 12:25:33 : Sending data to ::1
+2019-09-24 12:25:33 : Handling request 10 took 0.71423196792603 seconds
+2019-09-24 12:25:33 : Sending data to ::1
+2019-09-24 12:25:33 : Received request from ::1
+2019-09-24 12:25:34 : SELECT
+EmploymentDetailed.municipalityID,
+naceID,
+genderID, 
+pYear,
+workplaceValue,
+livingPlaceValue,
+employmentBalance
+FROM EmploymentDetailed, Municipality WHERE EmploymentDetailed.municipalityID = Municipality.municipalityID AND EmploymentDetailed.municipalityID IN (?,?,?,?) ORDER BY municipalityOrder,pYear
+2019-09-24 12:25:34 : Handling request 20 took 0.094212055206299 seconds
+2019-09-24 12:25:34 : Sending data to ::1
+2019-09-24 12:26:34 : Received request from ::1
+2019-09-24 12:26:34 : Handling request 70 took 0.0028338432312012 seconds
+2019-09-24 12:26:34 : Sending data to ::1
+2019-09-24 12:26:34 : Received request from ::1
+2019-09-24 12:26:34 : Received request from ::1
+2019-09-24 12:26:34 : 
+2019-09-24 12:26:34 : Handling request 80 took 0.0010509490966797 seconds
+2019-09-24 12:26:34 : Sending data to ::1
+2019-09-24 12:26:35 : Handling request 10 took 0.46121096611023 seconds
+2019-09-24 12:26:35 : Sending data to ::1
+2019-09-24 12:26:35 : Received request from ::1
+2019-09-24 12:26:35 : SELECT
+EmploymentDetailed.municipalityID,
+naceID,
+genderID, 
+pYear,
+workplaceValue,
+livingPlaceValue,
+employmentBalance
+FROM EmploymentDetailed, Municipality WHERE EmploymentDetailed.municipalityID = Municipality.municipalityID AND EmploymentDetailed.municipalityID IN (?,?,?,?) ORDER BY municipalityOrder,pYear
+2019-09-24 12:26:35 : Handling request 20 took 0.090272903442383 seconds
+2019-09-24 12:26:35 : Sending data to ::1
+2019-09-24 12:26:35 : Received request from ::1
+2019-09-24 12:26:35 : Handling request 30 took 0.00057411193847656 seconds
+2019-09-24 12:26:35 : Sending data to ::1
+2019-09-24 12:26:35 : Received request from ::1
+2019-09-24 12:26:35 : Handling request 40 took 0.0007021427154541 seconds
+2019-09-24 12:26:35 : Sending data to ::1
+2019-09-24 12:26:35 : Received request from ::1
+2019-09-24 12:26:35 : Handling request 50 took 0.0009009838104248 seconds
+2019-09-24 12:26:35 : Sending data to ::1
+2019-09-24 12:26:58 : Received request from ::1
+2019-09-24 12:26:58 : Handling request 70 took 0.018455982208252 seconds
+2019-09-24 12:26:58 : Received request from ::1
+2019-09-24 12:26:58 : 
+2019-09-24 12:26:58 : Sending data to ::1
+2019-09-24 12:26:58 : Handling request 80 took 0.0020039081573486 seconds
+2019-09-24 12:26:58 : Sending data to ::1
+2019-09-24 12:26:58 : Received request from ::1
+2019-09-24 12:26:59 : Handling request 10 took 0.4761209487915 seconds
+2019-09-24 12:26:59 : Sending data to ::1
+2019-09-24 12:26:59 : Received request from ::1
+2019-09-24 12:26:59 : SELECT
+EmploymentDetailed.municipalityID,
+naceID,
+genderID, 
+pYear,
+workplaceValue,
+livingPlaceValue,
+employmentBalance
+FROM EmploymentDetailed, Municipality WHERE EmploymentDetailed.municipalityID = Municipality.municipalityID AND EmploymentDetailed.municipalityID IN (?,?,?,?) ORDER BY municipalityOrder,pYear
+2019-09-24 12:26:59 : Handling request 20 took 0.099575996398926 seconds
+2019-09-24 12:26:59 : Sending data to ::1
+2019-09-24 12:27:21 : Received request from ::1
+2019-09-24 12:27:21 : Handling request 70 took 0.0051000118255615 seconds
+2019-09-24 12:27:21 : Sending data to ::1
+2019-09-24 12:27:21 : Received request from ::1
+2019-09-24 12:27:21 : Received request from ::1
+2019-09-24 12:27:21 : 
+2019-09-24 12:27:21 : Handling request 80 took 0.0011610984802246 seconds
+2019-09-24 12:27:21 : Sending data to ::1
+2019-09-24 12:27:21 : Handling request 10 took 0.22930097579956 seconds
+2019-09-24 12:27:21 : Sending data to ::1
+2019-09-24 12:27:21 : Received request from ::1
+2019-09-24 12:27:21 : SELECT
+EmploymentDetailed.municipalityID,
+naceID,
+genderID, 
+pYear,
+workplaceValue,
+livingPlaceValue,
+employmentBalance
+FROM EmploymentDetailed, Municipality WHERE EmploymentDetailed.municipalityID = Municipality.municipalityID AND EmploymentDetailed.municipalityID IN (?,?,?,?) ORDER BY municipalityOrder,pYear
+2019-09-24 12:27:21 : Handling request 20 took 0.083342790603638 seconds
+2019-09-24 12:27:21 : Sending data to ::1
+2019-09-24 12:27:22 : Received request from ::1
+2019-09-24 12:27:22 : Handling request 30 took 0.000640869140625 seconds
+2019-09-24 12:27:22 : Sending data to ::1
+2019-09-24 12:27:22 : Received request from ::1
+2019-09-24 12:27:22 : Received request from ::1
+2019-09-24 12:27:22 : Handling request 40 took 0.0019619464874268 seconds
+2019-09-24 12:27:22 : Sending data to ::1
+2019-09-24 12:27:22 : Handling request 50 took 0.0015668869018555 seconds
+2019-09-24 12:27:22 : Sending data to ::1
+2019-09-24 12:27:31 : Received request from ::1
+2019-09-24 12:27:31 : Received request from ::1
+2019-09-24 12:27:31 : Handling request 70 took 0.0062611103057861 seconds
+2019-09-24 12:27:31 : Sending data to ::1
+2019-09-24 12:27:31 : Received request from ::1
+2019-09-24 12:27:31 : 
+2019-09-24 12:27:31 : Handling request 80 took 0.0015809535980225 seconds
+2019-09-24 12:27:31 : Sending data to ::1
+2019-09-24 12:27:32 : Handling request 10 took 0.22410416603088 seconds
+2019-09-24 12:27:32 : Sending data to ::1
+2019-09-24 12:27:32 : Received request from ::1
+2019-09-24 12:27:32 : SELECT
+EmploymentDetailed.municipalityID,
+naceID,
+genderID, 
+pYear,
+workplaceValue,
+livingPlaceValue,
+employmentBalance
+FROM EmploymentDetailed, Municipality WHERE EmploymentDetailed.municipalityID = Municipality.municipalityID AND EmploymentDetailed.municipalityID IN (?,?,?,?) ORDER BY municipalityOrder,pYear
+2019-09-24 12:27:32 : Handling request 20 took 0.090368986129761 seconds
+2019-09-24 12:27:32 : Sending data to ::1
+2019-09-24 12:27:48 : Received request from ::1
+2019-09-24 12:27:48 : Handling request 70 took 0.0018010139465332 seconds
+2019-09-24 12:27:48 : Sending data to ::1
+2019-09-24 12:27:48 : Received request from ::1
+2019-09-24 12:27:48 : Received request from ::1
+2019-09-24 12:27:48 : 
+2019-09-24 12:27:48 : Handling request 80 took 0.0011270046234131 seconds
+2019-09-24 12:27:48 : Sending data to ::1
+2019-09-24 12:27:48 : Handling request 10 took 0.54151296615601 seconds
+2019-09-24 12:27:48 : Sending data to ::1
+2019-09-24 12:27:48 : Received request from ::1
+2019-09-24 12:27:48 : SELECT
+EmploymentDetailed.municipalityID,
+naceID,
+genderID, 
+pYear,
+workplaceValue,
+livingPlaceValue,
+employmentBalance
+FROM EmploymentDetailed, Municipality WHERE EmploymentDetailed.municipalityID = Municipality.municipalityID AND EmploymentDetailed.municipalityID IN (?,?,?,?) ORDER BY municipalityOrder,pYear
+2019-09-24 12:27:48 : Handling request 20 took 0.10541892051697 seconds
+2019-09-24 12:27:48 : Sending data to ::1
+2019-09-24 12:27:48 : Received request from ::1
+2019-09-24 12:27:49 : Received request from ::1
+2019-09-24 12:27:49 : Received request from ::1
+2019-09-24 12:27:49 : Handling request 30 took 0.0048279762268066 seconds
+2019-09-24 12:27:49 : Sending data to ::1
+2019-09-24 12:27:49 : Handling request 50 took 0.00061798095703125 seconds
+2019-09-24 12:27:49 : Sending data to ::1
+2019-09-24 12:27:49 : Handling request 40 took 0.0052001476287842 seconds
+2019-09-24 12:27:49 : Sending data to ::1
+2019-09-24 12:28:14 : Received request from ::1
+2019-09-24 12:28:14 : Handling request 70 took 0.00124192237854 seconds
+2019-09-24 12:28:14 : Sending data to ::1
+2019-09-24 12:28:14 : Received request from ::1
+2019-09-24 12:28:14 : Received request from ::1
+2019-09-24 12:28:14 : 
+2019-09-24 12:28:14 : Handling request 80 took 0.0010559558868408 seconds
+2019-09-24 12:28:14 : Sending data to ::1
+2019-09-24 12:28:15 : Handling request 10 took 0.12140107154846 seconds
+2019-09-24 12:28:15 : Sending data to ::1
+2019-09-24 12:28:15 : Received request from ::1
+2019-09-24 12:28:15 : Handling request 10 took 0.12818598747253 seconds
+2019-09-24 12:28:15 : Sending data to ::1
+2019-09-24 12:28:15 : Received request from ::1
+2019-09-24 12:28:15 : Handling request 30 took 0.0066158771514893 seconds
+2019-09-24 12:28:15 : Sending data to ::1
+2019-09-24 12:28:15 : Received request from ::1
+2019-09-24 12:28:15 : Handling request 50 took 0.00065898895263672 seconds
+2019-09-24 12:28:15 : Sending data to ::1
+2019-09-24 12:28:15 : Received request from ::1
+2019-09-24 12:28:15 : Handling request 40 took 0.00074911117553711 seconds
+2019-09-24 12:28:15 : Sending data to ::1
+2019-09-24 12:45:13 : Received request from ::1
+2019-09-24 12:45:13 : Received request from ::1
+2019-09-24 12:45:13 : 
+2019-09-24 12:45:13 : Handling request 70 took 0.027872085571289 seconds
+2019-09-24 12:45:13 : Sending data to ::1
+2019-09-24 12:45:13 : Handling request 80 took 0.0048379898071289 seconds
+2019-09-24 12:45:13 : Sending data to ::1
+2019-09-24 12:45:13 : Received request from ::1
+2019-09-24 12:45:14 : Handling request 10 took 0.097924947738647 seconds
+2019-09-24 12:45:14 : Sending data to ::1
+2019-09-24 12:45:14 : Received request from ::1
+2019-09-24 12:45:14 : Handling request 10 took 0.18142509460449 seconds
+2019-09-24 12:45:14 : Sending data to ::1
+2019-09-24 12:45:14 : Received request from ::1
+2019-09-24 12:45:14 : Received request from ::1
+2019-09-24 12:45:14 : Handling request 30 took 0.0019490718841553 seconds
+2019-09-24 12:45:14 : Sending data to ::1
+2019-09-24 12:45:14 : Handling request 40 took 0.003058910369873 seconds
+2019-09-24 12:45:14 : Sending data to ::1
+2019-09-24 12:45:14 : Received request from ::1
+2019-09-24 12:45:14 : Handling request 50 took 0.00072598457336426 seconds
+2019-09-24 12:45:14 : Sending data to ::1
+2019-09-24 12:45:25 : Received request from ::1
+2019-09-24 12:45:25 : Handling request 10 took 0.066100835800171 seconds
+2019-09-24 12:45:25 : Sending data to ::1
+2019-09-24 12:45:25 : Received request from ::1
+2019-09-24 12:45:25 : Handling request 30 took 0.0040791034698486 seconds
+2019-09-24 12:45:25 : Sending data to ::1
+2019-09-24 12:45:25 : Received request from ::1
+2019-09-24 12:45:25 : Received request from ::1
+2019-09-24 12:45:25 : Handling request 50 took 0.00093293190002441 seconds
+2019-09-24 12:45:25 : Handling request 40 took 0.0013489723205566 seconds
+2019-09-24 12:45:25 : Sending data to ::1
+2019-09-24 12:45:25 : Sending data to ::1
+2019-09-24 12:45:25 : Received request from ::1
+2019-09-24 12:45:25 : Handling request 30 took 0.00068116188049316 seconds
+2019-09-24 12:45:25 : Sending data to ::1
+2019-09-24 12:45:25 : Received request from ::1
+2019-09-24 12:45:25 : Received request from ::1
+2019-09-24 12:45:25 : Handling request 50 took 0.00085902214050293 seconds
+2019-09-24 12:45:25 : Sending data to ::1
+2019-09-24 12:45:25 : Handling request 40 took 0.00080204010009766 seconds
+2019-09-24 12:45:25 : Sending data to ::1
+2019-09-24 12:45:27 : Received request from ::1
+2019-09-24 12:45:27 : Handling request 110 took 0.014813184738159 seconds
+2019-09-24 12:45:27 : Sending data to ::1
+2019-09-24 12:46:05 : Received request from ::1
+2019-09-24 12:46:06 : Handling request 10 took 0.21367192268372 seconds
+2019-09-24 12:46:06 : Sending data to ::1
+2019-09-24 12:46:06 : Received request from ::1
+2019-09-24 12:46:06 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:46:06 : Handling request 20 took 0.063838005065918 seconds
+2019-09-24 12:46:06 : Sending data to ::1
+2019-09-24 12:46:06 : Received request from ::1
+2019-09-24 12:46:06 : Handling request 30 took 0.0010249614715576 seconds
+2019-09-24 12:46:06 : Received request from ::1
+2019-09-24 12:46:06 : Sending data to ::1
+2019-09-24 12:46:06 : Handling request 40 took 0.0011909008026123 seconds
+2019-09-24 12:46:06 : Sending data to ::1
+2019-09-24 12:46:06 : Received request from ::1
+2019-09-24 12:46:06 : Handling request 50 took 0.0010550022125244 seconds
+2019-09-24 12:46:06 : Sending data to ::1
+2019-09-24 12:46:06 : Received request from ::1
+2019-09-24 12:46:06 : Handling request 30 took 0.01102089881897 seconds
+2019-09-24 12:46:06 : Sending data to ::1
+2019-09-24 12:46:06 : Received request from ::1
+2019-09-24 12:46:06 : Received request from ::1
+2019-09-24 12:46:06 : Handling request 40 took 0.0041310787200928 seconds
+2019-09-24 12:46:06 : Sending data to ::1
+2019-09-24 12:46:06 : Handling request 50 took 0.0026500225067139 seconds
+2019-09-24 12:46:06 : Sending data to ::1
+2019-09-24 12:46:06 : Received request from ::1
+2019-09-24 12:46:06 : Handling request 30 took 0.00087189674377441 seconds
+2019-09-24 12:46:06 : Sending data to ::1
+2019-09-24 12:46:06 : Received request from ::1
+2019-09-24 12:46:06 : Received request from ::1
+2019-09-24 12:46:06 : Handling request 50 took 0.00095605850219727 seconds
+2019-09-24 12:46:06 : Sending data to ::1
+2019-09-24 12:46:06 : Handling request 40 took 0.00071310997009277 seconds
+2019-09-24 12:46:06 : Sending data to ::1
+2019-09-24 12:46:17 : Received request from ::1
+2019-09-24 12:46:17 : SELECT 
+unemploymentID,
+Unemployment.municipalityID,
+ageRangeID,
+pYear,
+pMonth,
+unemploymentPercent as value
+FROM Unemployment, Municipality WHERE Unemployment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear,pMonth
+2019-09-24 12:46:17 : Handling request 20 took 0.069504976272583 seconds
+2019-09-24 12:46:17 : Sending data to ::1
+2019-09-24 12:46:17 : Received request from ::1
+2019-09-24 12:46:17 : Handling request 30 took 0.0075030326843262 seconds
+2019-09-24 12:46:17 : Sending data to ::1
+2019-09-24 12:46:17 : Received request from ::1
+2019-09-24 12:46:17 : Received request from ::1
+2019-09-24 12:46:17 : Handling request 50 took 0.00072908401489258 seconds
+2019-09-24 12:46:17 : Handling request 40 took 0.00079607963562012 seconds
+2019-09-24 12:46:17 : Sending data to ::1
+2019-09-24 12:46:17 : Sending data to ::1
+2019-09-24 12:46:17 : Received request from ::1
+2019-09-24 12:46:17 : Handling request 30 took 0.0006859302520752 seconds
+2019-09-24 12:46:17 : Sending data to ::1
+2019-09-24 12:46:17 : Received request from ::1
+2019-09-24 12:46:17 : Handling request 50 took 0.0028460025787354 seconds
+2019-09-24 12:46:17 : Sending data to ::1
+2019-09-24 12:46:17 : Received request from ::1
+2019-09-24 12:46:17 : Handling request 40 took 0.00069808959960938 seconds
+2019-09-24 12:46:17 : Sending data to ::1
+2019-09-24 12:46:17 : Received request from ::1
+2019-09-24 12:46:17 : Handling request 30 took 0.00064706802368164 seconds
+2019-09-24 12:46:17 : Sending data to ::1
+2019-09-24 12:46:17 : Received request from ::1
+2019-09-24 12:46:17 : Handling request 40 took 0.00081682205200195 seconds
+2019-09-24 12:46:17 : Sending data to ::1
+2019-09-24 12:46:17 : Received request from ::1
+2019-09-24 12:46:17 : Handling request 50 took 0.00078392028808594 seconds
+2019-09-24 12:46:17 : Sending data to ::1
+2019-09-24 12:46:28 : Received request from ::1
+2019-09-24 12:46:28 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:46:28 : Handling request 20 took 0.098360061645508 seconds
+2019-09-24 12:46:28 : Sending data to ::1
+2019-09-24 12:46:28 : Received request from ::1
+2019-09-24 12:46:28 : Handling request 30 took 0.0097119808197021 seconds
+2019-09-24 12:46:28 : Sending data to ::1
+2019-09-24 12:46:28 : Received request from ::1
+2019-09-24 12:46:28 : Handling request 40 took 0.004148006439209 seconds
+2019-09-24 12:46:28 : Received request from ::1
+2019-09-24 12:46:28 : Sending data to ::1
+2019-09-24 12:46:28 : Handling request 30 took 0.0010890960693359 seconds
+2019-09-24 12:46:28 : Sending data to ::1
+2019-09-24 12:46:28 : Received request from ::1
+2019-09-24 12:46:28 : Handling request 50 took 0.00088715553283691 seconds
+2019-09-24 12:46:28 : Sending data to ::1
+2019-09-24 12:46:28 : Received request from ::1
+2019-09-24 12:46:28 : Handling request 40 took 0.0039968490600586 seconds
+2019-09-24 12:46:28 : Sending data to ::1
+2019-09-24 12:46:28 : Received request from ::1
+2019-09-24 12:46:28 : Handling request 30 took 0.00065112113952637 seconds
+2019-09-24 12:46:28 : Sending data to ::1
+2019-09-24 12:46:28 : Handling request 50 took 0.0023519992828369 seconds
+2019-09-24 12:46:28 : Sending data to ::1
+2019-09-24 12:46:28 : Received request from ::1
+2019-09-24 12:46:28 : Handling request 40 took 0.00077295303344727 seconds
+2019-09-24 12:46:28 : Sending data to ::1
+2019-09-24 12:46:28 : Received request from ::1
+2019-09-24 12:46:28 : Handling request 50 took 0.00071811676025391 seconds
+2019-09-24 12:46:28 : Sending data to ::1
+2019-09-24 12:46:34 : Received request from ::1
+2019-09-24 12:46:34 : Handling request 110 took 0.00068497657775879 seconds
+2019-09-24 12:46:34 : Sending data to ::1
+2019-09-24 12:50:20 : Received request from ::1
+2019-09-24 12:50:20 : Handling request 70 took 0.0066201686859131 seconds
+2019-09-24 12:50:20 : Sending data to ::1
+2019-09-24 12:50:20 : Received request from ::1
+2019-09-24 12:50:20 : Handling request 110 took 0.00091695785522461 seconds
+2019-09-24 12:50:20 : Sending data to ::1
+2019-09-24 12:50:20 : Received request from ::1
+2019-09-24 12:50:20 : 
+2019-09-24 12:50:20 : Handling request 80 took 0.0026328563690186 seconds
+2019-09-24 12:50:20 : Sending data to ::1
+2019-09-24 12:52:37 : Received request from ::1
+2019-09-24 12:52:37 : Time elapsed executing mapAlderAndReplace was 0.17102289199829
+2019-09-24 12:52:39 : Handling request 100 took 1.7365880012512 seconds
+2019-09-24 12:52:39 : Sending data to ::1
+2019-09-24 12:54:00 : Received request from ::1
+2019-09-24 12:54:00 : DB: Forcing replacement of table PopulationAge
+2019-09-24 12:54:00 : DB: Force request given by ::1
+2019-09-24 12:54:00 : DB: Force delete request of table PopulationAge was a success.
+2019-09-24 12:54:00 : Time elapsed executing mapAlderAndReplace was 0.20405101776123
+2019-09-24 12:54:01 : Handling request 100 took 1.9022691249847 seconds
+2019-09-24 12:54:01 : Sending data to ::1
+2019-09-24 12:55:42 : Received request from ::1
+2019-09-24 12:55:42 : Handling request 10 took 0.079631090164185 seconds
+2019-09-24 12:55:42 : Sending data to ::1
+2019-09-24 12:55:42 : Received request from ::1
+2019-09-24 12:55:42 : Received request from ::1
+2019-09-24 12:55:42 : Handling request 30 took 0.010892152786255 seconds
+2019-09-24 12:55:42 : Sending data to ::1
+2019-09-24 12:55:42 : Received request from ::1
+2019-09-24 12:55:42 : Handling request 40 took 0.009084939956665 seconds
+s
+2019-09-24 12:55:42 : Sending data to ::1
+2019-09-24 12:55:43 : Received request from ::1
+2019-09-24 12:55:43 : Handling request 10 took 0.079485177993774 seconds
+2019-09-24 12:55:43 : Sending data to ::1
+2019-09-24 12:55:43 : Received request from ::1
+2019-09-24 12:55:43 : Handling request 10 took 0.12290716171265 seconds
+2019-09-24 12:55:43 : Sending data to ::1
+2019-09-24 12:55:44 : Received request from ::1
+2019-09-24 12:55:44 : Received request from ::1
+2019-09-24 12:55:44 : Handling request 40 took 0.00079798698425293 seconds
+2019-09-24 12:55:44 : Received request from ::1
+2019-09-24 12:55:44 : Sending data to ::1
+2019-09-24 12:55:44 : Handling request 30 took 0.006605863571167 seconds
+2019-09-24 12:55:44 : Sending data to ::1
+2019-09-24 12:55:44 : Handling request 50 took 0.0044760704040527 seconds
+2019-09-24 12:55:44 : Sending data to ::1
+2019-09-24 12:55:44 : Received request from ::1
+2019-09-24 12:55:44 : Received request from ::1
+2019-09-24 12:55:44 : Handling request 30 took 0.0035841464996338 seconds
+2019-09-24 12:55:44 : Sending data to ::1
+2019-09-24 12:55:44 : Handling request 40 took 0.0066840648651123 seconds
+2019-09-24 12:55:44 : Sending data to ::1
+2019-09-24 12:55:44 : Received request from ::1
+2019-09-24 12:55:44 : Handling request 50 took 0.00060915946960449 seconds
+2019-09-24 12:55:44 : Sending data to ::1
+2019-09-24 12:55:47 : Received request from ::1
+2019-09-24 12:55:47 : Handling request 70 took 0.0010190010070801 seconds
+2019-09-24 12:55:47 : Sending data to ::1
+2019-09-24 12:55:47 : Received request from ::1
+2019-09-24 12:55:47 : Received request from ::1
+2019-09-24 12:55:47 : 
+2019-09-24 12:55:47 : Handling request 80 took 0.0013890266418457 seconds
+2019-09-24 12:55:47 : Sending data to ::1
+2019-09-24 12:55:48 : Handling request 10 took 0.49648308753967 seconds
+2019-09-24 12:55:48 : Sending data to ::1
+2019-09-24 12:55:48 : Received request from ::1
+2019-09-24 12:55:48 : Received request from ::1
+2019-09-24 12:55:48 : Handling request 40 took 0.00096583366394043 seconds
+2019-09-24 12:55:48 : Handling request 30 took 0.0053901672363281 seconds
+2019-09-24 12:55:48 : Sending data to ::1
+2019-09-24 12:55:48 : Sending data to ::1
+2019-09-24 12:55:48 : Received request from ::1
+2019-09-24 12:55:48 : Handling request 50 took 0.0011169910430908 seconds
+2019-09-24 12:55:48 : Sending data to ::1
+2019-09-24 12:55:53 : Received request from ::1
+2019-09-24 12:55:53 : Handling request 70 took 0.001068115234375 seconds
+2019-09-24 12:55:53 : Sending data to ::1
+2019-09-24 12:55:53 : Received request from ::1
+2019-09-24 12:55:53 : 
+2019-09-24 12:55:53 : Received request from ::1
+2019-09-24 12:55:53 : Handling request 80 took 0.0031721591949463 seconds
+2019-09-24 12:55:53 : Sending data to ::1
+2019-09-24 12:55:53 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:55:53 : Handling request 20 took 0.11873984336853 seconds
+2019-09-24 12:55:53 : Sending data to ::1
+2019-09-24 12:55:53 : Received request from ::1
+2019-09-24 12:55:53 : Handling request 30 took 0.0016319751739502 seconds
+2019-09-24 12:55:53 : Sending data to ::1
+2019-09-24 12:55:53 : Received request from ::1
+2019-09-24 12:55:53 : Handling request 40 took 0.00080490112304688 seconds
+2019-09-24 12:55:53 : Received request from ::1
+2019-09-24 12:55:53 : Sending data to ::1
+2019-09-24 12:55:53 : Handling request 50 took 0.00067901611328125 seconds
+2019-09-24 12:55:53 : Sending data to ::1
+2019-09-24 12:57:37 : Received request from ::1
+2019-09-24 12:57:37 : Handling request 70 took 0.0041351318359375 seconds
+2019-09-24 12:57:37 : Sending data to ::1
+2019-09-24 12:57:37 : Received request from ::1
+2019-09-24 12:57:37 : Received request from ::1
+2019-09-24 12:57:37 : 
+2019-09-24 12:57:37 : Handling request 80 took 0.0011940002441406 seconds
+2019-09-24 12:57:37 : Sending data to ::1
+2019-09-24 12:57:37 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:57:37 : Handling request 20 took 0.20474696159363 seconds
+2019-09-24 12:57:37 : Sending data to ::1
+2019-09-24 12:57:38 : Received request from ::1
+2019-09-24 12:57:38 : Handling request 30 took 0.00099396705627441 seconds
+2019-09-24 12:57:38 : Sending data to ::1
+2019-09-24 12:57:38 : Received request from ::1
+2019-09-24 12:57:38 : Handling request 40 took 0.0032520294189453 seconds
+2019-09-24 12:57:38 : Sending data to ::1
+2019-09-24 12:57:38 : Received request from ::1
+2019-09-24 12:57:38 : Handling request 50 took 0.0064229965209961 seconds
+2019-09-24 12:57:38 : Sending data to ::1
+2019-09-24 12:58:09 : Received request from ::1
+2019-09-24 12:58:09 : Handling request 70 took 0.011421203613281 seconds
+2019-09-24 12:58:09 : Sending data to ::1
+2019-09-24 12:58:09 : Received request from ::1
+2019-09-24 12:58:09 : Received request from ::1
+2019-09-24 12:58:09 : 
+2019-09-24 12:58:09 : Handling request 80 took 0.0010948181152344 seconds
+2019-09-24 12:58:09 : Sending data to ::1
+2019-09-24 12:58:09 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:58:09 : Handling request 20 took 0.085546016693115 seconds
+2019-09-24 12:58:09 : Sending data to ::1
+2019-09-24 12:58:09 : Received request from ::1
+2019-09-24 12:58:09 : Received request from ::1
+2019-09-24 12:58:09 : Handling request 30 took 0.0066568851470947 seconds
+2019-09-24 12:58:09 : Sending data to ::1
+2019-09-24 12:58:09 : Handling request 40 took 0.00078487396240234 seconds
+2019-09-24 12:58:09 : Sending data to ::1
+2019-09-24 12:58:10 : Received request from ::1
+2019-09-24 12:58:10 : Handling request 50 took 0.00066781044006348 seconds
+2019-09-24 12:58:10 : Sending data to ::1
+2019-09-24 12:58:14 : Received request from ::1
+2019-09-24 12:58:14 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:58:14 : Handling request 20 took 0.066179037094116 seconds
+2019-09-24 12:58:14 : Sending data to ::1
+2019-09-24 12:58:14 : Received request from ::1
+2019-09-24 12:58:14 : Handling request 30 took 0.0011880397796631 seconds
+2019-09-24 12:58:14 : Sending data to ::1
+2019-09-24 12:58:14 : Received request from ::1
+2019-09-24 12:58:14 : Handling request 40 took 0.00097203254699707 seconds
+2019-09-24 12:58:14 : Sending data to ::1
+2019-09-24 12:58:14 : Received request from ::1
+2019-09-24 12:58:14 : Handling request 50 took 0.00067710876464844 seconds
+2019-09-24 12:58:14 : Sending data to ::1
+2019-09-24 12:58:16 : Received request from ::1
+2019-09-24 12:58:16 : Handling request 10 took 0.20585298538208 seconds
+2019-09-24 12:58:16 : Sending data to ::1
+2019-09-24 12:58:16 : Received request from ::1
+2019-09-24 12:58:17 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:58:17 : Handling request 20 took 0.18237805366516 seconds
+2019-09-24 12:58:17 : Sending data to ::1
+2019-09-24 12:58:17 : Received request from ::1
+2019-09-24 12:58:17 : Received request from ::1
+2019-09-24 12:58:17 : Received request from ::1
+2019-09-24 12:58:17 : Handling request 40 took 0.00074911117553711 seconds
+2019-09-24 12:58:17 : Handling request 30 took 0.0050079822540283 seconds
+2019-09-24 12:58:17 : Sending data to ::1
+2019-09-24 12:58:17 : Sending data to ::1
+2019-09-24 12:58:17 : Handling request 50 took 0.0030248165130615 seconds
+2019-09-24 12:58:17 : Sending data to ::1
+2019-09-24 12:58:18 : Received request from ::1
+2019-09-24 12:58:18 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:58:18 : Handling request 20 took 0.072510004043579 seconds
+2019-09-24 12:58:18 : Sending data to ::1
+2019-09-24 12:58:18 : Received request from ::1
+2019-09-24 12:58:18 : Handling request 30 took 0.0013179779052734 seconds
+2019-09-24 12:58:18 : Sending data to ::1
+2019-09-24 12:58:18 : Received request from ::1
+2019-09-24 12:58:18 : Handling request 50 took 0.00080394744873047 seconds
+2019-09-24 12:58:18 : Sending data to ::1
+2019-09-24 12:58:18 : Received request from ::1
+2019-09-24 12:58:18 : Handling request 40 took 0.00086808204650879 seconds
+2019-09-24 12:58:18 : Sending data to ::1
+2019-09-24 12:58:20 : Received request from ::1
+2019-09-24 12:58:20 : Handling request 10 took 0.083534002304077 seconds
+2019-09-24 12:58:20 : Sending data to ::1
+2019-09-24 12:58:20 : Received request from ::1
+2019-09-24 12:58:20 : Handling request 10 took 0.1215980052948 seconds
+2019-09-24 12:58:20 : Sending data to ::1
+2019-09-24 12:58:21 : Received request from ::1
+2019-09-24 12:58:21 : Handling request 30 took 0.00079083442687988 seconds
+2019-09-24 12:58:21 : Sending data to ::1
+2019-09-24 12:58:21 : Received request from ::1
+2019-09-24 12:58:21 : Handling request 50 took 0.00075888633728027 seconds
+2019-09-24 12:58:21 : Received request from ::1
+2019-09-24 12:58:21 : Sending data to ::1
+2019-09-24 12:58:21 : Handling request 40 took 0.00078487396240234 seconds
+2019-09-24 12:58:21 : Sending data to ::1
+2019-09-24 12:58:24 : Received request from ::1
+2019-09-24 12:58:24 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:58:24 : Handling request 20 took 0.083508968353271 seconds
+2019-09-24 12:58:24 : Sending data to ::1
+2019-09-24 12:58:25 : Received request from ::1
+2019-09-24 12:58:25 : Handling request 30 took 0.0013191699981689 seconds
+2019-09-24 12:58:25 : Sending data to ::1
+2019-09-24 12:58:25 : Received request from ::1
+2019-09-24 12:58:25 : Handling request 50 took 0.00086593627929688 seconds
+2019-09-24 12:58:25 : Sending data to ::1
+2019-09-24 12:58:25 : Received request from ::1
+2019-09-24 12:58:25 : Handling request 40 took 0.00085878372192383 seconds
+2019-09-24 12:58:25 : Sending data to ::1
+2019-09-24 12:58:26 : Received request from ::1
+2019-09-24 12:58:26 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:58:26 : Handling request 20 took 0.097312927246094 seconds
+2019-09-24 12:58:26 : Sending data to ::1
+2019-09-24 12:58:27 : Received request from ::1
+2019-09-24 12:58:27 : Handling request 30 took 0.0007319450378418 seconds
+2019-09-24 12:58:27 : Sending data to ::1
+2019-09-24 12:58:27 : Received request from ::1
+2019-09-24 12:58:27 : Received request from ::1
+2019-09-24 12:58:27 : Handling request 50 took 0.00077605247497559 seconds
+2019-09-24 12:58:27 : Sending data to ::1
+2019-09-24 12:58:27 : Handling request 40 took 0.00098800659179688 seconds
+2019-09-24 12:58:27 : Sending data to ::1
+2019-09-24 12:58:28 : Received request from ::1
+2019-09-24 12:58:28 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:58:28 : Handling request 20 took 0.12185311317444 seconds
+2019-09-24 12:58:28 : Sending data to ::1
+2019-09-24 12:58:29 : Received request from ::1
+2019-09-24 12:58:29 : Handling request 30 took 0.0007469654083252 seconds
+2019-09-24 12:58:29 : Sending data to ::1
+2019-09-24 12:58:29 : Received request from ::1
+2019-09-24 12:58:29 : Handling request 50 took 0.001039981842041 seconds
+2019-09-24 12:58:29 : Sending data to ::1
+2019-09-24 12:58:29 : Received request from ::1
+2019-09-24 12:58:29 : Handling request 40 took 0.00093507766723633 seconds
+2019-09-24 12:58:29 : Sending data to ::1
+2019-09-24 12:58:31 : Received request from ::1
+2019-09-24 12:58:31 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:58:31 : Handling request 20 took 0.095824956893921 seconds
+2019-09-24 12:58:31 : Sending data to ::1
+2019-09-24 12:58:31 : Received request from ::1
+2019-09-24 12:58:31 : Handling request 30 took 0.00089907646179199 seconds
+2019-09-24 12:58:31 : Sending data to ::1
+2019-09-24 12:58:31 : Received request from ::1
+2019-09-24 12:58:31 : Handling request 40 took 0.00095915794372559 seconds
+2019-09-24 12:58:31 : Handling request 50 took 0.0015361309051514 seconds
+2019-09-24 12:58:31 : Sending data to ::1
+2019-09-24 12:58:31 : Sending data to ::1
+2019-09-24 12:59:46 : Received request from ::1
+2019-09-24 12:59:46 : Handling request 70 took 0.0062241554260254 seconds
+2019-09-24 12:59:46 : Sending data to ::1
+2019-09-24 12:59:46 : Received request from ::1
+2019-09-24 12:59:46 : Received request from ::1
+2019-09-24 12:59:46 : 
+2019-09-24 12:59:46 : Handling request 80 took 0.0012621879577637 seconds
+2019-09-24 12:59:46 : Sending data to ::1
+2019-09-24 12:59:46 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 12:59:46 : Handling request 20 took 0.1054859161377 seconds
+2019-09-24 12:59:46 : Sending data to ::1
+2019-09-24 12:59:46 : Received request from ::1
+2019-09-24 12:59:46 : Handling request 30 took 0.0010080337524414 seconds
+2019-09-24 12:59:46 : Sending data to ::1
+2019-09-24 12:59:46 : Received request from ::1
+2019-09-24 12:59:46 : Handling request 40 took 0.0017130374908447 seconds
+2019-09-24 12:59:46 : Sending data to ::1
+2019-09-24 12:59:46 : Handling request 50 took 0.0012130737304688 seconds
+2019-09-24 12:59:46 : Sending data to ::1
+2019-09-24 13:01:08 : Received request from ::1
+2019-09-24 13:01:08 : Handling request 70 took 0.0010001659393311 seconds
+2019-09-24 13:01:08 : Sending data to ::1
+2019-09-24 13:01:08 : Received request from ::1
+2019-09-24 13:01:08 : 
+2019-09-24 13:01:08 : Handling request 80 took 0.0019350051879883 seconds
+2019-09-24 13:01:08 : Sending data to ::1
+2019-09-24 13:01:08 : Received request from ::1
+2019-09-24 13:01:08 : Handling request 10 took 0.065871953964233 seconds
+2019-09-24 13:01:08 : Sending data to ::1
+2019-09-24 13:01:08 : Received request from ::1
+2019-09-24 13:01:08 : Handling request 30 took 0.00063610076904297 seconds
+2019-09-24 13:01:08 : Sending data to ::1
+2019-09-24 13:01:08 : Received request from ::1
+2019-09-24 13:01:08 : Handling request 50 took 0.0006871223449707 seconds
+2019-09-24 13:01:08 : Handling request 40 took 0.00091099739074707 seconds
+2019-09-24 13:01:08 : Sending data to ::1
+2019-09-24 13:14:14 : Received request from ::1
+2019-09-24 13:14:14 : Handling request 70 took 0.0032398700714111 seconds
+2019-09-24 13:14:14 : Sending data to ::1
+2019-09-24 13:14:14 : Received request from ::1
+2019-09-24 13:14:14 : 
+2019-09-24 13:14:14 : Handling request 80 took 0.0010988712310791 seconds
+2019-09-24 13:14:14 : Sending data to ::1
+2019-09-24 13:14:14 : Received request from ::1
+2019-09-24 13:14:14 : Handling request 10 took 0.11032199859619 seconds
+2019-09-24 13:14:14 : Sending data to ::1
+2019-09-24 13:14:14 : Received request from ::1
+2019-09-24 13:14:15 : Handling request 10 took 0.13544201850891 seconds
+2019-09-24 13:14:15 : Sending data to ::1
+2019-09-24 13:14:15 : Received request from ::1
+2019-09-24 13:14:15 : Handling request 30 took 0.0032868385314941 seconds
+2019-09-24 13:14:15 : Sending data to ::1
+2019-09-24 13:14:15 : Received request from ::1
+2019-09-24 13:14:15 : Handling request 40 took 0.00081801414489746 seconds
+2019-09-24 13:14:15 : Sending data to ::1
+2019-09-24 13:14:15 : Received request from ::1
+2019-09-24 13:14:15 : Handling request 50 took 0.00092005729675293 seconds
+2019-09-24 13:14:15 : Sending data to ::1
+2019-09-24 13:22:09 : Received request from ::1
+2019-09-24 13:22:09 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:22:09 : Handling request 20 took 0.083170890808105 seconds
+2019-09-24 13:22:09 : Sending data to ::1
+2019-09-24 13:22:10 : Received request from ::1
+2019-09-24 13:22:10 : Handling request 30 took 0.0010640621185303 seconds
+2019-09-24 13:22:10 : Sending data to ::1
+2019-09-24 13:22:10 : Received request from ::1
+2019-09-24 13:22:10 : Received request from ::1
+2019-09-24 13:22:10 : Handling request 40 took 0.0007939338684082 seconds
+2019-09-24 13:22:10 : Handling request 50 took 0.00064301490783691 seconds
+2019-09-24 13:22:10 : Sending data to ::1
+2019-09-24 13:22:10 : Sending data to ::1
+2019-09-24 13:22:10 : Received request from ::1
+2019-09-24 13:22:10 : Handling request 10 took 0.089258909225464 seconds
+2019-09-24 13:22:10 : Sending data to ::1
+2019-09-24 13:22:10 : Received request from ::1
+2019-09-24 13:22:10 : Handling request 10 took 0.11558222770691 seconds
+2019-09-24 13:22:10 : Sending data to ::1
+2019-09-24 13:22:10 : Received request from ::1
+2019-09-24 13:22:10 : Handling request 30 took 0.00096797943115234 seconds
+2019-09-24 13:22:10 : Sending data to ::1
+2019-09-24 13:22:10 : Received request from ::1
+2019-09-24 13:22:10 : Received request from ::1
+2019-09-24 13:22:10 : Handling request 50 took 0.00066423416137695 seconds
+2019-09-24 13:22:10 : Sending data to ::1
+2019-09-24 13:22:10 : Handling request 40 took 0.0021500587463379 seconds
+2019-09-24 13:22:10 : Sending data to ::1
+2019-09-24 13:22:15 : Received request from ::1
+2019-09-24 13:22:15 : Handling request 10 took 0.21574211120605 seconds
+2019-09-24 13:22:15 : Sending data to ::1
+2019-09-24 13:22:15 : Received request from ::1
+2019-09-24 13:22:15 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:22:15 : Handling request 20 took 0.065221071243286 seconds
+2019-09-24 13:22:15 : Sending data to ::1
+2019-09-24 13:22:15 : Received request from ::1
+2019-09-24 13:22:15 : Received request from ::1
+2019-09-24 13:22:15 : Received request from ::1
+2019-09-24 13:22:15 : Handling request 50 took 0.00057196617126465 seconds
+2019-09-24 13:22:15 : Sending data to ::1
+2019-09-24 13:22:15 : Handling request 30 took 0.011990070343018 seconds
+2019-09-24 13:22:15 : Sending data to ::1
+2019-09-24 13:22:15 : Handling request 40 took 0.0051999092102051 seconds
+2019-09-24 13:22:15 : Sending data to ::1
+2019-09-24 13:22:18 : Received request from ::1
+2019-09-24 13:22:18 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:22:18 : Handling request 20 took 0.076449155807495 seconds
+2019-09-24 13:22:18 : Sending data to ::1
+2019-09-24 13:22:18 : Received request from ::1
+2019-09-24 13:22:18 : Received request from ::1
+2019-09-24 13:22:18 : Handling request 40 took 0.00099015235900879 seconds
+2019-09-24 13:22:18 : Sending data to ::1
+2019-09-24 13:22:18 : Sending data to ::1
+2019-09-24 13:22:18 : Received request from ::1
+2019-09-24 13:22:18 : Handling request 50 took 0.0016829967498779 seconds
+2019-09-24 13:22:18 : Sending data to ::1
+2019-09-24 13:22:21 : Received request from ::1
+2019-09-24 13:22:21 : Handling request 10 took 0.07921290397644 seconds
+2019-09-24 13:22:21 : Sending data to ::1
+2019-09-24 13:22:21 : Received request from ::1
+2019-09-24 13:22:21 : Handling request 10 took 0.10791110992432 seconds
+2019-09-24 13:22:21 : Sending data to ::1
+2019-09-24 13:22:21 : Received request from ::1
+2019-09-24 13:22:21 : Handling request 30 took 0.0011270046234131 seconds
+2019-09-24 13:22:21 : Received request from ::1
+2019-09-24 13:22:21 : Received request from ::1
+2019-09-24 13:22:21 : Sending data to ::1
+2019-09-24 13:22:21 : Handling request 40 took 0.00078701972961426 seconds
+2019-09-24 13:22:21 : Sending data to ::1
+2019-09-24 13:22:21 : Handling request 50 took 0.0015928745269775 seconds
+2019-09-24 13:22:21 : Sending data to ::1
+2019-09-24 13:22:23 : Received request from ::1
+2019-09-24 13:22:23 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:22:23 : Handling request 20 took 0.085620880126953 seconds
+2019-09-24 13:22:23 : Sending data to ::1
+2019-09-24 13:22:23 : Received request from ::1
+2019-09-24 13:22:23 : Received request from ::1
+2019-09-24 13:22:23 : Received request from ::1
+2019-09-24 13:22:23 : Handling request 30 took 0.00059700012207031 seconds
+2019-09-24 13:22:23 : Sending data to ::1
+took 0.00066113471984863 seconds
+2019-09-24 13:22:23 : Sending data to ::1
+2019-09-24 13:22:23 : Sending data to ::1
+2019-09-24 13:24:46 : Received request from ::1
+2019-09-24 13:24:46 : Handling request 70 took 0.0013039112091064 seconds
+2019-09-24 13:24:46 : Sending data to ::1
+2019-09-24 13:24:46 : Received request from ::1
+2019-09-24 13:24:46 : 
+2019-09-24 13:24:46 : Handling request 80 took 0.0011360645294189 seconds
+2019-09-24 13:24:46 : Sending data to ::1
+2019-09-24 13:24:46 : Received request from ::1
+2019-09-24 13:24:46 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:24:46 : Handling request 20 took 0.078721046447754 seconds
+2019-09-24 13:24:46 : Sending data to ::1
+2019-09-24 13:24:46 : Received request from ::1
+2019-09-24 13:24:46 : Handling request 30 took 0.0017991065979004 seconds
+2019-09-24 13:24:46 : Sending data to ::1
+2019-09-24 13:24:46 : Received request from ::1
+2019-09-24 13:24:46 : Received request from ::1
+2019-09-24 13:24:46 : Handling request 50 took 0.00092601776123047 seconds
+2019-09-24 13:24:46 : Sending data to ::1
+2019-09-24 13:24:46 : Sending data to ::1
+2019-09-24 13:25:09 : Received request from ::1
+2019-09-24 13:25:09 : Handling request 70 took 0.0029940605163574 seconds
+2019-09-24 13:25:09 : Sending data to ::1
+2019-09-24 13:25:09 : Received request from ::1
+2019-09-24 13:25:09 : Received request from ::1
+2019-09-24 13:25:09 : 
+2019-09-24 13:25:09 : Handling request 80 took 0.0011789798736572 seconds
+2019-09-24 13:25:09 : Sending data to ::1
+2019-09-24 13:25:09 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:25:09 : Handling request 20 took 0.095014810562134 seconds
+2019-09-24 13:25:09 : Sending data to ::1
+2019-09-24 13:25:10 : Received request from ::1
+2019-09-24 13:25:10 : Handling request 30 took 0.0043880939483643 seconds
+2019-09-24 13:25:10 : Sending data to ::1
+2019-09-24 13:25:10 : Received request from ::1
+2019-09-24 13:25:10 : Received request from ::1
+2019-09-24 13:25:10 : Handling request 40 took 0.0006561279296875 seconds
+
+2019-09-24 13:25:10 : Sending data to ::1
+2019-09-24 13:25:13 : Received request from ::1
+2019-09-24 13:25:13 : Handling request 10 took 0.085575103759766 seconds
+2019-09-24 13:25:13 : Sending data to ::1
+2019-09-24 13:25:13 : Received request from ::1
+2019-09-24 13:25:13 : Handling request 10 took 0.13097596168518 seconds
+2019-09-24 13:25:13 : Sending data to ::1
+2019-09-24 13:25:13 : Received request from ::1
+2019-09-24 13:25:13 : Handling request 30 took 0.0011022090911865 seconds
+2019-09-24 13:25:13 : Sending data to ::1
+2019-09-24 13:25:13 : Received request from ::1
+2019-09-24 13:25:13 : Handling request 40 took 0.0013329982757568 seconds
+2019-09-24 13:25:13 : Sending data to ::1
+2019-09-24 13:25:13 : Received request from ::1
+2019-09-24 13:25:13 : Handling request 50 took 0.0011489391326904 seconds
+2019-09-24 13:25:13 : Sending data to ::1
+2019-09-24 13:26:20 : Received request from ::1
+2019-09-24 13:26:20 : Handling request 110 took 0.0010268688201904 seconds
+2019-09-24 13:26:20 : Sending data to ::1
+2019-09-24 13:27:05 : Received request from ::1
+2019-09-24 13:27:06 : DB: Forcing replacement of table PopulationAge
+2019-09-24 13:27:06 : DB: Force request given by ::1
+2019-09-24 13:27:06 : DB: Force delete request of table PopulationAge was a success.
+2019-09-24 13:27:06 : Time elapsed executing mapAlderAndReplace was 0.18365001678467
+2019-09-24 13:27:07 : Handling request 100 took 1.7478921413422 seconds
+2019-09-24 13:27:07 : Sending data to ::1
+2019-09-24 13:27:19 : Received request from ::1
+2019-09-24 13:27:19 : Handling request 10 took 0.075962066650391 seconds
+2019-09-24 13:27:19 : Sending data to ::1
+2019-09-24 13:27:20 : Received request from ::1
+2019-09-24 13:27:20 : Handling request 30 took 0.00084781646728516 seconds
+2019-09-24 13:27:20 : Sending data to ::1
+2019-09-24 13:27:20 : Received request from ::1
+2019-09-24 13:27:20 : Handling request 50 took 0.0019400119781494 seconds
+2019-09-24 13:27:20 : Received request from ::1
+2019-09-24 13:27:20 : Sending data to ::1
+2019-09-24 13:27:20 : Handling request 40 took 0.00089097023010254 seconds
+2019-09-24 13:27:20 : Sending data to ::1
+2019-09-24 13:27:20 : Received request from ::1
+2019-09-24 13:27:20 : Handling request 30 took 0.0006861686706543 seconds
+2019-09-24 13:27:20 : Received request from ::1
+2019-09-24 13:27:20 : Received request from ::1
+2019-09-24 13:27:20 : Sending data to ::1
+2019-09-24 13:27:20 : Handling request 50 took 0.00067400932312012 seconds
+2019-09-24 13:27:20 : Sending data to ::1
+2019-09-24 13:27:20 : Handling request 40 took 0.0037441253662109 seconds
+2019-09-24 13:27:20 : Sending data to ::1
+2019-09-24 13:27:26 : Received request from ::1
+2019-09-24 13:27:26 : Handling request 10 took 0.19464802742004 seconds
+2019-09-24 13:27:26 : Sending data to ::1
+2019-09-24 13:27:26 : Received request from ::1
+2019-09-24 13:27:26 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:27:26 : Handling request 20 took 0.058770895004272 seconds
+2019-09-24 13:27:26 : Sending data to ::1
+2019-09-24 13:27:26 : Received request from ::1
+2019-09-24 13:27:26 : Handling request 30 took 0.00142502784729 seconds
+2019-09-24 13:27:26 : Sending data to ::1
+2019-09-24 13:27:26 : Received request from ::1
+2019-09-24 13:27:26 : Received request from ::1
+2019-09-24 13:27:26 : Handling request 40 took 0.0013790130615234 seconds
+2019-09-24 13:27:26 : Handling request 50 took 0.003122091293335 seconds
+2019-09-24 13:27:26 : Sending data to ::1
+2019-09-24 13:27:26 : Sending data to ::1
+2019-09-24 13:27:26 : Received request from ::1
+2019-09-24 13:27:26 : Received request from ::1
+2019-09-24 13:27:26 : Handling request 30 took 0.00088596343994141 seconds
+2019-09-24 13:27:26 : Sending data to ::1
+2019-09-24 13:27:26 : Handling request 50 took 0.00056290626525879 seconds
+2019-09-24 13:27:26 : Sending data to ::1
+2019-09-24 13:27:26 : Received request from ::1
+2019-09-24 13:27:26 : Handling request 40 took 0.00095701217651367 seconds
+2019-09-24 13:27:26 : Sending data to ::1
+2019-09-24 13:27:26 : Received request from ::1
+2019-09-24 13:27:26 : Received request from ::1
+2019-09-24 13:27:26 : Handling request 30 took 0.00066804885864258 seconds
+2019-09-24 13:27:26 : Sending data to ::1
+2019-09-24 13:27:26 : Handling request 50 took 0.0006401538848877 seconds
+2019-09-24 13:27:26 : Sending data to ::1
+2019-09-24 13:27:26 : Received request from ::1
+2019-09-24 13:27:26 : Handling request 40 took 0.00087094306945801 seconds
+2019-09-24 13:27:26 : Sending data to ::1
+2019-09-24 13:27:28 : Received request from ::1
+2019-09-24 13:27:28 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:27:28 : Handling request 20 took 0.082626104354858 seconds
+2019-09-24 13:27:28 : Sending data to ::1
+2019-09-24 13:27:28 : Received request from ::1
+2019-09-24 13:27:28 : Handling request 30 took 0.0032589435577393 seconds
+2019-09-24 13:27:28 : Sending data to ::1
+2019-09-24 13:27:28 : Received request from ::1
+2019-09-24 13:27:28 : Received request from ::1
+2019-09-24 13:27:28 : Handling request 50 took 0.00080418586730957 seconds
+2019-09-24 13:27:28 : Sending data to ::1
+2019-09-24 13:27:28 : Handling request 40 took 0.008228063583374 seconds
+2019-09-24 13:27:28 : Sending data to ::1
+2019-09-24 13:27:28 : Received request from ::1
+2019-09-24 13:27:28 : Handling request 30 took 0.0013589859008789 seconds
+2019-09-24 13:27:28 : Sending data to ::1
+2019-09-24 13:27:28 : Received request from ::1
+2019-09-24 13:27:28 : Received request from ::1
+2019-09-24 13:27:28 : Handling request 50 took 0.00069189071655273 seconds
+2019-09-24 13:27:28 : Handling request 40 took 0.0013420581817627 seconds
+2019-09-24 13:27:28 : Sending data to ::1
+2019-09-24 13:27:28 : Sending data to ::1
+2019-09-24 13:27:28 : Received request from ::1
+2019-09-24 13:27:28 : Received request from ::1
+2019-09-24 13:27:28 : Handling request 30 took 0.011028051376343 seconds
+2019-09-24 13:27:28 : Sending data to ::1
+2019-09-24 13:27:28 : Received request from ::1
+2019-09-24 13:27:28 : Handling request 50 took 0.0036590099334717 seconds
+2019-09-24 13:27:28 : Sending data to ::1
+2019-09-24 13:27:28 : Handling request 40 took 0.0032339096069336 seconds
+2019-09-24 13:27:28 : Sending data to ::1
+2019-09-24 13:28:22 : Received request from ::1
+2019-09-24 13:28:22 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:28:22 : Handling request 20 took 0.075216054916382 seconds
+2019-09-24 13:28:22 : Sending data to ::1
+2019-09-24 13:28:22 : Received request from ::1
+2019-09-24 13:28:22 : Handling request 30 took 0.0047399997711182 seconds
+2019-09-24 13:28:22 : Received request from ::1
+2019-09-24 13:28:22 : Sending data to ::1
+2019-09-24 13:28:22 : Handling request 50 took 0.0020310878753662 seconds
+2019-09-24 13:28:22 : Sending data to ::1
+2019-09-24 13:28:22 : Received request from ::1
+2019-09-24 13:28:22 : Handling request 40 took 0.014395952224731 seconds
+2019-09-24 13:28:22 : Received request from ::1
+2019-09-24 13:28:22 : Sending data to ::1
+2019-09-24 13:28:22 : Handling request 50 took 0.0014700889587402 seconds
+2019-09-24 13:28:22 : Sending data to ::1
+2019-09-24 13:28:22 : Received request from ::1
+2019-09-24 13:28:22 : Handling request 30 took 0.0027961730957031 seconds
+2019-09-24 13:28:22 : Sending data to ::1
+2019-09-24 13:28:22 : Received request from ::1
+2019-09-24 13:28:22 : Handling request 40 took 0.0037479400634766 seconds
+2019-09-24 13:28:22 : Received request from ::1
+2019-09-24 13:28:22 : Sending data to ::1
+2019-09-24 13:28:22 : Handling request 50 took 0.010212898254395 seconds
+2019-09-24 13:28:22 : Received request from ::1
+2019-09-24 13:28:22 : Sending data to ::1
+2019-09-24 13:28:22 : Handling request 30 took 0.0029809474945068 seconds
+2019-09-24 13:28:22 : Sending data to ::1
+2019-09-24 13:28:22 : Received request from ::1
+2019-09-24 13:28:22 : Handling request 40 took 0.0013320446014404 seconds
+2019-09-24 13:28:22 : Sending data to ::1
+2019-09-24 13:33:11 : Received request from ::1
+2019-09-24 13:33:11 : Handling request 10 took 0.079315900802612 seconds
+2019-09-24 13:33:11 : Sending data to ::1
+2019-09-24 13:33:11 : Received request from ::1
+2019-09-24 13:33:11 : Handling request 30 took 0.0062899589538574 seconds
+2019-09-24 13:33:11 : Sending data to ::1
+2019-09-24 13:33:11 : Received request from ::1
+2019-09-24 13:33:11 : Handling request 50 took 0.0012340545654297 seconds
+2019-09-24 13:33:11 : Sending data to ::1
+2019-09-24 13:33:11 : Received request from ::1
+2019-09-24 13:33:11 : Handling request 40 took 0.0022239685058594 seconds
+2019-09-24 13:33:11 : Sending data to ::1
+2019-09-24 13:33:11 : Received request from ::1
+2019-09-24 13:33:11 : Handling request 30 took 0.00063109397888184 seconds
+2019-09-24 13:33:11 : Sending data to ::1
+2019-09-24 13:33:11 : Received request from ::1
+2019-09-24 13:33:11 : Received request from ::1
+2019-09-24 13:33:11 : Handling request 50 took 0.00071382522583008 seconds
+2019-09-24 13:33:11 : Handling request 40 took 0.00066494941711426 seconds
+2019-09-24 13:33:11 : Sending data to ::1
+2019-09-24 13:33:11 : Sending data to ::1
+2019-09-24 13:33:11 : Received request from ::1
+2019-09-24 13:33:11 : Handling request 30 took 0.0006411075592041 seconds
+2019-09-24 13:33:11 : Sending data to ::1
+2019-09-24 13:33:11 : Received request from ::1
+2019-09-24 13:33:11 : Handling request 50 took 0.0007472038269043 seconds
+2019-09-24 13:33:11 : Received request from ::1
+2019-09-24 13:33:11 : Handling request 40 took 0.00078511238098145 seconds
+2019-09-24 13:33:11 : Sending data to ::1
+2019-09-24 13:33:11 : Received request from ::1
+2019-09-24 13:33:11 : Handling request 30 took 0.00065088272094727 seconds
+2019-09-24 13:33:11 : Sending data to ::1
+2019-09-24 13:33:11 : Received request from ::1
+2019-09-24 13:33:11 : Received request from ::1
+2019-09-24 13:33:11 : Handling request 40 took 0.00071620941162109 seconds
+2019-09-24 13:33:11 : Handling request 50 took 0.0013198852539062 seconds
+2019-09-24 13:33:11 : Sending data to ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Handling request 10 took 0.083803176879883 seconds
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Handling request 30 took 0.0075740814208984 seconds
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Handling request 40 took 0.0012359619140625 seconds
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Handling request 50 took 0.00088810920715332 seconds
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Handling request 30 took 0.0026688575744629 seconds
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Handling request 40 took 0.00072789192199707 seconds
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Handling request 50 took 0.00098299980163574 seconds
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Handling request 30 took 0.00062799453735352 seconds
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Handling request 40 took 0.00080990791320801 seconds
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Handling request 50 took 0.000640869140625 seconds
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Handling request 30 took 0.00064897537231445 seconds
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Handling request 40 took 0.00078487396240234 seconds
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Handling request 30 took 0.00080704689025879 seconds
+2019-09-24 13:33:20 : Handling request 50 took 0.0010261535644531 seconds
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Handling request 40 took 0.00096893310546875 seconds
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:20 : Received request from ::1
+2019-09-24 13:33:20 : Handling request 50 took 0.00068402290344238 seconds
+2019-09-24 13:33:20 : Sending data to ::1
+2019-09-24 13:33:25 : Received request from ::1
+2019-09-24 13:33:25 : Handling request 110 took 0.00091004371643066 seconds
+2019-09-24 13:33:25 : Sending data to ::1
+2019-09-24 13:38:37 : Received request from ::1
+2019-09-24 13:38:37 : Received request from ::1
+2019-09-24 13:38:37 : Handling request 70 took 0.0072090625762939 seconds
+2019-09-24 13:38:37 : Handling request 110 took 0.00055098533630371 seconds
+2019-09-24 13:38:37 : Sending data to ::1
+2019-09-24 13:38:37 : Sending data to ::1
+2019-09-24 13:38:37 : Received request from ::1
+2019-09-24 13:38:37 : 
+2019-09-24 13:38:37 : Handling request 80 took 0.0019168853759766 seconds
+2019-09-24 13:38:37 : Sending data to ::1
+2019-09-24 13:38:39 : Received request from ::1
+2019-09-24 13:38:39 : Handling request 10 took 0.19982409477234 seconds
+2019-09-24 13:38:39 : Sending data to ::1
+2019-09-24 13:38:39 : Received request from ::1
+2019-09-24 13:38:39 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:38:39 : Handling request 20 took 0.063607931137085 seconds
+2019-09-24 13:38:39 : Sending data to ::1
+2019-09-24 13:38:39 : Received request from ::1
+2019-09-24 13:38:39 : Received request from ::1
+2019-09-24 13:38:39 : Received request from ::1
+2019-09-24 13:38:39 : Handling request 30 took 0.020008087158203 seconds
+2019-09-24 13:38:39 : Handling request 50 took 0.00060486793518066 seconds
+2019-09-24 13:38:39 : Sending data to ::1
+2019-09-24 13:38:39 : Sending data to ::1
+2019-09-24 13:38:39 : Handling request 40 took 0.0043299198150635 seconds
+2019-09-24 13:38:39 : Sending data to ::1
+2019-09-24 13:38:40 : Received request from ::1
+2019-09-24 13:38:40 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:38:40 : Handling request 20 took 0.094902992248535 seconds
+2019-09-24 13:38:40 : Sending data to ::1
+2019-09-24 13:38:40 : Received request from ::1
+2019-09-24 13:38:40 : Handling request 30 took 0.0024199485778809 seconds
+2019-09-24 13:38:40 : Received request from ::1
+2019-09-24 13:38:40 : Received request from ::1
+2019-09-24 13:38:40 : Sending data to ::1
+2019-09-24 13:38:40 : Handling request 40 took 0.00073909759521484 seconds
+2019-09-24 13:38:40 : Handling request 50 took 0.00073695182800293 seconds
+2019-09-24 13:38:40 : Sending data to ::1
+2019-09-24 13:38:40 : Sending data to ::1
+2019-09-24 13:38:42 : Received request from ::1
+2019-09-24 13:38:42 : SELECT 
+Employment.municipalityID,
+naceID,
+genderID,
+pYear,
+workplaceValue,
+livingplaceValue,
+employmentBalance
+from Employment, Municipality WHERE Employment.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:38:42 : Handling request 20 took 0.090366125106812 seconds
+2019-09-24 13:38:42 : Sending data to ::1
+2019-09-24 13:38:42 : Received request from ::1
+2019-09-24 13:38:42 : Received request from ::1
+2019-09-24 13:38:42 : Received request from ::1
+2019-09-24 13:38:42 : Handling request 40 took 0.00083494186401367 seconds
+2019-09-24 13:38:42 : Handling request 50 took 0.0010111331939697 seconds
+2019-09-24 13:38:42 : Sending data to ::1
+2019-09-24 13:38:42 : Sending data to ::1
+2019-09-24 13:38:51 : Received request from ::1
+2019-09-24 13:38:51 : SELECT
+HouseholdIncome.municipalityID,
+householdTypeID,
+pYear,
+householdIncomeAvg as value
+FROM HouseholdIncome, Municipality WHERE HouseholdIncome.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:38:51 : Handling request 20 took 0.081480979919434 seconds
+2019-09-24 13:38:51 : Sending data to ::1
+2019-09-24 13:38:51 : Received request from ::1
+2019-09-24 13:38:51 : Handling request 30 took 0.0076940059661865 seconds
+2019-09-24 13:38:51 : Received request from ::1
+2019-09-24 13:38:51 : Received request from ::1
+2019-09-24 13:38:51 : Sending data to ::1
+2019-09-24 13:38:51 : Handling request 50 took 0.0034489631652832 seconds
+2019-09-24 13:38:51 : Sending data to ::1
+2019-09-24 13:38:51 : Handling request 40 took 0.010756015777588 seconds
+2019-09-24 13:38:51 : Sending data to ::1
+2019-09-24 13:39:08 : Received request from ::1
+2019-09-24 13:39:08 : Handling request 10 took 0.085065126419067 seconds
+2019-09-24 13:39:08 : Sending data to ::1
+2019-09-24 13:39:08 : Received request from ::1
+2019-09-24 13:39:08 : Handling request 10 took 0.11710000038147 seconds
+2019-09-24 13:39:08 : Sending data to ::1
+2019-09-24 13:39:08 : Received request from ::1
+2019-09-24 13:39:08 : Handling request 30 took 0.0086569786071777 seconds
+2019-09-24 13:39:08 : Sending data to ::1
+2019-09-24 13:39:08 : Received request from ::1
+2019-09-24 13:39:08 : Handling request 50 took 0.00076007843017578 seconds
+2019-09-24 13:39:08 : Sending data to ::1
+2019-09-24 13:42:37 : Received request from ::1
+2019-09-24 13:42:37 : Handling request 110 took 0.00087094306945801 seconds
+2019-09-24 13:42:37 : Sending data to ::1
+2019-09-24 13:52:03 : Received request from ::1
+2019-09-24 13:52:03 : Handling request 70 took 0.002479076385498 seconds
+2019-09-24 13:52:03 : Sending data to ::1
+2019-09-24 13:52:03 : Received request from ::1
+2019-09-24 13:52:03 : 
+2019-09-24 13:52:03 : Handling request 80 took 0.0012190341949463 seconds
+2019-09-24 13:52:03 : Sending data to ::1
+2019-09-24 13:52:03 : Received request from ::1
+2019-09-24 13:52:03 : Handling request 10 took 0.069406986236572 seconds
+2019-09-24 13:52:03 : Sending data to ::1
+2019-09-24 13:52:03 : Received request from ::1
+2019-09-24 13:52:03 : Received request from ::1
+2019-09-24 13:52:03 : Received request from ::1
+2019-09-24 13:52:03 : Handling request 50 took 0.00096487998962402 seconds
+2019-09-24 13:52:03 : Handling request 30 took 0.00094509124755859 seconds
+2019-09-24 13:52:03 : Handling request 40 took 0.0010209083557129 seconds
+2019-09-24 13:52:03 : Sending data to ::1
+2019-09-24 13:52:03 : Sending data to ::1
+2019-09-24 13:52:03 : Sending data to ::1
+2019-09-24 13:52:05 : Received request from ::1
+2019-09-24 13:52:06 : Handling request 10 took 0.2128541469574 seconds
+2019-09-24 13:52:06 : Sending data to ::1
+2019-09-24 13:52:06 : Received request from ::1
+2019-09-24 13:52:06 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:52:06 : Handling request 20 took 0.067956924438477 seconds
+2019-09-24 13:52:06 : Sending data to ::1
+2019-09-24 13:52:06 : Received request from ::1
+2019-09-24 13:52:06 : Handling request 30 took 0.0011570453643799 seconds
+2019-09-24 13:52:06 : Sending data to ::1
+2019-09-24 13:52:06 : Received request from ::1
+2019-09-24 13:52:06 : Received request from ::1
+2019-09-24 13:52:06 : Handling request 40 took 0.0025949478149414 seconds
+2019-09-24 13:52:06 : Sending data to ::1
+2019-09-24 13:52:06 : Handling request 50 took 0.0015780925750732 seconds
+2019-09-24 13:52:06 : Sending data to ::1
+2019-09-24 13:52:06 : Received request from ::1
+2019-09-24 13:52:06 : Handling request 30 took 0.011751174926758 seconds
+2019-09-24 13:52:06 : Sending data to ::1
+2019-09-24 13:52:06 : Received request from ::1
+2019-09-24 13:52:06 : Handling request 40 took 0.0006709098815918 seconds
+2019-09-24 13:52:06 : Sending data to ::1
+2019-09-24 13:52:06 : Received request from ::1
+2019-09-24 13:52:06 : Handling request 50 took 0.00077915191650391 seconds
+2019-09-24 13:52:06 : Sending data to ::1
+2019-09-24 13:52:10 : Received request from ::1
+2019-09-24 13:52:10 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 13:52:10 : Handling request 20 took 0.10063695907593 seconds
+2019-09-24 13:52:10 : Sending data to ::1
+2019-09-24 13:52:10 : Received request from ::1
+2019-09-24 13:52:10 : Received request from ::1
+2019-09-24 13:52:10 : Received request from ::1
+2019-09-24 13:52:10 : Handling request 50 took 0.0018658638000488 seconds
+2019-09-24 13:52:10 : Sending data to ::1
+2019-09-24 13:52:10 : Handling request 40 took 0.00061392784118652 seconds
+2019-09-24 13:52:10 : Handling request 30 took 0.016058921813965 seconds
+2019-09-24 13:52:10 : Sending data to ::1
+2019-09-24 13:52:10 : Sending data to ::1
+2019-09-24 13:52:10 : Received request from ::1
+2019-09-24 13:52:10 : Received request from ::1
+2019-09-24 13:52:10 : Handling request 50 took 0.0021800994873047 seconds
+2019-09-24 13:52:10 : Sending data to ::1
+2019-09-24 13:52:10 : Handling request 40 took 0.00142502784729 seconds
+2019-09-24 13:52:10 : Sending data to ::1
+2019-09-24 13:52:10 : Received request from ::1
+2019-09-24 13:52:10 : Handling request 30 took 0.00071096420288086 seconds
+2019-09-24 13:52:10 : Sending data to ::1
+2019-09-24 14:00:38 : Received request from ::1
+2019-09-24 14:00:38 : Handling request 10 took 0.062726020812988 seconds
+2019-09-24 14:00:38 : Sending data to ::1
+2019-09-24 14:00:38 : Received request from ::1
+2019-09-24 14:00:38 : Handling request 30 took 0.0029020309448242 seconds
+2019-09-24 14:00:38 : Sending data to ::1
+2019-09-24 14:00:38 : Received request from ::1
+2019-09-24 14:00:38 : Received request from ::1
+2019-09-24 14:00:38 : Handling request 50 took 0.0007169246673584 seconds
+2019-09-24 14:00:38 : Handling request 40 took 0.00076818466186523 seconds
+2019-09-24 14:00:38 : Sending data to ::1
+2019-09-24 14:00:38 : Sending data to ::1
+2019-09-24 14:00:38 : Received request from ::1
+2019-09-24 14:00:38 : Handling request 30 took 0.0056838989257812 seconds
+2019-09-24 14:00:38 : Sending data to ::1
+2019-09-24 14:00:38 : Received request from ::1
+2019-09-24 14:00:38 : Handling request 50 took 0.00074410438537598 seconds
+2019-09-24 14:00:38 : Sending data to ::1
+2019-09-24 14:00:38 : Sending data to ::1
+2019-09-24 14:00:38 : Received request from ::1
+2019-09-24 14:00:38 : Handling request 30 took 0.00064492225646973 seconds
+2019-09-24 14:00:38 : Sending data to ::1
+2019-09-24 14:00:38 : Received request from ::1
+2019-09-24 14:00:38 : Received request from ::1
+2019-09-24 14:00:38 : Handling request 40 took 0.00078201293945312 seconds
+2019-09-24 14:00:38 : Handling request 50 took 0.00063419342041016 seconds
+2019-09-24 14:00:38 : Sending data to ::1
+2019-09-24 14:00:40 : Received request from ::1
+2019-09-24 14:00:40 : Handling request 10 took 0.073847055435181 seconds
+2019-09-24 14:00:40 : Sending data to ::1
+2019-09-24 14:00:40 : Received request from ::1
+2019-09-24 14:00:40 : Handling request 10 took 0.11312389373779 seconds
+2019-09-24 14:00:40 : Sending data to ::1
+2019-09-24 14:00:41 : Received request from ::1
+2019-09-24 14:00:41 : Received request from ::1
+2019-09-24 14:00:41 : Received request from ::1
+2019-09-24 14:00:41 : Handling request 40 took 0.00082707405090332 seconds
+2019-09-24 14:00:41 : Handling request 30 took 0.00082302093505859 seconds
+2019-09-24 14:00:41 : Sending data to ::1
+2019-09-24 14:00:41 : Handling request 50 took 0.01087498664856 seconds
+2019-09-24 14:00:41 : Sending data to ::1
+2019-09-24 14:00:41 : Received request from ::1
+2019-09-24 14:00:41 : Handling request 30 took 0.00066518783569336 seconds
+2019-09-24 14:00:41 : Sending data to ::1
+2019-09-24 14:00:41 : Received request from ::1
+2019-09-24 14:00:41 : Handling request 40 took 0.00082278251647949 seconds
+2019-09-24 14:00:41 : Sending data to ::1
+2019-09-24 14:00:41 : Received request from ::1
+2019-09-24 14:00:41 : Received request from ::1
+2019-09-24 14:00:41 : Handling request 50 took 0.00097107887268066 seconds
+2019-09-24 14:00:41 : Received request from ::1
+2019-09-24 14:00:41 : Sending data to ::1
+2019-09-24 14:00:41 : Handling request 30 took 0.00066494941711426 seconds
+2019-09-24 14:00:41 : Handling request 40 took 0.00069093704223633 seconds
+2019-09-24 14:00:41 : Sending data to ::1
+2019-09-24 14:00:41 : Received request from ::1
+2019-09-24 14:00:41 : Handling request 40 took 0.00077199935913086 seconds
+2019-09-24 14:00:41 : Sending data to ::1
+2019-09-24 14:00:41 : Received request from ::1
+2019-09-24 14:00:41 : Handling request 50 took 0.00072789192199707 seconds
+2019-09-24 14:00:41 : Sending data to ::1
+2019-09-24 14:00:41 : Received request from ::1
+2019-09-24 14:00:41 : Handling request 30 took 0.00067305564880371 seconds
+2019-09-24 14:00:41 : Sending data to ::1
+2019-09-24 14:00:41 : Received request from ::1
+2019-09-24 14:00:41 : Handling request 50 took 0.00065302848815918 seconds
+2019-09-24 14:00:41 : Sending data to ::1
+2019-09-24 14:00:46 : Received request from ::1
+2019-09-24 14:00:46 : Handling request 70 took 0.001162052154541 seconds
+2019-09-24 14:00:46 : Sending data to ::1
+2019-09-24 14:00:46 : Received request from ::1
+2019-09-24 14:00:46 : 
+2019-09-24 14:00:46 : Handling request 80 took 0.0012140274047852 seconds
+2019-09-24 14:00:46 : Sending data to ::1
+2019-09-24 14:00:46 : Received request from ::1
+2019-09-24 14:00:46 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 14:00:46 : Handling request 20 took 0.094502925872803 seconds
+2019-09-24 14:00:46 : Sending data to ::1
+2019-09-24 14:00:47 : Received request from ::1
+2019-09-24 14:00:47 : Received request from ::1
+2019-09-24 14:00:47 : Received request from ::1
+2019-09-24 14:00:47 : Handling request 30 took 0.0010800361633301 seconds
+2019-09-24 14:00:47 : Sending data to ::1
+2019-09-24 14:00:47 : Handling request 50 took 0.00073003768920898 seconds
+2019-09-24 14:00:47 : Handling request 40 took 0.0018258094787598 seconds
+2019-09-24 14:00:47 : Sending data to ::1
+2019-09-24 14:01:08 : Received request from ::1
+2019-09-24 14:01:08 : Handling request 70 took 0.0037329196929932 seconds
+2019-09-24 14:01:08 : Sending data to ::1
+2019-09-24 14:01:08 : Received request from ::1
+2019-09-24 14:01:08 : 
+2019-09-24 14:01:08 : Handling request 80 took 0.0012829303741455 seconds
+2019-09-24 14:01:08 : Sending data to ::1
+2019-09-24 14:01:08 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 14:01:08 : Handling request 20 took 0.086449861526489 seconds
+2019-09-24 14:01:08 : Sending data to ::1
+2019-09-24 14:01:08 : Received request from ::1
+2019-09-24 14:01:08 : Handling request 30 took 0.00083398818969727 seconds
+2019-09-24 14:01:08 : Sending data to ::1
+2019-09-24 14:01:08 : Received request from ::1
+2019-09-24 14:01:08 : Received request from ::1
+2019-09-24 14:01:08 : Handling request 50 took 0.00087618827819824 seconds
+2019-09-24 14:01:08 : Sending data to ::1
+2019-09-24 14:01:08 : Handling request 40 took 0.0035851001739502 seconds
+2019-09-24 14:01:08 : Sending data to ::1
+2019-09-24 14:01:13 : Received request from ::1
+2019-09-24 14:01:13 : Received request from ::1
+2019-09-24 14:01:13 : 
+2019-09-24 14:01:13 : Handling request 70 took 0.0088870525360107 seconds
+2019-09-24 14:01:13 : Received request from ::1
+2019-09-24 14:01:13 : Handling request 80 took 0.014072895050049 seconds
+2019-09-24 14:01:13 : Sending data to ::1
+2019-09-24 14:01:13 : Sending data to ::1
+2019-09-24 14:01:13 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 14:01:13 : Handling request 20 took 0.10990190505981 seconds
+2019-09-24 14:01:13 : Sending data to ::1
+2019-09-24 14:01:14 : Received request from ::1
+2019-09-24 14:01:14 : Handling request 30 took 0.013721942901611 seconds
+2019-09-24 14:01:14 : Sending data to ::1
+2019-09-24 14:01:14 : Received request from ::1
+2019-09-24 14:01:14 : Received request from ::1
+2019-09-24 14:01:14 : Handling request 40 took 0.00074911117553711 seconds
+2019-09-24 14:01:14 : Sending data to ::1
+2019-09-24 14:01:14 : Handling request 50 took 0.0006711483001709 seconds
+2019-09-24 14:01:14 : Sending data to ::1
+2019-09-24 14:01:16 : Received request from 127.0.0.1
+2019-09-24 14:01:16 : Handling request 70 took 0.0010712146759033 seconds
+2019-09-24 14:01:16 : Sending data to 127.0.0.1
+2019-09-24 14:01:16 : Received request from 127.0.0.1
+2019-09-24 14:01:16 : 
+2019-09-24 14:01:16 : Handling request 80 took 0.0012140274047852 seconds
+2019-09-24 14:01:16 : Sending data to 127.0.0.1
+2019-09-24 14:01:16 : Received request from 127.0.0.1
+2019-09-24 14:01:16 : Handling request 10 took 0.10358190536499 seconds
+2019-09-24 14:01:16 : Sending data to 127.0.0.1
+2019-09-24 14:01:16 : Received request from 127.0.0.1
+2019-09-24 14:01:16 : Handling request 30 took 0.00088596343994141 seconds
+2019-09-24 14:01:16 : Sending data to 127.0.0.1
+2019-09-24 14:01:16 : Received request from 127.0.0.1
+2019-09-24 14:01:16 : Received request from 127.0.0.1
+2019-09-24 14:01:16 : Handling request 40 took 0.0017178058624268 seconds
+2019-09-24 14:01:16 : Sending data to 127.0.0.1
+2019-09-24 14:01:16 : Handling request 50 took 0.00081610679626465 seconds
+2019-09-24 14:01:16 : Sending data to 127.0.0.1
+2019-09-24 14:02:07 : Received request from ::1
+2019-09-24 14:02:07 : Handling request 70 took 0.0022580623626709 seconds
+2019-09-24 14:02:07 : Sending data to ::1
+2019-09-24 14:02:07 : Received request from ::1
+2019-09-24 14:02:07 : Received request from ::1
+2019-09-24 14:02:07 : 
+2019-09-24 14:02:07 : Handling request 80 took 0.0011570453643799 seconds
+2019-09-24 14:02:07 : Sending data to ::1
+2019-09-24 14:02:07 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 14:02:07 : Handling request 20 took 0.090384006500244 seconds
+2019-09-24 14:02:07 : Sending data to ::1
+2019-09-24 14:02:08 : Received request from ::1
+2019-09-24 14:02:08 : Handling request 30 took 0.00082302093505859 seconds
+2019-09-24 14:02:08 : Sending data to ::1
+2019-09-24 14:02:08 : Received request from ::1
+2019-09-24 14:02:08 : Handling request 40 took 0.000823974609375 seconds
+2019-09-24 14:02:08 : Received request from ::1
+2019-09-24 14:02:08 : Sending data to ::1
+2019-09-24 14:02:08 : Handling request 50 took 0.00073695182800293 seconds
+2019-09-24 14:02:08 : Sending data to ::1
+2019-09-24 14:02:11 : Received request from ::1
+2019-09-24 14:02:11 : Handling request 70 took 0.0010359287261963 seconds
+2019-09-24 14:02:11 : Sending data to ::1
+2019-09-24 14:02:11 : Received request from ::1
+2019-09-24 14:02:11 : 
+2019-09-24 14:02:11 : Handling request 80 took 0.0011320114135742 seconds
+2019-09-24 14:02:11 : Sending data to ::1
+2019-09-24 14:02:12 : Received request from ::1
+2019-09-24 14:02:12 : SELECT 
+PopulationAge.municipalityID,
+ageRangeID,
+genderID,
+pYear,
+population as value
+from PopulationAge, Municipality WHERE PopulationAge.municipalityID = Municipality.municipalityID ORDER BY municipalityOrder,pYear
+2019-09-24 14:02:12 : Handling request 20 took 0.13421297073364 seconds
+2019-09-24 14:02:12 : Sending data to ::1
+2019-09-24 14:02:12 : Received request from ::1
+2019-09-24 14:02:12 : Handling request 30 took 0.0022709369659424 seconds
+2019-09-24 14:02:12 : Sending data to ::1
+2019-09-24 14:02:12 : Received request from ::1
+2019-09-24 14:02:12 : Handling request 50 took 0.0013399124145508 seconds
+2019-09-24 14:02:12 : Sending data to ::1
+2019-09-24 14:02:12 : Received request from ::1
+2019-09-24 14:02:12 : Handling request 40 took 0.00075292587280273 seconds
+2019-09-24 14:02:12 : Sending data to ::1
+2019-09-24 14:05:34 : Received request from ::1
+2019-09-24 14:05:35 : Handling request 10 took 0.063574075698853 seconds
+2019-09-24 14:05:35 : Sending data to ::1
+2019-09-24 14:05:35 : Received request from ::1
+2019-09-24 14:05:35 : Received request from ::1
+2019-09-24 14:05:35 : Handling request 40 took 0.00070810317993164 seconds
+2019-09-24 14:05:35 : Handling request 30 took 0.0036530494689941 seconds
+2019-09-24 14:05:35 : Sending data to ::1
+2019-09-24 14:05:35 : Sending data to ::1
+2019-09-24 14:05:35 : Received request from ::1
+2019-09-24 14:05:35 : Handling request 50 took 0.018162965774536 seconds
+2019-09-24 14:05:35 : Sending data to ::1
+2019-09-24 14:05:35 : Received request from ::1
+2019-09-24 14:05:35 : Received request from ::1
+2019-09-24 14:05:35 : Handling request 40 took 0.00081086158752441 seconds
+2019-09-24 14:05:35 : Handling request 30 took 0.0024538040161133 seconds
+2019-09-24 14:05:35 : Sending data to ::1
+2019-09-24 14:05:35 : Sending data to ::1
+2019-09-24 14:05:35 : Received request from ::1
+2019-09-24 14:05:35 : Handling request 50 took 0.0009610652923584 seconds
+2019-09-24 14:05:35 : Sending data to ::1

@@ -210,9 +210,9 @@ class SsbUpdate {
                 if (in_array($item->Bokommuen, $this->core->getRegionCodes())) {
                     if (!isset($region[$item->Tid])) {$region[$item->Tid] = []; }
                     if (in_array($item->ArbstedKomm, $this->core->getRegionCodes())) {
-                        if (!isset($region[$item->Tid]['9999'])) {
-                            $region[$item->Tid]['9999'] = 0; }
-                        $region[$item->Tid]['9999']+= $item->value;
+                        if (!isset($region[$item->Tid]['8888'])) {
+                            $region[$item->Tid]['8888'] = 0; }
+                        $region[$item->Tid]['8888']+= $item->value;
                     } else {
                         if (!isset($region[$item->Tid][$item->ArbstedKomm])) {
                             $region[$item->Tid][$item->ArbstedKomm] = 0; }
@@ -220,7 +220,7 @@ class SsbUpdate {
                     }
                 }
             }
-            $regID = $this->core->getMunicipalityID('9999');
+            $regID = $this->core->getMunicipalityID('8888');
             foreach ($region as $year => $item2) {
                 foreach ($item2 as $workMunID => $item) {
                     $this->db->prepare($sql);
@@ -278,7 +278,7 @@ class SsbUpdate {
                     $region[$pYear][$genderID][$gradeID] += $item->value;
                 }
             }
-            $regionID = $this->core->getMunicipalityID('9999');
+            $regionID = $this->core->getMunicipalityID('8888');
             foreach ($region as $pYear => $item3) {
                 foreach ($item3 as $genderID => $item2) {
                     foreach ($item2 as $gradeID => $item) {
@@ -359,7 +359,7 @@ SQL;
                     $this->db->execute();
                 }
             }
-            $regionID = $this->core->getMunicipalityID('9999');
+            $regionID = $this->core->getMunicipalityID('8888');
             foreach ($region as $year => $item3) {
                 foreach ($item3 as $naceID => $item2) {
                     foreach ($item2 as $genderID => $item) {
@@ -446,7 +446,7 @@ SQL;
                     }
                 }
             }
-            $regionID = $this->core->getMunicipalityID('9999');
+            $regionID = $this->core->getMunicipalityID('8888');
             foreach ($region as $year => $item3) {
                 foreach ($item3 as $naceID => $item2) {
                     foreach ($item2 as $genderID => $item) {
@@ -498,7 +498,7 @@ SQL;
                 $this->db->execute();
 
             }
-            $regionID = $this->core->getMunicipalityID('9999');
+            $regionID = $this->core->getMunicipalityID('8888');
             foreach ($region as $pYear => $item3) {
                 foreach ($item3 as $genderID => $item2) {
                     foreach ($item2 as $ageRangeID => $item) {
@@ -610,7 +610,7 @@ SQL;
                 foreach ($item2 as $hid => $item) {
                     $this->db->prepare($sql);
                     $this->db->bind(':varID', $variableID);
-                    $this->db->bind(':munID', $this->core->getMunicipalityID('9999'));
+                    $this->db->bind(':munID', $this->core->getMunicipalityID('8888'));
                     $this->db->bind(':householdTypeID', $hid);
                     $this->db->bind(':pYear', $pYear);
                     $this->db->bind(':householdIncomeAvg', $item / 3);
@@ -659,7 +659,7 @@ SQL;
                     }
                 }
             }
-            $regionID = $this->core->getMunicipalityID('9999');
+            $regionID = $this->core->getMunicipalityID('8888');
             foreach ($region as $pYear => $item) {
                 $this->db->prepare($sql);
                 $this->db->bind(':variableID', $variableID);
@@ -712,7 +712,7 @@ SQL;
                     $region[$pYear][$genderID][$countryBackgroundID] += $item->value;
                 }
             }
-            $regionID = $this->core->getMunicipalityID('9999');
+            $regionID = $this->core->getMunicipalityID('8888');
             foreach ($region as $pYear => $item3) {
                 foreach ($item3 as $genderID => $item2) {
                     foreach ($item2 as $countryBackgroundID => $item) {
@@ -770,7 +770,7 @@ SQL;
                     }
                 }
             }
-            $regionID = $this->core->getMunicipalityID('9999');
+            $regionID = $this->core->getMunicipalityID('8888');
             foreach ($region as $year => $item) {
                 $this->db->prepare($sql);
                 $this->db->bind(':varID', $variableID);
@@ -1055,7 +1055,7 @@ SQL;
             $this->db->bind(':population', $item->value);
             $this->db->execute();
         }
-        $regionID = $this->core->getMunicipalityID('9999');
+        $regionID = $this->core->getMunicipalityID('8888');
         foreach ($region as $pYear => $item3) {
             foreach ($item3 as $ageRangeID => $item2) {
                 foreach ($item2 as $genderID => $item) {
@@ -1132,7 +1132,7 @@ JSON;
                     $this->db->execute();
                 }
             }
-            $regionID = $this->core->getMunicipalityID('9999');
+            $regionID = $this->core->getMunicipalityID('8888');
             foreach ($regionSet as $year => $qVal) {
                 foreach ($qVal as $quarter => $item) {
                     $this->db->prepare($sql);
@@ -1191,7 +1191,7 @@ SQL;
                     foreach ($item2 as $ageRangeID => $item) {
                         $this->db->prepare($sql);
                         $this->db->bind(':varID', $variableID);
-                        $this->db->bind(':munID', $this->core->getMunicipalityID('9999'));
+                        $this->db->bind(':munID', $this->core->getMunicipalityID('8888'));
                         $this->db->bind(':ageRangeID', $ageRangeID);
                         $this->db->bind(':pYear', $pYear);
                         $this->db->bind(':pMonth', $pMonth);

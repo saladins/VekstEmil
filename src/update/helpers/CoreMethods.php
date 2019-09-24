@@ -84,11 +84,11 @@ class CoreMethods {
      * @return array
      */
     public function getRegionCodes() {
-        return ['0605', '0612', '0532'];
+        return ['0532', '0533', '0534'];
     }
 
     public function getRegionUmbrellaCode() {
-        return '9999';
+        return '8888';
     }
 
     /**
